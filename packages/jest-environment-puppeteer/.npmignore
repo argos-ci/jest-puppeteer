@@ -1,2 +1,6 @@
 /*
 !/lib/*.js
+!index.js
+!globalSetup.js
+!globalTeardown.js
+!testEnvironment.js

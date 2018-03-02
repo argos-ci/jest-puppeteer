@@ -4,7 +4,7 @@
 [![version][version-badge]][package]
 [![MIT License][license-badge]][license]
 
-Run your test using Jest & Puppeteer 🎪✨
+Run your tests using Jest & Puppeteer 🎪✨
 
 ```
 npm install jest-environment-puppeteer

@@ -1,10 +1,19 @@
 {
   "name": "jest-environment-puppeteer",
-  "version": "1.0.0",
+  "description": "Run your tests using Jest & Puppeteer.",
+  "version": "0.1.0",
   "main": "index.js",
   "repository": "git@github.com:smooth-code/jest-environment-puppeteer.git",
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "jest",
+    "jest-environment",
+    "puppeteer",
+    "jest-puppeteer",
+    "chromeless",
+    "chrome-headless"
+  ],
   "scripts": {
     "build": "rm -rf lib/ && babel src -d lib",
     "ci": "yarn build && yarn lint && yarn test",
