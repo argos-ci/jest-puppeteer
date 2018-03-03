@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "rm -rf lib/ && babel src -d lib",
-    "ci": "yarn build && yarn lint && yarn test",
+    "ci": "yarn build && yarn lint && yarn test --ci",
     "dev": "babel src -d lib --watch",
     "format": "prettier --write \"src/**/*.js\" \"*.md\" \"*.js\"",
     "lint": "eslint .",

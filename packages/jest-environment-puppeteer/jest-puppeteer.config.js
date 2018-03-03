@@ -1,3 +1,3 @@
 module.exports = {
-  headless: false,
+  headless: process.env.CI === 'true',
 }
