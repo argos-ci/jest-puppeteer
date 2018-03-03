@@ -1,3 +1,3 @@
 module.exports = require('./lib/PuppeteerEnvironment').default
-module.exports.globalSetup = require('./lib/global').setup
-module.exports.globalTeardown = require('./lib/global').teardown
+module.exports.setup = require('./lib/global').setup
+module.exports.teardown = require('./lib/global').teardown

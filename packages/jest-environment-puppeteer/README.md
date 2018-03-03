@@ -16,9 +16,9 @@ Update your Jest configuration:
 
 ```json
 {
-  "globalSetup": "jest-environment-puppeteer/globalSetup",
-  "globalTeardown": "jest-environment-puppeteer/globalTeardown",
-  "testEnvironment": "jest-environment-puppeteer/testEnvironment"
+  "globalSetup": "jest-environment-puppeteer/setup",
+  "globalTeardown": "jest-environment-puppeteer/teardown",
+  "testEnvironment": "jest-environment-puppeteer"
 }
 ```
 
@@ -57,6 +57,23 @@ module.exports = {
 }
 ```
 
+### Configure ESLint
+
+Jest Environment Puppeteer exposes two new globals: `browser` and `page`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
+
+```js
+// .eslintrc.js
+module.exports = {
+  env: {
+    jest: true,
+  },
+  globals: {
+    page: true,
+    browser: true,
+  },
+}
+```
+
 ### Extend PuppeteerEnvironment
 
 Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
@@ -84,16 +101,19 @@ module.exports = CustomEnvironment
 It is possible to access `globalSetup` or `globalTeardown` in your scripts.
 
 ```js
-import { globalSetup, globalTeardown } from 'jest-environment-puppeteer'
+const {
+  setup: setupPuppeteer,
+  teardown: teardownPuppeteer,
+} = require('jest-environment-puppeteer')
 
 async function setup() {
-  await globalSetup()
+  await setupPuppeteer()
   // ...
 }
 
 async function teardown() {
   // ...
-  await globalTeardown()
+  await teardownPuppeteer()
 }
 ```
 
@@ -110,7 +130,7 @@ it('should open a new page', async () => {
 })
 ```
 
-### `global.mainPage`
+### `global.page`
 
 Give access to a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page) opened at start (you will use it most of time).
 

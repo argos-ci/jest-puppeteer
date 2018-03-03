@@ -1,5 +1,5 @@
 module.exports = {
-  globalSetup: './globalSetup.js',
-  globalTeardown: './globalTeardown.js',
-  testEnvironment: './testEnvironment.js',
+  globalSetup: './setup',
+  globalTeardown: './teardown',
+  testEnvironment: './',
 }

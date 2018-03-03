@@ -16,13 +16,13 @@ class PuppeteerEnvironment extends NodeEnvironment {
     this.global.browser = await puppeteer.connect({
       browserWSEndpoint: wsEndpoint,
     })
-    this.global.mainPage = await this.global.browser.newPage()
-    this.global.mainPage.addListener('pageerror', handleError)
+    this.global.page = await this.global.browser.newPage()
+    this.global.page.addListener('pageerror', handleError)
   }
 
   async teardown() {
-    this.global.mainPage.removeListener('pageerror', handleError)
-    await this.global.mainPage.close()
+    this.global.page.removeListener('pageerror', handleError)
+    await this.global.page.close()
   }
 }
 
