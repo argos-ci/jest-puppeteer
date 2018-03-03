@@ -1,4 +1,4 @@
-# jest-environment-puppeteer
+# Jest Puppeteer
 
 [![Build Status][build-badge]][build]
 [![version][version-badge]][package]
