@@ -17,6 +17,7 @@
   "scripts": {
     "build": "rm -rf lib/ && babel src -d lib",
     "ci": "yarn build && yarn lint && yarn test",
+    "dev": "babel src -d lib --watch",
     "format": "prettier --write \"src/**/*.js\" \"*.md\" \"*.js\"",
     "lint": "eslint .",
     "release": "standard-version && conventional-github-releaser -p angular",
@@ -42,6 +43,7 @@
     "standard-version": "^4.3.0"
   },
   "dependencies": {
+    "cwd": "^0.10.0",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2"
   }

@@ -39,9 +39,23 @@ describe('Google', () => {
 
 ## Recipes
 
-### Writing test using Puppeteer
+### Writing tests using Puppeteer
 
-Writing test using Puppeteer is simple, you can find all available methods in [Puppeteer documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md).
+To write your integration tests using Puppeteer you can find all available methods in [Puppeteer documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md).
+
+### Configure Puppeteer
+
+Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options.
+
+[All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+
+```js
+// jest-puppeteer.config.js
+module.exports = {
+  dumpio: true,
+  headless: process.env.HEADLESS !== 'false',
+}
+```
 
 ### Extend PuppeteerEnvironment
 

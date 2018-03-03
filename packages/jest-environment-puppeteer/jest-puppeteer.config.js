@@ -1,0 +1,3 @@
+module.exports = {
+  headless: false,
+}
