@@ -7,7 +7,7 @@
 Run your tests using Jest & Puppeteer 🎪✨
 
 ```
-npm install jest-environment-puppeteer
+npm install jest-environment-puppeteer puppeteer
 ```
 
 ## Usage
