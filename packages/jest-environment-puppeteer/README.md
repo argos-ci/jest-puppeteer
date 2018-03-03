@@ -148,9 +148,9 @@ Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro
 
 MIT
 
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-environment-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-environment-puppeteer
+[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
+[build]: https://travis-ci.org/smooth-code/jest-puppeteer
 [version-badge]: https://img.shields.io/npm/v/jest-environment-puppeteer.svg?style=flat-square
 [package]: https://www.npmjs.com/package/jest-environment-puppeteer
 [license-badge]: https://img.shields.io/npm/l/jest-environment-puppeteer.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-environment-puppeteer/blob/master/LICENSE
+[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
