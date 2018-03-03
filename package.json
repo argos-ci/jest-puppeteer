@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "ci": "yarn build && yarn lint && yarn test --ci",
+    "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\"",
+    "lint": "eslint .",
+    "release": "lerna publish && conventional-github-releaser -p angular",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-preset-env": "^1.6.1",
+    "conventional-github-releaser": "^2.0.0",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "jest": "^22.4.2",
+    "lerna": "^2.9.0",
+    "puppeteer": "^1.1.1",
+    "standard-version": "^4.3.0"
+  }
+}
