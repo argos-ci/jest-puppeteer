@@ -1,7 +1,7 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:smooth-code/jest-environment-puppeteer.git",
   "author": "Greg Bergé <berge.greg@gmail.com>",
