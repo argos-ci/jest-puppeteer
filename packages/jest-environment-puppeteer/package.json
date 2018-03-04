@@ -1,6 +1,6 @@
 {
   "name": "jest-environment-puppeteer",
-  "description": "Run your tests using Jest & Puppeteer.",
+  "description": "Puppeteer environment for Jest.",
   "version": "1.0.1",
   "main": "index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer",
@@ -15,9 +15,10 @@
     "chrome-headless"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && babel src -d lib",
-    "dev": "babel src -d lib --watch",
-    "prepublishOnly": "yarn run build"
+    "prebuild": "rm -rf lib/",
+    "build": "babel src -d lib --ignore \"*.test.js\"",
+    "dev": "yarn build --watch",
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "jest-environment-node": "^22.0.0",

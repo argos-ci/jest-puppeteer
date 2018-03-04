@@ -7,7 +7,7 @@
 Run your tests using Jest & Puppeteer 🎪✨
 
 ```
-npm install jest-environment-puppeteer puppeteer
+npm install jest-puppeteer-preset puppeteer
 ```
 
 ## Usage
@@ -16,9 +16,7 @@ Update your Jest configuration:
 
 ```json
 {
-  "globalSetup": "jest-environment-puppeteer/setup",
-  "globalTeardown": "jest-environment-puppeteer/teardown",
-  "testEnvironment": "jest-environment-puppeteer"
+  "preset": "jest-puppeteer-preset"
 }
 ```
 
@@ -27,12 +25,11 @@ Use Puppeteer in your tests:
 ```js
 describe('Google', () => {
   beforeAll(async () => {
-    await mainPage.goto('https://google.com')
+    await page.goto('https://google.com')
   })
 
   it('should display "google" text on page', async () => {
-    const text = await mainPage.evaluate(() => document.body.textContent)
-    expect(text).toContain('google')
+    expectPage().toMatch('google')
   })
 })
 ```
@@ -41,7 +38,9 @@ describe('Google', () => {
 
 ### Writing tests using Puppeteer
 
-To write your integration tests using Puppeteer you can find all available methods in [Puppeteer documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md).
+Writing integration test can be done using [Puppeteer API]([Puppeteer documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)) but it can be complicated and hard because API is not designed for testing.
+
+To make it simpler, an `expectPage()` is automatically installed and available, it provides a lot of convenient methods, all documented in [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-ppuppeteer).
 
 ### Configure Puppeteer
 
@@ -59,7 +58,7 @@ module.exports = {
 
 ### Configure ESLint
 
-Jest Environment Puppeteer exposes two new globals: `browser` and `page`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
+Jest Puppeteer exposes two new globals: `browser`, `page` and `expectPage`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
 
 ```js
 // .eslintrc.js
@@ -70,6 +69,7 @@ module.exports = {
   globals: {
     page: true,
     browser: true,
+    expectPage: true,
   },
 }
 ```
