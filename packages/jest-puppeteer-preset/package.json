@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer-preset",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "lib/index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset",
   "author": "Greg Bergé <berge.greg@gmail.com>",
@@ -17,7 +17,7 @@
     "puppeteer": "^1.0.0"
   },
   "dependencies": {
-    "jest-environment-puppeteer": "^1.0.1",
-    "expect-puppeteer": "^1.0.1"
+    "expect-puppeteer": "^1.1.0",
+    "jest-environment-puppeteer": "^1.1.0"
   }
 }
