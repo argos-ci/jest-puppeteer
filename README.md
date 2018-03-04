@@ -38,9 +38,35 @@ describe('Google', () => {
 
 ### Writing tests using Puppeteer
 
-Writing integration test can be done using [Puppeteer API]([Puppeteer documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)) but it can be complicated and hard because API is not designed for testing.
+Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
 
-To make it simpler, an `expectPage()` is automatically installed and available, it provides a lot of convenient methods, all documented in [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-ppuppeteer).
+To make it simpler, an `expectPage()` is automatically installed and available, it provides a lot of convenient methods, all documented in [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer#api).
+
+Some examples:
+
+#### Find a text in the page
+
+```js
+// Assert that current page contains 'Text in the page'
+await expectPage().toMatch('Text in the page')
+```
+
+#### Click a button
+
+```js
+// Assert that a button containing text "Home" will be clicked
+await expectPage().toClick('button', { text: 'Home' })
+```
+
+#### Fill a form
+
+```js
+// Assert that a form will be filled
+await expectPage().toFillForm('form[name="myForm"]', {
+  firstName: 'James',
+  lastName: 'Bond',
+})
+```
 
 ### Configure Puppeteer
 
@@ -138,6 +164,15 @@ Give access to a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob
 it('should fill an input', async () => {
   await page.type('#myinput', 'Hello')
 })
+```
+
+### `global.expectPage`
+
+Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer#api).
+
+```js
+await expectPage().toMatch('A text in the page')
+// ...
 ```
 
 ## Inspiration

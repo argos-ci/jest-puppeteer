@@ -29,13 +29,13 @@ import expectPage from 'expect-puppeteer'
 
 <!-- toc -->
 
-* [expectPage(page).toClick](#expectpagepagetoclickselectoroptions)
-* [expectPage(page).toDisplayDialog](#expectpagepagetodisplaydialogblock)
-* [expectPage(page).toFill](#expectpagepagetofillselectorvalueoptions)
-* [expectPage(page).toFillForm](#expectpagepagetofillformselectorvaluesoptions)
-* [expectPage(page).toMatch](#expectpagepagetomatchtext)
-* [expectPage(page).toSelect](#expectpagepagetoselectselectorvalueortext)
-* [expectPage(page).toUploadFile](#expectpagepagetouploadfileselectorfilepath)
+* [toClick](#expectpagepagetoclickselector-options)
+* [toDisplayDialog](#expectpagepagetodisplaydialogblock)
+* [toFill](#expectpagepagetofillselector-value-options)
+* [toFillForm](#expectpagepagetofillformselector-values-options)
+* [toMatch](#expectpagepagetomatchtext)
+* [toSelect](#expectpagepagetoselectselector-valueortext)
+* [toUploadFile](#expectpagepagetouploadfileselector-filepath)
 
 ### expectPage(page).toClick(selector[, options])
 
