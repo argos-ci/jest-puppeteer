@@ -13,7 +13,7 @@ npm install spawnd
 ## Usage
 
 ```js
-import spawnd from 'spawd'
+import spawnd from 'spawnd'
 
 const proc = spawnd('node server.js', { shell: true })
 
