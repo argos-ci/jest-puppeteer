@@ -29,7 +29,7 @@ describe('Google', () => {
   })
 
   it('should display "google" text on page', async () => {
-    expectPage().toMatch('google')
+    await expectPage().toMatch('google')
   })
 })
 ```
