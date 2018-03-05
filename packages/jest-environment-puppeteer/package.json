@@ -1,7 +1,7 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Puppeteer environment for Jest.",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer",
   "author": "Greg Bergé <berge.greg@gmail.com>",
@@ -29,7 +29,7 @@
     "lodash": "^4.17.5",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2",
-    "spawnd": "^1.1.1",
+    "spawnd": "^2.0.0",
     "wait-port": "^0.2.2"
   }
 }

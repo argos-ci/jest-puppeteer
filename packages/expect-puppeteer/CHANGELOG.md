@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/compare/v1.1.1...v2.0.0) (2018-03-05)
+
+
+### Features
+
+* simplify expect usage ([e0fc3d1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/commit/e0fc3d1))
+
+
+### BREAKING CHANGES
+
+* `expectPage()` is replaced by `expect(page)`
+
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/compare/v1.1.0...v1.1.1) (2018-03-04)
 
