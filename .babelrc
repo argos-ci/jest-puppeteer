@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "env",
+      "babel-preset-env",
       {
         "targets": {
           "node": "8"
@@ -9,5 +9,6 @@
         "loose": true
       }
     ]
-  ]
+  ],
+  "plugins": ["transform-object-rest-spread"]
 }

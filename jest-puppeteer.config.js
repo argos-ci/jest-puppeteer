@@ -1,3 +1,9 @@
 module.exports = {
-  headless: process.env.CI === 'true',
+  launch: {
+    headless: process.env.CI === 'true',
+  },
+  server: {
+    command: 'node server',
+    port: 4444,
+  },
 }
