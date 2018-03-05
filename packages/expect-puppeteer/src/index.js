@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define, no-restricted-syntax, no-await-in-loop */
-import toMatch from './matchers/toMatch'
+import toMatchText from './matchers/toMatchText'
 import toClick from './matchers/toClick'
 import toSelect from './matchers/toSelect'
 import toUploadFile from './matchers/toUploadFile'
@@ -9,7 +9,7 @@ import toDisplayDialog from './matchers/toDisplayDialog'
 import notToMatch from './matchers/notToMatch'
 
 const matchers = {
-  toMatch,
+  toMatchText,
   toClick,
   toSelect,
   toUploadFile,
