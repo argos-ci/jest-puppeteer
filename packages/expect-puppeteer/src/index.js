@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define, no-restricted-syntax, no-await-in-loop */
-import toMatchText from './matchers/toMatchText'
+import toMatch from './matchers/toMatch'
 import toClick from './matchers/toClick'
 import toSelect from './matchers/toSelect'
 import toUploadFile from './matchers/toUploadFile'
@@ -9,7 +9,7 @@ import toDisplayDialog from './matchers/toDisplayDialog'
 import notToMatch from './matchers/notToMatch'
 
 const matchers = {
-  toMatchText,
+  toMatch,
   toClick,
   toSelect,
   toUploadFile,
@@ -53,12 +53,24 @@ function expectPage(page) {
   return expectation
 }
 
+function checkConstructorName(type) {
+  const constructorTypes = [
+    'Frame',
+    'Page',
+    'JSHandle',
+    'ElementHandle',
+  ]
+
+  return constructorTypes.includes(type);
+};
+
 if (typeof global.expect !== 'undefined') {
-  const isPuppeteerPage = object =>
-    Boolean(object && object.$ && object.$$ && object.close && object.click)
+  const isPuppeteerHandle = object =>
+    Boolean(object && object.constructor && checkConstructorName(object.constructor.name))
+
   const originalExpect = global.expect
   global.expect = (actual, ...args) => {
-    if (isPuppeteerPage(actual)) {
+    if (isPuppeteerHandle(actual)) {
       return expectPage(actual)
     }
     return originalExpect(actual, ...args)
