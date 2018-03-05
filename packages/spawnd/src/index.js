@@ -24,11 +24,11 @@ function spawnd(command, options) {
     cleanExit(typeof code === 'number' ? code : 1)
   })
 
-  proc.destroy = () => {
+  proc.destroy = async () => {
     removeExitHandler()
     proc.removeAllListeners('exit')
     proc.removeAllListeners('error')
-    pterminate(proc.pid).catch(() => {
+    return pterminate(proc.pid).catch(() => {
       /* ignore error */
     })
   }

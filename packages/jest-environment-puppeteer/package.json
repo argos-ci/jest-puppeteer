@@ -26,7 +26,10 @@
   },
   "dependencies": {
     "cwd": "^0.10.0",
+    "lodash": "^4.17.5",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "spawnd": "^1.1.1",
+    "wait-port": "^0.2.2"
   }
 }

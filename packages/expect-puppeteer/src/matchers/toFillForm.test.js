@@ -4,7 +4,7 @@ describe('toFillForm', () => {
   })
 
   it('should fill input', async () => {
-    await expectPage().toFillForm('form', {
+    await expect(page).toFillForm('form', {
       firstName: 'James',
       lastName: 'Bond',
     })
@@ -22,7 +22,7 @@ describe('toFillForm', () => {
     expect.assertions(2)
 
     try {
-      await expectPage().toFillForm('form[name="notFound"]', {
+      await expect(page).toFillForm('form[name="notFound"]', {
         firstName: 'James',
         lastName: 'Bond',
       })

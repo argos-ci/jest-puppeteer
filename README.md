@@ -29,7 +29,7 @@ describe('Google', () => {
   })
 
   it('should display "google" text on page', async () => {
-    await expectPage().toMatch('google')
+    await expect(page).toMatch('google')
   })
 })
 ```
@@ -40,7 +40,7 @@ describe('Google', () => {
 
 Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
 
-To make it simpler, an `expectPage()` is automatically installed and available, it provides a lot of convenient methods, all documented in [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer#api).
+To make it simpler, [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api) add some specific matchers if you make expectation on a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
 
 Some examples:
 
@@ -48,37 +48,53 @@ Some examples:
 
 ```js
 // Assert that current page contains 'Text in the page'
-await expectPage().toMatch('Text in the page')
+await expect(page).toMatch('Text in the page')
 ```
 
 #### Click a button
 
 ```js
 // Assert that a button containing text "Home" will be clicked
-await expectPage().toClick('button', { text: 'Home' })
+await expect(page).toClick('button', { text: 'Home' })
 ```
 
 #### Fill a form
 
 ```js
 // Assert that a form will be filled
-await expectPage().toFillForm('form[name="myForm"]', {
+await expect(page).toFillForm('form[name="myForm"]', {
   firstName: 'James',
   lastName: 'Bond',
 })
 ```
 
-### Configure Puppeteer
+### Start a server
 
-Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options.
+Jest Puppeteer integrates a functionality to run start a server when your test suite is started. It automatically close the server when tests are done.
 
-[All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+To use it, specify a server section in your `jest-puppeteer.config.js`.
 
 ```js
 // jest-puppeteer.config.js
 module.exports = {
-  dumpio: true,
-  headless: process.env.HEADLESS !== 'false',
+  server: {
+    command: 'node server.js',
+    port: 4444,
+  },
+}
+```
+
+### Configure Puppeteer
+
+Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options. [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+
+```js
+// jest-puppeteer.config.js
+module.exports = {
+  launch: {
+    dumpio: true,
+    headless: process.env.HEADLESS !== 'false',
+  },
 }
 ```
 
@@ -166,13 +182,37 @@ it('should fill an input', async () => {
 })
 ```
 
-### `global.expectPage`
+### `global.expect(page)`
 
-Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer#api).
+Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api).
 
 ```js
-await expectPage().toMatch('A text in the page')
+await expect(page).toMatch('A text in the page')
 // ...
+```
+
+### `jest-puppeteer.config.js`
+
+You can specify a `jest-puppeteer.config.js` at the root of the project.
+
+* `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+* `server` <[Object]> Server options
+  * `command` <[string]> Command to start server
+  * `port` <[number]> If specified, it will wait port to be listened
+  * `options` <[Object]> Optional options for [spawnd](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/README.md)
+
+```js
+// jest-puppeteer.config.js
+module.exports = {
+  launch: {
+    dumpio: true,
+    headless: process.env.HEADLESS !== 'false',
+  },
+  server: {
+    command: 'node server.js',
+    port: 4444,
+  },
+}
 ```
 
 ## Inspiration
@@ -189,3 +229,11 @@ MIT
 [package]: https://www.npmjs.com/package/jest-environment-puppeteer
 [license-badge]: https://img.shields.io/npm/l/jest-environment-puppeteer.svg?style=flat-square
 [license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
+[array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 'Array'
+[boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type 'Boolean'
+[function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function 'Function'
+[number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type 'Number'
+[object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 'Object'
+[promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise 'Promise'
+[string]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type 'String'
+[error]: https://nodejs.org/api/errors.html#errors_class_error 'Error'

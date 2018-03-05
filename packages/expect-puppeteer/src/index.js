@@ -36,7 +36,7 @@ function createMatcher(matcher, page) {
   }
 }
 
-function expectPage(page = global.page) {
+function expectPage(page) {
   const expectation = {
     not: {},
   }
@@ -54,7 +54,18 @@ function expectPage(page = global.page) {
 }
 
 if (typeof global.expect !== 'undefined') {
-  global.expectPage = expectPage
+  const isPuppeteerPage = object =>
+    Boolean(object && object.$ && object.$$ && object.close && object.click)
+  const originalExpect = global.expect
+  global.expect = (actual, ...args) => {
+    if (isPuppeteerPage(actual)) {
+      return expectPage(actual)
+    }
+    return originalExpect(actual, ...args)
+  }
+  Object.keys(originalExpect).forEach(prop => {
+    global.expect[prop] = originalExpect[prop]
+  })
 }
 
 module.exports = expectPage

@@ -4,7 +4,7 @@ describe('toFill', () => {
   })
 
   it('should fill input', async () => {
-    await expectPage().toFill('[name="firstName"]', 'James')
+    await expect(page).toFill('[name="firstName"]', 'James')
     const value = await page.evaluate(
       () => document.querySelector('[name="firstName"]').value,
     )
@@ -15,7 +15,7 @@ describe('toFill', () => {
     expect.assertions(2)
 
     try {
-      await expectPage().toFill('[name="notFound"]', 'James')
+      await expect(page).toFill('[name="notFound"]', 'James')
     } catch (error) {
       expect(error.message).toMatch('Unable to find "[name="notFound"]" field')
     }

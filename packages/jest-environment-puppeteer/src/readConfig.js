@@ -2,13 +2,18 @@ import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 import cwd from 'cwd'
+import { merge } from 'lodash'
 
 const exists = promisify(fs.exists)
 
 const CONFIG_PATH = path.join(cwd(), 'jest-puppeteer.config.js')
-const DEFAULT_CONFIG = {}
+const DEFAULT_CONFIG = {
+  launch: {},
+}
 const DEFAULT_CONFIG_CI = {
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  launch: {
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  },
 }
 
 async function readConfig() {
@@ -19,7 +24,7 @@ async function readConfig() {
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const localConfig = require(CONFIG_PATH)
-  return Object.assign({}, defaultConfig, localConfig)
+  return merge({}, defaultConfig, localConfig)
 }
 
 export default readConfig

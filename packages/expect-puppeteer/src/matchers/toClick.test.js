@@ -4,13 +4,13 @@ describe('toMatch', () => {
   })
 
   it('should click using selector', async () => {
-    await expectPage().toClick('a[href="/page2.html"]')
+    await expect(page).toClick('a[href="/page2.html"]')
     const pathname = await page.evaluate(() => document.location.pathname)
     expect(pathname).toBe('/page2.html')
   })
 
   it('should click using text', async () => {
-    await expectPage().toClick('a', { text: 'Page 2' })
+    await expect(page).toClick('a', { text: 'Page 2' })
     const pathname = await page.evaluate(() => document.location.pathname)
     expect(pathname).toBe('/page2.html')
   })
@@ -19,7 +19,7 @@ describe('toMatch', () => {
     expect.assertions(2)
 
     try {
-      await expectPage().toClick('a', { text: 'Nop' })
+      await expect(page).toClick('a', { text: 'Nop' })
     } catch (error) {
       expect(error.message).toMatch('Error: Element a (text: "Nop") not found')
     }

@@ -4,7 +4,7 @@ describe('toSelect', () => {
   })
 
   it('should select an option using value', async () => {
-    await expectPage().toSelect('select[name="my-select"]', 'opt1')
+    await expect(page).toSelect('select[name="my-select"]', 'opt1')
     const currentValue = await page.evaluate(
       () => document.querySelector('select[name="my-select"]').value,
     )
@@ -12,7 +12,7 @@ describe('toSelect', () => {
   })
 
   it('should select an option using text', async () => {
-    await expectPage().toSelect('select[name="my-select"]', 'Option 2')
+    await expect(page).toSelect('select[name="my-select"]', 'Option 2')
     const currentValue = await page.evaluate(
       () => document.querySelector('select[name="my-select"]').value,
     )
@@ -23,7 +23,7 @@ describe('toSelect', () => {
     expect.assertions(2)
 
     try {
-      await expectPage().toSelect('select[name="my-select"]', 'Another world')
+      await expect(page).toSelect('select[name="my-select"]', 'Another world')
     } catch (error) {
       expect(error.message).toMatch(
         'Option not found "select[name="my-select"]" ("Another world")',
