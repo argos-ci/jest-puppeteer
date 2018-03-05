@@ -6,7 +6,7 @@ describe('toUploadFile', () => {
   })
 
   it('should upload a select file', async () => {
-    await expectPage().toUploadFile(
+    await expect(page).toUploadFile(
       'input[type="file"]',
       path.join(__dirname, '../../__fixtures__/file.txt'),
     )
@@ -16,7 +16,7 @@ describe('toUploadFile', () => {
     expect.assertions(2)
 
     try {
-      await expectPage().toUploadFile(
+      await expect(page).toUploadFile(
         'input[name="foo"]',
         path.join(__dirname, '../../__fixtures__/file.txt'),
       )

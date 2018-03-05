@@ -29,7 +29,7 @@ describe('Google', () => {
   })
 
   it('should display "google" text on page', async () => {
-    await expectPage().toMatch('google')
+    await expect(page).toMatch('google')
   })
 })
 ```
@@ -40,7 +40,7 @@ describe('Google', () => {
 
 Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
 
-To make it simpler, an `expectPage()` is automatically installed and available, it provides a lot of convenient methods, all documented in [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api).
+To make it simpler, [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api) add some specific matchers if you make expectation on a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
 
 Some examples:
 
@@ -48,21 +48,21 @@ Some examples:
 
 ```js
 // Assert that current page contains 'Text in the page'
-await expectPage().toMatch('Text in the page')
+await expect(page).toMatch('Text in the page')
 ```
 
 #### Click a button
 
 ```js
 // Assert that a button containing text "Home" will be clicked
-await expectPage().toClick('button', { text: 'Home' })
+await expect(page).toClick('button', { text: 'Home' })
 ```
 
 #### Fill a form
 
 ```js
 // Assert that a form will be filled
-await expectPage().toFillForm('form[name="myForm"]', {
+await expect(page).toFillForm('form[name="myForm"]', {
   firstName: 'James',
   lastName: 'Bond',
 })
@@ -182,12 +182,12 @@ it('should fill an input', async () => {
 })
 ```
 
-### `global.expectPage`
+### `global.expect(page)`
 
 Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api).
 
 ```js
-await expectPage().toMatch('A text in the page')
+await expect(page).toMatch('A text in the page')
 // ...
 ```
 

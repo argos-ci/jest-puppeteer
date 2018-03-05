@@ -4,7 +4,7 @@ describe('toDisplayDialog', () => {
   })
 
   it('should handle dialog', async () => {
-    const dialog = await expectPage().toDisplayDialog(async () => {
+    const dialog = await expect(page).toDisplayDialog(async () => {
       await page.click('#dialog-btn')
     })
     expect(dialog.message()).toBe('Bouh!')

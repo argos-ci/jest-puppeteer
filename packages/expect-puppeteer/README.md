@@ -12,15 +12,27 @@ npm install expect-puppeteer
 
 ## Usage
 
+Without Jest:
+
 ```js
-import expectPage from 'expect-puppeteer'
+import expect from 'expect-puppeteer'
 ;(async () => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto('https://google.com')
-  await expectPage(page).toMatch('google')
+  await expect(page).toMatch('google')
   await browser.close()
 })()
+```
+
+## Use with Jest
+
+To use with Jest, just modify your configuration:
+
+```json
+{
+  "setupTestFrameworkScriptFile": "expect-puppeteer"
+}
 ```
 
 ## API
@@ -29,35 +41,35 @@ import expectPage from 'expect-puppeteer'
 
 <!-- toc -->
 
-* [toClick](#expectpagepagetoclickselector-options)
-* [toDisplayDialog](#expectpagepagetodisplaydialogblock)
-* [toFill](#expectpagepagetofillselector-value-options)
-* [toFillForm](#expectpagepagetofillformselector-values-options)
-* [toMatch](#expectpagepagetomatchtext)
-* [toSelect](#expectpagepagetoselectselector-valueortext)
-* [toUploadFile](#expectpagepagetouploadfileselector-filepath)
+* [toClick](#expectpagetoclickselector-options)
+* [toDisplayDialog](#expectpagetodisplaydialogblock)
+* [toFill](#expectpagetofillselector-value-options)
+* [toFillForm](#expectpagetofillformselector-values-options)
+* [toMatch](#expectpagetomatchtext)
+* [toSelect](#expectpagetoselectselector-valueortext)
+* [toUploadFile](#expectpagetouploadfileselector-filepath)
 
-### expectPage(page).toClick(selector[, options])
+### expect(page).toClick(selector[, options])
 
 * `selector` <[string]> A [selector] to click on
 * `options` <[Object]> Optional parameters
   * text <[string]> A text to match
 
 ```js
-await expectPage(page).toClick('button', { text: 'Home' })
+await expect(page).toClick('button', { text: 'Home' })
 ```
 
-### expectPage(page).toDisplayDialog(block)
+### expect(page).toDisplayDialog(block)
 
 * `block` <[function]> A [function] that should trigger a dialog
 
 ```js
-await expectPage(page).toDisplayDialog(async () => {
-  await expectPage(page).toClick('button', { text: 'Show dialog' })
+await expect(page).toDisplayDialog(async () => {
+  await expect(page).toClick('button', { text: 'Show dialog' })
 })
 ```
 
-### expectPage(page).toFill(selector, value[, options])
+### expect(page).toFill(selector, value[, options])
 
 * `selector` <[string]> A [selector] to match field
 * `value` <[string]> Value to fill
@@ -65,10 +77,10 @@ await expectPage(page).toDisplayDialog(async () => {
   * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
-await expectPage(page).toFill('input[name="firstName"]', 'James')
+await expect(page).toFill('input[name="firstName"]', 'James')
 ```
 
-### expectPage(page).toFillForm(selector, values[, options])
+### expect(page).toFillForm(selector, values[, options])
 
 * `selector` <[string]> A [selector] to match form
 * `values` <[Object]> Values to fill
@@ -76,32 +88,32 @@ await expectPage(page).toFill('input[name="firstName"]', 'James')
   * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
-await expectPage(page).toFillForm('form[name="myForm"]', {
+await expect(page).toFillForm('form[name="myForm"]', {
   firstName: 'James',
   lastName: 'Bond',
 })
 ```
 
-### expectPage(page).toMatch(text)
+### expect(page).toMatch(text)
 
 * `text` <[string]> A text to match in page
 * `options` <[Object]> Optional parameters
   * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
-await expectPage(page).toMatch('Lorem ipsum')
+await expect(page).toMatch('Lorem ipsum')
 ```
 
-### expectPage(page).toSelect(selector, valueOrText)
+### expect(page).toSelect(selector, valueOrText)
 
 * `selector` <[string]> A [selector] to match select [element]
 * `valueOrText` <[string]> Value or text matching option
 
 ```js
-await expectPage(page).toSelect('select[name="choices"]', 'Choice 1')
+await expect(page).toSelect('select[name="choices"]', 'Choice 1')
 ```
 
-### expectPage(page).toUploadFile(selector, filePath)
+### expect(page).toUploadFile(selector, filePath)
 
 * `selector` <[string]> A [selector] to match input [element]
 * `filePath` <[string]> A file path
@@ -109,7 +121,7 @@ await expectPage(page).toSelect('select[name="choices"]', 'Choice 1')
 ```js
 import path from 'path'
 
-await expectPage(page).toUploadFile(
+await expect(page).toUploadFile(
   'input[type="file"]',
   path.join(__dirname, 'file.txt'),
 )
