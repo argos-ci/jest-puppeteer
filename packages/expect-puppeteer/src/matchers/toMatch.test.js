@@ -20,7 +20,7 @@ describe('toMatch', () => {
   it('should not throw error if text is found on element', async () => {
     const elementHandle = await page.$('header');
 
-    expect(elementHandle).toMatch('This is home!');
+    await expect(elementHandle).toMatch('This is home!');
   });
 
   it('should throw an error if text is not found on element', async () => {
