@@ -11,9 +11,25 @@ describe('toMatch', () => {
     expect.assertions(2)
 
     try {
-      await expect(page).toMatch('Nop')
+      await expect(page).toMatch('badText')
     } catch (error) {
-      expect(error.message).toMatch('Text not found "Nop"')
+      expect(error.message).toMatch('Expected to find text: "badText"')
     }
   })
+
+  it('should not throw error if text is found on element', async () => {
+    const elementHandle = await page.$('header');
+
+    await expect(elementHandle).toMatch('This is home!');
+  });
+
+  it('should throw an error if text is not found on element', async () => {
+    const elementHandle = await page.$('header');
+
+    try {
+      await expect(elementHandle).toMatch('Bad Text');
+    } catch (error) {
+      expect(error.message).toMatch('Expected to find text: "Bad Text"')
+    }
+  });
 })

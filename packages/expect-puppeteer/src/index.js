@@ -53,12 +53,24 @@ function expectPage(page) {
   return expectation
 }
 
+function checkConstructorName(type) {
+  const constructorTypes = [
+    'Frame',
+    'Page',
+    'JSHandle',
+    'ElementHandle',
+  ]
+
+  return constructorTypes.includes(type);
+};
+
 if (typeof global.expect !== 'undefined') {
-  const isPuppeteerPage = object =>
-    Boolean(object && object.$ && object.$$ && object.close && object.click)
+  const isPuppeteerHandle = object =>
+    Boolean(object && object.constructor && checkConstructorName(object.constructor.name))
+
   const originalExpect = global.expect
   global.expect = (actual, ...args) => {
-    if (isPuppeteerPage(actual)) {
+    if (isPuppeteerHandle(actual)) {
       return expectPage(actual)
     }
     return originalExpect(actual, ...args)
