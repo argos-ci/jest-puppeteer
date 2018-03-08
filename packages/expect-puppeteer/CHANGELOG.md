@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/compare/v2.0.0...v2.0.1) (2018-03-08)
+
+
+### Bug Fixes
+
+* **expect-puppeteer:** fix expectMatch when body is undefined ([#9](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/issues/9)) ([0c60970](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/commit/0c60970))
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/puppeteer-expect/compare/v1.1.1...v2.0.0) (2018-03-05)
 
