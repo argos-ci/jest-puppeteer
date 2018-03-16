@@ -37,9 +37,27 @@ To use with Jest, just modify your configuration:
 
 ## Why do I need it
 
-Writing integration test is very hard especially in Single Page Application. Data are loaded asynchronously and it is difficult to know exactly when it will be displayed in the page.
+Writing integration test is very hard, especially when you are testing a Single Page Applications. Data are loaded asynchronously and it is difficult to know exactly when an element will be displayed in the page.
 
-Puppeteer API is great, all this methods are built with it but it is low level and not designed to test an application. This API is designed for integration testing and will wait element before running each action.
+[Puppeteer API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md) is great, but it is low level and not designed for integration testing.
+
+This API is designed for integration testing:
+
+* It will wait for element before running an action
+* It adds additional feature like matching an element using text
+
+**Example**
+
+```js
+// Does not work if button is not in page
+await page.click('button')
+
+// Will try while 500ms to click on "button"
+await page.toClick('button')
+
+// Will match a button with a "My button" text inside
+await page.toClick('button', { text: 'My button' })
+```
 
 ## API
 
@@ -207,4 +225,4 @@ MIT
 [map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map 'Map'
 [selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors 'selector'
 [page]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page 'Page'
-[element-handle]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle 'ElementHandle'
+[elementhandle]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle 'ElementHandle'
