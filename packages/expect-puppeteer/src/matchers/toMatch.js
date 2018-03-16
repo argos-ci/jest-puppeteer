@@ -1,8 +1,19 @@
-async function toMatch(page, matcher, options = { timeout: 500 }) {
+import { defaultOptions, getContext } from '../utils'
+
+async function toMatch(instance, matcher, options) {
+  options = defaultOptions(options)
+
+  const { page, handle } = await getContext(instance, () => document.body)
+
   try {
     await page.waitForFunction(
-      `document.body && document.body.textContent.match(new RegExp('${matcher}')) !== null`,
+      (handle, matcher) => {
+        if (!handle) return false
+        return handle.textContent.match(new RegExp(matcher)) !== null
+      },
       options,
+      handle,
+      matcher,
     )
   } catch (error) {
     throw new Error(`Text not found "${matcher}"`)

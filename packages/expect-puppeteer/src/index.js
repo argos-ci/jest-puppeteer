@@ -1,23 +1,42 @@
 /* eslint-disable no-use-before-define, no-restricted-syntax, no-await-in-loop */
-import toMatch from './matchers/toMatch'
+import { getPuppeteerType } from './utils'
+import notToMatch from './matchers/notToMatch'
+import notToMatchElement from './matchers/notToMatchElement'
 import toClick from './matchers/toClick'
-import toSelect from './matchers/toSelect'
-import toUploadFile from './matchers/toUploadFile'
+import toDisplayDialog from './matchers/toDisplayDialog'
 import toFill from './matchers/toFill'
 import toFillForm from './matchers/toFillForm'
-import toDisplayDialog from './matchers/toDisplayDialog'
-import notToMatch from './matchers/notToMatch'
+import toMatch from './matchers/toMatch'
+import toMatchElement from './matchers/toMatchElement'
+import toSelect from './matchers/toSelect'
+import toUploadFile from './matchers/toUploadFile'
 
-const matchers = {
-  toMatch,
+const pageMatchers = {
   toClick,
-  toSelect,
-  toUploadFile,
+  toDisplayDialog,
   toFill,
   toFillForm,
-  toDisplayDialog,
+  toMatch,
+  toMatchElement,
+  toSelect,
+  toUploadFile,
   not: {
     toMatch: notToMatch,
+    toMatchElement: notToMatchElement,
+  },
+}
+
+const elementHandleMatchers = {
+  toClick,
+  toFill,
+  toFillForm,
+  toMatch,
+  toMatchElement,
+  toSelect,
+  toUploadFile,
+  not: {
+    toMatch: notToMatch,
+    toMatchElement: notToMatchElement,
   },
 }
 
@@ -36,31 +55,40 @@ function createMatcher(matcher, page) {
   }
 }
 
-function expectPage(page) {
+function internalExpect(type, matchers) {
   const expectation = {
     not: {},
   }
 
   Object.keys(matchers).forEach(key => {
     if (key === 'not') return
-    expectation[key] = createMatcher(matchers[key], page)
+    expectation[key] = createMatcher(matchers[key], type)
   })
 
   Object.keys(matchers.not).forEach(key => {
-    expectation.not[key] = createMatcher(matchers.not[key], page)
+    expectation.not[key] = createMatcher(matchers.not[key], type)
   })
 
   return expectation
 }
 
+function expectPuppeteer(actual) {
+  const type = getPuppeteerType(actual)
+  switch (type) {
+    case 'Page':
+      return internalExpect(actual, pageMatchers)
+    case 'ElementHandle':
+      return internalExpect(actual, elementHandleMatchers)
+    default:
+      throw new Error(`${actual} is not supported`)
+  }
+}
+
 if (typeof global.expect !== 'undefined') {
-  const isPuppeteerPage = object =>
-    Boolean(object && object.$ && object.$$ && object.close && object.click)
   const originalExpect = global.expect
   global.expect = (actual, ...args) => {
-    if (isPuppeteerPage(actual)) {
-      return expectPage(actual)
-    }
+    const type = getPuppeteerType(actual)
+    if (type) return expectPuppeteer(actual)
     return originalExpect(actual, ...args)
   }
   Object.keys(originalExpect).forEach(prop => {
@@ -68,4 +96,4 @@ if (typeof global.expect !== 'undefined') {
   })
 }
 
-module.exports = expectPage
+module.exports = expectPuppeteer
