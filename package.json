@@ -21,10 +21,10 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "jest": "^22.4.2",
     "lerna": "^2.9.0",
-    "puppeteer": "^1.1.1",
+    "puppeteer": "^1.2.0",
     "standard-version": "^4.3.0"
   }
 }
