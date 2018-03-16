@@ -9,7 +9,7 @@
     "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\"",
     "lint": "eslint .",
     "release": "lerna publish && conventional-github-releaser -p angular",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

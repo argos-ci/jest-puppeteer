@@ -1,12 +1,9 @@
-async function toFill(page, selector, value, options = { timeout: 500 }) {
-  try {
-    await page.waitFor(selector, options)
-  } catch (error) {
-    throw new Error(`Unable to find "${selector}" field`)
-  }
+import toMatchElement from './toMatchElement'
 
-  await page.click(selector, { clickCount: 3 })
-  await page.keyboard.type(value)
+async function toFill(instance, selector, value, options) {
+  const element = await toMatchElement(instance, selector, options)
+  await element.click({ clickCount: 3 })
+  await element.type(value)
 }
 
 export default toFill

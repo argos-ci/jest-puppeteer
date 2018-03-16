@@ -1,13 +1,9 @@
-async function toUploadFile(page, selector, file, options = { timeout: 500 }) {
-  let input
+import toMatchElement from './toMatchElement'
 
-  try {
-    input = await page.waitFor(selector, options)
-  } catch (error) {
-    throw new Error(`Unable to find "${selector}" field`)
-  }
-
-  await input.uploadFile(file)
+async function toUploadFile(instance, selector, file, options) {
+  const input = await toMatchElement(instance, selector, options)
+  const files = Array.isArray(file) ? file : [file]
+  await input.uploadFile(...files)
 }
 
 export default toUploadFile

@@ -3,17 +3,37 @@ describe('not.toMatch', () => {
     await page.goto('http://localhost:4444')
   })
 
-  it('should be ok if text is not in the page', async () => {
-    await expect(page).not.toMatch('Nop!')
+  describe('Page', () => {
+    it('should be ok if text is not in the page', async () => {
+      await expect(page).not.toMatch('Nop!')
+    })
+
+    it('should return an error if text is in the page', async () => {
+      expect.assertions(2)
+
+      try {
+        await expect(page).not.toMatch('home')
+      } catch (error) {
+        expect(error.message).toMatch('Text found "home"')
+      }
+    })
   })
 
-  it('should return an error if text is in the page', async () => {
-    expect.assertions(2)
+  describe('ElementHandle', () => {
+    it('should be ok if text is in the page', async () => {
+      const dialogBtn = await page.$('#dialog-btn')
+      await expect(dialogBtn).not.toMatch('Nop')
+    })
 
-    try {
-      await expect(page).not.toMatch('home')
-    } catch (error) {
-      expect(error.message).toMatch('Text found "home"')
-    }
+    it('should return an error if text is not in the page', async () => {
+      expect.assertions(2)
+      const dialogBtn = await page.$('#dialog-btn')
+
+      try {
+        await expect(dialogBtn).not.toMatch('Open dialog')
+      } catch (error) {
+        expect(error.message).toMatch('Text found "Open dialog"')
+      }
+    })
   })
 })
