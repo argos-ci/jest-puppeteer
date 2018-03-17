@@ -7,7 +7,7 @@
 Run your tests using Jest & Puppeteer 🎪✨
 
 ```
-npm install jest-puppeteer-preset puppeteer
+npm install jest-puppeteer puppeteer
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ Update your Jest configuration:
 
 ```json
 {
-  "preset": "jest-puppeteer-preset"
+  "preset": "jest-puppeteer"
 }
 ```
 
@@ -121,7 +121,7 @@ module.exports = {
 Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
 
 ```js
-const PuppeteerEnvironment = require('jest-environment-puppeteer')
+const PuppeteerEnvironment = require('jest-puppeteer')
 
 class CustomEnvironment extends PuppeteerEnvironment {
   async setup() {
@@ -146,7 +146,7 @@ It is possible to access `globalSetup` or `globalTeardown` in your scripts.
 const {
   setup: setupPuppeteer,
   teardown: teardownPuppeteer,
-} = require('jest-environment-puppeteer')
+} = require('jest-puppeteer')
 
 async function setup() {
   await setupPuppeteer()
@@ -225,9 +225,9 @@ MIT
 
 [build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
 [build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/jest-environment-puppeteer.svg?style=flat-square
-[package]: https://www.npmjs.com/package/jest-environment-puppeteer
-[license-badge]: https://img.shields.io/npm/l/jest-environment-puppeteer.svg?style=flat-square
+[version-badge]: https://img.shields.io/npm/v/jest-puppeteer.svg?style=flat-square
+[package]: https://www.npmjs.com/package/jest-puppeteer
+[license-badge]: https://img.shields.io/npm/l/jest-puppeteer.svg?style=flat-square
 [license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
 [array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 'Array'
 [boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type 'Boolean'
