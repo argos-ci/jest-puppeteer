@@ -137,9 +137,9 @@ class CustomEnvironment extends PuppeteerEnvironment {
 module.exports = CustomEnvironment
 ```
 
-### Access `globalSetup` or `globalTeardown`
+### Use `setup` and `teardown`
 
-It is possible to access `globalSetup` or `globalTeardown` in your scripts.
+It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string). For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`.
 
 ```js
 const {
@@ -147,12 +147,12 @@ const {
   teardown: teardownPuppeteer,
 } = require('jest-puppeteer')
 
-async function setup() {
+async function globalSetup() {
   await setupPuppeteer()
   // ...
 }
 
-async function teardown() {
+async function globalTeardown() {
   // ...
   await teardownPuppeteer()
 }
