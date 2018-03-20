@@ -100,7 +100,7 @@ module.exports = {
 
 ### Configure ESLint
 
-Jest Puppeteer exposes two new globals: `browser`, `page` and `expectPage`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
+Jest Puppeteer exposes three new globals: `browser`, `page` and `expectPage`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
 
 ```js
 // .eslintrc.js
