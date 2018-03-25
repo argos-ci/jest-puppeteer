@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.1"></a>
+## [2.2.1](https://github.com/smooth-code/jest-puppeteer/compare/v2.2.0...v2.2.1) (2018-03-25)
+
+
+### Bug Fixes
+
+* support original Jest matchers ([99d542e](https://github.com/smooth-code/jest-puppeteer/commit/99d542e)), closes [#17](https://github.com/smooth-code/jest-puppeteer/issues/17)
+
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/smooth-code/jest-puppeteer/compare/v2.1.0...v2.2.0) (2018-03-17)
 
