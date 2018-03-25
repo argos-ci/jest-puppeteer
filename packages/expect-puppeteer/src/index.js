@@ -88,7 +88,18 @@ if (typeof global.expect !== 'undefined') {
   const originalExpect = global.expect
   global.expect = (actual, ...args) => {
     const type = getPuppeteerType(actual)
-    if (type) return expectPuppeteer(actual)
+    if (type) {
+      const matchers = expectPuppeteer(actual)
+      const jestMatchers = originalExpect(actual, ...args)
+      return {
+        ...jestMatchers,
+        ...matchers,
+        not: {
+          ...jestMatchers.not,
+          ...matchers.not,
+        },
+      }
+    }
     return originalExpect(actual, ...args)
   }
   Object.keys(originalExpect).forEach(prop => {
