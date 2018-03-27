@@ -115,11 +115,14 @@ module.exports = {
 }
 ```
 
-### Extend PuppeteerEnvironment
+### Extend `PuppeteerEnvironment`
 
 Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
 
+First, create your own js file for custom environment.
+
 ```js
+// custom-environment.js
 const PuppeteerEnvironment = require('jest-environment-puppeteer')
 
 class CustomEnvironment extends PuppeteerEnvironment {
@@ -136,6 +139,17 @@ class CustomEnvironment extends PuppeteerEnvironment {
 
 module.exports = CustomEnvironment
 ```
+
+Then, assigning your js file path to the [`testEnvironment`](https://facebook.github.io/jest/docs/en/configuration.html#testenvironment-string) property in your Jest configuration.
+
+```js
+{
+  // ...
+  "testEnvironment": "./custom-environment.js"
+}
+```
+
+Now your custom `setup` and `teardown` will be triggered before and after each test suites.
 
 ### Use `setup` and `teardown`
 
