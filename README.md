@@ -151,26 +151,43 @@ Then, assigning your js file path to the [`testEnvironment`](https://facebook.gi
 
 Now your custom `setup` and `teardown` will be triggered before and after each test suites.
 
-### Use `setup` and `teardown`
+### Create your own `globalSetup` and `globalTeardown`
 
-It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string). For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`.
+It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string).
+
+For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`, so that you can wrap them with your own global setup and global teardown methods as the following example:
 
 ```js
-const {
-  setup: setupPuppeteer,
-  teardown: teardownPuppeteer,
-} = require('jest-environment-puppeteer')
+// global-setup.js
+const { setup: setupPuppeteer } = require('jest-environment-puppeteer');
 
-async function globalSetup() {
-  await setupPuppeteer()
-  // ...
-}
+module.exports = async function globalSetup() {
+  await setupPuppeteer();
+  // Your global setup
+};
+```
 
-async function globalTeardown() {
+```js
+// global-teardown.js
+const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer');
+
+module.exports = async function globalTeardown() {
+  // Your global teardown
+  await teardownPuppeteer();
+};
+```
+
+Then assigning your js file paths to the [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string) property in your Jest configuration.
+
+```js
+{
   // ...
-  await teardownPuppeteer()
+  "globalSetup": "./global-setup.js",
+  "globalTeardown": "./global-teardown.js"
 }
 ```
+
+Now your custom `globalSetup` and `globalTeardown` will be triggered once before and after all test suites.
 
 ## API
 
