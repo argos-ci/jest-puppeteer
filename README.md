@@ -115,12 +115,15 @@ module.exports = {
 }
 ```
 
-### Extend PuppeteerEnvironment
+### Extend `PuppeteerEnvironment`
 
 Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
 
+First, create your own js file for custom environment.
+
 ```js
-const PuppeteerEnvironment = require('jest-puppeteer')
+// custom-environment.js
+const PuppeteerEnvironment = require('jest-environment-puppeteer')
 
 class CustomEnvironment extends PuppeteerEnvironment {
   async setup() {
@@ -137,26 +140,54 @@ class CustomEnvironment extends PuppeteerEnvironment {
 module.exports = CustomEnvironment
 ```
 
-### Use `setup` and `teardown`
-
-It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string). For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`.
+Then, assigning your js file path to the [`testEnvironment`](https://facebook.github.io/jest/docs/en/configuration.html#testenvironment-string) property in your Jest configuration.
 
 ```js
-const {
-  setup: setupPuppeteer,
-  teardown: teardownPuppeteer,
-} = require('jest-puppeteer')
-
-async function globalSetup() {
-  await setupPuppeteer()
+{
   // ...
-}
-
-async function globalTeardown() {
-  // ...
-  await teardownPuppeteer()
+  "testEnvironment": "./custom-environment.js"
 }
 ```
+
+Now your custom `setup` and `teardown` will be triggered before and after each test suites.
+
+### Create your own `globalSetup` and `globalTeardown`
+
+It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string).
+
+For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`, so that you can wrap them with your own global setup and global teardown methods as the following example:
+
+```js
+// global-setup.js
+const { setup: setupPuppeteer } = require('jest-environment-puppeteer');
+
+module.exports = async function globalSetup() {
+  await setupPuppeteer();
+  // Your global setup
+};
+```
+
+```js
+// global-teardown.js
+const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer');
+
+module.exports = async function globalTeardown() {
+  // Your global teardown
+  await teardownPuppeteer();
+};
+```
+
+Then assigning your js file paths to the [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string) property in your Jest configuration.
+
+```js
+{
+  // ...
+  "globalSetup": "./global-setup.js",
+  "globalTeardown": "./global-teardown.js"
+}
+```
+
+Now your custom `globalSetup` and `globalTeardown` will be triggered once before and after all test suites.
 
 ## API
 
