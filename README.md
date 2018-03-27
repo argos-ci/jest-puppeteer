@@ -120,7 +120,7 @@ module.exports = {
 Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
 
 ```js
-const PuppeteerEnvironment = require('jest-puppeteer')
+const PuppeteerEnvironment = require('jest-environment-puppeteer')
 
 class CustomEnvironment extends PuppeteerEnvironment {
   async setup() {
@@ -145,7 +145,7 @@ It is possible to create your own [`globalSetup`](https://facebook.github.io/jes
 const {
   setup: setupPuppeteer,
   teardown: teardownPuppeteer,
-} = require('jest-puppeteer')
+} = require('jest-environment-puppeteer')
 
 async function globalSetup() {
   await setupPuppeteer()
