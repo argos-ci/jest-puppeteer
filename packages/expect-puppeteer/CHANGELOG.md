@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.2"></a>
+## [2.2.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v2.2.1...v2.2.2) (2018-04-01)
+
+
+### Bug Fixes
+
+* **expect-puppeteer:** reduce chance of collision ([83ade43](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/83ade43)), closes [#issuecomment-377698539](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/issuecomment-377698539)
+
+
+
+
 <a name="2.2.1"></a>
 ## [2.2.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v2.2.0...v2.2.1) (2018-03-25)
 
