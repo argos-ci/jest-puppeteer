@@ -10,5 +10,7 @@ describe('expect-puppeteer', () => {
     const main = await page.$('main')
     expect(main).toBeDefined()
     expect(main).not.toBe(null)
+
+    expect(200).toBe(200)
   })
 })

@@ -10,6 +10,7 @@ export const getPuppeteerType = instance => {
     instance &&
     instance.constructor &&
     instance.constructor.name &&
+    ['Page', 'ElementHandle'].includes(instance.constructor.name) &&
     instance.$
   ) {
     return instance.constructor.name
