@@ -17,6 +17,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     }
     this.global.browser = await puppeteer.connect({
       slowMo: config && config.launch && config.launch.slowMo ? config.launch.slowMo : undefined,
+      ignoreHTTPSErrors: config && config.launch && config.launch.ignoreHTTPSErrors ? config.launch.ignoreHTTPSErrors : undefined,
       browserWSEndpoint: wsEndpoint,
     })
     this.global.page = await this.global.browser.newPage()
