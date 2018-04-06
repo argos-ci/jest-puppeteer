@@ -76,6 +76,8 @@ await page.toClick('button', { text: 'My button' })
 
 ### <a name="toClick"></a>expect(instance).toClick(selector[, options])
 
+Expect an element to be in the page or element, then click on it.
+
 * `instance` <[Page]|[ElementHandle]> Context
 * `selector` <[string]> A [selector] to click on
 * `options` <[Object]> Optional parameters
@@ -91,16 +93,20 @@ await expect(page).toClick('button', { text: 'Home' })
 
 ### <a name="toDisplayDialog"></a>expect(page).toDisplayDialog(block)
 
+Expect block function to trigger a dialog and returns it.
+
 * `page` <[Page]> Context
 * `block` <[function]> A [function] that should trigger a dialog
 
 ```js
-await expect(page).toDisplayDialog(async () => {
+const dialog = await expect(page).toDisplayDialog(async () => {
   await expect(page).toClick('button', { text: 'Show dialog' })
 })
 ```
 
 ### <a name="toFill"></a>expect(instance).toFill(selector, value[, options])
+
+Expect a control to be in the page or element, then fill it with text.
 
 * `instance` <[Page]|[ElementHandle]> Context
 * `selector` <[string]> A [selector] to match field
@@ -116,6 +122,8 @@ await expect(page).toFill('input[name="firstName"]', 'James')
 ```
 
 ### <a name="toFillForm"></a>expect(instance).toFillForm(selector, values[, options])
+
+Expect a form to be in the page or element, then fill its controls.
 
 * `instance` <[Page]|[ElementHandle]> Context
 * `selector` <[string]> A [selector] to match form
@@ -135,6 +143,8 @@ await expect(page).toFillForm('form[name="myForm"]', {
 
 ### <a name="toMatch"></a>expect(instance).toMatch(matcher[, options])
 
+Expect a text or a string RegExp to be present in the page or element.
+
 * `instance` <[Page]|[ElementHandle]> Context
 * `matcher` <[string]> A text or a RegExp to match in page
 * `options` <[Object]> Optional parameters
@@ -151,6 +161,8 @@ await expect(page).toMatch('lo.*')
 ```
 
 ### <a name="toMatchElement"></a>expect(instance).toMatchElement(selector[, options])
+
+Expect an element be present in the page or element.
 
 * `instance` <[Page]|[ElementHandle]> Context
 * `selector` <[string]> A [selector] to match element
@@ -170,6 +182,8 @@ await expect(row).toClick('td:nth-child(2) a')
 
 ### <a name="toSelect"></a>expect(instance).toSelect(selector, valueOrText[, options])
 
+Expect a select control to be present in the page or element, then select the specified option.
+
 * `instance` <[Page]|[ElementHandle]> Context
 * `selector` <[string]> A [selector] to match select [element]
 * `valueOrText` <[string]> Value or text matching option
@@ -184,6 +198,8 @@ await expect(page).toSelect('select[name="choices"]', 'Choice 1')
 ```
 
 ### <a name="toUploadFile"></a>expect(instance).toUploadFile(selector, filePath[, options])
+
+Expect a input file control to be present in the page or element, then fill it with a local file.
 
 * `instance` <[Page]|[ElementHandle]> Context
 * `selector` <[string]> A [selector] to match input [element]
