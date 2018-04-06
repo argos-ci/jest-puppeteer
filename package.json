@@ -8,7 +8,7 @@
     "ci": "yarn build && yarn lint && yarn test --ci",
     "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\"",
     "lint": "eslint .",
-    "release": "lerna publish --conventional-commits && conventional-github-releaser -p angular",
+    "release": "lerna publish --conventional-commits && conventional-github-releaser --preset angular",
     "test": "jest --runInBand"
   },
   "devDependencies": {
