@@ -62,9 +62,9 @@ it('should fill an input', async () => {
 
 ### `jest-puppeteer.config.js`
 
-You can specify a `jest-puppeteer.config.js` at the root of the project.
+You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
 
-* `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+* `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
 * `server` <[Object]> Server options
   * `command` <[string]> Command to start server
   * `port` <[number]> If specified, it will wait port to be listened

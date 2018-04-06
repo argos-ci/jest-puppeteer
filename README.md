@@ -159,22 +159,22 @@ For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and
 
 ```js
 // global-setup.js
-const { setup: setupPuppeteer } = require('jest-environment-puppeteer');
+const { setup: setupPuppeteer } = require('jest-environment-puppeteer')
 
 module.exports = async function globalSetup() {
-  await setupPuppeteer();
+  await setupPuppeteer()
   // Your global setup
-};
+}
 ```
 
 ```js
 // global-teardown.js
-const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer');
+const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer')
 
 module.exports = async function globalTeardown() {
   // Your global teardown
-  await teardownPuppeteer();
-};
+  await teardownPuppeteer()
+}
 ```
 
 Then assigning your js file paths to the [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string) property in your Jest configuration.
@@ -223,9 +223,9 @@ await expect(page).toMatch('A text in the page')
 
 ### `jest-puppeteer.config.js`
 
-You can specify a `jest-puppeteer.config.js` at the root of the project.
+You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
 
-* `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+* `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
 * `server` <[Object]> Server options
   * `command` <[string]> Command to start server
   * `port` <[number]> If specified, it will wait port to be listened
