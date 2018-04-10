@@ -8,11 +8,13 @@ const exists = promisify(fs.exists)
 
 const DEFAULT_CONFIG = {
   launch: {},
+  exitOnPageError: true
 }
 const DEFAULT_CONFIG_CI = {
   launch: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   },
+  exitOnPageError: true
 }
 
 async function readConfig() {
