@@ -21,7 +21,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
       browserWSEndpoint: wsEndpoint,
     })
     this.global.page = await this.global.browser.newPage()
-    this.global.page.addListener('pageerror', handleError)
+    if (config && config.exitOnPageError) {
+      this.global.page.addListener('pageerror', handleError)
+    }
   }
 
   async teardown() {
