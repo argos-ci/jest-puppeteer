@@ -38,3 +38,9 @@ export const getContext = async (instance, pageFunction) => {
       throw new Error(`${type} is not implemented`)
   }
 }
+
+export const errorHandler = (original, customMessage) => {
+  const error = new Error(customMessage)
+  error.original = original
+  throw error
+}
