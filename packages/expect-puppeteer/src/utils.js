@@ -1,10 +1,3 @@
-const DEFAULT_OPTIONS = { timeout: 500 }
-
-export const defaultOptions = options => ({
-  ...DEFAULT_OPTIONS,
-  ...options,
-})
-
 export const getPuppeteerType = instance => {
   if (
     instance &&

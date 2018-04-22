@@ -1,4 +1,5 @@
-import { defaultOptions, getContext, enhanceError } from '../utils'
+import { getContext, enhanceError } from '../utils'
+import { defaultOptions } from '../options'
 
 async function toMatch(instance, matcher, options) {
   options = defaultOptions(options)

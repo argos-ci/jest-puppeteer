@@ -1,4 +1,4 @@
-import { defaultOptions } from '../utils'
+import { defaultOptions } from '../options'
 import toFill from './toFill'
 import toMatchElement from './toMatchElement'
 

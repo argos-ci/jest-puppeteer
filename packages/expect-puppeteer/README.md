@@ -219,6 +219,16 @@ await expect(page).toUploadFile(
 )
 ```
 
+## Configure default options
+
+To configure default options like `timeout`, `expect-puppeteer` exposes two methods: `getDefaultOptions` and `setDefaultOptions`. You can find available options in [Puppeteer `page.waitForFunction` documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagewaitforfunctionpagefunction-options-args). Default options are set to: `{ timeout: 500 }`.
+
+```js
+import { setDefaultOptions } from 'jest-puppeteer'
+
+setDefaultOptions({ timeout: 1000 })
+```
+
 ## License
 
 MIT

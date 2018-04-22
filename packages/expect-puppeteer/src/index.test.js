@@ -1,3 +1,5 @@
+import { getDefaultOptions, setDefaultOptions } from './'
+
 describe('expect-puppeteer', () => {
   beforeEach(async () => {
     await page.goto('http://localhost:4444')
@@ -12,5 +14,11 @@ describe('expect-puppeteer', () => {
     expect(main).not.toBe(null)
 
     expect(200).toBe(200)
+  })
+
+  it('should get and set default options', () => {
+    expect(getDefaultOptions()).toEqual({ timeout: 500 })
+    setDefaultOptions({ timeout: 200 })
+    expect(getDefaultOptions()).toEqual({ timeout: 200 })
   })
 })
