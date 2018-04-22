@@ -13,12 +13,13 @@ describe('not.toMatchElement', () => {
     })
 
     it('should return an error if element is not found', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).not.toMatchElement('a', { text: 'Page 2' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Page 2") found')
+        expect(error.message).toMatch('waiting failed')
       }
     })
   })
@@ -36,12 +37,13 @@ describe('not.toMatchElement', () => {
 
     it('should return an error if element is not found', async () => {
       const main = await page.$('main')
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(main).not.toMatchElement('div', { text: 'main' })
       } catch (error) {
         expect(error.message).toMatch('Element div (text: "main") found')
+        expect(error.message).toMatch('waiting failed')
       }
     })
   })

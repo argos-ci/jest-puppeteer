@@ -9,12 +9,13 @@ describe('toMatch', () => {
     })
 
     it('should return an error if text is not in the page', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toMatch('Nop')
       } catch (error) {
         expect(error.message).toMatch('Text not found "Nop"')
+        expect(error.message).toMatch('waiting failed')
       }
     })
   })
@@ -26,13 +27,14 @@ describe('toMatch', () => {
     })
 
     it('should return an error if text is not in the page', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
       const dialogBtn = await page.$('#dialog-btn')
 
       try {
         await expect(dialogBtn).toMatch('This is home!')
       } catch (error) {
         expect(error.message).toMatch('Text not found "This is home!"')
+        expect(error.message).toMatch('waiting failed')
       }
     })
   })

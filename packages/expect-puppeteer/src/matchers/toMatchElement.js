@@ -1,4 +1,4 @@
-import { defaultOptions, getContext } from '../utils'
+import { defaultOptions, getContext, enhanceError } from '../utils'
 
 async function toMatchElement(instance, selector, { text, ...options } = {}) {
   options = defaultOptions(options)
@@ -16,7 +16,8 @@ async function toMatchElement(instance, selector, { text, ...options } = {}) {
   try {
     await page.waitForFunction(getElement, options, handle, selector, text)
   } catch (error) {
-    throw new Error(
+    throw enhanceError(
+      error,
       `Element ${selector}${
         text !== undefined ? ` (text: "${text}") ` : ' '
       }not found`,
