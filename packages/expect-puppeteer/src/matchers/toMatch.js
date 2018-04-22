@@ -1,4 +1,4 @@
-import { defaultOptions, getContext } from '../utils'
+import { defaultOptions, getContext, enhanceError } from '../utils'
 
 async function toMatch(instance, matcher, options) {
   options = defaultOptions(options)
@@ -16,7 +16,7 @@ async function toMatch(instance, matcher, options) {
       matcher,
     )
   } catch (error) {
-    throw new Error(`Text not found "${matcher}"`)
+    throw enhanceError(error, `Text not found "${matcher}"`)
   }
 }
 

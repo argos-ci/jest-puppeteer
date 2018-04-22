@@ -1,4 +1,4 @@
-import { defaultOptions, getContext } from '../utils'
+import { defaultOptions, getContext, enhanceError } from '../utils'
 
 async function notToMatchElement(
   instance,
@@ -27,7 +27,8 @@ async function notToMatchElement(
       text,
     )
   } catch (error) {
-    throw new Error(
+    throw enhanceError(
+      error,
       `Element ${selector}${
         text !== undefined ? ` (text: "${text}") ` : ' '
       }found`,

@@ -1,4 +1,4 @@
-import { defaultOptions, getContext } from '../utils'
+import { defaultOptions, getContext, enhanceError } from '../utils'
 
 async function notToMatch(instance, matcher, options) {
   options = defaultOptions(options)
@@ -16,7 +16,7 @@ async function notToMatch(instance, matcher, options) {
       matcher,
     )
   } catch (error) {
-    throw new Error(`Text found "${matcher}"`)
+    throw enhanceError(error, `Text found "${matcher}"`)
   }
 }
 
