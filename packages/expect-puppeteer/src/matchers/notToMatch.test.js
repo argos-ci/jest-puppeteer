@@ -15,7 +15,7 @@ describe('not.toMatch', () => {
         await expect(page).not.toMatch('home')
       } catch (error) {
         expect(error.message).toMatch('Text found "home"')
-        expect(error.message).toMatch('waiting failed')
+        expect(error.message).toMatch('waiting for function failed')
       }
     })
   })
@@ -34,7 +34,7 @@ describe('not.toMatch', () => {
         await expect(dialogBtn).not.toMatch('Open dialog')
       } catch (error) {
         expect(error.message).toMatch('Text found "Open dialog"')
-        expect(error.message).toMatch('waiting failed')
+        expect(error.message).toMatch('waiting for function failed')
       }
     })
   })

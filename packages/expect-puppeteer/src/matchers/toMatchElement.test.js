@@ -25,7 +25,7 @@ describe('toMatchElement', () => {
         await expect(page).toMatchElement('a', { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
-        expect(error.message).toMatch('waiting failed')
+        expect(error.message).toMatch('waiting for function failed')
       }
     })
   })
@@ -57,7 +57,7 @@ describe('toMatchElement', () => {
         await expect(main).toMatchElement('a', { text: 'Page 2' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Page 2") not found')
-        expect(error.message).toMatch('waiting failed')
+        expect(error.message).toMatch('waiting for function failed')
       }
     })
   })
