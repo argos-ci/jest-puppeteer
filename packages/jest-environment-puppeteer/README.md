@@ -69,7 +69,9 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
 * `server` <[Object]> Server options
   * `command` <[string]> Command to start server
   * `port` <[number]> If specified, it will wait port to be listened
+  * `launchTimeout` <[number]> Maximum time in milliseconds to wait before the port is listened. Defaults to `5000`.
   * `options` <[Object]> Optional options for [spawnd](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/README.md)
+  * `debug` <[boolean]> Output server logs
 
 ```js
 // jest-puppeteer.config.js
@@ -81,6 +83,8 @@ module.exports = {
   server: {
     command: 'node server.js',
     port: 4444,
+    launchTimeout: 10000,
+    debug: true,
   },
 }
 ```
