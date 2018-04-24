@@ -9,6 +9,7 @@ Run your tests using Jest & Puppeteer 🎪✨
 ```
 npm install --save-dev jest-puppeteer puppeteer
 ```
+
 > TypeScript users should additionally install `@types/puppeteer` and `@types/jest-environment-puppeteer`
 
 ## Usage
@@ -84,6 +85,8 @@ module.exports = {
   },
 }
 ```
+
+Other options are documented in [Jest Environment Puppeteer readme](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer#jest-puppeteerconfigjs).
 
 ### Configure Puppeteer
 
