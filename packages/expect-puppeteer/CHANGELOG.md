@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v2.3.0...v2.4.0) (2018-04-24)
+
+
+### Features
+
+* **expect-puppeteer:** keep original error message ([#45](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/45)) ([72b60a9](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/72b60a9)), closes [#33](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/33)
+* **expect-puppeteer:** make default options configurable ([#46](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/46)) ([0d493c4](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/0d493c4))
+* adjust default timeout with slowMo ([6871ec8](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/6871ec8)), closes [#36](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/36)
+
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v2.2.3...v2.3.0) (2018-04-06)
 
