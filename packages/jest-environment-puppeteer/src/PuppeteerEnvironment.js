@@ -11,13 +11,21 @@ const handleError = error => {
 class PuppeteerEnvironment extends NodeEnvironment {
   async setup() {
     const config = await readConfig()
+    this.global.puppeteerConfig = config
+
     const wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH, 'utf8')
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
     this.global.browser = await puppeteer.connect({
-      slowMo: config && config.launch && config.launch.slowMo ? config.launch.slowMo : undefined,
-      ignoreHTTPSErrors: config && config.launch && config.launch.ignoreHTTPSErrors ? config.launch.ignoreHTTPSErrors : undefined,
+      slowMo:
+        config && config.launch && config.launch.slowMo
+          ? config.launch.slowMo
+          : undefined,
+      ignoreHTTPSErrors:
+        config && config.launch && config.launch.ignoreHTTPSErrors
+          ? config.launch.ignoreHTTPSErrors
+          : undefined,
       browserWSEndpoint: wsEndpoint,
     })
     this.global.page = await this.global.browser.newPage()
