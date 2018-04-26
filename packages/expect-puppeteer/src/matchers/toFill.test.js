@@ -32,6 +32,16 @@ describe('toFill', () => {
       )
       expect(value).toBe('James')
     })
+    it('should fill input with custom delay', async () => {
+      const body = await page.$('body')
+      await expect(body).toFill('[name="firstName"]', 'James', {
+        delay: 50
+      })
+      const value = await page.evaluate(
+        () => document.querySelector('[name="firstName"]').value,
+      )
+      expect(value).toBe('James')
+    })
 
     it('should return an error if text is not in the page', async () => {
       const body = await page.$('body')
