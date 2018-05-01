@@ -116,6 +116,7 @@ Expect a control to be in the page or element, then fill it with text.
     * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
     * `mutation` - to execute `pageFunction` on every DOM mutation.
   * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+  * `delay` <[number]> delay to pass to [the puppeteer `element.type` API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#elementhandletypetext-options)
 
 ```js
 await expect(page).toFill('input[name="firstName"]', 'James')
