@@ -7,7 +7,7 @@
 Run your tests using Jest & Puppeteer 🎪✨
 
 ```
-npm install --save-dev jest-puppeteer puppeteer
+npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
 > Requires Jest v22+
