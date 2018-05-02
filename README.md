@@ -7,7 +7,7 @@
 Run your tests using Jest & Puppeteer 🎪✨
 
 ```
-npm install --save-dev jest-puppeteer jest-environment-node puppeteer
+npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
 > TypeScript users should additionally install `@types/puppeteer` and `@types/jest-environment-puppeteer`
