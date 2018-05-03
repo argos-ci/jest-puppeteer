@@ -11,8 +11,17 @@ describe('toMatchElement', () => {
       expect(textContent).toBe('Page 2')
     })
 
-    it('should match using text', async () => {
+    it('should match using text (string)', async () => {
       const element = await expect(page).toMatchElement('a', { text: 'Page 2' })
+      const textContentProperty = await element.getProperty('textContent')
+      const textContent = await textContentProperty.jsonValue()
+      expect(textContent).toBe('Page 2')
+    })
+
+    it('should match using text (RegExp)', async () => {
+      const element = await expect(page).toMatchElement('a', {
+        text: /Page\s2/,
+      })
       const textContentProperty = await element.getProperty('textContent')
       const textContent = await textContentProperty.jsonValue()
       expect(textContent).toBe('Page 2')
@@ -39,10 +48,20 @@ describe('toMatchElement', () => {
       expect(textContent).toMatch('A div in the main')
     })
 
-    it('should match using text', async () => {
+    it('should match using text (string)', async () => {
       const main = await page.$('main')
       const element = await expect(main).toMatchElement('*', {
         text: 'in the main',
+      })
+      const textContentProperty = await element.getProperty('textContent')
+      const textContent = await textContentProperty.jsonValue()
+      expect(textContent).toMatch('A div in the main')
+    })
+
+    it('should match using text (RegExp)', async () => {
+      const main = await page.$('main')
+      const element = await expect(main).toMatchElement('*', {
+        text: /in.the\smain/g,
       })
       const textContentProperty = await element.getProperty('textContent')
       const textContent = await textContentProperty.jsonValue()
