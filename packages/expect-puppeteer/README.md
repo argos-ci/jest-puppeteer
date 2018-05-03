@@ -85,7 +85,7 @@ Expect an element to be in the page or element, then click on it.
     * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
     * `mutation` - to execute `pageFunction` on every DOM mutation.
   * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
-  * `text` <[string]> A text or a RegExp to match in element `textContent`.
+  * `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
 
 ```js
 await expect(page).toClick('button', { text: 'Home' })
@@ -172,7 +172,7 @@ Expect an element be present in the page or element.
     * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
     * `mutation` - to execute `pageFunction` on every DOM mutation.
   * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
-  * `text` <[string]> A text or a RegExp to match in element `textContent`.
+  * `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
 
 ```js
 // Select a row containing a text
@@ -246,6 +246,7 @@ MIT
 [number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type 'Number'
 [object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 'Object'
 [promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise 'Promise'
+[regexp]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp 'RegExp'
 [string]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type 'String'
 [error]: https://nodejs.org/api/errors.html#errors_class_error 'Error'
 [element]: https://developer.mozilla.org/en-US/docs/Web/API/element 'Element'
