@@ -1,14 +1,5 @@
-import { getContext, enhanceError } from '../utils'
+import { getContext, enhanceError, expandSearchExpr } from '../utils'
 import { defaultOptions } from '../options'
-
-const isRegExp = input =>
-  Object.prototype.toString.call(input) === '[object RegExp]'
-
-const expandSearchExpr = expr => {
-  if (isRegExp(expr)) return { text: null, regexp: expr.toString() }
-  if (typeof expr === 'string') return { text: expr, regexp: null }
-  return { text: null, regexp: null }
-}
 
 async function toMatchElement(
   instance,

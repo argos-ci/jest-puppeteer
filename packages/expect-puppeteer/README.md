@@ -147,7 +147,7 @@ await expect(page).toFillForm('form[name="myForm"]', {
 Expect a text or a string RegExp to be present in the page or element.
 
 * `instance` <[Page]|[ElementHandle]> Context
-* `matcher` <[string]> A text or a RegExp to match in page
+* `matcher` <[string]|[RegExp]> A text or a RegExp to match in page
 * `options` <[Object]> Optional parameters
   * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
     * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
