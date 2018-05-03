@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v2.4.0...v3.0.0) (2018-05-03)
+
+
+### Features
+
+* **expect-puppeteer:** added delay option to element.type for toFill matcher ([#52](https://github.com/smooth-code/jest-puppeteer/issues/52)) ([ee39ba9](https://github.com/smooth-code/jest-puppeteer/commit/ee39ba9))
+* **expect-puppeteer:** enhance toMatchElement / toClick text option ([cee8f46](https://github.com/smooth-code/jest-puppeteer/commit/cee8f46)), closes [#51](https://github.com/smooth-code/jest-puppeteer/issues/51) [#50](https://github.com/smooth-code/jest-puppeteer/issues/50)
+
+
+### BREAKING CHANGES
+
+* **expect-puppeteer:** Text is now trimmed and no longer evaluated as a RegExp. If you want this behaviour, use a true RegExp.
+
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/smooth-code/jest-puppeteer/compare/v2.3.0...v2.4.0) (2018-04-24)
 
