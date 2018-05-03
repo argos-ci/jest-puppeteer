@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/smooth-code/jest-puppeteer/compare/v3.0.0...v3.0.1) (2018-05-03)
+
+
+### Bug Fixes
+
+* **expect-puppeteer:** use the same behaviour on toMatch and toMatchElement ([784bde8](https://github.com/smooth-code/jest-puppeteer/commit/784bde8))
+
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v2.4.0...v3.0.0) (2018-05-03)
 
