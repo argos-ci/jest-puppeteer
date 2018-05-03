@@ -1,4 +1,4 @@
-import { getContext, enhanceError } from '../utils'
+import { getContext, enhanceError, expandSearchExpr } from '../utils'
 import { defaultOptions } from '../options'
 
 async function toMatch(instance, matcher, options) {
@@ -6,15 +6,33 @@ async function toMatch(instance, matcher, options) {
 
   const { page, handle } = await getContext(instance, () => document.body)
 
+  const { text, regexp } = expandSearchExpr(matcher)
+
   try {
     await page.waitForFunction(
-      (handle, matcher) => {
+      (handle, text, regexp) => {
         if (!handle) return false
-        return handle.textContent.match(new RegExp(matcher)) !== null
+        if (regexp !== null) {
+          const [, pattern, flags] = regexp.match(/\/(.*)\/(.*)?/)
+          return (
+            handle.textContent
+              .replace(/\s+/g, ' ')
+              .trim()
+              .match(new RegExp(pattern, flags)) !== null
+          )
+        }
+        if (text !== null) {
+          return handle.textContent
+            .replace(/\s+/g, ' ')
+            .trim()
+            .includes(text)
+        }
+        return false
       },
       options,
       handle,
-      matcher,
+      text,
+      regexp,
     )
   } catch (error) {
     throw enhanceError(error, `Text not found "${matcher}"`)

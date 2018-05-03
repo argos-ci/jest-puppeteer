@@ -36,3 +36,12 @@ export const enhanceError = (error, message) => {
   error.message = `${message}\n${error.message}`
   return error
 }
+
+const isRegExp = input =>
+  Object.prototype.toString.call(input) === '[object RegExp]'
+
+export const expandSearchExpr = expr => {
+  if (isRegExp(expr)) return { text: null, regexp: expr.toString() }
+  if (typeof expr === 'string') return { text: expr, regexp: null }
+  return { text: null, regexp: null }
+}

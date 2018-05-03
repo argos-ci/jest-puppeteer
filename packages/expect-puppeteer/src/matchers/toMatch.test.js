@@ -8,6 +8,10 @@ describe('toMatch', () => {
       await expect(page).toMatch('This is home!')
     })
 
+    it('should support RegExp', async () => {
+      await expect(page).toMatch(/THIS.is.home/i)
+    })
+
     it('should return an error if text is not in the page', async () => {
       expect.assertions(3)
 
@@ -24,6 +28,11 @@ describe('toMatch', () => {
     it('should be ok if text is in the page', async () => {
       const dialogBtn = await page.$('#dialog-btn')
       await expect(dialogBtn).toMatch('Open dialog')
+    })
+
+    it('should support RegExp', async () => {
+      const dialogBtn = await page.$('#dialog-btn')
+      await expect(dialogBtn).toMatch(/OPEN/i)
     })
 
     it('should return an error if text is not in the page', async () => {
