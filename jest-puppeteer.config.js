@@ -5,5 +5,6 @@ module.exports = {
   server: {
     command: 'node server',
     port: 4444,
+    launchTimeout: 4000,
   },
 }
