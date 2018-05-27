@@ -73,7 +73,7 @@ await expect(page).toFillForm('form[name="myForm"]', {
 
 ### Start a server
 
-Jest Puppeteer integrates a functionality to run start a server when your test suite is started. It automatically close the server when tests are done.
+Jest Puppeteer integrates a functionality to start a server when running your test suite. It automatically closes the server when tests are done.
 
 To use it, specify a server section in your `jest-puppeteer.config.js`.
 
