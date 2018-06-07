@@ -11,7 +11,7 @@ npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
 > Requires Jest v22+
-> TypeScript users should additionally install `@types/puppeteer` and `@types/jest-environment-puppeteer`
+> TypeScript users should additionally install `@types/puppeteer`, `@types/jest-environment-puppeteer` and `@types/expect-puppeteer`
 
 ## Usage
 
