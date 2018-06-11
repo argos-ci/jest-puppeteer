@@ -16,7 +16,7 @@ Without Jest:
 
 ```js
 import expect from 'expect-puppeteer'
-;(async () => {
+(async () => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto('https://google.com')
