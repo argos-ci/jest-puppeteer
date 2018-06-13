@@ -43,8 +43,8 @@ Writing integration test is very hard, especially when you are testing a Single 
 
 This API is designed for integration testing:
 
-* It will wait for element before running an action
-* It adds additional feature like matching an element using text
+- It will wait for element before running an action
+- It adds additional feature like matching an element using text
 
 **Example**
 
@@ -65,27 +65,27 @@ await page.toClick('button', { text: 'My button' })
 
 <!-- toc -->
 
-* [toClick](#toClick)
-* [toDisplayDialog](#toDisplayDialog)
-* [toFill](#toFill)
-* [toFillForm](#toFillForm)
-* [toMatch](#toMatch)
-* [toMatchElement](#toMatchElement)
-* [toSelect](#toSelect)
-* [toUploadFile](#toUploadFile)
+- [toClick](#toClick)
+- [toDisplayDialog](#toDisplayDialog)
+- [toFill](#toFill)
+- [toFillForm](#toFillForm)
+- [toMatch](#toMatch)
+- [toMatchElement](#toMatchElement)
+- [toSelect](#toSelect)
+- [toUploadFile](#toUploadFile)
 
 ### <a name="toClick"></a>expect(instance).toClick(selector[, options])
 
 Expect an element to be in the page or element, then click on it.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `selector` <[string]> A [selector] to click on
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
-  * `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to click on
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+  - `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
 
 ```js
 await expect(page).toClick('button', { text: 'Home' })
@@ -95,8 +95,8 @@ await expect(page).toClick('button', { text: 'Home' })
 
 Expect block function to trigger a dialog and returns it.
 
-* `page` <[Page]> Context
-* `block` <[function]> A [function] that should trigger a dialog
+- `page` <[Page]> Context
+- `block` <[function]> A [function] that should trigger a dialog
 
 ```js
 const dialog = await expect(page).toDisplayDialog(async () => {
@@ -108,15 +108,15 @@ const dialog = await expect(page).toDisplayDialog(async () => {
 
 Expect a control to be in the page or element, then fill it with text.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `selector` <[string]> A [selector] to match field
-* `value` <[string]> Value to fill
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
-  * `delay` <[number]> delay to pass to [the puppeteer `element.type` API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#elementhandletypetext-options)
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match field
+- `value` <[string]> Value to fill
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+  - `delay` <[number]> delay to pass to [the puppeteer `element.type` API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#elementhandletypetext-options)
 
 ```js
 await expect(page).toFill('input[name="firstName"]', 'James')
@@ -126,14 +126,14 @@ await expect(page).toFill('input[name="firstName"]', 'James')
 
 Expect a form to be in the page or element, then fill its controls.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `selector` <[string]> A [selector] to match form
-* `values` <[Object]> Values to fill
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match form
+- `values` <[Object]> Values to fill
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
 await expect(page).toFillForm('form[name="myForm"]', {
@@ -146,33 +146,33 @@ await expect(page).toFillForm('form[name="myForm"]', {
 
 Expect a text or a string RegExp to be present in the page or element.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `matcher` <[string]|[RegExp]> A text or a RegExp to match in page
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+- `instance` <[Page]|[ElementHandle]> Context
+- `matcher` <[string]|[RegExp]> A text or a RegExp to match in page
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
 // Matching using text
 await expect(page).toMatch('Lorem ipsum')
 // Matching using RegExp
-await expect(page).toMatch('lo.*')
+await expect(page).toMatch(/lo.*/)
 ```
 
 ### <a name="toMatchElement"></a>expect(instance).toMatchElement(selector[, options])
 
 Expect an element be present in the page or element.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `selector` <[string]> A [selector] to match element
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
-  * `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match element
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+  - `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
 
 ```js
 // Select a row containing a text
@@ -185,14 +185,14 @@ await expect(row).toClick('td:nth-child(2) a')
 
 Expect a select control to be present in the page or element, then select the specified option.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `selector` <[string]> A [selector] to match select [element]
-* `valueOrText` <[string]> Value or text matching option
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match select [element]
+- `valueOrText` <[string]> Value or text matching option
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
 await expect(page).toSelect('select[name="choices"]', 'Choice 1')
@@ -202,14 +202,14 @@ await expect(page).toSelect('select[name="choices"]', 'Choice 1')
 
 Expect a input file control to be present in the page or element, then fill it with a local file.
 
-* `instance` <[Page]|[ElementHandle]> Context
-* `selector` <[string]> A [selector] to match input [element]
-* `filePath` <[string]> A file path
-* `options` <[Object]> Optional parameters
-  * `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
-    * `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
-    * `mutation` - to execute `pageFunction` on every DOM mutation.
-  * `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match input [element]
+- `filePath` <[string]> A file path
+- `options` <[Object]> Optional parameters
+  - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
+    - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
+    - `mutation` - to execute `pageFunction` on every DOM mutation.
+  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `500`.
 
 ```js
 import path from 'path'
@@ -225,7 +225,7 @@ await expect(page).toUploadFile(
 To configure default options like `timeout`, `expect-puppeteer` exposes two methods: `getDefaultOptions` and `setDefaultOptions`. You can find available options in [Puppeteer `page.waitForFunction` documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagewaitforfunctionpagefunction-options-args). Default options are set to: `{ timeout: 500 }`.
 
 ```js
-import { setDefaultOptions } from 'jest-puppeteer'
+import { setDefaultOptions } from 'expect-puppeteer'
 
 setDefaultOptions({ timeout: 1000 })
 ```
