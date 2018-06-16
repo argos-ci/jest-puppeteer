@@ -18,7 +18,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^2.4.0",
+    "chalk": "^2.4.1",
     "cwd": "^0.10.0",
     "find-process": "^1.1.1",
     "inquirer": "^6.0.0",
