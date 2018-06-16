@@ -64,14 +64,9 @@ it('should fill an input', async () => {
 
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
 
-* `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
-* `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
-* `server` <[Object]> Server options
-  * `command` <[string]> Command to start server
-  * `port` <[number]> If specified, it will wait port to be listened
-  * `launchTimeout` <[number]> Maximum time in milliseconds to wait before the port is listened. Defaults to `5000`.
-  * `options` <[Object]> Optional options for [spawnd](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/README.md)
-  * `debug` <[boolean]> Output server logs
+- `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
+- `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
+- `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
 
 ```js
 // jest-puppeteer.config.js

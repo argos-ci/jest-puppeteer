@@ -21,16 +21,14 @@
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
-    "jest-environment-node": "^22.0.0",
     "puppeteer": "^1.0.0"
   },
   "dependencies": {
-    "chalk": "^2.4.0",
+    "chalk": "^2.4.1",
     "cwd": "^0.10.0",
-    "lodash": "^4.17.5",
+    "jest-dev-server": "^2.4.0",
+    "lodash": "^4.17.10",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.6.2",
-    "spawnd": "^2.0.0",
-    "wait-port": "^0.2.2"
+    "rimraf": "^2.6.2"
   }
 }

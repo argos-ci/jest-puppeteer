@@ -1,4 +1,5 @@
 import fs from 'fs'
+// eslint-disable-next-line
 import NodeEnvironment from 'jest-environment-node'
 import puppeteer from 'puppeteer'
 import readConfig from './readConfig'
