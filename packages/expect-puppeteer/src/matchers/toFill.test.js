@@ -35,7 +35,7 @@ describe('toFill', () => {
     it('should fill input with custom delay', async () => {
       const body = await page.$('body')
       await expect(body).toFill('[name="firstName"]', 'James', {
-        delay: 50
+        delay: 50,
       })
       const value = await page.evaluate(
         () => document.querySelector('[name="firstName"]').value,

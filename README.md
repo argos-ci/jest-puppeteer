@@ -194,6 +194,10 @@ Then assigning your js file paths to the [`globalSetup`](https://facebook.github
 
 Now your custom `globalSetup` and `globalTeardown` will be triggered once before and after all test suites.
 
+### Create React App
+
+You can find an [example of create-react-app setup in this repository](https://github.com/smooth-code/jest-puppeteer/tree/master/examples/create-react-app).
+
 ## API
 
 ### `global.browser`
