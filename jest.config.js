@@ -1,3 +1,4 @@
 module.exports = {
-  preset: '<rootDir>/packages/jest-puppeteer',
+  rootDir: 'packages',
+  preset: '<rootDir>/jest-puppeteer',
 }
