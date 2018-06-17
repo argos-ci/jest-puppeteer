@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.1.0...v3.2.0) (2018-06-17)
+
+
+### Bug Fixes
+
+* **jest-dev-server:** fix watch mode stdin after ask ([a7ca57b](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/a7ca57b))
+
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.0.1...v3.1.0) (2018-06-16)
 
