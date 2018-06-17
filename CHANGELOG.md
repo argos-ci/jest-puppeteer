@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.1"></a>
+## [3.2.1](https://github.com/smooth-code/jest-puppeteer/compare/v3.2.0...v3.2.1) (2018-06-17)
+
+
+### Bug Fixes
+
+* fix debug mode ([7e395a3](https://github.com/smooth-code/jest-puppeteer/commit/7e395a3))
+
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.1.0...v3.2.0) (2018-06-17)
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.1"></a>
+## [3.2.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v3.2.0...v3.2.1) (2018-06-17)
+
+
+
+
+**Note:** Version bump only for package jest-puppeteer
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v3.1.0...v3.2.0) (2018-06-17)
 
