@@ -74,6 +74,17 @@ function runServer(config = {}) {
   }
 }
 
+async function outOfStin(block) {
+  const { stdin } = process
+  const listeners = stdin.listeners('data')
+  const result = await block()
+  listeners.forEach(listener => stdin.on('data', listener))
+  stdin.setRawMode(true)
+  stdin.setEncoding('utf8')
+  stdin.resume()
+  return result
+}
+
 export async function setup(config) {
   config = { ...DEFAULT_CONFIG, ...config }
 
@@ -101,14 +112,16 @@ export async function setup(config) {
         case 'ask': {
           console.log('')
           logProcDetection(portProcess, config.port)
-          const answers = await inquirer.prompt([
-            {
-              type: 'confirm',
-              name: 'kill',
-              message: 'Should I kill it for you?',
-              default: true,
-            },
-          ])
+          const answers = await outOfStin(() =>
+            inquirer.prompt([
+              {
+                type: 'confirm',
+                name: 'kill',
+                message: 'Should I kill it for you?',
+                default: true,
+              },
+            ]),
+          )
           if (answers.kill) {
             await killProc(portProcess)
           } else {
