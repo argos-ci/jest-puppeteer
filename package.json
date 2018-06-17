@@ -6,6 +6,7 @@
   "scripts": {
     "build": "lerna run build",
     "ci": "yarn build && yarn lint && yarn test --ci",
+    "dev": "lerna run build --parallel -- --watch",
     "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\"",
     "lint": "eslint .",
     "release": "lerna publish --conventional-commits && conventional-github-releaser --preset angular",
@@ -26,5 +27,6 @@
     "lerna": "^2.11.0",
     "prettier": "^1.13.5",
     "puppeteer": "^1.5.0"
-  }
+  },
+  "dependencies": {}
 }

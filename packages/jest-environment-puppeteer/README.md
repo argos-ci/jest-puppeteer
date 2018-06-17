@@ -60,6 +60,19 @@ it('should fill an input', async () => {
 })
 ```
 
+### `global.jestPuppeteer.debug()`
+
+Put test in debug mode.
+
+- Jest is suspended (no timeout)
+- A `debugger` instruction to Chromium, if Puppeteer has been launched with `{ devtools: true }` it will stop
+
+```js
+it('should put test in debug mode', async () => {
+  await jestPuppeteer.debug()
+})
+```
+
 ### `jest-puppeteer.config.js`
 
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.

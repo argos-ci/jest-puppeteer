@@ -71,6 +71,14 @@ await expect(page).toFillForm('form[name="myForm"]', {
 })
 ```
 
+### Put in debug mode
+
+Debugging tests can be hard sometimes and it is very useful to be able to pause tests in order to inspect the browser. Jest Puppeteer exposes a method `jestPuppeteer.debug()` that suspends test execution and gives you opportunity to see what's going on in the browser.
+
+```js
+await jestPuppeteer.debug()
+```
+
 ### Start a server
 
 Jest Puppeteer integrates a functionality to start a server when running your test suite. It automatically closes the server when tests are done.
@@ -116,6 +124,7 @@ module.exports = {
   globals: {
     page: true,
     browser: true,
+    jestPuppeteer: true,
   },
 }
 ```
@@ -228,6 +237,19 @@ Helper to make Puppeteer assertions, [see documentation](https://github.com/smoo
 ```js
 await expect(page).toMatch('A text in the page')
 // ...
+```
+
+### `global.jestPuppeteer.debug()`
+
+Put test in debug mode.
+
+- Jest is suspended (no timeout)
+- A `debugger` instruction to Chromium, if Puppeteer has been launched with `{ devtools: true }` it will stop
+
+```js
+it('should put test in debug mode', async () => {
+  await jestPuppeteer.debug()
+})
 ```
 
 ### `jest-puppeteer.config.js`

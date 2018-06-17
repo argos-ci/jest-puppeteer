@@ -14,7 +14,7 @@ module.exports = {
   globals: {
     page: true,
     browser: true,
-    expectPage: true,
+    jestPuppeteer: true,
   },
   rules: {
     'class-methods-use-this': 'off',
