@@ -10,6 +10,12 @@ const handleError = error => {
   process.emit('uncaughtException', error)
 }
 
+const KEYS = {
+  CONTROL_C: '\u0003',
+  CONTROL_D: '\u0004',
+  ENTER: '\r',
+}
+
 class PuppeteerEnvironment extends NodeEnvironment {
   // Jest is not available here, so we have to reverse engineer
   // the setTimeout function, see https://github.com/facebook/jest/blob/v23.1.0/packages/jest-runtime/src/index.js#L823
@@ -63,9 +69,14 @@ class PuppeteerEnvironment extends NodeEnvironment {
         return new Promise(resolve => {
           const { stdin } = process
           const onKeyPress = key => {
-            if (key === '\r') {
+            if (
+              key === KEYS.CONTROL_C ||
+              key === KEYS.CONTROL_D ||
+              key === KEYS.ENTER
+            ) {
               stdin.removeListener('data', onKeyPress)
               if (!listening) {
+                stdin.setRawMode(false)
                 stdin.pause()
               }
               resolve()
