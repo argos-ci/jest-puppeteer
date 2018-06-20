@@ -1,6 +1,7 @@
 module.exports = {
   launch: {
     headless: process.env.CI === 'true',
+    incognito: false,
   },
   server: {
     command: 'node server',
