@@ -8,12 +8,14 @@ const exists = promisify(fs.exists)
 
 const DEFAULT_CONFIG = {
   launch: {},
+  browserContext: 'default',
   exitOnPageError: true,
 }
 const DEFAULT_CONFIG_CI = {
   launch: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   },
+  browserContext: 'default',
   exitOnPageError: true,
 }
 
