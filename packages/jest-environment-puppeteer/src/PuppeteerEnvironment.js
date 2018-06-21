@@ -57,6 +57,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
        * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserbrowsercontexts
        */
       this.global.context = await this.global.browser.browserContexts()[0]
+    } else {
+      throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`)
     }
 
     this.global.page = await this.global.context.newPage()
