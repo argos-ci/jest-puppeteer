@@ -9,6 +9,7 @@ export const getDefaultOptions = () => {
     global.puppeteerConfig &&
     global.puppeteerConfig.launch &&
     global.puppeteerConfig.launch.slowMo &&
+    global.puppeteerConfig.browserContext &&
     defaultOptionsValue &&
     defaultOptionsValue.timeout
   ) {
