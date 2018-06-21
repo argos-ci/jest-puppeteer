@@ -62,8 +62,6 @@ it('should fill an input', async () => {
 
 ### `global.context`
 
-**Note: Requires puppeteer >= 1.5.0**
-
 Give access to a [Browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instanciated when the browser is launched.
 
 It is possible to set the browser context inside the config `jest-puppeteer-config.js` in the root of this project. The context will always be exposed via the global `context` object the same way `page` and `browser` are exposed. 
