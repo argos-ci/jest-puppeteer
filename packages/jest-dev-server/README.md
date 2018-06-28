@@ -28,7 +28,7 @@ module.exports = async function globalSetup() {
 
 ```js
 // global-teardown.js
-const { setup: teardownDevServer } = require('jest-dev-server')
+const { teardown: teardownDevServer } = require('jest-dev-server')
 
 module.exports = async function globalTeardown() {
   await teardownDevServer()
