@@ -109,8 +109,14 @@ class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
+    const config = await readConfig()
     this.global.page.removeListener('pageerror', handleError)
-    await this.global.page.close()
+
+    if(config.browserContext === 'incognito') {
+        await this.global.context.close();
+    } else {
+        await this.global.page.close()
+    }
   }
 }
 
