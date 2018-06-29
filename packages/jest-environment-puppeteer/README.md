@@ -64,15 +64,7 @@ it('should fill an input', async () => {
 
 Give access to a [Browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instanciated when the browser is launched.
 
-It is possible to set the browser context inside the config `jest-puppeteer-config.js` in the root of this project. The context will always be exposed via the global `context` object the same way `page` and `browser` are exposed. 
-
-Accepted values: 
-
-* `default` Default behavior, the browser will have one instance where all tabs share the same context.
-
-* `incognito` Forces each instance to have a separate, isolated context. Useful when running tests that could interfere with one another. 
-  * Example: testing multiple users on the same app at once with login, transactions, etc.  
-
+It is possible to set the browser context inside the config `jest-puppeteer-config.js` in the root of this project. The context will always be exposed via the global `context` object the same way `page` and `browser` are exposed.
 
 ### `global.jestPuppeteer.debug()`
 
@@ -92,6 +84,9 @@ it('should put test in debug mode', async () => {
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
 
 - `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
+- `browserContext` <[string]>. Defaults to `default` but can have the following values (any other will throw an error on test suite setup): 
+  - `default` Default valDefault behavior, the browser will have one instance where all tabs share the same context.
+  - `incognito` Each instance to have a separate, isolated context. Useful when running tests that could interfere with one another. (*Example: testing multiple users on the same app at once with login, transactions, etc.*)  
 - `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
 
