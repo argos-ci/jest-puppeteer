@@ -29,8 +29,6 @@ async function readConfig() {
   const absConfigPath = path.resolve(cwd(), configPath)
   const configExists = await exists(absConfigPath)
 
-  const browserContext =
-
   if (hasCustomConfigPath && !configExists) {
     throw new Error(
       `Error: Can't find a root directory while resolving a config file path.\nProvided path to resolve: ${configPath}`,
