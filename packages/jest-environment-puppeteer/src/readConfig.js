@@ -8,12 +8,14 @@ const exists = promisify(fs.exists)
 
 const DEFAULT_CONFIG = {
   launch: {},
+  browserContext: 'default',
   exitOnPageError: true,
 }
 const DEFAULT_CONFIG_CI = {
   launch: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   },
+  browserContext: 'default',
   exitOnPageError: true,
 }
 
@@ -26,6 +28,8 @@ async function readConfig() {
     process.env.JEST_PUPPETEER_CONFIG || 'jest-puppeteer.config.js'
   const absConfigPath = path.resolve(cwd(), configPath)
   const configExists = await exists(absConfigPath)
+
+  const browserContext =
 
   if (hasCustomConfigPath && !configExists) {
     throw new Error(

@@ -48,15 +48,10 @@ class PuppeteerEnvironment extends NodeEnvironment {
       browserWSEndpoint: wsEndpoint,
     })
 
-    const browserContext =
-        config && config.browserContext
-            ? config.browserContext
-            : 'default'
-
-    if(browserContext === 'incognito') {
+    if(config.browserContext === 'incognito') {
       // Using this, pages will be created in a pristine context.
       this.global.context = await this.global.browser.createIncognitoBrowserContext()
-    } else if(browserContext === 'default') {
+    } else if(config.browserContext === 'default') {
       /**
        * Since this is a new browser, browserContexts() will return only one instance
        * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserbrowsercontexts
@@ -115,15 +110,10 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
   async teardown() {
     const config = await readConfig()
-    const browserContext =
-        config && config.browserContext
-            ? config.browserContext
-            : 'default'
-
     this.global.page.removeListener('pageerror', handleError)
 
-    if(browserContext === 'incognito') {
-        await this.global.context.close();
+    if(config.browserContext === 'incognito') {
+        await this.global.context.close()
     } else {
         await this.global.page.close()
     }
