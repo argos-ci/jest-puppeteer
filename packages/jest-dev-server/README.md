@@ -84,6 +84,36 @@ Type: `object`, default to `{}`.
 
 Any other options to pass to [`spawnd`](https://www.npmjs.com/package/spawnd).
 
+#### `host`
+
+Type: `string`, default to `localhost`.
+
+Host to wait for activity on before considering the server running.
+Must be used in conjunction with `port`.
+
+```js
+module.exports = {
+  command: 'npm run start --port 3000',
+  host: 'customhost.com',
+  port: 3000
+}
+```
+
+#### `protocol`
+
+Type: `string`, default to `null`.
+
+To wait for an HTTP endpoint before considering the server running, include `http` as a protocol.
+Must be used in conjunction with `port`.
+
+```js
+module.exports = {
+  command: 'npm run start --port 3000',
+  protocol: 'http',
+  port: 3000
+}
+```
+
 #### `port`
 
 Type: `number`, default to `null`.

@@ -13,6 +13,8 @@ const DEFAULT_CONFIG = {
   debug: false,
   options: {},
   launchTimeout: 5000,
+  host: null,
+  port: null,
   port: null,
   usedPortAction: 'ask',
 }
@@ -155,6 +157,8 @@ export async function setup(config) {
         )
       }),
       waitPort({
+        host: config.host,
+        protocol: config.protocol,
         port: config.port,
         output: 'silent',
       }),
