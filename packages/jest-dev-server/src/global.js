@@ -15,7 +15,6 @@ const DEFAULT_CONFIG = {
   launchTimeout: 5000,
   host: null,
   port: null,
-  port: null,
   usedPortAction: 'ask',
 }
 
