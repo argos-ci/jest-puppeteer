@@ -15,6 +15,7 @@ const DEFAULT_CONFIG = {
   launchTimeout: 5000,
   host: null,
   port: null,
+  protocol: null,
   usedPortAction: 'ask',
 }
 
@@ -157,9 +158,9 @@ export async function setup(config) {
       }),
       waitPort({
         host: config.host,
-        protocol: config.protocol,
-        port: config.port,
         output: 'silent',
+        port: config.port,
+        protocol: config.protocol,
       }),
     ])
     clearTimeout(timeout)
