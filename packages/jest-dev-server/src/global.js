@@ -93,7 +93,7 @@ export async function setup(config) {
   if (config.port) {
     const [portProcess] = await findProcess('port', config.port)
 
-    if (portProcess) {
+    if (portProcess && portProcess.pid > 0) {
       switch (config.usedPortAction) {
         case 'ignore':
           console.log('')
