@@ -99,7 +99,9 @@ Other options are documented in [jest-dev-server](https://github.com/smooth-code
 
 ### Configure Puppeteer
 
-Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options. [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options. [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all the stuff that you need, including environment.
+ 
+ The browser context can be also specified - `default` or `incognito` - if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
 
 ```js
 // jest-puppeteer.config.js
@@ -108,12 +110,13 @@ module.exports = {
     dumpio: true,
     headless: process.env.HEADLESS !== 'false',
   },
+  browserContext: 'default'
 }
 ```
 
 ### Configure ESLint
 
-Jest Puppeteer exposes two new globals: `browser`, `page`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
+Jest Puppeteer exposes three new globals: `browser`, `page`, `context`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
 
 ```js
 // .eslintrc.js
@@ -124,6 +127,7 @@ module.exports = {
   globals: {
     page: true,
     browser: true,
+    context: true,
     jestPuppeteer: true,
   },
 }
