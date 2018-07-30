@@ -10,6 +10,27 @@ const handleError = error => {
   process.emit('uncaughtException', error)
 }
 
+const getBrowser = async config => {
+  const wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH, 'utf8')
+  let slowMo
+  let ignoreHTTPSErrors
+
+  if (!wsEndpoint) {
+    throw new Error('wsEndpoint not found')
+  }
+
+  if (config) {
+    slowMo = (config.connect && config.connect.slowMo) || (config.launch && config.launch.slowMo) 
+    ignoreHTTPSErrors = (config.connect && config.connect.ignoreHTTPSErrors) || (config.launch && config.launch.ignoreHTTPSErrors) 
+  }
+  
+  return puppeteer.connect({
+    slowMo,
+    ignoreHTTPSErrors,
+    browserWSEndpoint: wsEndpoint,
+  })
+}
+
 const KEYS = {
   CONTROL_C: '\u0003',
   CONTROL_D: '\u0004',
@@ -36,10 +57,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
-    this.global.browser = await puppeteer.connect({
-      ...config.launch,
-      browserWSEndpoint: wsEndpoint,
-    })
+    this.global.browser = await getBrowser(config)
     this.global.page = await this.global.browser.newPage()
     if (config && config.exitOnPageError) {
       this.global.page.addListener('pageerror', handleError)
