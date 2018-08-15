@@ -95,7 +95,7 @@ Must be used in conjunction with `port`.
 module.exports = {
   command: 'npm run start --port 3000',
   host: 'customhost.com',
-  port: 3000
+  port: 3000,
 }
 ```
 
@@ -110,7 +110,7 @@ Must be used in conjunction with `port`.
 module.exports = {
   command: 'npm run start --port 3000',
   protocol: 'http',
-  port: 3000
+  port: 3000,
 }
 ```
 

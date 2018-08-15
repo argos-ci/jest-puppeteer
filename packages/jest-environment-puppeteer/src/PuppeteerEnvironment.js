@@ -37,14 +37,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
       throw new Error('wsEndpoint not found')
     }
     this.global.browser = await puppeteer.connect({
-      slowMo:
-        config && config.launch && config.launch.slowMo
-          ? config.launch.slowMo
-          : undefined,
-      ignoreHTTPSErrors:
-        config && config.launch && config.launch.ignoreHTTPSErrors
-          ? config.launch.ignoreHTTPSErrors
-          : undefined,
+      ...config.launch,
       browserWSEndpoint: wsEndpoint,
     })
     this.global.page = await this.global.browser.newPage()
@@ -62,6 +55,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
           // eslint-disable-next-line no-debugger
           debugger
         })
+        // eslint-disable-next-line no-console
         console.log(
           chalk.blue('\n\n🕵️‍  Code is paused, press enter to resume'),
         )
