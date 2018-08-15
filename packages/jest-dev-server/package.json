@@ -1,7 +1,7 @@
 {
   "name": "jest-dev-server",
   "description": "Starts a server before your Jest tests and tears it down after.",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "main": "index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server",
   "author": "Greg Bergé <berge.greg@gmail.com>",

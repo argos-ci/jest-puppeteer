@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.3.0"></a>
+# [3.3.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.2.1...v3.3.0) (2018-08-15)
+
+
+### Bug Fixes
+
+* **jest-dev-server:** support for port being held by System Idle Process ([#95](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/95)) ([e454973](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/e454973))
+
+
+### Features
+
+* **jest-dev-server:** add support for protocol & host ([#93](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/93)) ([5dca53b](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/5dca53b))
+
+
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.1.0...v3.2.0) (2018-06-17)
 
