@@ -1,4 +1,4 @@
-import { getDefaultOptions, setDefaultOptions } from './'
+const { getDefaultOptions, setDefaultOptions } = require('.')
 
 describe('expect-puppeteer', () => {
   beforeEach(async () => {
