@@ -19,7 +19,7 @@ export async function setup() {
   const config = await readConfig()
   browser = await puppeteer.launch(config.launch)
   mkdirp.sync(DIR)
-  fs.writeFileSync(WS_ENDPOINT_PATH, browser.wsEndpoint())
+  fs.writeFileSync(WS_ENDPOINT_PATH + process.pid, browser.wsEndpoint())
 
   if (config.server) {
     try {
