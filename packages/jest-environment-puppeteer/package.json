@@ -1,7 +1,7 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Puppeteer environment for Jest.",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "main": "index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer",
   "author": "Greg Bergé <berge.greg@gmail.com>",
