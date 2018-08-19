@@ -38,13 +38,7 @@ async function readConfig() {
   }
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const requiredConfig = require(absConfigPath)
-  let localConfig
-  if (typeof requiredConfig === 'function') {
-    localConfig = await requiredConfig()
-  } else {
-    localConfig = requiredConfig
-  }
+  const localConfig = require(absConfigPath)
   return merge({}, defaultConfig, localConfig)
 }
 
