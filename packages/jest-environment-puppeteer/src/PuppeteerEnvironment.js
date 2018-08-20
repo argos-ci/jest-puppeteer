@@ -34,9 +34,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
     let wsEndpoint;
     try {
-        wsEndpoint = fs.default.readFileSync(WS_ENDPOINT_PATH + ((process.ppid) ? process.pid : ""), 'utf8')
+        wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH + ((process.ppid) ? process.pid : ""), 'utf8')
     } catch (e) {
-        wsEndpoint = fs.default.readFileSync(WS_ENDPOINT_PATH + process.ppid, 'utf8')
+        wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH + process.ppid, 'utf8')
     }
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
