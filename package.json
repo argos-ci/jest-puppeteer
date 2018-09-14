@@ -5,12 +5,13 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "ci": "yarn build && yarn lint && yarn test --ci",
+    "ci": "yarn build && yarn lint && yarn test --ci && yarn test:incognito --ci",
     "dev": "lerna run build --parallel -- --watch",
     "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\"",
     "lint": "eslint .",
     "release": "lerna publish --conventional-commits && conventional-github-releaser --preset angular",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "test:incognito": "INCOGNITO=true jest --runInBand"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

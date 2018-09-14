@@ -62,9 +62,7 @@ it('should fill an input', async () => {
 
 ### `global.context`
 
-Give access to a [Browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instanciated when the browser is launched.
-
-It is possible to set the browser context inside the config `jest-puppeteer-config.js` in the root of this project. The context will always be exposed via the global `context` object the same way `page` and `browser` are exposed.
+Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in your `jest-puppeteer.config.js`.
 
 ### `global.jestPuppeteer.debug()`
 
@@ -85,9 +83,9 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
 
 - `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
 - `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
-- `browserContext` <[string]>. Defaults to `default` but can have the following values (any other will throw an error on test suite setup): 
-  - `default` Default valDefault behavior, the browser will have one instance where all tabs share the same context.
-  - `incognito` Each instance to have a separate, isolated context. Useful when running tests that could interfere with one another. (*Example: testing multiple users on the same app at once with login, transactions, etc.*)  
+- `browserContext` <[string]>. By default, the browser context (cookies, localStorage, etc) is shared between all tests. The following options are available for `browserContext`:
+  - `default` Each test starts a tab, so all tests share the same context.
+  - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (*Example: testing multiple users on the same app at once with login, transactions, etc.*)  
 - `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
 
