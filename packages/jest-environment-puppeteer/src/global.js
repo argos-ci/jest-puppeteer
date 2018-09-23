@@ -1,25 +1,20 @@
 /* eslint-disable no-console */
-import fs from 'fs'
 import {
   setup as setupServer,
   teardown as teardownServer,
   ERROR_TIMEOUT,
   ERROR_NO_COMMAND,
 } from 'jest-dev-server'
-import mkdirp from 'mkdirp'
-import rimraf from 'rimraf'
 import puppeteer from 'puppeteer'
 import chalk from 'chalk'
 import readConfig from './readConfig'
-import { DIR, WS_ENDPOINT_PATH } from './constants'
 
 let browser
 
 export async function setup() {
   const config = await readConfig()
   browser = await puppeteer.launch(config.launch)
-  mkdirp.sync(DIR)
-  fs.writeFileSync(WS_ENDPOINT_PATH, browser.wsEndpoint())
+  process.env.PUPPETEER_WS_ENDPOINT = browser.wsEndpoint()
 
   if (config.server) {
     try {
@@ -53,5 +48,4 @@ export async function setup() {
 export async function teardown() {
   await teardownServer()
   await browser.close()
-  rimraf.sync(DIR)
 }
