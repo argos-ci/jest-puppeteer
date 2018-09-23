@@ -5,4 +5,4 @@ const app = express()
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(process.argv[2])
+app.listen(4444)

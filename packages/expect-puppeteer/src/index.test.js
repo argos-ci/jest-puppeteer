@@ -2,7 +2,7 @@ const { getDefaultOptions, setDefaultOptions } = require('.')
 
 describe('expect-puppeteer', () => {
   beforeEach(async () => {
-    await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
+    await page.goto('http://localhost:4444')
   })
 
   it('should work with original Jest matchers', async () => {
