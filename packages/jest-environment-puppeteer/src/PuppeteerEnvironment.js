@@ -32,7 +32,12 @@ class PuppeteerEnvironment extends NodeEnvironment {
     const config = await readConfig()
     this.global.puppeteerConfig = config
 
-    const wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH, 'utf8')
+    let wsEndpoint;
+    try {
+        wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH + ((process.ppid) ? process.pid : ""), 'utf8')
+    } catch (e) {
+        wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH + process.ppid, 'utf8')
+    }
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
