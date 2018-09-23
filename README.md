@@ -99,7 +99,7 @@ Other options are documented in [jest-dev-server](https://github.com/smooth-code
 
 ### Configure Puppeteer
 
-Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options. [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
+Jest Puppeteer automatically detect the best config to start Puppeteer but sometimes you may need to specify custom options. All Puppeteer [launch](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) or [connect](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) options can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all stuff you need, including environment.
 
 ```js
 // jest-puppeteer.config.js
@@ -257,7 +257,10 @@ it('should put test in debug mode', async () => {
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
 
 - `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
+- `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
+
+#### Example 1
 
 ```js
 // jest-puppeteer.config.js
@@ -265,6 +268,25 @@ module.exports = {
   launch: {
     dumpio: true,
     headless: process.env.HEADLESS !== 'false',
+  },
+  server: {
+    command: 'node server.js',
+    port: 4444,
+  },
+}
+```
+
+#### Example 2
+
+This example uses an already running instance of Chrome by passing the active web socket endpoint to `connect`. This is useful, for example, when you want to connect to Chrome running in the cloud.
+
+```js
+// jest-puppeteer.config.js
+const wsEndpoint = fs.readFileSync(endpointPath, 'utf8')
+
+module.exports = {
+  connect: {
+    browserWSEndpoint: wsEndpoint,
   },
   server: {
     command: 'node server.js',

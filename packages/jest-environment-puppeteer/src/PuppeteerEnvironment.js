@@ -37,8 +37,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
       throw new Error('wsEndpoint not found')
     }
     this.global.browser = await puppeteer.connect({
+      ...config.connect,
       ...config.launch,
-      browserWSEndpoint: wsEndpoint,
+      browserWSEndpoint: wsEndpoint
     })
     this.global.page = await this.global.browser.newPage()
     if (config && config.exitOnPageError) {

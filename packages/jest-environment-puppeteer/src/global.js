@@ -17,7 +17,11 @@ let browser
 
 export async function setup() {
   const config = await readConfig()
-  browser = await puppeteer.launch(config.launch)
+  if (config.connect) {
+    browser = await puppeteer.connect(config.connect)
+  } else {
+    browser = await puppeteer.launch(config.launch)
+  }
   mkdirp.sync(DIR)
   fs.writeFileSync(WS_ENDPOINT_PATH, browser.wsEndpoint())
 
