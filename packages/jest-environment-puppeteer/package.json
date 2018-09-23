@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "prebuild": "rm -rf lib/",
-    "build": "babel src -d lib --ignore \"*.test.js\"",
+    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "dev": "yarn build --watch",
     "prepublishOnly": "yarn build"
   },
@@ -27,7 +27,7 @@
     "chalk": "^2.4.1",
     "cwd": "^0.10.0",
     "jest-dev-server": "^3.3.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2"
   }

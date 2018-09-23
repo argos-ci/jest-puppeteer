@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "prebuild": "rm -rf lib/",
-    "build": "babel src -d lib --ignore \"*.test.js\"",
+    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "dev": "yarn build --watch",
     "prepublishOnly": "yarn build"
   }
