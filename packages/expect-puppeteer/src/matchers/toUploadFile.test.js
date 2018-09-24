@@ -2,7 +2,7 @@ import path from 'path'
 
 describe('toUploadFile', () => {
   beforeEach(async () => {
-    await page.goto('http://localhost:4444')
+    await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
   describe('Page', () => {

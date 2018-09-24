@@ -1,10 +1,8 @@
-import fs from 'fs'
 // eslint-disable-next-line
 import NodeEnvironment from 'jest-environment-node'
 import puppeteer from 'puppeteer'
 import chalk from 'chalk'
 import readConfig from './readConfig'
-import { WS_ENDPOINT_PATH } from './constants'
 
 const handleError = error => {
   process.emit('uncaughtException', error)
@@ -32,7 +30,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     const config = await readConfig()
     this.global.puppeteerConfig = config
 
-    const wsEndpoint = fs.readFileSync(WS_ENDPOINT_PATH, 'utf8')
+    const wsEndpoint = process.env.PUPPETEER_WS_ENDPOINT
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
