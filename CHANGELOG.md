@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.4.0"></a>
+# [3.4.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.3.1...v3.4.0) (2018-09-24)
+
+
+### Bug Fixes
+
+* support several instances of Jest in parallel ([#138](https://github.com/smooth-code/jest-puppeteer/issues/138)) ([275bc71](https://github.com/smooth-code/jest-puppeteer/commit/275bc71))
+
+
+### Features
+
+* **expect-puppeteer:** Update default options to look at connect object ([1f33ea0](https://github.com/smooth-code/jest-puppeteer/commit/1f33ea0))
+* **jest-environment-puppeteer:** Add ability to connect to an already existing instance of Chrome ([9de05f0](https://github.com/smooth-code/jest-puppeteer/commit/9de05f0))
+* **jest-environment-puppeteer:** Add documentation of new `connect `options ([c6b0613](https://github.com/smooth-code/jest-puppeteer/commit/c6b0613))
+* **jest-environment-puppeteer:** Remove unneeded async config ([30a3daa](https://github.com/smooth-code/jest-puppeteer/commit/30a3daa))
+* **jest-environment-puppeteer:** Simplify getBrowser function ([8ccb0d0](https://github.com/smooth-code/jest-puppeteer/commit/8ccb0d0))
+
+
+
+
+
 <a name="3.3.1"></a>
 ## [3.3.1](https://github.com/smooth-code/jest-puppeteer/compare/v3.3.0...v3.3.1) (2018-08-17)
 
