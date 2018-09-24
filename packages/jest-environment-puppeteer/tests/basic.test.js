@@ -1,6 +1,6 @@
 describe('Basic', () => {
   beforeAll(async () => {
-    await page.goto('http://localhost:4444')
+    await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
   it('should display "This is home!" text on page', async () => {
