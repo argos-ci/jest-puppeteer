@@ -14,10 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **jest-environment-puppeteer:** Add ability to connect to an already existing instance of Chrome ([9de05f0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/9de05f0))
-* **jest-environment-puppeteer:** Add documentation of new `connect `options ([c6b0613](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/c6b0613))
-* **jest-environment-puppeteer:** Remove unneeded async config ([30a3daa](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/30a3daa))
-* **jest-environment-puppeteer:** Simplify getBrowser function ([8ccb0d0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/8ccb0d0))
 * connect to an already existing instance of Chrome ([#100](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/100)) ([3fcbaf8](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/3fcbaf8))
 
 
