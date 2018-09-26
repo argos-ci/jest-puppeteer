@@ -8,6 +8,7 @@ module.exports = {
   launch: {
     headless: process.env.CI === 'true',
   },
+  browserContext: process.env.INCOGNITO ? 'incognito' : 'default',
   server: {
     command: `PORT=${port} node server`,
     port,
