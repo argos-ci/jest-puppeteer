@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/smooth-code/jest-puppeteer/master/resources/jest-puppeteer.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
+  <img src="https://raw.githubusercontent.com/smooth-code/jest-puppeteer/master/resources/jest-puppeteer-logo.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
 </h1>
 <p align="center" style="font-size: 1.2rem;">Run your tests using Jest & Puppeteer 🎪✨</p>
 
