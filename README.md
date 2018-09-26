@@ -1,10 +1,16 @@
-# Jest Puppeteer
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/smooth-code/jest-puppeteer/master/resources/jest-puppeteer.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
+</h1>
+<p align="center" style="font-size: 1.2rem;">Run your tests using Jest & Puppeteer 🎪✨</p>
 
-[![Build Status][build-badge]][build]
-[![version][version-badge]][package]
-[![MIT License][license-badge]][license]
-
-Run your tests using Jest & Puppeteer 🎪✨
+[![License](https://img.shields.io/npm/l/jest-puppeteer.svg)](https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE)
+[![Donate](https://opencollective.com/jest-puppeteer/backers/badge.svg)](https://opencollective.com/jest-puppeteer/donate)
+[![npm package](https://img.shields.io/npm/v/jest-puppeteer/latest.svg)](https://www.npmjs.com/package/jest-puppeteer)
+[![npm downloads](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
+[![Build Status](https://img.shields.io/travis/smooth-code/jest-puppeteer.svg)](https://travis-ci.org/smooth-code/jest-puppeteer)
+![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+[![Dependencies](https://img.shields.io/david/smooth-code/jest-puppeteer.svg?path=packages%2Fcore)](https://david-dm.org/smooth-code/jest-puppeteer?path=packages/core)
+[![DevDependencies](https://img.shields.io/david/dev/smooth-code/jest-puppeteer.svg)](https://david-dm.org/smooth-code/jest-puppeteer?type=dev)
 
 ```
 npm install --save-dev jest-puppeteer puppeteer jest
@@ -12,6 +18,18 @@ npm install --save-dev jest-puppeteer puppeteer jest
 
 > Requires Jest v22+
 > TypeScript users should additionally install `@types/puppeteer`, `@types/jest-environment-puppeteer` and `@types/expect-puppeteer`
+
+## Supporting jest-puppeteer
+
+jest-puppeteer is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
+
+- [Become a backer or sponsor on OpenCollective](https://opencollective.com/jest-puppeteer).
+
+### Gold Sponsors
+
+Gold Sponsors are those who have pledged $100/month and more to jest-puppeteer.
+
+![gold-sponsors](https://opencollective.com/jest-puppeteer/tiers/gold-sponsors.svg?avatarHeight=120&width=600)
 
 ## Usage
 
@@ -100,7 +118,7 @@ Other options are documented in [jest-dev-server](https://github.com/smooth-code
 ### Configure Puppeteer
 
 Jest Puppeteer automatically detects the best config to start Puppeteer but sometimes you may need to specify custom options. All Puppeteer [launch](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) or [connect](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) options can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all the stuff you need, including environment.
- 
+
 The browser context can be also specified. By default, the browser context is shared. `incognito` is available if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
 
 ```js
@@ -110,7 +128,7 @@ module.exports = {
     dumpio: true,
     headless: process.env.HEADLESS !== 'false',
   },
-  browserContext: 'default'
+  browserContext: 'default',
 }
 ```
 
@@ -310,18 +328,3 @@ Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro
 ## License
 
 MIT
-
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/jest-puppeteer.svg?style=flat-square
-[package]: https://www.npmjs.com/package/jest-puppeteer
-[license-badge]: https://img.shields.io/npm/l/jest-puppeteer.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
-[array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 'Array'
-[boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type 'Boolean'
-[function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function 'Function'
-[number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type 'Number'
-[object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 'Object'
-[promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise 'Promise'
-[string]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type 'String'
-[error]: https://nodejs.org/api/errors.html#errors_class_error 'Error'
