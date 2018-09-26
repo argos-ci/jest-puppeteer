@@ -14,10 +14,10 @@ Gold Sponsors are those who have pledged $100/month and more to jest-puppeteer.
 
 ## Silver Sponsors
 
-Silver Sponsors are those who have pledged $50/month to $100/month to jest-puppeteeer.
+Silver Sponsors are those who have pledged $50/month to $100/month to jest-puppeteer.
 
-[![silver-sponsors](https://opencollective.com/jest-puppeteeer/tiers/silver-sponsors.svg?avatarHeight=120&width=600)](https://opencollective.com/jest-puppeteer/order/6046)
+[![silver-sponsors](https://opencollective.com/jest-puppeteer/tiers/silver-sponsors.svg?avatarHeight=120&width=600)](https://opencollective.com/jest-puppeteer/order/6046)
 
 ## Backers
 
-[![backers](https://opencollective.com/jest-puppeteeer/tiers/backer.svg?avatarHeight=50&width=600)](https://opencollective.com/jest-puppeteer/order/6044)
+[![backers](https://opencollective.com/jest-puppeteer/tiers/backer.svg?avatarHeight=50&width=600)](https://opencollective.com/jest-puppeteer/order/6044)
