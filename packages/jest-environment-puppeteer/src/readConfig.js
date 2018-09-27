@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 import cwd from 'cwd'
-import { merge } from 'lodash'
+import merge from 'merge-deep'
 
 const exists = promisify(fs.exists)
 
