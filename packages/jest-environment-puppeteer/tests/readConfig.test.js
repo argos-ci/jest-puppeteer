@@ -54,5 +54,18 @@ describe('readConfig', () => {
       const config = await readConfig()
       expect(config.server).not.toBeDefined()
     })
+
+    it('should return default config with launch args', async () => {
+      mockExists(false)
+      process.env.CI = true
+      const config = await readConfig()
+      expect(config.launch.args).toEqual([
+        '--no-sandbox', 
+        '--disable-setuid-sandbox',
+        '--disable-background-timer-throttling',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-renderer-backgrounding'
+      ])
+    })
   })
 })
