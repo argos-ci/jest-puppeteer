@@ -27,6 +27,6 @@
     "chalk": "^2.4.1",
     "cwd": "^0.10.0",
     "jest-dev-server": "^3.4.0",
-    "lodash": "^4.17.11"
+    "merge-deep": "^3.0.2"
   }
 }
