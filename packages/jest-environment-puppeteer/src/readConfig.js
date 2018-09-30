@@ -11,13 +11,17 @@ const DEFAULT_CONFIG = {
   browserContext: 'default',
   exitOnPageError: true,
 }
-const DEFAULT_CONFIG_CI = {
+const DEFAULT_CONFIG_CI = merge(DEFAULT_CONFIG, {
   launch: {
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  },
-  browserContext: 'default',
-  exitOnPageError: true,
-}
+    args: [
+      '--no-sandbox', 
+      '--disable-setuid-sandbox',
+      '--disable-background-timer-throttling',
+      '--disable-backgrounding-occluded-windows',
+      '--disable-renderer-backgrounding'
+    ],
+  }
+})
 
 async function readConfig() {
   const defaultConfig =
