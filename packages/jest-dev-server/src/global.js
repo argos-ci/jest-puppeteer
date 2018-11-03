@@ -133,9 +133,11 @@ export async function setup(config) {
           )
       }
     }
+  }
 
-    runServer(config)
+  runServer(config)
 
+  if (config.port) {
     const { launchTimeout } = config
 
     let timeout
