@@ -90,15 +90,11 @@ async function outOfStin(block) {
 export async function setup(config) {
   config = { ...DEFAULT_CONFIG, ...config }
 
-  if (config.port) {
+  if (config.port && config.usedPortAction !== 'ignore') {
     const [portProcess] = await findProcess('port', config.port)
 
     if (portProcess && portProcess.pid > 0) {
       switch (config.usedPortAction) {
-        case 'ignore':
-          console.log('')
-          logProcDetection(portProcess, config.port)
-          return
         case 'error':
           throw new JestDevServerError(
             `Port ${config.port} is already used by ${
