@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v3.4.0...v3.5.0) (2018-11-04)
+
+
+### Features
+
+* add incognito context support ([#140](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/issues/140)) ([5b8983a](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/commit/5b8983a)), closes [#133](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/issues/133)
+
+
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v3.3.1...v3.4.0) (2018-09-24)
 

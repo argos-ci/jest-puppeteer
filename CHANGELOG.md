@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.4.0...v3.5.0) (2018-11-04)
+
+
+### Bug Fixes
+
+* **jest-dev-server:** do not require port to run server ([5aee5fe](https://github.com/smooth-code/jest-puppeteer/commit/5aee5fe)), closes [#146](https://github.com/smooth-code/jest-puppeteer/issues/146)
+* **jest-dev-server:** do not scan process if usedPortAction is "ignore" ([cceb0bd](https://github.com/smooth-code/jest-puppeteer/commit/cceb0bd)), closes [#96](https://github.com/smooth-code/jest-puppeteer/issues/96)
+
+
+### Features
+
+* add incognito context support ([#140](https://github.com/smooth-code/jest-puppeteer/issues/140)) ([5b8983a](https://github.com/smooth-code/jest-puppeteer/commit/5b8983a)), closes [#133](https://github.com/smooth-code/jest-puppeteer/issues/133)
+* disable tab throttling ([#144](https://github.com/smooth-code/jest-puppeteer/issues/144)) ([b92e76c](https://github.com/smooth-code/jest-puppeteer/commit/b92e76c)), closes [#137](https://github.com/smooth-code/jest-puppeteer/issues/137)
+
+
+### Performance Improvements
+
+* remove lodash dependency ([#143](https://github.com/smooth-code/jest-puppeteer/issues/143)) ([0cf7109](https://github.com/smooth-code/jest-puppeteer/commit/0cf7109))
+
+
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.3.1...v3.4.0) (2018-09-24)
 

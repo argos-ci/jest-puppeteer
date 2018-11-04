@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.4.0...v3.5.0) (2018-11-04)
+
+
+### Bug Fixes
+
+* **jest-dev-server:** do not require port to run server ([5aee5fe](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/5aee5fe)), closes [#146](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/146)
+* **jest-dev-server:** do not scan process if usedPortAction is "ignore" ([cceb0bd](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/cceb0bd)), closes [#96](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/96)
+
+
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.3.1...v3.4.0) (2018-09-24)
 
