@@ -147,6 +147,10 @@ module.exports = {
 }
 ```
 
+## Troubleshooting
+
+ * If using `port` makes the terminal to ask for root password although the port is valid and accessible then use `usePortAction: 'ignore'`.
+ 
 ## License
 
 MIT
