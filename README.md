@@ -55,6 +55,19 @@ describe('Google', () => {
 })
 ```
 
+### Running puppeteer in CI environments
+Most continuos integration platforms limit the number of threads one can use. If you have more than one test suite running puppeteer chances are that your test will timeout. This is because jest will try to run puppeteer in parallel and the CI platform won't be able to handle all the parallel jobs in time. A fix to this is to run your test serially when in a CI environment. Users have discovered that [running test serially in such environments can render up to 50%](https://jestjs.io/docs/en/troubleshooting#tests-are-extremely-slow-on-docker-and-or-continuous-integration-ci-server) of performance gains.
+
+This can be achieved through the CLI by running:
+```sh
+jest --runInBand
+```
+
+Alternatively, you can set jest to use as a max number of workers the amount that your CI environment supports:
+```
+jest --maxWorkers=2
+```
+
 ## Recipes
 
 ### Writing tests using Puppeteer
