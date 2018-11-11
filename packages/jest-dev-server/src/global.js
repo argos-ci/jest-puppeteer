@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import stream from 'stream'
+import net from 'net'
 import chalk from 'chalk'
 import spawnd from 'spawnd'
 import cwd from 'cwd'
@@ -87,51 +88,77 @@ async function outOfStin(block) {
   return result
 }
 
-export async function setup(config) {
-  config = { ...DEFAULT_CONFIG, ...config }
+function getIsPortTaken(port) {
+  let server
+  const cleanupAndReturn = (result) => new Promise(
+    (resolve) => server
+      .once('close', () => resolve(result))
+      .close()
+  )
+  return new Promise(
+    (resolve, reject) => {
+      server = net
+        .createServer()
+        .once('error', (err) => err.code === 'EADDRINUSE' ? resolve(cleanupAndReturn(true)) : reject())
+        .once('listening', () => resolve(cleanupAndReturn(false)))
+        .listen(port)
+    }
+  )
+}
 
-  if (config.port && config.usedPortAction !== 'ignore') {
-    const [portProcess] = await findProcess('port', config.port)
 
-    if (portProcess && portProcess.pid > 0) {
-      switch (config.usedPortAction) {
-        case 'error':
-          throw new JestDevServerError(
-            `Port ${config.port} is already used by ${
-              portProcess.name
-            }, please kill it first`,
-            ERROR_PORT_USED,
-          )
-        case 'kill':
-          console.log('')
-          logProcDetection(portProcess, config.port)
-          killProc(portProcess)
-          break
-        case 'ask': {
-          console.log('')
-          logProcDetection(portProcess, config.port)
-          const answers = await outOfStin(() =>
-            inquirer.prompt([
-              {
-                type: 'confirm',
-                name: 'kill',
-                message: 'Should I kill it for you?',
-                default: true,
-              },
-            ]),
-          )
-          if (answers.kill) {
-            await killProc(portProcess)
-          } else {
-            process.exit(1)
-          }
-          break
-        }
-        default:
-          throw new JestDevServerError(
-            'Invalid `usedPortAction`, only `ignore`, `error`, `kill` and `ask` are possible',
-          )
+export async function setup(providedConfig) {
+  const config = { ...DEFAULT_CONFIG, ...providedConfig }
+
+  const usedPortHandlers = {
+    error() {
+      throw new JestDevServerError(
+        `Port ${config.port} is in use`,
+        ERROR_PORT_USED,
+      )
+    },
+    async kill() {
+      console.log('')
+      console.log(`Killing process listening to ${config.port}. On linux, this may require you to enter your password.`)
+      const [portProcess] = await findProcess('port', config.port)
+      logProcDetection(portProcess, config.port)
+      killProc(portProcess)
+    },
+    async ask() {
+      console.log('')
+      const answers = await outOfStin(() =>
+        inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'kill',
+            message: `Another process is listening on ${config.port}. Should I kill it for you? On linux, this may require you to enter your password.`,
+            default: true,
+          },
+        ]),
+      )
+      if (answers.kill) {
+        const [portProcess] = await findProcess('port', config.port)
+        logProcDetection(portProcess, config.port)
+        await killProc(portProcess)
+      } else {
+        process.exit(1)
       }
+    },
+    ignore() { }
+  }
+
+  const usedPortHandler = usedPortHandlers[config.usedPortAction]
+  if (!usedPortHandler) {
+    const availableActions = Object.keys(usedPortHandlers).map(action => `\`${action}\``).join(', ')
+    throw new JestDevServerError(
+      `Invalid \`usedPortAction\`, only ${availableActions} are possible`,
+    )
+  }
+
+  if (config.port) {
+    const isPortTaken = await getIsPortTaken(config.port)
+    if (isPortTaken) {
+      await usedPortHandler()
     }
   }
 
