@@ -60,11 +60,11 @@ describe('readConfig', () => {
       process.env.CI = true
       const config = await readConfig()
       expect(config.launch.args).toEqual([
-        '--no-sandbox', 
+        '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-background-timer-throttling',
         '--disable-backgrounding-occluded-windows',
-        '--disable-renderer-backgrounding'
+        '--disable-renderer-backgrounding',
       ])
     })
   })

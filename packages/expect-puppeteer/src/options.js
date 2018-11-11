@@ -7,10 +7,9 @@ export const setDefaultOptions = options => {
 export const getDefaultOptions = () => {
   if (
     global.puppeteerConfig &&
-    (
-      (global.puppeteerConfig.launch && global.puppeteerConfig.launch.slowMo) || 
-      (global.puppeteerConfig.connect && global.puppeteerConfig.connect.slowMo)
-    ) &&
+    ((global.puppeteerConfig.launch && global.puppeteerConfig.launch.slowMo) ||
+      (global.puppeteerConfig.connect &&
+        global.puppeteerConfig.connect.slowMo)) &&
     defaultOptionsValue &&
     defaultOptionsValue.timeout
   ) {
