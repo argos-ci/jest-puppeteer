@@ -37,7 +37,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     this.global.browser = await puppeteer.connect({
       ...config.connect,
       ...config.launch,
-      browserWSEndpoint: wsEndpoint
+      browserWSEndpoint: wsEndpoint,
     })
 
     if (config.browserContext === 'incognito') {
@@ -50,7 +50,11 @@ class PuppeteerEnvironment extends NodeEnvironment {
        */
       this.global.context = await this.global.browser.browserContexts()[0]
     } else {
-      throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`)
+      throw new Error(
+        `browserContext should be either 'incognito' or 'default'. Received '${
+          config.browserContext
+        }'`,
+      )
     }
 
     this.global.page = await this.global.context.newPage()
@@ -106,9 +110,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
     this.global.page.removeListener('pageerror', handleError)
 
     if (config.browserContext === 'incognito') {
-        await this.global.context.close()
+      await this.global.context.close()
     } else {
-        await this.global.page.close()
+      await this.global.page.close()
     }
   }
 }

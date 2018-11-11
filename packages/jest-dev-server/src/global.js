@@ -90,22 +90,18 @@ async function outOfStin(block) {
 
 function getIsPortTaken(port) {
   let server
-  const cleanupAndReturn = (result) => new Promise(
-    (resolve) => server
-      .once('close', () => resolve(result))
-      .close()
-  )
-  return new Promise(
-    (resolve, reject) => {
-      server = net
-        .createServer()
-        .once('error', (err) => err.code === 'EADDRINUSE' ? resolve(cleanupAndReturn(true)) : reject())
-        .once('listening', () => resolve(cleanupAndReturn(false)))
-        .listen(port)
-    }
-  )
+  const cleanupAndReturn = result =>
+    new Promise(resolve => server.once('close', () => resolve(result)).close())
+  return new Promise((resolve, reject) => {
+    server = net
+      .createServer()
+      .once('error', err =>
+        err.code === 'EADDRINUSE' ? resolve(cleanupAndReturn(true)) : reject(),
+      )
+      .once('listening', () => resolve(cleanupAndReturn(false)))
+      .listen(port)
+  })
 }
-
 
 export async function setup(providedConfig) {
   const config = { ...DEFAULT_CONFIG, ...providedConfig }
@@ -119,7 +115,11 @@ export async function setup(providedConfig) {
     },
     async kill() {
       console.log('')
-      console.log(`Killing process listening to ${config.port}. On linux, this may require you to enter your password.`)
+      console.log(
+        `Killing process listening to ${
+          config.port
+        }. On linux, this may require you to enter your password.`,
+      )
       const [portProcess] = await findProcess('port', config.port)
       logProcDetection(portProcess, config.port)
       killProc(portProcess)
@@ -131,7 +131,9 @@ export async function setup(providedConfig) {
           {
             type: 'confirm',
             name: 'kill',
-            message: `Another process is listening on ${config.port}. Should I kill it for you? On linux, this may require you to enter your password.`,
+            message: `Another process is listening on ${
+              config.port
+            }. Should I kill it for you? On linux, this may require you to enter your password.`,
             default: true,
           },
         ]),
@@ -144,12 +146,14 @@ export async function setup(providedConfig) {
         process.exit(1)
       }
     },
-    ignore() { }
+    ignore() {},
   }
 
   const usedPortHandler = usedPortHandlers[config.usedPortAction]
   if (!usedPortHandler) {
-    const availableActions = Object.keys(usedPortHandlers).map(action => `\`${action}\``).join(', ')
+    const availableActions = Object.keys(usedPortHandlers)
+      .map(action => `\`${action}\``)
+      .join(', ')
     throw new JestDevServerError(
       `Invalid \`usedPortAction\`, only ${availableActions} are possible`,
     )

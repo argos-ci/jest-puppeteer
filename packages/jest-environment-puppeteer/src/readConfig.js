@@ -14,13 +14,13 @@ const DEFAULT_CONFIG = {
 const DEFAULT_CONFIG_CI = merge(DEFAULT_CONFIG, {
   launch: {
     args: [
-      '--no-sandbox', 
+      '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-background-timer-throttling',
       '--disable-backgrounding-occluded-windows',
-      '--disable-renderer-backgrounding'
+      '--disable-renderer-backgrounding',
     ],
-  }
+  },
 })
 
 async function readConfig() {
