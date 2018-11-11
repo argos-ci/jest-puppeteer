@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.5.0...v3.5.1) (2018-11-11)
+
+
+### Bug Fixes
+
+* avoid prompting for super user login (as possible) ([#149](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/149)) ([1701e9b](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/1701e9b))
+
+
+
+
+
 # [3.5.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.4.0...v3.5.0) (2018-11-04)
 
 

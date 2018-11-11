@@ -1,7 +1,7 @@
 {
   "name": "expect-puppeteer",
   "description": "Assertion toolkit for Puppeteer.",
-  "version": "3.4.0",
+  "version": "3.5.1",
   "main": "lib/index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer",
   "author": "Greg Bergé <berge.greg@gmail.com>",
