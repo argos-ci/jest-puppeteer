@@ -21,7 +21,8 @@
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
-    "puppeteer": "^1.5.0"
+    "puppeteer": "^1.5.0",
+    "puppeteer-core": "^1.7.0"
   },
   "dependencies": {
     "chalk": "^2.4.1",

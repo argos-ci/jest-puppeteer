@@ -88,6 +88,7 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
   - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (_Example: testing multiple users on the same app at once with login, transactions, etc._)
 - `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
+- `puppeteerCore` <[boolean]> Uses [puppeteer-core](https://www.npmjs.com/package/puppeteer-core) instead of puppeteer. Defaults to `false`. Note: Puppeteer is not guaranteed to work with any particular version of Chrome or Chromium other than the one shipped with it. https://github.com/GoogleChrome/puppeteer/#q-why-doesnt-puppeteer-vxxx-work-with-chromium-vyyy
 
 #### Example 1
 

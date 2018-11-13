@@ -10,6 +10,7 @@ const DEFAULT_CONFIG = {
   launch: {},
   browserContext: 'default',
   exitOnPageError: true,
+  puppeteerCore: false,
 }
 const DEFAULT_CONFIG_CI = merge(DEFAULT_CONFIG, {
   launch: {
