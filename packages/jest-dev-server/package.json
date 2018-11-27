@@ -23,7 +23,7 @@
     "find-process": "^1.2.0",
     "inquirer": "^6.2.0",
     "spawnd": "^3.4.0",
-    "terminate": "^2.1.0",
+    "terminate": "^2.1.2",
     "wait-port": "^0.2.2"
   }
 }
