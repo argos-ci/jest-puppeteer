@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.5.1...v3.5.2) (2018-11-27)
+
+
+### Bug Fixes
+
+* **security:** upgrade dependencies ([e913425](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/e913425))
+* **security:** upgrade terminate ([#158](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/158)) ([06fd89e](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/06fd89e))
+
+
+
+
+
 ## [3.5.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.5.0...v3.5.1) (2018-11-11)
 
 
