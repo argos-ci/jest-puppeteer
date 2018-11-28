@@ -19,4 +19,4 @@ Please provide an example for how this feature would be used.
 
 ## Pitch
 
-Why does this feature belong in the SVGR ecosystem?
+Why does this feature belong in the Jest Puppeteer ecosystem?
