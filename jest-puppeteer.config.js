@@ -9,9 +9,9 @@ module.exports = {
     headless: process.env.CI === 'true',
   },
   browserContext: process.env.INCOGNITO ? 'incognito' : 'default',
-  server: {
+  server: [{
     command: `PORT=${port} node server`,
     port,
     launchTimeout: 4000,
-  },
+  }],
 }

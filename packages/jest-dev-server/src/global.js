@@ -39,7 +39,7 @@ export class JestDevServerError extends Error {
   }
 }
 
-let server
+const servers = {}
 
 function logProcDetection(proc, port) {
   console.log(
@@ -63,7 +63,7 @@ function runServer(config = {}) {
     )
   }
 
-  server = spawnd(config.command, {
+  servers[config.port] = spawnd(config.command, {
     shell: true,
     env: process.env,
     cwd: cwd(),
@@ -73,7 +73,7 @@ function runServer(config = {}) {
   if (config.debug) {
     // eslint-disable-next-line no-console
     console.log(chalk.magentaBright('\nJest dev-server output:'))
-    server.stdout.pipe(serverLogPrefixer).pipe(process.stdout)
+    servers[config.port].stdout.pipe(serverLogPrefixer).pipe(process.stdout)
   }
 }
 
@@ -103,7 +103,15 @@ function getIsPortTaken(port) {
   })
 }
 
-export async function setup(providedConfig) {
+export async function setup(providedConfigs) {
+  // Compatible with older versions
+  const config = Array.isArray(providedConfigs) ? providedConfigs : [providedConfigs]
+  await Promise.all(
+    config.map(providedConfig => setupJestServer(providedConfig))
+  )
+}
+
+export async function setupJestServer(providedConfig) {
   const config = { ...DEFAULT_CONFIG, ...providedConfig }
 
   const usedPortHandlers = {
@@ -197,5 +205,8 @@ export async function setup(providedConfig) {
 }
 
 export async function teardown() {
-  if (server) await server.destroy()
+  const serverPortArray = Object.keys(servers)
+  if (serverPortArray.length) {
+    await Promise.all(serverPortArray.map(serverPort => servers[serverPort].destroy()))
+  }
 }
