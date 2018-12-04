@@ -26,7 +26,7 @@ module.exports = async function globalSetup() {
 }
 ```
 
-`jest-dev-server` also can able to launch several servers
+`jest-dev-server` can also able to launch several servers
 
 ```js
 module.exports = {
