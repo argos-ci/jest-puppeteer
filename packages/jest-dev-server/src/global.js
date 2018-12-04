@@ -39,7 +39,7 @@ export class JestDevServerError extends Error {
   }
 }
 
-const servers = {}
+const servers = []
 
 function logProcDetection(proc, port) {
   console.log(
@@ -55,7 +55,7 @@ async function killProc(proc) {
   console.log(chalk.green(`Successfully killed process ${proc.name}`))
 }
 
-function runServer(config = {}) {
+function runServer(config = {}, index) {
   if (!config.command) {
     throw new JestDevServerError(
       'You must define a `command`',
@@ -63,7 +63,7 @@ function runServer(config = {}) {
     )
   }
 
-  servers[config.port] = spawnd(config.command, {
+  servers[index] = spawnd(config.command, {
     shell: true,
     env: process.env,
     cwd: cwd(),
@@ -73,7 +73,7 @@ function runServer(config = {}) {
   if (config.debug) {
     // eslint-disable-next-line no-console
     console.log(chalk.magentaBright('\nJest dev-server output:'))
-    servers[config.port].stdout.pipe(serverLogPrefixer).pipe(process.stdout)
+    servers[index].stdout.pipe(serverLogPrefixer).pipe(process.stdout)
   }
 }
 
@@ -105,13 +105,13 @@ function getIsPortTaken(port) {
 
 export async function setup(providedConfigs) {
   // Compatible with older versions
-  const config = Array.isArray(providedConfigs) ? providedConfigs : [providedConfigs]
+  const configs = Array.isArray(providedConfigs) ? providedConfigs : [providedConfigs]
   await Promise.all(
-    config.map(providedConfig => setupJestServer(providedConfig))
+    configs.map((providedConfig, index) => setupJestServer(providedConfig, index))
   )
 }
 
-export async function setupJestServer(providedConfig) {
+export async function setupJestServer(providedConfig, index) {
   const config = { ...DEFAULT_CONFIG, ...providedConfig }
 
   const usedPortHandlers = {
@@ -174,7 +174,7 @@ export async function setupJestServer(providedConfig) {
     }
   }
 
-  runServer(config)
+  runServer(config, index)
 
   if (config.port) {
     const { launchTimeout } = config
@@ -205,8 +205,7 @@ export async function setupJestServer(providedConfig) {
 }
 
 export async function teardown() {
-  const serverPortArray = Object.keys(servers)
-  if (serverPortArray.length) {
-    await Promise.all(serverPortArray.map(serverPort => servers[serverPort].destroy()))
+  if (servers.length) {
+    await Promise.all(servers.map(server => server.destroy()))
   }
 }
