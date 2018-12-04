@@ -17,12 +17,29 @@ This package extracts just the local development server spawning without any tie
 const { setup: setupDevServer } = require('jest-dev-server')
 
 module.exports = async function globalSetup() {
-  await setupDevServer([{
+  await setupDevServer({
     command: `node config/start.js --port=3000`,
     launchTimeout: 50000,
     port: 3000,
-  }])
+  })
   // Your global setup
+}
+```
+
+`jest-dev-server` also can able to launch several servers
+
+```js
+module.exports = {
+  server: [
+    {
+      command: 'node server.js',
+      port: 4444,
+    },
+    {
+      command: 'node server2.js',
+      port: 4445,
+    },
+  ]
 }
 ```
 
