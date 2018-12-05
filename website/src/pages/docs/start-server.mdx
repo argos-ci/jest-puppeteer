@@ -1,0 +1,23 @@
+---
+menu: Recipes
+title: Start a server
+order: 20
+---
+
+# Start a server
+
+Jest Puppeteer integrates a functionality to start a server when running your test suite. It automatically closes the server when tests are done.
+
+To use it, specify a server section in your `jest-puppeteer.config.js`.
+
+```js
+// jest-puppeteer.config.js
+module.exports = {
+  server: {
+    command: 'node server.js',
+    port: 4444,
+  },
+}
+```
+
+Other options are documented in [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server).

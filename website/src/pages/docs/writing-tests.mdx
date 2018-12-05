@@ -1,0 +1,45 @@
+---
+menu: Recipes
+title: Writing Tests
+order: 10
+---
+
+# Writing tests using Puppeteer
+
+Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
+
+To make it simpler, [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api) add some specific matchers if you make expectation on a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
+
+Some examples:
+
+### Writing tests using Puppeteer
+
+Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
+
+To make it simpler, [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api) add some specific matchers if you make expectation on a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
+
+Some examples:
+
+#### Find a text in the page
+
+```js
+// Assert that current page contains 'Text in the page'
+await expect(page).toMatch('Text in the page')
+```
+
+#### Click a button
+
+```js
+// Assert that a button containing text "Home" will be clicked
+await expect(page).toClick('button', { text: 'Home' })
+```
+
+#### Fill a form
+
+```js
+// Assert that a form will be filled
+await expect(page).toFillForm('form[name="myForm"]', {
+  firstName: 'James',
+  lastName: 'Bond',
+})
+```

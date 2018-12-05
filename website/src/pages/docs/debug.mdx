@@ -1,0 +1,13 @@
+---
+menu: Recipes
+title: Put in debug mode
+order: 15
+---
+
+# Put in debug mode
+
+Debugging tests can be hard sometimes and it is very useful to be able to pause tests in order to inspect the browser. Jest Puppeteer exposes a method `jestPuppeteer.debug()` that suspends test execution and gives you opportunity to see what's going on in the browser.
+
+```js
+await jestPuppeteer.debug()
+```

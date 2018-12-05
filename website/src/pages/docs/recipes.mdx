@@ -1,0 +1,198 @@
+---
+menu: Usage
+title: Recipes
+order: 10
+---
+
+# Recipes
+
+### Writing tests using Puppeteer
+
+Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
+
+To make it simpler, [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api) add some specific matchers if you make expectation on a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
+
+Some examples:
+
+#### Find a text in the page
+
+```js
+// Assert that current page contains 'Text in the page'
+await expect(page).toMatch('Text in the page')
+```
+
+#### Click a button
+
+```js
+// Assert that a button containing text "Home" will be clicked
+await expect(page).toClick('button', { text: 'Home' })
+```
+
+#### Fill a form
+
+```js
+// Assert that a form will be filled
+await expect(page).toFillForm('form[name="myForm"]', {
+  firstName: 'James',
+  lastName: 'Bond',
+})
+```
+
+### Put in debug mode
+
+Debugging tests can be hard sometimes and it is very useful to be able to pause tests in order to inspect the browser. Jest Puppeteer exposes a method `jestPuppeteer.debug()` that suspends test execution and gives you opportunity to see what's going on in the browser.
+
+```js
+await jestPuppeteer.debug()
+```
+
+### Start a server
+
+Jest Puppeteer integrates a functionality to start a server when running your test suite. It automatically closes the server when tests are done.
+
+To use it, specify a server section in your `jest-puppeteer.config.js`.
+
+```js
+// jest-puppeteer.config.js
+module.exports = {
+  server: {
+    command: 'node server.js',
+    port: 4444,
+  },
+}
+```
+
+Other options are documented in [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server).
+
+### Configure Puppeteer
+
+Jest Puppeteer automatically detects the best config to start Puppeteer but sometimes you may need to specify custom options. All Puppeteer [launch](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) or [connect](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) options can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all the stuff you need, including environment.
+
+The browser context can be also specified. By default, the browser context is shared. `incognito` is available if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
+
+```js
+// jest-puppeteer.config.js
+module.exports = {
+  launch: {
+    dumpio: true,
+    headless: process.env.HEADLESS !== 'false',
+  },
+  browserContext: 'default',
+}
+```
+
+### Configure ESLint
+
+Jest Puppeteer exposes three new globals: `browser`, `page`, `context`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
+
+```js
+// .eslintrc.js
+module.exports = {
+  env: {
+    jest: true,
+  },
+  globals: {
+    page: true,
+    browser: true,
+    context: true,
+    jestPuppeteer: true,
+  },
+}
+```
+
+### Specify a `setupTestFrameworkScriptFile`
+
+Jest Puppeteer use `expect-puppeteer` as `setupTestFrameworkScriptFile`. If you want to use `expect-puppeteer` don't forget to add it in your custom `setupTestFrameworkScriptFile`:
+
+```js
+// setupTestFrameworkScriptFile.js
+require('expect-puppeteer')
+
+// Your custom setup
+```
+
+```js
+// jest.config.js
+module.exports = {
+  // ...
+  setupTestFrameworkScriptFile: './setupTestFrameworkScriptFile.js',
+}
+```
+
+### Extend `PuppeteerEnvironment`
+
+Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
+
+First, create your own js file for custom environment.
+
+```js
+// custom-environment.js
+const PuppeteerEnvironment = require('jest-environment-puppeteer')
+
+class CustomEnvironment extends PuppeteerEnvironment {
+  async setup() {
+    await super.setup()
+    // Your setup
+  }
+
+  async teardown() {
+    // Your teardown
+    await super.teardown()
+  }
+}
+
+module.exports = CustomEnvironment
+```
+
+Then, assigning your js file path to the [`testEnvironment`](https://facebook.github.io/jest/docs/en/configuration.html#testenvironment-string) property in your Jest configuration.
+
+```js
+{
+  // ...
+  "testEnvironment": "./custom-environment.js"
+}
+```
+
+Now your custom `setup` and `teardown` will be triggered before and after each test suites.
+
+### Create your own `globalSetup` and `globalTeardown`
+
+It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string).
+
+For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`, so that you can wrap them with your own global setup and global teardown methods as the following example:
+
+```js
+// global-setup.js
+const { setup: setupPuppeteer } = require('jest-environment-puppeteer')
+
+module.exports = async function globalSetup() {
+  await setupPuppeteer()
+  // Your global setup
+}
+```
+
+```js
+// global-teardown.js
+const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer')
+
+module.exports = async function globalTeardown() {
+  // Your global teardown
+  await teardownPuppeteer()
+}
+```
+
+Then assigning your js file paths to the [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string) property in your Jest configuration.
+
+```js
+{
+  // ...
+  "globalSetup": "./global-setup.js",
+  "globalTeardown": "./global-teardown.js"
+}
+```
+
+Now your custom `globalSetup` and `globalTeardown` will be triggered once before and after all test suites.
+
+### Create React App
+
+You can find an [example of create-react-app setup in this repository](https://github.com/smooth-code/jest-puppeteer/tree/master/examples/create-react-app).

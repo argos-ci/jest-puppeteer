@@ -1,0 +1,10 @@
+.cache/
+node_modules/
+/public/
+.DS_Store
+LICENSE
+.gitignore
+.prettierignore
+*.png
+*.log
+yarn.lock
