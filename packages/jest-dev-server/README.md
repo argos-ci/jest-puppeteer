@@ -8,6 +8,12 @@ Starts a server before your Jest tests and tears it down after.
 It's also useful for starting a local development server during the tests without letting Jest hang.
 This package extracts just the local development server spawning without any ties to Puppeteer.
 
+## Install
+
+```bash
+npm install --save-dev jest-dev-server
+```
+
 ## Usage
 
 `jest-dev-server` exports `setup` and `teardown` functions.
@@ -26,6 +32,27 @@ module.exports = async function globalSetup() {
 }
 ```
 
+It is also possible to specify several servers:
+
+```js
+// global-setup.js
+const { setup: setupDevServer } = require('jest-dev-server')
+
+module.exports = async function globalSetup() {
+  await setupDevServer([
+    {
+      command: 'node server.js',
+      port: 4444,
+    },
+    {
+      command: 'node server2.js',
+      port: 4445,
+    },
+  ])
+  // Your global setup
+}
+```
+
 ```js
 // global-teardown.js
 const { teardown: teardownDevServer } = require('jest-dev-server')
@@ -36,9 +63,9 @@ module.exports = async function globalTeardown() {
 }
 ```
 
-#### Options
+## Options
 
-#### `command`
+### `command`
 
 Type: `string`, required.
 
@@ -51,7 +78,7 @@ module.exports = {
 }
 ```
 
-#### `debug`
+### `debug`
 
 Type: `boolean`, default to `false`.
 
@@ -64,7 +91,7 @@ module.exports = {
 }
 ```
 
-#### `launchTimeout`
+### `launchTimeout`
 
 Type: `number`, default to `5000`.
 
@@ -78,13 +105,11 @@ module.exports = {
 }
 ```
 
-#### `options`
+---
 
-Type: `object`, default to `{}`.
+Following options are linked to [`spawnd`](https://www.npmjs.com/package/spawnd).
 
-Any other options to pass to [`spawnd`](https://www.npmjs.com/package/spawnd).
-
-#### `host`
+### `host`
 
 Type: `string`, default to `localhost`.
 
@@ -99,7 +124,7 @@ module.exports = {
 }
 ```
 
-#### `protocol`
+### `protocol`
 
 Type: `string`, default to `null`.
 
@@ -114,7 +139,7 @@ module.exports = {
 }
 ```
 
-#### `port`
+### `port`
 
 Type: `number`, default to `null`.
 
@@ -128,7 +153,7 @@ module.exports = {
 }
 ```
 
-#### `usedPortAction`
+### `usedPortAction`
 
 Type: `string` (`ask`, `error`, `ignore`, `kill`) default to `ask`.
 
