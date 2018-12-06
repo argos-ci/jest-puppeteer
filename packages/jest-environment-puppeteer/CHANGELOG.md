@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v3.5.2...v3.6.0) (2018-12-06)
+
+
+### Bug Fixes
+
+* skip closing external browser on teardown ([0505b2c](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/0505b2c))
+* use browser.disconnect method ([7afbb2e](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/7afbb2e))
+
+
+
+
+
 ## [3.5.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v3.5.1...v3.5.2) (2018-11-27)
 
 **Note:** Version bump only for package jest-environment-puppeteer

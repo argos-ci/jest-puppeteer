@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.5.2...v3.6.0) (2018-12-06)
+
+
+### Features
+
+* **jest-dev-server:** support multiple servers ([#163](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/163)) ([6cf690c](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/6cf690c))
+
+
+
+
+
 ## [3.5.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.5.1...v3.5.2) (2018-11-27)
 
 

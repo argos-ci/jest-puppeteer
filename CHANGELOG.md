@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.5.2...v3.6.0) (2018-12-06)
+
+
+### Bug Fixes
+
+* skip closing external browser on teardown ([0505b2c](https://github.com/smooth-code/jest-puppeteer/commit/0505b2c))
+* use browser.disconnect method ([7afbb2e](https://github.com/smooth-code/jest-puppeteer/commit/7afbb2e))
+
+
+### Features
+
+* **jest-dev-server:** support multiple servers ([#163](https://github.com/smooth-code/jest-puppeteer/issues/163)) ([6cf690c](https://github.com/smooth-code/jest-puppeteer/commit/6cf690c))
+
+
+
+
+
 ## [3.5.2](https://github.com/smooth-code/jest-puppeteer/compare/v3.5.1...v3.5.2) (2018-11-27)
 
 
