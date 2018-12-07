@@ -16,7 +16,7 @@ npm install --save-dev jest-dev-server
 
 ## Usage
 
-`jest-dev-server` exports `setup` and `teardown` functions.
+`jest-dev-server` exports `setup`,`teardown` and `getServers` functions.
 
 ```js
 // global-setup.js
@@ -49,6 +49,23 @@ module.exports = async function globalSetup() {
       port: 4445,
     },
   ])
+  // Your global setup
+}
+```
+
+```js
+// global-setup.js
+const { setup: setupDevServer, getServers} = require('jest-dev-server')
+
+module.exports = async function globalSetup() {
+  await setupDevServer({
+    command: `node config/start.js --port=3000`,
+    launchTimeout: 50000,
+    port: 3000,
+  })
+  getServers.then(servers => {
+    // You can get to the servers and do whatever you want
+  })
   // Your global setup
 }
 ```
