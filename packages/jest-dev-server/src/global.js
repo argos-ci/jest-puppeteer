@@ -204,7 +204,7 @@ async function setupJestServer(providedConfig, index) {
   }
 }
 
-export async function getServers() {
+export function getServers() {
   return servers
 }
 
