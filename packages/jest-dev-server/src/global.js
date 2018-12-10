@@ -111,7 +111,7 @@ export async function setup(providedConfigs) {
   )
 }
 
-export async function setupJestServer(providedConfig, index) {
+async function setupJestServer(providedConfig, index) {
   const config = { ...DEFAULT_CONFIG, ...providedConfig }
 
   const usedPortHandlers = {
@@ -202,6 +202,10 @@ export async function setupJestServer(providedConfig, index) {
     ])
     clearTimeout(timeout)
   }
+}
+
+export function getServers() {
+  return servers
 }
 
 export async function teardown() {
