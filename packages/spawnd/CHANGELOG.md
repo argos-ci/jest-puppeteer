@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v3.6.0...v3.7.0) (2018-12-11)
+
+
+### Features
+
+* use tree-kill instead of terminate ([#169](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/issues/169)) ([bb2e27b](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/commit/bb2e27b))
+
+
+
+
+
 ## [3.5.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v3.5.1...v3.5.2) (2018-11-27)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.6.0...v3.7.0) (2018-12-11)
+
+
+### Features
+
+* **jest-dev-server:** expose servers ([#166](https://github.com/smooth-code/jest-puppeteer/issues/166)) ([be650a3](https://github.com/smooth-code/jest-puppeteer/commit/be650a3)), closes [#135](https://github.com/smooth-code/jest-puppeteer/issues/135)
+* use tree-kill instead of terminate ([#169](https://github.com/smooth-code/jest-puppeteer/issues/169)) ([bb2e27b](https://github.com/smooth-code/jest-puppeteer/commit/bb2e27b))
+
+
+
+
+
 # [3.6.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.5.2...v3.6.0) (2018-12-06)
 
 
