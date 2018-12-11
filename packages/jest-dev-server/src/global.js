@@ -7,7 +7,7 @@ import cwd from 'cwd'
 import waitPort from 'wait-port'
 import findProcess from 'find-process'
 import { promisify } from 'util'
-import terminate from 'terminate'
+import treeKill from 'tree-kill'
 import inquirer from 'inquirer'
 
 const DEFAULT_CONFIG = {
@@ -20,7 +20,7 @@ const DEFAULT_CONFIG = {
   usedPortAction: 'ask',
 }
 
-const pterminate = promisify(terminate)
+const pTreeKill = promisify(treeKill)
 
 const serverLogPrefixer = new stream.Transform({
   transform(chunk, encoding, callback) {
@@ -51,7 +51,7 @@ function logProcDetection(proc, port) {
 
 async function killProc(proc) {
   console.log(chalk.yellow(`Killing process ${proc.name}...`))
-  await pterminate(proc.pid)
+  await pTreeKill(proc.pid)
   console.log(chalk.green(`Successfully killed process ${proc.name}`))
 }
 

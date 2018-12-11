@@ -1,15 +1,15 @@
 import { promisify } from 'util'
 import { spawn } from 'child_process'
-import terminate from 'terminate'
+import treeKill from 'tree-kill'
 import exit from 'exit'
 import onExit from 'signal-exit'
 
-const pterminate = promisify(terminate)
+const pTreeKill = promisify(treeKill)
 
 function spawnd(command, options) {
   function cleanExit(code = 1) {
     if (proc && proc.pid) {
-      terminate(proc.pid, () => exit(code))
+      treeKill(proc.pid, () => exit(code))
     } else {
       exit(code)
     }
@@ -28,7 +28,7 @@ function spawnd(command, options) {
     removeExitHandler()
     proc.removeAllListeners('exit')
     proc.removeAllListeners('error')
-    return pterminate(proc.pid).catch(() => {
+    return pTreeKill(proc.pid).catch(() => {
       /* ignore error */
     })
   }
