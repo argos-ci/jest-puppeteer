@@ -23,7 +23,7 @@
     "find-process": "^1.2.1",
     "inquirer": "^6.2.0",
     "spawnd": "^3.5.2",
-    "terminate": "^2.1.2",
+    "tree-kill": "^1.2.1",
     "wait-port": "^0.2.2"
   }
 }
