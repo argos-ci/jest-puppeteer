@@ -114,6 +114,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
     } else {
       await this.global.page.close()
     }
+
+    await this.global.browser.disconnect()
   }
 }
 
