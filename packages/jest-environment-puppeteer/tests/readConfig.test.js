@@ -68,4 +68,16 @@ describe('readConfig', () => {
       ])
     })
   })
+
+  describe('with Promise returning config', () => {
+    it('should return async config', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/promiseConfig.js',
+      )
+      mockExists(true)
+      const config = await readConfig()
+      expect(config.server).toBeDefined()
+    })
+  })
 })
