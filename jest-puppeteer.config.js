@@ -10,7 +10,7 @@ module.exports = {
   },
   browserContext: process.env.INCOGNITO ? 'incognito' : 'default',
   server: {
-    command: `PORT=${port} node server`,
+    command: `cross-env PORT=${port} node server`,
     port,
     launchTimeout: 4000,
   },
