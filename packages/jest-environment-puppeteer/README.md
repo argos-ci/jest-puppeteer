@@ -79,7 +79,7 @@ it('should put test in debug mode', async () => {
 
 ### `jest-puppeteer.config.js`
 
-You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
+You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable. It should export a config object or a Promise for a config object.
 
 - `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
 - `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
@@ -113,19 +113,22 @@ This example uses an already running instance of Chrome by passing the active we
 
 ```js
 // jest-puppeteer.config.js
-const wsEndpoint = fs.readFileSync(endpointPath, 'utf8')
+const PromiseForConfig = PromiseForWsEndpoint
+.then(function (wsEndpoint) {
+  return {
+   connect: {
+     browserWSEndpoint: wsEndpoint,
+   },
+   server: {
+     command: 'node server.js',
+     port: 4444,
+     launchTimeout: 10000,
+     debug: true,
+   },
+ }
+})
 
-module.exports = {
-  connect: {
-    browserWSEndpoint: wsEndpoint,
-  },
-  server: {
-    command: 'node server.js',
-    port: 4444,
-    launchTimeout: 10000,
-    debug: true,
-  },
-}
+module.exports = PromiseForConfig
 ```
 
 ## Inspiration
