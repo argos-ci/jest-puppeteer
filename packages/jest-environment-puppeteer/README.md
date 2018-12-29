@@ -113,22 +113,26 @@ This example uses an already running instance of Chrome by passing the active we
 
 ```js
 // jest-puppeteer.config.js
-const PromiseForConfig = PromiseForWsEndpoint
-.then(function (wsEndpoint) {
-  return {
-   connect: {
-     browserWSEndpoint: wsEndpoint,
-   },
-   server: {
-     command: 'node server.js',
-     port: 4444,
-     launchTimeout: 10000,
-     debug: true,
-   },
- }
-})
+const fetch = require('node-fetch')
+const dockerHost = 'http://localhost:9222'
 
-module.exports = PromiseForConfig
+async function getConfig () {
+  const response = await fetch(`${dockerHost}/json/version`)
+  const browserWSEndpoint = (await response.json()).webSocketDebuggerUrl
+  return {
+    connect: {
+      browserWSEndpoint
+    },
+    server: {
+      command: 'node server.js',
+      port: 3000,
+      launchTimeout: 10000,
+      debug: true,
+    }
+  }
+}
+
+module.exports = getConfig()
 ```
 
 ## Inspiration
