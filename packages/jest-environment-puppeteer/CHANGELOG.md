@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v3.7.0...v3.8.0) (2019-01-11)
+
+
+### Bug Fixes
+
+* disconnect the browser on environment teardown ([#173](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/173)) ([5d073cc](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/5d073cc))
+
+
+### Features
+
+* **jest-environment-puppeteer:** accept a promise as config ([#178](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/178)) ([40bc3a2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/40bc3a2))
+
+
+
+
+
 # [3.7.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v3.6.0...v3.7.0) (2018-12-11)
 
 **Note:** Version bump only for package jest-environment-puppeteer

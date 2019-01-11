@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/compare/v3.7.0...v3.8.0) (2019-01-11)
+
+**Note:** Version bump only for package jest-puppeteer-preset
+
+
+
+
+
 # [3.7.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/compare/v3.6.0...v3.7.0) (2018-12-11)
 
 **Note:** Version bump only for package jest-puppeteer-preset
