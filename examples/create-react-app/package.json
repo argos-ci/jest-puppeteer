@@ -12,6 +12,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:integration": "jest -c integration/jest.config.js",
+    "test:integrationWithWatch": "jest -c integration/jest.config.js --watch",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
