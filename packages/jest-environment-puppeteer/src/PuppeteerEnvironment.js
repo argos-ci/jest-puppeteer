@@ -57,11 +57,6 @@ class PuppeteerEnvironment extends NodeEnvironment {
       )
     }
 
-    this.global.page = await this.global.context.newPage()
-    if (config && config.exitOnPageError) {
-      this.global.page.addListener('pageerror', handleError)
-    }
-
     this.global.jestPuppeteer = {
       debug: async () => {
         // eslint-disable-next-line no-eval
@@ -102,7 +97,19 @@ class PuppeteerEnvironment extends NodeEnvironment {
           stdin.on('data', onKeyPress)
         })
       },
+      resetPage: async () => {
+        if (this.global.page) {
+          this.global.page.close()
+        }
+
+        this.global.page = await this.global.context.newPage()
+        if (config && config.exitOnPageError) {
+          this.global.page.addListener('pageerror', handleError)
+        }
+      },
     }
+
+    await this.global.jestPuppeteer.resetPage();
   }
 
   async teardown() {
