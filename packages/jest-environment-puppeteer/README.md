@@ -77,6 +77,16 @@ it('should put test in debug mode', async () => {
 })
 ```
 
+### `global.jestPuppeteer.resetPage()`
+
+Reset global.page
+
+```js
+beforeEach(async () => {
+  await jestPuppeteer.resetPage()
+})
+```
+
 ### `jest-puppeteer.config.js`
 
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable. It should export a config object or a Promise for a config object.
