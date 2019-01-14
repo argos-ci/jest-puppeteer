@@ -99,7 +99,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
       },
       resetPage: async () => {
         if (this.global.page) {
-          this.global.page.close()
+          await this.global.page.close()
         }
 
         this.global.page = await this.global.context.newPage()
