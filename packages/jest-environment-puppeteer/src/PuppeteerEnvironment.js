@@ -110,7 +110,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
       },
     }
 
-    await this.global.jestPuppeteer.resetPage();
+    await this.global.jestPuppeteer.resetPage()
   }
 
   async teardown() {
