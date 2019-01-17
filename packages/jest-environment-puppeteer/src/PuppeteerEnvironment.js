@@ -61,7 +61,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
       debug: async () => {
         // eslint-disable-next-line no-eval
         // Set timeout to 4 days
-        this.setTimeout(345600)
+        this.setTimeout(345600000)
         // Run a debugger (in case Puppeteer has been launched with `{ devtools: true }`)
         await this.global.page.evaluate(() => {
           // eslint-disable-next-line no-debugger
