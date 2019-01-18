@@ -126,19 +126,19 @@ This example uses an already running instance of Chrome by passing the active we
 const fetch = require('node-fetch')
 const dockerHost = 'http://localhost:9222'
 
-async function getConfig () {
+async function getConfig() {
   const response = await fetch(`${dockerHost}/json/version`)
   const browserWSEndpoint = (await response.json()).webSocketDebuggerUrl
   return {
     connect: {
-      browserWSEndpoint
+      browserWSEndpoint,
     },
     server: {
       command: 'node server.js',
       port: 3000,
       launchTimeout: 10000,
       debug: true,
-    }
+    },
   }
 }
 

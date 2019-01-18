@@ -13,6 +13,17 @@
     "test": "jest --runInBand",
     "test:incognito": "cross-env INCOGNITO=true jest --runInBand"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,css,md}": [
+      "npm run format",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
@@ -27,8 +38,10 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.16.4",
+    "husky": "^1.3.1",
     "jest": "^23.6.0",
     "lerna": "^3.6.0",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
     "puppeteer": "^1.11.0"
   },
