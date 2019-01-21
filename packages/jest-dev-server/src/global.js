@@ -105,9 +105,13 @@ function getIsPortTaken(port) {
 
 export async function setup(providedConfigs) {
   // Compatible with older versions
-  const configs = Array.isArray(providedConfigs) ? providedConfigs : [providedConfigs]
+  const configs = Array.isArray(providedConfigs)
+    ? providedConfigs
+    : [providedConfigs]
   await Promise.all(
-    configs.map((providedConfig, index) => setupJestServer(providedConfig, index))
+    configs.map((providedConfig, index) =>
+      setupJestServer(providedConfig, index),
+    ),
   )
 }
 

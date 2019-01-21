@@ -55,7 +55,7 @@ module.exports = async function globalSetup() {
 
 ```js
 // global-setup.js
-const { setup: setupDevServer, getServers} = require('jest-dev-server')
+const { setup: setupDevServer, getServers } = require('jest-dev-server')
 
 module.exports = async function globalSetup() {
   await setupDevServer({
