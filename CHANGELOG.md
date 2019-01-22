@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.8.0...v3.9.0) (2019-01-22)
+
+
+### Bug Fixes
+
+* jest --watch fails to reload ([#182](https://github.com/smooth-code/jest-puppeteer/issues/182)) ([cc9bbfa](https://github.com/smooth-code/jest-puppeteer/commit/cc9bbfa))
+* wrong timeout when using jestPuppeteer.debug() ([#185](https://github.com/smooth-code/jest-puppeteer/issues/185)) ([0f4c720](https://github.com/smooth-code/jest-puppeteer/commit/0f4c720))
+
+
+### Features
+
+* add jestPuppeteer.resetPage ([#183](https://github.com/smooth-code/jest-puppeteer/issues/183)) ([3a5526c](https://github.com/smooth-code/jest-puppeteer/commit/3a5526c))
+
+
+
+
+
 # [3.8.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.7.0...v3.8.0) (2019-01-11)
 
 
