@@ -232,8 +232,8 @@ For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and
 // global-setup.js
 const { setup: setupPuppeteer } = require('jest-environment-puppeteer')
 
-module.exports = async function globalSetup() {
-  await setupPuppeteer()
+module.exports = async function globalSetup(globalConfig) {
+  await setupPuppeteer(globalConfig)
   // Your global setup
 }
 ```
@@ -242,9 +242,9 @@ module.exports = async function globalSetup() {
 // global-teardown.js
 const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer')
 
-module.exports = async function globalTeardown() {
+module.exports = async function globalTeardown(globalConfig) {
   // Your global teardown
-  await teardownPuppeteer()
+  await teardownPuppeteer(globalConfig)
 }
 ```
 
