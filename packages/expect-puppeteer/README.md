@@ -31,7 +31,7 @@ To use with Jest, just modify your configuration:
 
 ```json
 {
-  "setupTestFrameworkScriptFile": "expect-puppeteer"
+  "setupFilesAfterEnv": ["expect-puppeteer"]
 }
 ```
 
