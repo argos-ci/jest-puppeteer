@@ -11,7 +11,7 @@ import readConfig from './readConfig'
 
 let browser
 
-export async function setup(jestConfig) {
+export async function setup(jestConfig = {}) {
   const config = await readConfig()
   if (config.connect) {
     browser = await puppeteer.connect(config.connect)
@@ -51,7 +51,7 @@ export async function setup(jestConfig) {
   }
 }
 
-export async function teardown(jestConfig) {
+export async function teardown(jestConfig = {}) {
   if (!jestConfig.watch && !jestConfig.watchAll) {
     await teardownServer()
 
