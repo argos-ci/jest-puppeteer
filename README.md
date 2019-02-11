@@ -12,7 +12,10 @@
 [![Dependencies](https://img.shields.io/david/smooth-code/jest-puppeteer.svg?path=packages%2Fjest-puppeteer)](https://david-dm.org/smooth-code/jest-puppeteer?path=packages/jest-puppeteer)
 [![DevDependencies](https://img.shields.io/david/dev/smooth-code/jest-puppeteer.svg)](https://david-dm.org/smooth-code/jest-puppeteer?type=dev)
 
-```
+```bash
+# for jest 22~23
+npm install --save-dev jest-puppeteer@3.9.0 puppeteer jest
+# for jest 24+
 npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
