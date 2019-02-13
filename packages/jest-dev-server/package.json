@@ -18,10 +18,10 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "cwd": "^0.10.0",
     "find-process": "^1.2.1",
-    "inquirer": "^6.2.1",
+    "inquirer": "^6.2.2",
     "spawnd": "^3.7.0",
     "tree-kill": "^1.2.1",
     "wait-port": "^0.2.2"

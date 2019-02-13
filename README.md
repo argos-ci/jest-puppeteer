@@ -43,6 +43,7 @@ Update your Jest configuration:
   "preset": "jest-puppeteer"
 }
 ```
+
 **NOTE**: Be sure to remove any existing `testEnvironment` option from your Jest configuration. The `jest-puppeteer` preset needs to manage that option itself.
 
 Use Puppeteer in your tests:
