@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/compare/v3.9.0...v4.0.0) (2019-02-13)
+
+
+### Features
+
+* support jest v24 ([#196](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/issues/196)) ([dbcc9d0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/commit/dbcc9d0))
+
+
+### BREAKING CHANGES
+
+* v4.x is only compatible with Jest v24, use v3.x with Jest v23.
+
+
+
+
+
 # [3.9.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/compare/v3.8.0...v3.9.0) (2019-01-22)
 
 **Note:** Version bump only for package jest-puppeteer-preset

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.9.0...v4.0.0) (2019-02-13)
+
+
+### Bug Fixes
+
+* Cannot read property watch of undefined in jest v22 version ([#197](https://github.com/smooth-code/jest-puppeteer/issues/197)) ([db731a3](https://github.com/smooth-code/jest-puppeteer/commit/db731a3))
+
+
+### Features
+
+* support jest v24 ([#196](https://github.com/smooth-code/jest-puppeteer/issues/196)) ([dbcc9d0](https://github.com/smooth-code/jest-puppeteer/commit/dbcc9d0))
+
+
+### BREAKING CHANGES
+
+* v4.x is only compatible with Jest v24, use v3.x with Jest v23.
+
+
+
+
+
 # [3.9.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.8.0...v3.9.0) (2019-01-22)
 
 
