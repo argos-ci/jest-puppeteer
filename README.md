@@ -172,22 +172,25 @@ module.exports = {
 }
 ```
 
-### Specify a `setupTestFrameworkScriptFile`
+### Custom `setupTestFrameworkScriptFile` or `setupFilesAfterEnv`
 
-Jest Puppeteer use `expect-puppeteer` as `setupTestFrameworkScriptFile`. If you want to use `expect-puppeteer` don't forget to add it in your custom `setupTestFrameworkScriptFile`:
+If you use custom setup files, you'll need to include `expect-puppeteer` yourself in order to use the matchers it provides. Add the following to your setup file.
 
 ```js
-// setupTestFrameworkScriptFile.js
+// setup.js
 require('expect-puppeteer')
 
 // Your custom setup
+// ...
 ```
 
 ```js
 // jest.config.js
 module.exports = {
   // ...
-  setupTestFrameworkScriptFile: './setupTestFrameworkScriptFile.js',
+  setupTestFrameworkScriptFile: './setup.js',
+  // or
+  setupFilesAfterEnv: [ './setup.js' ]
 }
 ```
 
