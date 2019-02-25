@@ -190,7 +190,7 @@ module.exports = {
   // ...
   setupTestFrameworkScriptFile: './setup.js',
   // or
-  setupFilesAfterEnv: [ './setup.js' ]
+  setupFilesAfterEnv: ['./setup.js'],
 }
 ```
 
