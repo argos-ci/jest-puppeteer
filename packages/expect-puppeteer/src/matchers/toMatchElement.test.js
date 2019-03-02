@@ -37,6 +37,42 @@ describe('toMatchElement', () => {
         expect(error.message).toMatch('waiting for function failed')
       }
     })
+
+    it('should match using visible options', async () => {
+      expect.assertions(11)
+
+      const normalElement = await expect(page).toMatchElement('.normal', {
+        visible: true,
+      })
+      const textContentProperty = await normalElement.getProperty('textContent')
+      const textContent = await textContentProperty.jsonValue()
+      expect(textContent).toBe('normal element')
+
+      try {
+        await expect(page).toMatchElement('.hidden', { visible: true })
+      } catch (error) {
+        expect(error.message).toMatch('Element .hidden not found')
+        expect(error.message).toMatch('waiting for function failed')
+      }
+
+      try {
+        await expect(page).toMatchElement('.displayed', { visible: true })
+      } catch (error) {
+        expect(error.message).toMatch('Element .displayed not found')
+        expect(error.message).toMatch('waiting for function failed')
+      }
+
+      try {
+        await expect(page).toMatchElement('.displayedWithClassname', {
+          visible: true,
+        })
+      } catch (error) {
+        expect(error.message).toMatch(
+          'Element .displayedWithClassname not found',
+        )
+        expect(error.message).toMatch('waiting for function failed')
+      }
+    })
   })
 
   describe('ElementHandle', () => {

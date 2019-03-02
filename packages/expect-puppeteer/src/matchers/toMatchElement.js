@@ -4,19 +4,36 @@ import { defaultOptions } from '../options'
 async function toMatchElement(
   instance,
   selector,
-  { text: searchExpr, ...options } = {},
+  { text: searchExpr, visible = false, ...options } = {},
 ) {
   options = defaultOptions(options)
-
   const { page, handle } = await getContext(instance, () => document)
 
   const { text, regexp } = expandSearchExpr(searchExpr)
 
-  const getElement = (handle, selector, text, regexp) => {
-    const elements = handle.querySelectorAll(selector)
+  const getElement = (handle, selector, text, regexp, visible) => {
+    function hasVisibleBoundingBox(element) {
+      const rect = element.getBoundingClientRect()
+      return !!(rect.top || rect.bottom || rect.width || rect.height)
+    }
+
+    const isVisible = element => {
+      if (visible) {
+        const style = window.getComputedStyle(element)
+        return (
+          style &&
+          style.visibility !== 'hidden' &&
+          hasVisibleBoundingBox(element)
+        )
+      }
+
+      return true
+    }
+
+    const elements = [...handle.querySelectorAll(selector)].filter(isVisible)
     if (regexp !== null) {
       const [, pattern, flags] = regexp.match(/\/(.*)\/(.*)?/)
-      return [...elements].find(({ textContent }) =>
+      return elements.find(({ textContent }) =>
         textContent
           .replace(/\s+/g, ' ')
           .trim()
@@ -24,7 +41,7 @@ async function toMatchElement(
       )
     }
     if (text !== null) {
-      return [...elements].find(({ textContent }) =>
+      return elements.find(({ textContent }) =>
         textContent
           .replace(/\s+/g, ' ')
           .trim()
@@ -42,6 +59,7 @@ async function toMatchElement(
       selector,
       text,
       regexp,
+      visible,
     )
   } catch (error) {
     throw enhanceError(
@@ -58,6 +76,7 @@ async function toMatchElement(
     selector,
     text,
     regexp,
+    visible,
   )
   return jsHandle.asElement()
 }
