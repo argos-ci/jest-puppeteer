@@ -37,6 +37,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     this.global.browser = await puppeteer.connect({
       ...config.connect,
       ...config.launch,
+      browserURL: undefined,
       browserWSEndpoint: wsEndpoint,
     })
 
