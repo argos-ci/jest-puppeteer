@@ -125,10 +125,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
       if (context) {
         await context.close()
       }
-    } else {
-      if (page) {
-        await page.close()
-      }
+    } else if (page) {
+      await page.close()
     }
 
     if (browser) {
