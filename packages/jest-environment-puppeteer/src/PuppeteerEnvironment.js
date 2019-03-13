@@ -37,6 +37,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     this.global.browser = await puppeteer.connect({
       ...config.connect,
       ...config.launch,
+      browserURL: undefined,
       browserWSEndpoint: wsEndpoint,
     })
 
@@ -114,16 +115,23 @@ class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    const config = await readConfig()
-    this.global.page.removeListener('pageerror', handleError)
+    const { page, context, browser, puppeteerConfig } = this.global
 
-    if (config.browserContext === 'incognito') {
-      await this.global.context.close()
-    } else {
-      await this.global.page.close()
+    if (page) {
+      page.removeListener('pageerror', handleError)
     }
 
-    await this.global.browser.disconnect()
+    if (puppeteerConfig.browserContext === 'incognito') {
+      if (context) {
+        await context.close()
+      }
+    } else if (page) {
+      await page.close()
+    }
+
+    if (browser) {
+      await browser.disconnect()
+    }
   }
 }
 
