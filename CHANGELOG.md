@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/smooth-code/jest-puppeteer/compare/v4.0.0...v4.1.0) (2019-03-14)
+
+
+### Bug Fixes
+
+* invalid connect options, when using browserURL ([#212](https://github.com/smooth-code/jest-puppeteer/issues/212)) ([6e483e6](https://github.com/smooth-code/jest-puppeteer/commit/6e483e6))
+
+
+### Features
+
+* **expect-puppeteer:** add visibility option to toMatchElement ([#208](https://github.com/smooth-code/jest-puppeteer/issues/208)) ([46d8ec1](https://github.com/smooth-code/jest-puppeteer/commit/46d8ec1))
+
+
+
+
+
 # [4.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.9.0...v4.0.0) (2019-02-13)
 
 

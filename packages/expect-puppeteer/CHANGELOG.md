@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v4.0.0...v4.1.0) (2019-03-14)
+
+
+### Features
+
+* **expect-puppeteer:** add visibility option to toMatchElement ([#208](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/208)) ([46d8ec1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/46d8ec1))
+
+
+
+
+
 # [4.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v3.9.0...v4.0.0) (2019-02-13)
 
 **Note:** Version bump only for package expect-puppeteer
