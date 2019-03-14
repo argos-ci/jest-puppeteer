@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.1](https://github.com/smooth-code/jest-puppeteer/compare/v3.9.0...v3.9.1) (2019-03-14)
+
+
+### Bug Fixes
+
+* invalid connect options, when using browserURL ([#212](https://github.com/smooth-code/jest-puppeteer/issues/212)) ([1d2e60a](https://github.com/smooth-code/jest-puppeteer/commit/1d2e60a))
+
+
+
+
+
 # [3.9.0](https://github.com/smooth-code/jest-puppeteer/compare/v3.8.0...v3.9.0) (2019-01-22)
 
 
