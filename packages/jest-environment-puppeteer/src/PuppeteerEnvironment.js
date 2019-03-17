@@ -34,11 +34,12 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
+
+    const { browserURL } = config.connect || {}
     this.global.browser = await puppeteer.connect({
+      ...(browserURL ? { browserURL } : { browserWSEndpoint: wsEndpoint }),
       ...config.connect,
       ...config.launch,
-      browserURL: undefined,
-      browserWSEndpoint: wsEndpoint,
     })
 
     if (config.browserContext === 'incognito') {
