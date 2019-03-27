@@ -8,7 +8,7 @@ import waitPort from 'wait-port'
 import findProcess from 'find-process'
 import { promisify } from 'util'
 import treeKill from 'tree-kill'
-import inquirer from 'inquirer'
+import prompts from 'prompts'
 
 const DEFAULT_CONFIG = {
   debug: false,
@@ -139,16 +139,14 @@ async function setupJestServer(providedConfig, index) {
     async ask() {
       console.log('')
       const answers = await outOfStin(() =>
-        inquirer.prompt([
-          {
-            type: 'confirm',
-            name: 'kill',
-            message: `Another process is listening on ${
-              config.port
-            }. Should I kill it for you? On linux, this may require you to enter your password.`,
-            default: true,
-          },
-        ]),
+        prompts({
+          type: 'confirm',
+          name: 'kill',
+          message: `Another process is listening on ${
+            config.port
+          }. Should I kill it for you? On linux, this may require you to enter your password.`,
+          initial: true,
+        }),
       )
       if (answers.kill) {
         const [portProcess] = await findProcess('port', config.port)
