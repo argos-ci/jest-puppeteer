@@ -138,14 +138,16 @@ async function setupJestServer(providedConfig, index) {
     },
     async ask() {
       console.log('')
-      const answers = await prompts({
-        type: 'confirm',
-        name: 'kill',
-        message: `Another process is listening on ${
-          config.port
-        }. Should I kill it for you? On linux, this may require you to enter your password.`,
-        initial: true,
-      })
+      const answers = await outOfStin(() =>
+        prompts({
+          type: 'confirm',
+          name: 'kill',
+          message: `Another process is listening on ${
+            config.port
+          }. Should I kill it for you? On linux, this may require you to enter your password.`,
+          initial: true,
+        }),
+      )
       if (answers.kill) {
         const [portProcess] = await findProcess('port', config.port)
         logProcDetection(portProcess, config.port)
