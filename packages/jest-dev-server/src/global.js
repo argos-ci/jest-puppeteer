@@ -174,9 +174,16 @@ async function setupJestServer(providedConfig, index) {
     if (isPortTaken) {
       await usedPortHandler()
     }
-  }
 
-  runServer(config, index)
+    if (config.usedPortAction === 'ignore' && isPortTaken) {
+      console.log('')
+      console.log('Port is already taken. Assuming server is already running.')
+    } else {
+      runServer(config, index)
+    }
+  } else {
+    runServer(config, index)
+  }
 
   if (config.port) {
     const { launchTimeout } = config
