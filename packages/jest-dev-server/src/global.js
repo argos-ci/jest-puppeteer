@@ -134,7 +134,7 @@ async function setupJestServer(providedConfig, index) {
       )
       const [portProcess] = await findProcess('port', config.port)
       logProcDetection(portProcess, config.port)
-      killProc(portProcess)
+      await killProc(portProcess)
     },
     async ask() {
       console.log('')
