@@ -4,7 +4,7 @@ import net from 'net'
 import chalk from 'chalk'
 import spawnd from 'spawnd'
 import cwd from 'cwd'
-import waitPort from 'wait-port'
+import waitOn from 'wait-on'
 import findProcess from 'find-process'
 import { promisify } from 'util'
 import treeKill from 'tree-kill'
@@ -14,9 +14,9 @@ const DEFAULT_CONFIG = {
   debug: false,
   options: {},
   launchTimeout: 5000,
-  host: null,
+  host: 'localhost',
   port: null,
-  protocol: null,
+  protocol: 'http',
   usedPortAction: 'ask',
 }
 
@@ -186,7 +186,11 @@ async function setupJestServer(providedConfig, index) {
   }
 
   if (config.port) {
-    const { launchTimeout } = config
+    const { launchTimeout, protocol, host, port } = config
+
+    const opts = {
+      resources: [`${protocol}://${host}:${port}`],
+    }
 
     let timeout
     await Promise.race([
@@ -202,12 +206,7 @@ async function setupJestServer(providedConfig, index) {
           launchTimeout,
         )
       }),
-      waitPort({
-        host: config.host,
-        output: 'silent',
-        port: config.port,
-        protocol: config.protocol,
-      }),
+      waitOn(opts),
     ])
     clearTimeout(timeout)
   }
