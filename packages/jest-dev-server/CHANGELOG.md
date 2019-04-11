@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.1.0...v4.1.1) (2019-04-11)
+
+
+### Bug Fixes
+
+* do not attempt to start the server when `usedPortAction` is `ignore` and `isPortTaken` is `true` ([#219](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/219)) ([7df3721](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/7df3721))
+
+
+
+
+
 # [4.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v3.9.0...v4.0.0) (2019-02-13)
 
 **Note:** Version bump only for package jest-dev-server
