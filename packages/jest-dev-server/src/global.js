@@ -187,7 +187,7 @@ async function setupJestServer(providedConfig, index) {
   }
 
   if (config.port) {
-    const { launchTimeout, protocol, host, port } = config
+    const { launchTimeout, protocol, host, port, waitOnScheme } = config
 
     const opts = {
       resources: [`${protocol}://${host}:${port}`],
