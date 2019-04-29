@@ -18,6 +18,7 @@ const DEFAULT_CONFIG = {
   port: null,
   protocol: 'http',
   usedPortAction: 'ask',
+  waitOnScheme: {},
 }
 
 const pTreeKill = promisify(treeKill)
@@ -186,10 +187,11 @@ async function setupJestServer(providedConfig, index) {
   }
 
   if (config.port) {
-    const { launchTimeout, protocol, host, port } = config
+    const { launchTimeout, protocol, host, port, waitOnScheme } = config
 
     const opts = {
       resources: [`${protocol}://${host}:${port}`],
+      ...waitOnScheme,
     }
 
     let timeout

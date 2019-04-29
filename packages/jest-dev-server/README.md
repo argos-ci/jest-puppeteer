@@ -189,6 +189,34 @@ module.exports = {
 }
 ```
 
+### `waitOnScheme`
+
+`jest-dev-server` use the [`wait-on`](https://www.npmjs.com/package/wait-on) npm package to wait for resources to become available before calling callback.
+
+Type: `object`, default to `{}`.
+
+- `delay`: optional initial delay in ms, default 0
+- `interval`: optional poll resource interval in ms, default 250ms
+- `log`: optional flag which outputs to stdout, remaining resources waited on and when complete or errored
+- `reverse`: optional flag to reverse operation so checks are for resources being NOT available, default false
+- `timeout`: optional timeout in ms, default Infinity. Aborts with error
+- `tcpTimeout`: optional tcp timeout in ms, default 300ms
+- `verbose`: optional flag which outputs debug output, default false
+- `window`: optional stabilization time in ms, default 750ms. Waits this amount of time for file sizes to stabilize or other resource availability to remain unchanged
+
+**Note:** http(s) specific options, see https://github.com/request/request#readme for specific details
+
+```js
+module.exports = {
+  command: 'npm run start --port 3000',
+  port: 3000,
+  usedPortAction: 'kill',
+  waitOnScheme: {
+    delay: 1000,
+  },
+}
+```
+
 ## Troubleshooting
 
 - If using `port` makes the terminal to ask for root password although the port is valid and accessible then use `usePortAction: 'ignore'`.
