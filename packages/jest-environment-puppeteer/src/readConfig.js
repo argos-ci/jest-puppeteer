@@ -59,7 +59,7 @@ export function getPuppeteer(config) {
       return require('puppeteer-firefox')
     default:
       throw new Error(
-        `!!env variable JEST_PUPPETEER_BROWSER is given unsupported value: ${browser}`,
+        `Error: "browser" config option is given an unsupported value: ${browser}`,
       )
   }
 }
