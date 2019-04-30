@@ -143,9 +143,9 @@ module.exports = {
 
 ### `protocol`
 
-Type: `string`, default to `null`.
+Type: `string`, (`https`, `http`, `tcp`, `socket`) default to `tcp`.
 
-To wait for an HTTP endpoint before considering the server running, include `http` as a protocol.
+To wait for an HTTP or TCP endpoint before considering the server running, include `http` or `tcp` as a protocol.
 Must be used in conjunction with `port`.
 
 ```js
