@@ -16,7 +16,7 @@ const DEFAULT_CONFIG = {
   launchTimeout: 5000,
   host: 'localhost',
   port: null,
-  protocol: 'http',
+  protocol: 'tcp',
   usedPortAction: 'ask',
   waitOnScheme: {},
 }
@@ -189,28 +189,26 @@ async function setupJestServer(providedConfig, index) {
   if (config.port) {
     const { launchTimeout, protocol, host, port, waitOnScheme } = config
 
+    let url = ''
+    if (protocol === 'tcp' || protocol === 'socket') {
+      url = `${protocol}:${host}:${port}`
+    } else {
+      url = `${protocol}://${host}:${port}`
+    }
     const opts = {
-      resources: [`${protocol}://${host}:${port}`],
+      resources: [url],
+      timeout: launchTimeout,
       ...waitOnScheme,
     }
 
-    let timeout
-    await Promise.race([
-      new Promise((resolve, reject) => {
-        timeout = setTimeout(
-          () =>
-            reject(
-              new JestDevServerError(
-                `Server has taken more than ${launchTimeout}ms to start.`,
-                ERROR_TIMEOUT,
-              ),
-            ),
-          launchTimeout,
-        )
-      }),
-      waitOn(opts),
-    ])
-    clearTimeout(timeout)
+    try {
+      await waitOn(opts)
+    } catch (err) {
+      throw new JestDevServerError(
+        `Server has taken more than ${launchTimeout}ms to start.`,
+        ERROR_TIMEOUT,
+      )
+    }
   }
 }
 
