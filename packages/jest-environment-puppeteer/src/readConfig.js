@@ -8,6 +8,7 @@ const exists = promisify(fs.exists)
 
 const DEFAULT_CONFIG = {
   launch: {},
+  browser: 'chromium',
   browserContext: 'default',
   exitOnPageError: true,
 }
@@ -23,7 +24,7 @@ const DEFAULT_CONFIG_CI = merge(DEFAULT_CONFIG, {
   },
 })
 
-async function readConfig() {
+export async function readConfig() {
   const defaultConfig =
     process.env.CI === 'true' ? DEFAULT_CONFIG_CI : DEFAULT_CONFIG
 
@@ -48,4 +49,17 @@ async function readConfig() {
   return merge({}, defaultConfig, localConfig)
 }
 
-export default readConfig
+export function getPuppeteer(config) {
+  switch (config.browser.toLowerCase()) {
+    case 'chromium':
+      // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-extraneous-dependencies
+      return require('puppeteer')
+    case 'firefox':
+      // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-extraneous-dependencies
+      return require('puppeteer-firefox')
+    default:
+      throw new Error(
+        `Error: "browser" config option is given an unsupported value: ${browser}`,
+      )
+  }
+}

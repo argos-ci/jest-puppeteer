@@ -93,6 +93,9 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
 
 - `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
 - `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
+- `browser` <[string]>. Define a browser to run tests into.
+  - `chromium` Each test uses [puppeteer](https://npmjs.com/package/puppeteer) and runs Chromium
+  - `firefox` Each test uses [puppeteer-firefox](https://npmjs.com/package/puppeteer-firefox) and runs Firefox. This option requires `puppeteer-firefox` as a peer dependency.
 - `browserContext` <[string]>. By default, the browser context (cookies, localStorage, etc) is shared between all tests. The following options are available for `browserContext`:
   - `default` Each test starts a tab, so all tests share the same context.
   - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (_Example: testing multiple users on the same app at once with login, transactions, etc._)

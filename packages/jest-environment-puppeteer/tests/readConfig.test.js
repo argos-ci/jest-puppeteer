@@ -1,12 +1,33 @@
 import fs from 'fs'
 import path from 'path'
-import readConfig from '../src/readConfig'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import pptrChromium from 'puppeteer'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import pptrFirefox from 'puppeteer-firefox'
+import { readConfig, getPuppeteer } from '../src/readConfig'
 
 jest.mock('fs')
 
 function mockExists(value) {
   fs.exists.mockImplementation((path, callback) => callback(null, value))
 }
+
+describe('getPuppeteer', () => {
+  it('should return chromium when specified', async () => {
+    expect(
+      getPuppeteer({
+        browser: 'Chromium',
+      }),
+    ).toBe(pptrChromium)
+  })
+  it('should return firefox when specified', async () => {
+    expect(
+      getPuppeteer({
+        browser: 'Firefox',
+      }),
+    ).toBe(pptrFirefox)
+  })
+})
 
 describe('readConfig', () => {
   describe('with custom config path', () => {

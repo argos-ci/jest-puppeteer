@@ -5,14 +5,14 @@ import {
   ERROR_TIMEOUT,
   ERROR_NO_COMMAND,
 } from 'jest-dev-server'
-import puppeteer from 'puppeteer'
 import chalk from 'chalk'
-import readConfig from './readConfig'
+import { readConfig, getPuppeteer } from './readConfig'
 
 let browser
 
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
+  const puppeteer = getPuppeteer(config)
   if (config.connect) {
     browser = await puppeteer.connect(config.connect)
   } else {
