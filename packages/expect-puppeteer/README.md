@@ -237,4 +237,4 @@ MIT
 [selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors 'selector'
 [page]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page 'Page'
 [elementhandle]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle 'ElementHandle'
-[UIEvent.detail]: https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
+[uievent.detail]: https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
