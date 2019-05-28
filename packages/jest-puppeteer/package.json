@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer",
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "expect-puppeteer": "^4.1.1",
-    "jest-environment-puppeteer": "^4.1.1"
+    "jest-environment-puppeteer": "^4.2.0"
   }
 }

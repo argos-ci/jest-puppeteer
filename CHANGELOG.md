@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/smooth-code/jest-puppeteer/compare/v4.1.1...v4.2.0) (2019-05-28)
+
+
+### Bug Fixes
+
+* jest-dev-server can't detect used ports ([#235](https://github.com/smooth-code/jest-puppeteer/issues/235)) ([8b64c10](https://github.com/smooth-code/jest-puppeteer/commit/8b64c10))
+
+
+### Features
+
+* add waitOnScheme options ([#232](https://github.com/smooth-code/jest-puppeteer/issues/232)) ([f772d74](https://github.com/smooth-code/jest-puppeteer/commit/f772d74))
+* support "browser" config option ([#220](https://github.com/smooth-code/jest-puppeteer/issues/220)) ([85a1122](https://github.com/smooth-code/jest-puppeteer/commit/85a1122)), closes [#171](https://github.com/smooth-code/jest-puppeteer/issues/171)
+
+
+
+
+
 ## [4.1.1](https://github.com/smooth-code/jest-puppeteer/compare/v4.1.0...v4.1.1) (2019-04-11)
 
 

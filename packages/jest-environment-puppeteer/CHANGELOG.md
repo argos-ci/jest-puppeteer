@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.1.1...v4.2.0) (2019-05-28)
+
+
+### Features
+
+* support "browser" config option ([#220](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/220)) ([85a1122](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/85a1122)), closes [#171](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/171)
+
+
+
+
+
 ## [4.1.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.1.0...v4.1.1) (2019-04-11)
 
 **Note:** Version bump only for package jest-environment-puppeteer

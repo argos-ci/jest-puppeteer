@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.1.1...v4.2.0) (2019-05-28)
+
+
+### Bug Fixes
+
+* jest-dev-server can't detect used ports ([#235](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/235)) ([8b64c10](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/8b64c10))
+
+
+### Features
+
+* add waitOnScheme options ([#232](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/232)) ([f772d74](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/f772d74))
+
+
+
+
+
 ## [4.1.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.1.0...v4.1.1) (2019-04-11)
 
 
