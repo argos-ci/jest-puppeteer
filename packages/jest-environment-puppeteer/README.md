@@ -89,7 +89,7 @@ beforeEach(async () => {
 
 ### `global.jestPuppeteer.resetBrowser()`
 
-Reset global.browser, gllobal.context, and global.page
+Reset global.browser, global.context, and global.page
 
 ```js
 beforeEach(async () => {
