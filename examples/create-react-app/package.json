@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-scripts": "next"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,8 +16,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "jest-puppeteer": "^3.7.0",
-    "puppeteer": "^1.11.0"
+    "jest-puppeteer": "^4.2.0",
+    "puppeteer": "^1.18.1"
   },
   "browserslist": {
     "development": [

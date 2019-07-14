@@ -20,10 +20,10 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "cwd": "^0.10.0",
-    "find-process": "^1.4.1",
+    "find-process": "^1.4.2",
     "prompts": "^2.1.0",
     "spawnd": "^4.0.0",
     "tree-kill": "^1.2.1",
-    "wait-on": "^3.2.0"
+    "wait-on": "^3.3.0"
   }
 }
