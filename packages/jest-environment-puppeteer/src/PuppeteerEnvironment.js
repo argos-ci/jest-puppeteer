@@ -34,29 +34,6 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
-    this.global.browser = await puppeteer.connect({
-      ...config.connect,
-      ...config.launch,
-      browserURL: undefined,
-      browserWSEndpoint: wsEndpoint,
-    })
-
-    if (config.browserContext === 'incognito') {
-      // Using this, pages will be created in a pristine context.
-      this.global.context = await this.global.browser.createIncognitoBrowserContext()
-    } else if (config.browserContext === 'default' || !config.browserContext) {
-      /**
-       * Since this is a new browser, browserContexts() will return only one instance
-       * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserbrowsercontexts
-       */
-      this.global.context = await this.global.browser.browserContexts()[0]
-    } else {
-      throw new Error(
-        `browserContext should be either 'incognito' or 'default'. Received '${
-          config.browserContext
-        }'`,
-      )
-    }
 
     this.global.jestPuppeteer = {
       debug: async () => {
@@ -109,9 +86,52 @@ class PuppeteerEnvironment extends NodeEnvironment {
           this.global.page.addListener('pageerror', handleError)
         }
       },
+      resetBrowser: async () => {
+        if (this.global.page) {
+          this.global.page.removeListener('pageerror', handleError)
+        }
+        if (config.browserContext === 'incognito' && this.global.context) {
+          await this.global.context.close()
+        } else if (this.global.page) {
+          await this.global.page.close()
+        }
+        this.global.page = null
+
+        if (this.global.browser) {
+          await this.global.browser.disconnect()
+        }
+
+        this.global.browser = await puppeteer.connect({
+          ...config.connect,
+          ...config.launch,
+          browserURL: undefined,
+          browserWSEndpoint: wsEndpoint,
+        })
+
+        if (config.browserContext === 'incognito') {
+          // Using this, pages will be created in a pristine context.
+          this.global.context = await this.global.browser.createIncognitoBrowserContext()
+        } else if (
+          config.browserContext === 'default' ||
+          !config.browserContext
+        ) {
+          /**
+           * Since this is a new browser, browserContexts() will return only one instance
+           * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserbrowsercontexts
+           */
+          this.global.context = await this.global.browser.browserContexts()[0]
+        } else {
+          throw new Error(
+            `browserContext should be either 'incognito' or 'default'. Received '${
+              config.browserContext
+            }'`,
+          )
+        }
+        await this.global.jestPuppeteer.resetPage()
+      },
     }
 
-    await this.global.jestPuppeteer.resetPage()
+    await this.global.jestPuppeteer.resetBrowser()
   }
 
   async teardown() {

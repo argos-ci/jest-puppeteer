@@ -321,6 +321,26 @@ it('should put test in debug mode', async () => {
 })
 ```
 
+### `global.jestPuppeteer.resetPage()`
+
+Reset global.page
+
+```js
+beforeEach(async () => {
+  await jestPuppeteer.resetPage()
+})
+```
+
+### `global.jestPuppeteer.resetBrowser()`
+
+Reset global.browser, global.context, and global.page
+
+```js
+beforeEach(async () => {
+  await jestPuppeteer.resetBrowser()
+})
+```
+
 ### `jest-puppeteer.config.js`
 
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
