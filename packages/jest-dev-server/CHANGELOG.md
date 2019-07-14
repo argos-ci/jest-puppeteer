@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.2.0...v4.3.0) (2019-07-14)
+
+
+### Bug Fixes
+
+* use host in port check ([#222](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/222)) ([e419eb2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/e419eb2))
+
+
+
+
+
 # [4.2.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.1.1...v4.2.0) (2019-05-28)
 
 
