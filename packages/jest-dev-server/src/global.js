@@ -89,7 +89,7 @@ async function outOfStin(block) {
   return result
 }
 
-function getIsPortTaken(port) {
+function getIsPortTaken(config) {
   let server
   const cleanupAndReturn = result =>
     new Promise(resolve => server.once('close', () => resolve(result)).close())
@@ -100,7 +100,7 @@ function getIsPortTaken(port) {
         err.code === 'EADDRINUSE' ? resolve(cleanupAndReturn(true)) : reject(),
       )
       .once('listening', () => resolve(cleanupAndReturn(false)))
-      .listen(port)
+      .listen(config.port, config.host)
   })
 }
 
@@ -135,7 +135,7 @@ async function setupJestServer(providedConfig, index) {
       )
       const [portProcess] = await findProcess('port', config.port)
       logProcDetection(portProcess, config.port)
-      killProc(portProcess)
+      await killProc(portProcess)
     },
     async ask() {
       console.log('')
@@ -171,7 +171,7 @@ async function setupJestServer(providedConfig, index) {
   }
 
   if (config.port) {
-    const isPortTaken = await getIsPortTaken(config.port)
+    const isPortTaken = await getIsPortTaken(config)
     if (isPortTaken) {
       await usedPortHandler()
     }
