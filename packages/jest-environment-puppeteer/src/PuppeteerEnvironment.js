@@ -122,9 +122,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
           this.global.context = await this.global.browser.browserContexts()[0]
         } else {
           throw new Error(
-            `browserContext should be either 'incognito' or 'default'. Received '${
-              config.browserContext
-            }'`,
+            `browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`,
           )
         }
         await this.global.jestPuppeteer.resetPage()
