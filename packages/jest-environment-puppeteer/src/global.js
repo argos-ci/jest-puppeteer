@@ -52,14 +52,15 @@ export async function setup(jestConfig = {}) {
 }
 
 export async function teardown(jestConfig = {}) {
+  const config = await readConfig()
+
+  if (config.connect) {
+    await browser.disconnect()
+  } else {
+    await browser.close()
+  }
+
   if (!jestConfig.watch && !jestConfig.watchAll) {
     await teardownServer()
-
-    const config = await readConfig()
-    if (config.connect) {
-      await browser.disconnect()
-    } else {
-      await browser.close()
-    }
   }
 }
