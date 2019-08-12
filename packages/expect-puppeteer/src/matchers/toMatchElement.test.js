@@ -1,25 +1,53 @@
+function waitForFrame(page) {
+  let fulfill
+  const promise = new Promise(resolve => {
+    fulfill = resolve
+  })
+  function checkFrame() {
+    const frame = page.frames().find(f => f.parentFrame() !== null)
+    if (frame) fulfill(frame)
+    else page.once(`frameattached`, checkFrame)
+  }
+  checkFrame()
+  return promise
+}
 describe('toMatchElement', () => {
   beforeEach(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe('Page', () => {
+  describe.each(['Page', 'Frame'])('%s', type => {
+    let currentPage
+    beforeEach(async () => {
+      if (type === `Page`) {
+        currentPage = page
+        return
+      }
+      await page.goto(
+        `http://localhost:${process.env.TEST_SERVER_PORT}/frame.html`,
+      )
+      currentPage = await waitForFrame(page)
+    })
     it('should match using selector', async () => {
-      const element = await expect(page).toMatchElement('a[href="/page2.html"]')
+      const element = await expect(currentPage).toMatchElement(
+        'a[href="/page2.html"]',
+      )
       const textContentProperty = await element.getProperty('textContent')
       const textContent = await textContentProperty.jsonValue()
       expect(textContent).toBe('Page 2')
     })
 
     it('should match using text (string)', async () => {
-      const element = await expect(page).toMatchElement('a', { text: 'Page 2' })
+      const element = await expect(currentPage).toMatchElement('a', {
+        text: 'Page 2',
+      })
       const textContentProperty = await element.getProperty('textContent')
       const textContent = await textContentProperty.jsonValue()
       expect(textContent).toBe('Page 2')
     })
 
     it('should match using text (RegExp)', async () => {
-      const element = await expect(page).toMatchElement('a', {
+      const element = await expect(currentPage).toMatchElement('a', {
         text: /Page\s2/,
       })
       const textContentProperty = await element.getProperty('textContent')
@@ -31,7 +59,7 @@ describe('toMatchElement', () => {
       expect.assertions(3)
 
       try {
-        await expect(page).toMatchElement('a', { text: 'Nop' })
+        await expect(currentPage).toMatchElement('a', { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
         expect(error.message).toMatch('waiting for function failed')
@@ -41,29 +69,34 @@ describe('toMatchElement', () => {
     it('should match using visible options', async () => {
       expect.assertions(11)
 
-      const normalElement = await expect(page).toMatchElement('.normal', {
-        visible: true,
-      })
+      const normalElement = await expect(currentPage).toMatchElement(
+        '.normal',
+        {
+          visible: true,
+        },
+      )
       const textContentProperty = await normalElement.getProperty('textContent')
       const textContent = await textContentProperty.jsonValue()
       expect(textContent).toBe('normal element')
 
       try {
-        await expect(page).toMatchElement('.hidden', { visible: true })
+        await expect(currentPage).toMatchElement('.hidden', { visible: true })
       } catch (error) {
         expect(error.message).toMatch('Element .hidden not found')
         expect(error.message).toMatch('waiting for function failed')
       }
 
       try {
-        await expect(page).toMatchElement('.displayed', { visible: true })
+        await expect(currentPage).toMatchElement('.displayed', {
+          visible: true,
+        })
       } catch (error) {
         expect(error.message).toMatch('Element .displayed not found')
         expect(error.message).toMatch('waiting for function failed')
       }
 
       try {
-        await expect(page).toMatchElement('.displayedWithClassname', {
+        await expect(currentPage).toMatchElement('.displayedWithClassname', {
           visible: true,
         })
       } catch (error) {

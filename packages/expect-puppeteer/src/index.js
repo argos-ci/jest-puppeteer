@@ -77,6 +77,7 @@ function expectPuppeteer(actual) {
   const type = getPuppeteerType(actual)
   switch (type) {
     case 'Page':
+    case 'Frame':
       return internalExpect(actual, pageMatchers)
     case 'ElementHandle':
       return internalExpect(actual, elementHandleMatchers)
