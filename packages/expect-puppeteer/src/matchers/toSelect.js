@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import toMatchElement from './toMatchElement'
+import { getContext } from '../utils'
 
 function select(page, element, value) {
   return page.evaluate(
@@ -48,7 +49,7 @@ async function toSelect(instance, selector, valueOrText, options) {
   if (!option) {
     throw new Error(`Option not found "${selector}" ("${valueOrText}")`)
   }
-
+  const { page } = await getContext(instance, () => document)
   await select(page, element, option.value)
 
   // await page.select(selector, foundValue)
