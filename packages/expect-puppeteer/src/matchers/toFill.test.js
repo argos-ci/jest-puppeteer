@@ -1,9 +1,15 @@
+import { setupPage } from './setupPage'
+
 describe('toFill', () => {
   beforeEach(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe('Page', () => {
+  describe.each(['Page', 'Frame'])('%s', pageType => {
+    let page
+    setupPage(pageType, ({ currentPage }) => {
+      page = currentPage
+    })
     it('should fill input', async () => {
       await expect(page).toFill('[name="firstName"]', 'James')
       const value = await page.evaluate(
