@@ -119,17 +119,43 @@ class PuppeteerEnvironment extends NodeEnvironment {
            * Since this is a new browser, browserContexts() will return only one instance
            * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserbrowsercontexts
            */
-          this.global.context = await this.global.browser.browserContexts()[0]
+          this.global.context = await this.global.browser.browserContexts()[0];
         } else {
           throw new Error(
             `browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`,
           )
         }
-        await this.global.jestPuppeteer.resetPage()
+        if (config.keepTabOpen != 'true') {
+          await this.global.jestPuppeteer.resetPage()
+        }
+      },
+      keepTabOpened: async () => {
+        if (config.browserContext === 'incognito') {
+          this.global.context = await this.global.browser.createIncognitoBrowserContext();
+        } else
+          if (config.browserContext === 'default' || !config.browserContext) {
+            this.global.context = await this.global.browser.browserContexts()[0];
+            if (config.keepTabOpen === 'true') {
+              const list = await this.global.browser.pages();
+              if (list.length < 2) {
+                this.global.page = await this.global.context.newPage();
+              }
+              else {
+                this.global.page = list[1];
+              }
+            }
+          }
+          else {
+            throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
+          }
       },
     }
-
-    await this.global.jestPuppeteer.resetBrowser()
+    if (config.keepTabOpen != 'true') {
+      await this.global.jestPuppeteer.resetBrowser()
+    }
+    else {
+      await this.global.jestPuppeteer.keepTabOpened()
+    }
   }
 
   async teardown() {
@@ -138,17 +164,18 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-
-    if (puppeteerConfig.browserContext === 'incognito') {
-      if (context) {
-        await context.close()
+    if (config.keepTabOpen != 'true') {
+      if (puppeteerConfig.browserContext === 'incognito') {
+        if (context) {
+          await context.close()
+        }
+      } else if (page) {
+        await page.close()
       }
-    } else if (page) {
-      await page.close()
-    }
 
-    if (browser) {
-      await browser.disconnect()
+      if (browser) {
+        await browser.disconnect()
+      }
     }
   }
 }
