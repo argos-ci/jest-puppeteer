@@ -125,7 +125,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
             `browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`,
           )
         }
-        if (config.keepTabOpen != 'true') {
+        if (config.keepTabOpen !== 'true') {
           await this.global.jestPuppeteer.resetPage()
         }
       },
@@ -137,11 +137,12 @@ class PuppeteerEnvironment extends NodeEnvironment {
             this.global.context = await this.global.browser.browserContexts()[0];
             if (config.keepTabOpen === 'true') {
               const list = await this.global.browser.pages();
+              var [pageOne,pageTwo] = await this.global.browser.pages();
               if (list.length < 2) {
                 this.global.page = await this.global.context.newPage();
               }
               else {
-                this.global.page = list[1];
+                this.global.page = pageTwo;
               }
             }
           }
@@ -150,7 +151,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
           }
       },
     }
-    if (config.keepTabOpen != 'true') {
+    if (config.keepTabOpen !== 'true') {
       await this.global.jestPuppeteer.resetBrowser()
     }
     else {
@@ -164,7 +165,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-    if (config.keepTabOpen != 'true') {
+    if (config.keepTabOpen !== 'true') {
       if (puppeteerConfig.browserContext === 'incognito') {
         if (context) {
           await context.close()
