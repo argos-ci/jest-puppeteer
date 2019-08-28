@@ -136,8 +136,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
           if (config.browserContext === 'default' || !config.browserContext) {
             this.global.context = await this.global.browser.browserContexts()[0];
             if (config.keepTabOpen === 'true') {
-              let [,pageTwo] = await this.global.browser.pages();
-              if (list.length < 2) {
+              const [pageOne,pageTwo] = await this.global.browser.pages();
+              if ([pageOne,pageTwo].length < 2) {
                 this.global.page = await this.global.context.newPage();
               }
               else {
