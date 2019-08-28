@@ -136,8 +136,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
           if (config.browserContext === 'default' || !config.browserContext) {
             this.global.context = await this.global.browser.browserContexts()[0];
             if (config.keepTabOpen === 'true') {
-              const list = await this.global.browser.pages();
-              var [pageOne,pageTwo] = await this.global.browser.pages();
+              let [,pageTwo] = await this.global.browser.pages();
               if (list.length < 2) {
                 this.global.page = await this.global.context.newPage();
               }
@@ -160,7 +159,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    const { page, context, browser, puppeteerConfig } = this.global
+    const { page, context, browser, puppeteerConfig, config } = this.global
 
     if (page) {
       page.removeListener('pageerror', handleError)
