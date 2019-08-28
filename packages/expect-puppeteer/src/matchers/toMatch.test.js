@@ -1,9 +1,15 @@
+import { setupPage } from './setupPage'
+
 describe('toMatch', () => {
   beforeEach(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe('Page', () => {
+  describe.each(['Page', 'Frame'])('%s', pageType => {
+    let page
+    setupPage(pageType, ({ currentPage }) => {
+      page = currentPage
+    })
     it('should be ok if text is in the page', async () => {
       await expect(page).toMatch('This is home!')
     })

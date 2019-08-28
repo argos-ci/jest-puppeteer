@@ -1,9 +1,15 @@
+import { setupPage } from './setupPage'
+
 describe('toMatchElement', () => {
   beforeEach(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe('Page', () => {
+  describe.each(['Page', 'Frame'])('%s', pageType => {
+    let page
+    setupPage(pageType, ({ currentPage }) => {
+      page = currentPage
+    })
     it('should match using selector', async () => {
       const element = await expect(page).toMatchElement('a[href="/page2.html"]')
       const textContentProperty = await element.getProperty('textContent')
@@ -12,7 +18,9 @@ describe('toMatchElement', () => {
     })
 
     it('should match using text (string)', async () => {
-      const element = await expect(page).toMatchElement('a', { text: 'Page 2' })
+      const element = await expect(page).toMatchElement('a', {
+        text: 'Page 2',
+      })
       const textContentProperty = await element.getProperty('textContent')
       const textContent = await textContentProperty.jsonValue()
       expect(textContent).toBe('Page 2')
@@ -56,7 +64,9 @@ describe('toMatchElement', () => {
       }
 
       try {
-        await expect(page).toMatchElement('.displayed', { visible: true })
+        await expect(page).toMatchElement('.displayed', {
+          visible: true,
+        })
       } catch (error) {
         expect(error.message).toMatch('Element .displayed not found')
         expect(error.message).toMatch('waiting for function failed')
