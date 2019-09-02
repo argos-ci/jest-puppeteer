@@ -7,6 +7,8 @@ const handleError = error => {
   process.emit('uncaughtException', error)
 }
 
+var browserEstablishment = true;
+
 const KEYS = {
   CONTROL_C: '\u0003',
   CONTROL_D: '\u0004',
@@ -128,22 +130,23 @@ class PuppeteerEnvironment extends NodeEnvironment {
         await this.global.jestPuppeteer.resetPage()
       },
       keepTabOpened: async () => {
-        
-        if (this.global.page) {
-          this.global.page.removeListener('pageerror', handleError)
-        }
-        if (config.browserContext === 'incognito' && this.global.context) {
-          await this.global.context.close()
-        } else if (this.global.page) {
-          await this.global.page.close()
-        }
-        this.global.page = null
+        if (browserEstablishment === true) {
+          if (this.global.page) {
+            this.global.page.removeListener('pageerror', handleError)
+          }
+          if (config.browserContext === 'incognito' && this.global.context) {
+            await this.global.context.close()
+          } else if (this.global.page) {
+            await this.global.page.close()
+          }
+          this.global.page = null
 
-        if (this.global.browser) {
-          await this.global.browser.disconnect()
+          if (this.global.browser) {
+            await this.global.browser.disconnect()
+          }
+          browserEstablishment = false;
         }
-
-        this.global.browser = await puppeteer.connect({
+        this.global.browser = await puppeteer.default.connect({
           ...config.connect,
           ...config.launch,
           browserURL: undefined,
