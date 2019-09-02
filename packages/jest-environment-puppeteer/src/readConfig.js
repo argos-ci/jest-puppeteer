@@ -10,6 +10,7 @@ const DEFAULT_CONFIG = {
   launch: {},
   browser: 'chromium',
   browserContext: 'default',
+  keepTabOpen: 'false',
   exitOnPageError: true,
 }
 const DEFAULT_CONFIG_CI = merge(DEFAULT_CONFIG, {
