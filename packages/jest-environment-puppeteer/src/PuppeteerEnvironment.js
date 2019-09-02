@@ -155,12 +155,12 @@ class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    const { page, context, browser, puppeteerConfig, config } = this.global
+    const { page, context, browser, puppeteerConfig } = this.global
 
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-    if (config.keepTabOpen !== 'true') {
+    if (puppeteerConfig.keepTabOpen !== 'true') {
       if (puppeteerConfig.browserContext === 'incognito') {
         if (context) {
           await context.close()
