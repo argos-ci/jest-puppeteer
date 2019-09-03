@@ -130,22 +130,6 @@ class PuppeteerEnvironment extends NodeEnvironment {
         await this.global.jestPuppeteer.resetPage()
       },
       keepTabOpened: async () => {
-        if (browserEstablishment === true) {
-          if (this.global.page) {
-            this.global.page.removeListener('pageerror', handleError)
-          }
-          if (config.browserContext === 'incognito' && this.global.context) {
-            await this.global.context.close()
-          } else if (this.global.page) {
-            await this.global.page.close()
-          }
-          this.global.page = null
-
-          if (this.global.browser) {
-            await this.global.browser.disconnect()
-          }
-          browserEstablishment = false;
-        }
 
         this.global.browser = await puppeteer.connect({
           ...config.connect,
