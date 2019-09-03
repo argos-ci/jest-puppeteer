@@ -146,7 +146,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
           }
           browserEstablishment = false;
         }
-        this.global.browser = await puppeteer.default.connect({
+
+        this.global.browser = await puppeteer.connect({
           ...config.connect,
           ...config.launch,
           browserURL: undefined,
