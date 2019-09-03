@@ -7,7 +7,7 @@ const handleError = error => {
   process.emit('uncaughtException', error)
 }
 
-var browserEstablishment = true;
+let browserEstablishment = true;
 
 const KEYS = {
   CONTROL_C: '\u0003',
