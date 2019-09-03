@@ -7,8 +7,6 @@ const handleError = error => {
   process.emit('uncaughtException', error)
 }
 
-let browserEstablishment = true;
-
 const KEYS = {
   CONTROL_C: '\u0003',
   CONTROL_D: '\u0004',
@@ -121,7 +119,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
            * Since this is a new browser, browserContexts() will return only one instance
            * https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browserbrowsercontexts
            */
-          this.global.context = await this.global.browser.browserContexts()[0];
+          this.global.context = await this.global.browser.browserContexts()[0]
         } else {
           throw new Error(
             `browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`,
