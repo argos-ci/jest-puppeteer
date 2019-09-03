@@ -151,7 +151,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
           ...config.launch,
           browserURL: undefined,
           browserWSEndpoint: wsEndpoint,
-        })
+        });
 
         if (config.browserContext === 'incognito') {
           this.global.context = await this.global.browser.createIncognitoBrowserContext();
