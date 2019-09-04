@@ -35,33 +35,6 @@ class PuppeteerEnvironment extends NodeEnvironment {
       throw new Error('wsEndpoint not found')
     }
 
-    if (config.keepTabOpen === true) {
-      
-      this.global.browser = await puppeteer.connect({
-        ...config.connect,
-        ...config.launch,
-        browserURL: undefined,
-        browserWSEndpoint: wsEndpoint,
-      });
-
-      if (config.browserContext === 'incognito') {
-        this.global.context = await this.global.browser.createIncognitoBrowserContext();
-      } else
-        if (config.browserContext === 'default' || !config.browserContext) {
-          this.global.context = await this.global.browser.browserContexts()[0];
-          const [, pageTwo] = await this.global.browser.pages();
-          if (pageTwo === undefined) {
-            this.global.page = await this.global.context.newPage();
-          }
-          else {
-            this.global.page = pageTwo;
-          }
-        }
-        else {
-          throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
-        }
-     }
-
     this.global.jestPuppeteer = {
       debug: async () => {
         // eslint-disable-next-line no-eval
@@ -154,10 +127,51 @@ class PuppeteerEnvironment extends NodeEnvironment {
         }
         await this.global.jestPuppeteer.resetPage()
       },
-    }
+      keepTabOpened: async () => {
+          if (this.global.page) {
+            this.global.page.removeListener('pageerror', handleError)
+          }
+          if (config.browserContext === 'incognito' && this.global.context) {
+            await this.global.context.close()
+          } else if (this.global.page) {
+            await this.global.page.close()
+          }
+          this.global.page = null
 
+          if (this.global.browser) {
+            await this.global.browser.disconnect()
+          }
+
+        this.global.browser = await puppeteer.connect({
+          ...config.connect,
+          ...config.launch,
+          browserURL: undefined,
+          browserWSEndpoint: wsEndpoint,
+        });
+
+        if (config.browserContext === 'incognito') {
+          this.global.context = await this.global.browser.createIncognitoBrowserContext();
+        } else
+          if (config.browserContext === 'default' || !config.browserContext) {
+            this.global.context = await this.global.browser.browserContexts()[0];
+            const [, pageTwo] = await this.global.browser.pages();
+            if (pageTwo === undefined) {
+              this.global.page = await this.global.context.newPage();
+            }
+            else {
+              this.global.page = pageTwo;
+            }
+          }
+          else {
+            throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
+          }
+      },
+    }
     if (config.keepTabOpen === false) {
       await this.global.jestPuppeteer.resetBrowser()
+    }
+    else {
+      await this.global.jestPuppeteer.keepTabOpened()
     }
   }
 
