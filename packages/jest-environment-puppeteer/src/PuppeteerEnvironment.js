@@ -167,6 +167,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
           else {
             throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
           }
+        }
       },
     }
     if (config.keepTabOpen === false) {
