@@ -157,6 +157,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
             const [, pageTwo] = await this.global.browser.pages();
             if (pageTwo === undefined) {
               this.global.page = await this.global.context.newPage();
+              if (config && config.exitOnPageError) {
+                this.global.page.addListener('pageerror', handleError)
             }
             else {
               this.global.page = pageTwo;
