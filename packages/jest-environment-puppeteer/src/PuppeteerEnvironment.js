@@ -128,19 +128,19 @@ class PuppeteerEnvironment extends NodeEnvironment {
         await this.global.jestPuppeteer.resetPage()
       },
       keepTabOpened: async () => {
-          if (this.global.page) {
-            this.global.page.removeListener('pageerror', handleError)
-          }
-          if (config.browserContext === 'incognito' && this.global.context) {
-            await this.global.context.close()
-          } else if (this.global.page) {
-            await this.global.page.close()
-          }
-          this.global.page = null
+        if (this.global.page) {
+          this.global.page.removeListener('pageerror', handleError)
+        }
+        if (config.browserContext === 'incognito' && this.global.context) {
+          await this.global.context.close()
+        } else if (this.global.page) {
+          await this.global.page.close()
+        }
+        this.global.page = null
 
-          if (this.global.browser) {
-            await this.global.browser.disconnect()
-          }
+        if (this.global.browser) {
+          await this.global.browser.disconnect()
+        }
 
         this.global.browser = await puppeteer.connect({
           ...config.connect,
@@ -159,15 +159,15 @@ class PuppeteerEnvironment extends NodeEnvironment {
               this.global.page = await this.global.context.newPage();
               if (config && config.exitOnPageError) {
                 this.global.page.addListener('pageerror', handleError)
-            }
-            else {
-              this.global.page = pageTwo;
+              }
+              else {
+                this.global.page = pageTwo;
+              }
             }
           }
           else {
             throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
           }
-        }
       },
     }
     if (config.keepTabOpen === false) {
