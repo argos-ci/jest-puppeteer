@@ -160,10 +160,11 @@ class PuppeteerEnvironment extends NodeEnvironment {
               if (config && config.exitOnPageError) {
                 this.global.page.addListener('pageerror', handleError)
               }
-              else {
-                this.global.page = pageTwo;
-              }
             }
+            else {
+              this.global.page = pageTwo;
+            }
+
           }
           else {
             throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
