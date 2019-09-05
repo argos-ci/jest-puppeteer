@@ -151,20 +151,24 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
         if (config.browserContext === 'incognito') {
           this.global.context = await this.global.browser.createIncognitoBrowserContext();
+          this.global.context = await this.global.browser.browserContexts()[0];
+          const [,pageTwo] = await this.global.browser.pages();
+          if (pageTwo === undefined) {
+            this.global.page = await this.global.context.newPage();
+          }
+          else {
+            this.global.page = pageTwo;
+          }
         } else
           if (config.browserContext === 'default' || !config.browserContext) {
             this.global.context = await this.global.browser.browserContexts()[0];
             const [, pageTwo] = await this.global.browser.pages();
             if (pageTwo === undefined) {
               this.global.page = await this.global.context.newPage();
-              if (config && config.exitOnPageError) {
-                this.global.page.addListener('pageerror', handleError)
-              }
-            }
+              }         
             else {
               this.global.page = pageTwo;
             }
-
           }
           else {
             throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
