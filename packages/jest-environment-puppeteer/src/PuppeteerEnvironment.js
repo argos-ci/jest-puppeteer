@@ -179,7 +179,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-    if (puppeteerConfig.keepTabOpen !== 'true') {
+    if (puppeteerConfig.keepTabOpen !== true) {
       if (context && puppeteerConfig.browserContext === 'default') {
         await context.close()
       }
