@@ -151,9 +151,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
         if (config.browserContext === 'incognito') {
           this.global.context = await this.global.browser.createIncognitoBrowserContext();
-          this.global.context = await this.global.browser.browserContexts()[0];
-          const [pageOne,] = await this.global.browser.pages();
-          this.global.page = pageOne;
+          await this.global.jestPuppeteer.resetPage()
         } else
           if (config.browserContext === 'default' || !config.browserContext) {
             this.global.context = await this.global.browser.browserContexts()[0];
@@ -179,8 +177,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-    if (puppeteerConfig.keepTabOpen !== true) {
-      if (context && puppeteerConfig.browserContext === 'default') {
+    if (puppeteerConfig.keepTabOpen !== true || puppeteerConfig.browserContext === 'incognito') {
+      if (context) {
         await context.close()
       }
       else if (page) {
