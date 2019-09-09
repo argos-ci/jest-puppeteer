@@ -152,23 +152,13 @@ class PuppeteerEnvironment extends NodeEnvironment {
         if (config.browserContext === 'incognito') {
           this.global.context = await this.global.browser.createIncognitoBrowserContext();
           this.global.context = await this.global.browser.browserContexts()[0];
-          const [,pageTwo] = await this.global.browser.pages();
-          if (pageTwo === undefined) {
-            this.global.page = await this.global.context.newPage();
-          }
-          else {
-            this.global.page = pageTwo;
-          }
+          const [pageOne,] = await this.global.browser.pages();
+          this.global.page = pageOne;
         } else
           if (config.browserContext === 'default' || !config.browserContext) {
             this.global.context = await this.global.browser.browserContexts()[0];
-            const [, pageTwo] = await this.global.browser.pages();
-            if (pageTwo === undefined) {
-              this.global.page = await this.global.context.newPage();
-              }         
-            else {
-              this.global.page = pageTwo;
-            }
+            const [pageOne,] = await this.global.browser.pages();
+            this.global.page = pageOne;
           }
           else {
             throw new Error(`browserContext should be either 'incognito' or 'default'. Received '${config.browserContext}'`);
@@ -189,15 +179,13 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-    if (puppeteerConfig.keepTabOpen === false) {
-      if (puppeteerConfig.browserContext === 'incognito') {
-        if (context) {
-          await context.close()
-        }
-      } else if (page) {
+    if (puppeteerConfig.keepTabOpen !== 'true') {
+      if (context && puppeteerConfig.browserContext === 'default') {
+        await context.close()
+      }
+      else if (page) {
         await page.close()
       }
-
       if (browser) {
         await browser.disconnect()
       }
