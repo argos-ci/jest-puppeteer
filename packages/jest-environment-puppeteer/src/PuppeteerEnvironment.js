@@ -177,7 +177,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (page) {
       page.removeListener('pageerror', handleError)
     }
-    if (puppeteerConfig.keepTabOpen !== true || puppeteerConfig.browserContext === 'incognito') {
+    if (puppeteerConfig.browserContext === 'incognito') {
       if (context) {
         await context.close()
       }
