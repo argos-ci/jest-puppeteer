@@ -20,8 +20,6 @@ export async function setup(jestConfig = {}) {
   }
   process.env.PUPPETEER_WS_ENDPOINT = browser.wsEndpoint()
 
-  if (jestConfig.watch || jestConfig.watchAll) return
-
   if (config.server) {
     try {
       await setupServer(config.server)
@@ -60,7 +58,5 @@ export async function teardown(jestConfig = {}) {
     await browser.close()
   }
 
-  if (!jestConfig.watch && !jestConfig.watchAll) {
-    await teardownServer()
-  }
+  await teardownServer()
 }
