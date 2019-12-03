@@ -10,6 +10,8 @@ import { readConfig, getPuppeteer } from './readConfig'
 
 let browser
 
+let didAlreadyRunInWatchMode = false
+
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
   const puppeteer = getPuppeteer(config)
@@ -20,7 +22,11 @@ export async function setup(jestConfig = {}) {
   }
   process.env.PUPPETEER_WS_ENDPOINT = browser.wsEndpoint()
 
-  if (jestConfig.watch || jestConfig.watchAll) return
+  // If we are in watch mode, - only setupServer() once.
+  if (jestConfig.watch || jestConfig.watchAll) {
+    if (didAlreadyRunInWatchMode) return
+    didAlreadyRunInWatchMode = true
+  }
 
   if (config.server) {
     try {
