@@ -18,12 +18,12 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "cwd": "^0.10.0",
-    "find-process": "^1.4.2",
-    "prompts": "^2.1.0",
+    "find-process": "^1.4.3",
+    "prompts": "^2.3.0",
     "spawnd": "^4.0.0",
-    "tree-kill": "^1.2.1",
+    "tree-kill": "^1.2.2",
     "wait-on": "^3.3.0"
   }
 }
