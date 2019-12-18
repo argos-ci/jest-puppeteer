@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/smooth-code/jest-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
+
+
+### Bug Fixes
+
+* fix toDisplayDialog ([ce9df04](https://github.com/smooth-code/jest-puppeteer/commit/ce9df04642720a6af23e9b25f1b341bc82eca564))
+* fixes --watch mode server start&restarts ([#299](https://github.com/smooth-code/jest-puppeteer/issues/299)) ([d49a6a1](https://github.com/smooth-code/jest-puppeteer/commit/d49a6a127cf636ef398609f565dff5f537c80532))
+* only call setRawMode if stdin is TTY ([#301](https://github.com/smooth-code/jest-puppeteer/issues/301)) ([61d04c7](https://github.com/smooth-code/jest-puppeteer/commit/61d04c7e54908c2d662152cc0840b121742437fb))
+* teardown browser in watch mode. ([#270](https://github.com/smooth-code/jest-puppeteer/issues/270)) ([04de87a](https://github.com/smooth-code/jest-puppeteer/commit/04de87ae34c2b4be65d0a18e89252304b21d6255))
+
+
+### Features
+
+* increase peerDependencies to allow Puppeteer v2 ([#289](https://github.com/smooth-code/jest-puppeteer/issues/289)) ([62a9b81](https://github.com/smooth-code/jest-puppeteer/commit/62a9b819cebf67d7e7b36453b79fba06390585ca))
+* **expect-puppeteer:** support frames ([#275](https://github.com/smooth-code/jest-puppeteer/issues/275)) ([09703ea](https://github.com/smooth-code/jest-puppeteer/commit/09703eaeeeab553e13142153b55030db05611f7c))
+
+
+
+
+
 # [4.3.0](https://github.com/smooth-code/jest-puppeteer/compare/v4.2.0...v4.3.0) (2019-07-14)
 
 

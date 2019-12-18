@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
+
+
+### Bug Fixes
+
+* fixes --watch mode server start&restarts ([#299](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/299)) ([d49a6a1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/d49a6a127cf636ef398609f565dff5f537c80532))
+* only call setRawMode if stdin is TTY ([#301](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/301)) ([61d04c7](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/61d04c7e54908c2d662152cc0840b121742437fb))
+* teardown browser in watch mode. ([#270](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/270)) ([04de87a](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/04de87ae34c2b4be65d0a18e89252304b21d6255))
+
+
+
+
+
 # [4.3.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.2.0...v4.3.0) (2019-07-14)
 
 

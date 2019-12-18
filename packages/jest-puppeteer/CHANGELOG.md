@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
+
+
+### Features
+
+* increase peerDependencies to allow Puppeteer v2 ([#289](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/issues/289)) ([62a9b81](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/commit/62a9b819cebf67d7e7b36453b79fba06390585ca))
+
+
+
+
+
 # [4.3.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v4.2.0...v4.3.0) (2019-07-14)
 
 **Note:** Version bump only for package jest-puppeteer
