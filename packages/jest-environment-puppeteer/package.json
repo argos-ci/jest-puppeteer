@@ -21,7 +21,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "cwd": "^0.10.0",
     "jest-dev-server": "^4.3.0",
     "merge-deep": "^3.0.2"
