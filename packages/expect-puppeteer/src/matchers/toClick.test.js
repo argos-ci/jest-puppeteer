@@ -12,14 +12,14 @@ describe('toClick', () => {
     })
     it('should click using selector', async () => {
       await expect(page).toClick('a[href="/page2.html"]')
-      await page.waitForSelector('html')
+      await page.waitForNavigation()
       const pathname = await page.evaluate(() => document.location.pathname)
       expect(pathname).toBe('/page2.html')
     })
 
     it('should click using text', async () => {
       await expect(page).toClick('a', { text: 'Page 2' })
-      await page.waitForSelector('html')
+      await page.waitForNavigation()
       const pathname = await page.evaluate(() => document.location.pathname)
       expect(pathname).toBe('/page2.html')
     })

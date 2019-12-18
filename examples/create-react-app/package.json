@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "jest-puppeteer": "^4.2.0",
-    "puppeteer": "^1.18.1"
+    "puppeteer": "^2.0.0"
   },
   "browserslist": {
     "development": [
