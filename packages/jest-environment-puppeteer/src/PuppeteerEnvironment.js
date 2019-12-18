@@ -60,7 +60,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
             ) {
               stdin.removeListener('data', onKeyPress)
               if (!listening) {
-                stdin.setRawMode(false)
+                if (stdin.isTTY) {
+                  stdin.setRawMode(false)
+                }
                 stdin.pause()
               }
               resolve()
@@ -68,7 +70,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
           }
           const listening = stdin.listenerCount('data') > 0
           if (!listening) {
-            stdin.setRawMode(true)
+            if (stdin.isTTY) {
+              stdin.setRawMode(true)
+            }
             stdin.resume()
             stdin.setEncoding('utf8')
           }
