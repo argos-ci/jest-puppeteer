@@ -79,7 +79,7 @@ await page.toClick('button', { text: 'My button' })
 Expect an element to be in the page or element, then click on it.
 
 - `instance` <[Page]|[ElementHandle]> Context
-- `selector` <[string]> A [selector] to click on
+- `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to click on.
 - `options` <[Object]> Optional parameters
   - `button` <"left"|"right"|"middle"> Defaults to `left`.
   - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
@@ -88,6 +88,7 @@ Expect an element to be in the page or element, then click on it.
 
 ```js
 await expect(page).toClick('button', { text: 'Home' })
+await expect(page).toClick({type:'xpath', value:'\\a'}, { text: 'Click' })
 ```
 
 ### <a name="toDisplayDialog"></a>expect(page).toDisplayDialog(block)
@@ -201,6 +202,15 @@ await expect(page).toUploadFile(
   'input[type="file"]',
   path.join(__dirname, 'file.txt'),
 )
+```
+### <a name="MatchSelector"></a>{type: [string], value: [string]}
+An object used as parameter in order to select an element.
+- `type` <"xpath"|"css"> The type of the selector
+- `value` <[string]> The value of the selector
+
+```js
+{type:'css', value:'form[name="myForm"]'}
+{type:'xpath', value:'.\\a'}
 ```
 
 ## Configure default options
