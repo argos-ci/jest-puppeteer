@@ -7,6 +7,8 @@ async function toMatchElement(
   { text: searchExpr, visible = false, ...options } = {},
 ) {
   options = defaultOptions(options)
+  selector = selector instanceof Object ? { ...selector } : { type: 'css', value: selector };
+
   const { page, handle } = await getContext(instance, () => document)
 
   const { text, regexp } = expandSearchExpr(searchExpr)
@@ -30,7 +32,26 @@ async function toMatchElement(
       return true
     }
 
-    const elements = [...handle.querySelectorAll(selector)].filter(isVisible)
+    let nodes = [];
+    switch (selector.type) {
+      case 'xpath': {
+        const xpathResults = document.evaluate(selector.value, handle)
+        let currentXpathResult = xpathResults.iterateNext();
+
+        while (currentXpathResult) {
+          nodes.push(currentXpathResult)
+          currentXpathResult = xpathResults.iterateNext();
+        }
+        break;
+      }
+      case 'css':
+        nodes = handle.querySelectorAll(selector.value)
+        break;
+      default:
+        throw new Error(`${selector.type} is not implemented`)
+    }
+
+    const elements = [...nodes].filter(isVisible)
     if (regexp !== null) {
       const [, pattern, flags] = regexp.match(/\/(.*)\/(.*)?/)
       return elements.find(({ textContent }) =>
@@ -64,8 +85,8 @@ async function toMatchElement(
   } catch (error) {
     throw enhanceError(
       error,
-      `Element ${selector}${
-        text !== null || regexp !== null ? ` (text: "${text || regexp}") ` : ' '
+      `Element ${selector.value}${
+      text !== null || regexp !== null ? ` (text: "${text || regexp}") ` : ' '
       }not found`,
     )
   }
