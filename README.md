@@ -49,6 +49,8 @@ Update your Jest configuration:
 Use Puppeteer in your tests:
 
 ```js
+import 'expect-puppeteer'
+
 describe('Google', () => {
   beforeAll(async () => {
     await page.goto('https://google.com')
