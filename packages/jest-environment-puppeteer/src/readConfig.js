@@ -1,10 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-import { promisify } from 'util'
-import cwd from 'cwd'
 import merge from 'merge-deep'
+import { loadPackageJSONFile, loadCustomConfig } from './util'
 
-const exists = promisify(fs.exists)
+const PACKAGE_JSON_KEY = 'jestPuppeteerConfig'
 
 const DEFAULT_CONFIG = {
   launch: {},
@@ -31,22 +28,21 @@ export async function readConfig() {
   const hasCustomConfigPath = !!process.env.JEST_PUPPETEER_CONFIG
   const configPath =
     process.env.JEST_PUPPETEER_CONFIG || 'jest-puppeteer.config.js'
-  const absConfigPath = path.resolve(cwd(), configPath)
-  const configExists = await exists(absConfigPath)
+  const packageJsonConfig = (await loadPackageJSONFile())[PACKAGE_JSON_KEY]
+  const customConfigFile = await loadCustomConfig()
+  const customConfig = customConfigFile || packageJsonConfig
 
-  if (hasCustomConfigPath && !configExists) {
+  if (hasCustomConfigPath && !customConfigFile) {
     throw new Error(
-      `Error: Can't find a root directory while resolving a config file path.\nProvided path to resolve: ${configPath}`,
+      `Error: Can't resolve configuration.\nProvided path to resolve a config file path: ${configPath}\nOr "${PACKAGE_JSON_KEY}" in your package.json file.`,
     )
   }
 
-  if (!hasCustomConfigPath && !configExists) {
+  if (!hasCustomConfigPath && !customConfig) {
     return defaultConfig
   }
 
-  // eslint-disable-next-line global-require, import/no-dynamic-require
-  const localConfig = await require(absConfigPath)
-  return merge({}, defaultConfig, localConfig)
+  return merge({}, defaultConfig, customConfig)
 }
 
 export function getPuppeteer(config) {

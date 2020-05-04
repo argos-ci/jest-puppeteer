@@ -354,6 +354,8 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
 - `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
 
+\* Additionally for JSON compatible options, you can specify a `jestPuppeteerConfig` field on your package.json.
+
 #### Example 1
 
 ```js

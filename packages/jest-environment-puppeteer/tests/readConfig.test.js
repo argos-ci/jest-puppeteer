@@ -1,15 +1,31 @@
-import fs from 'fs'
 import path from 'path'
+import cwd from 'cwd'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import pptrChromium from 'puppeteer'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import pptrFirefox from 'puppeteer-firefox'
 import { readConfig, getPuppeteer } from '../src/readConfig'
 
-jest.mock('fs')
+const DEFAULT_CONFIG_PATH = path.resolve(cwd(), 'jest-puppeteer.config.js')
 
-function mockExists(value) {
-  fs.exists.mockImplementation((path, callback) => callback(null, value))
+function mockNonExistentConfig() {
+  jest.mock(DEFAULT_CONFIG_PATH, () => null, {
+    virtual: true,
+  })
+}
+
+function mockReadPackageJSON() {
+  jest.mock(
+    path.resolve(cwd(), 'package.json'),
+    () => ({
+      jestPuppeteerConfig: {
+        args: ['--no-sandbox'],
+      },
+    }),
+    {
+      virtual: true,
+    },
+  )
 }
 
 describe('getPuppeteer', () => {
@@ -38,12 +54,11 @@ describe('readConfig', () => {
     it('should return an error if not found', async () => {
       process.env.JEST_PUPPETEER_CONFIG = 'nop.js'
       expect.assertions(1)
-      mockExists(false)
       try {
         await readConfig()
       } catch (error) {
         expect(error.message).toBe(
-          "Error: Can't find a root directory while resolving a config file path.\nProvided path to resolve: nop.js",
+          'Error: Can\'t resolve configuration.\nProvided path to resolve a config file path: nop.js\nOr "jestPuppeteerConfig" in your package.json file.',
         )
       }
     })
@@ -53,7 +68,6 @@ describe('readConfig', () => {
         __dirname,
         '__fixtures__/customConfig.js',
       )
-      mockExists(true)
       const config = await readConfig()
       expect(config.server).toBeDefined()
     })
@@ -62,22 +76,23 @@ describe('readConfig', () => {
   describe('with default config path', () => {
     beforeEach(() => {
       process.env.JEST_PUPPETEER_CONFIG = ''
+      process.env.CI = false
+      jest.unmock(DEFAULT_CONFIG_PATH)
     })
 
     it('should return custom config', async () => {
-      mockExists(true)
       const config = await readConfig()
       expect(config.server).toBeDefined()
     })
 
     it('should return default config if not found', async () => {
-      mockExists(false)
+      mockNonExistentConfig()
       const config = await readConfig()
       expect(config.server).not.toBeDefined()
     })
 
-    it('should return default config with launch args', async () => {
-      mockExists(false)
+    it('should return only CI default config with launch args', async () => {
+      mockNonExistentConfig()
       process.env.CI = true
       const config = await readConfig()
       expect(config.launch.args).toEqual([
@@ -87,6 +102,20 @@ describe('readConfig', () => {
         '--disable-backgrounding-occluded-windows',
         '--disable-renderer-backgrounding',
       ])
+      expect(config.server).not.toBeDefined()
+    })
+
+    it('should return CI default config merged with custom args', async () => {
+      process.env.CI = true
+      const config = await readConfig()
+      expect(config.launch.args).toEqual([
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-background-timer-throttling',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-renderer-backgrounding',
+      ])
+      expect(config.server).toBeDefined()
     })
   })
 
@@ -96,7 +125,32 @@ describe('readConfig', () => {
         __dirname,
         '__fixtures__/promiseConfig.js',
       )
-      mockExists(true)
+      const config = await readConfig()
+      expect(config.server).toBeDefined()
+    })
+  })
+
+  describe('with package.json config', () => {
+    beforeAll(() => {
+      mockReadPackageJSON()
+    })
+
+    beforeEach(() => {
+      process.env.JEST_PUPPETEER_CONFIG = ''
+      jest.unmock(DEFAULT_CONFIG_PATH)
+    })
+
+    it('should return package.json config', async () => {
+      mockNonExistentConfig()
+      const config = await readConfig()
+      expect(config.args).toMatchObject(['--no-sandbox'])
+    })
+
+    it('should be overridden by custom config', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/promiseConfig.js',
+      )
       const config = await readConfig()
       expect(config.server).toBeDefined()
     })
