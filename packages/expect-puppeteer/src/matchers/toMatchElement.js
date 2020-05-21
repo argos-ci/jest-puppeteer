@@ -4,102 +4,119 @@ import { defaultOptions } from '../options'
 async function toMatchElement(
   instance,
   selector,
-  { text: searchExpr, visible = false, ...options } = {},
+  { text: searchExpr, ...options } = {},
 ) {
   options = defaultOptions(options)
-  selector = selector instanceof Object ? { ...selector } : { type: 'css', value: selector };
+  selector =
+    selector instanceof Object
+      ? { ...selector }
+      : { type: 'css', value: selector }
 
   const { page, handle } = await getContext(instance, () => document)
-
   const { text, regexp } = expandSearchExpr(searchExpr)
 
-  const getElement = (handle, selector, text, regexp, visible) => {
-    function hasVisibleBoundingBox(element) {
-      const rect = element.getBoundingClientRect()
-      return !!(rect.top || rect.bottom || rect.width || rect.height)
-    }
+  try {
+    return await waitForElement(Date.now() + options.timeout)
+  } catch (error) {
+    throw enhanceError(
+      error,
+      `Element ${selector.value}${
+        text !== null || regexp !== null ? ` (text: "${text || regexp}") ` : ' '
+      }not found`,
+    )
+  }
 
-    const isVisible = element => {
-      if (visible) {
+  // Use a custom function that is retried during timeout period instead of
+  // waitForFunction, waitForSelector, etc.
+  //
+  // waitForFunction isn't used because it runs on the browser and would have
+  // to implement custom selector logic. Instead, use Puppeteer query apis
+  // (specifically JSHandle.$$) to get access to improvements made there,
+  // particularly custom selection handlers (registerCustomQueryHandler.)
+  //
+  // waitForSelector can't be used because this needs all elements that match
+  // the selector to check text content, and it only returns the first, which
+  // may match but not have the text we're looking for.
+  async function waitForElement(timeout) {
+    const result = await getElement(handle, selector)
+
+    if (!result && options.hidden) return undefined
+    if (await elementMatchesVisibilityOptions(result)) return result
+
+    if (Date.now() > timeout) throw new Error('waiting for function failed')
+
+    await page.waitFor(30)
+    return waitForElement(timeout)
+  }
+
+  // Check if the element handle matches the given visibility options:
+  // hidden, visible, etc.
+  function elementMatchesVisibilityOptions(result) {
+    if (!result) return false
+    if (result && !options.visible && !options.hidden) return true
+
+    return page.evaluate(
+      (result, waitForVisible, waitForHidden) => {
+        const element =
+          result.nodeType === Node.TEXT_NODE ? result.parentElement : result
+
         const style = window.getComputedStyle(element)
-        return (
-          style &&
-          style.visibility !== 'hidden' &&
-          hasVisibleBoundingBox(element)
-        )
-      }
+        const isVisible =
+          style && style.visibility !== 'hidden' && hasVisibleBoundingBox()
+        const success =
+          waitForVisible === isVisible || waitForHidden === !isVisible
+        return success
 
-      return true
-    }
-
-    let nodes = [];
-    switch (selector.type) {
-      case 'xpath': {
-        const xpathResults = document.evaluate(selector.value, handle)
-        let currentXpathResult = xpathResults.iterateNext();
-
-        while (currentXpathResult) {
-          nodes.push(currentXpathResult)
-          currentXpathResult = xpathResults.iterateNext();
+        function hasVisibleBoundingBox() {
+          const rect = element.getBoundingClientRect()
+          return !!(rect.top || rect.bottom || rect.width || rect.height)
         }
-        break;
-      }
-      case 'css':
-        nodes = handle.querySelectorAll(selector.value)
-        break;
-      default:
-        throw new Error(`${selector.type} is not implemented`)
-    }
+      },
+      result,
+      options.visible,
+      options.hidden,
+    )
+  }
 
-    const elements = [...nodes].filter(isVisible)
-    if (regexp !== null) {
+  // Get element using JSHandle queries so the selector matches exactly to puppeteer $,$$,waitForSelector apis.
+  // Allows toMatchElement to work with custom selector handlers `puppeteer.registerCustomQueryHandler`
+  async function getElement(handle, { type, value: selector }) {
+    const list = await Promise.all(
+      (await handle[type === 'xpath' ? '$x' : '$$'](selector)).map(
+        async handle => {
+          if (text || regexp)
+            return {
+              handle,
+              textContent: await page.evaluate(e => e.textContent, handle),
+            }
+          return { handle }
+        },
+      ),
+    )
+
+    let found = list[0]
+
+    if (regexp) {
       const [, pattern, flags] = regexp.match(/\/(.*)\/(.*)?/)
-      return elements.find(({ textContent }) =>
+      found = list.find(({ textContent }) =>
         textContent
           .replace(/\s+/g, ' ')
           .trim()
           .match(new RegExp(pattern, flags)),
       )
     }
-    if (text !== null) {
-      return elements.find(({ textContent }) =>
+
+    if (text) {
+      found = list.find(({ textContent }) =>
         textContent
           .replace(/\s+/g, ' ')
           .trim()
           .includes(text),
       )
     }
-    return elements[0]
-  }
 
-  try {
-    await page.waitForFunction(
-      getElement,
-      options,
-      handle,
-      selector,
-      text,
-      regexp,
-      visible,
-    )
-  } catch (error) {
-    throw enhanceError(
-      error,
-      `Element ${selector.value}${
-      text !== null || regexp !== null ? ` (text: "${text || regexp}") ` : ' '
-      }not found`,
-    )
+    return found && found.handle
   }
-
-  const jsHandle = await page.evaluateHandle(
-    getElement,
-    handle,
-    selector,
-    text,
-    regexp,
-    visible,
-  )
-  return jsHandle.asElement()
 }
 
 export default toMatchElement

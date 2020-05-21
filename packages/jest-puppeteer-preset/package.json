@@ -14,7 +14,7 @@
     "chrome-headless"
   ],
   "peerDependencies": {
-    "puppeteer": ">= 1.5.0 < 3"
+    "puppeteer": ">= 1.5.0 <= 3"
   },
   "dependencies": {
     "expect-puppeteer": "^4.4.0",

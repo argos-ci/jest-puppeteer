@@ -83,6 +83,20 @@ describe('toMatchElement', () => {
         expect(error.message).toMatch('waiting for function failed')
       }
     })
+
+    it('should match using hidden options', async () => {
+      const normalElement = await expect(page).toMatchElement(
+        '.normalUntilClick',
+        {
+          visible: true,
+        },
+      )
+      const textContentProperty = await normalElement.getProperty('textContent')
+      const textContent = await textContentProperty.jsonValue()
+      expect(textContent).toBe('normalUntilClick element')
+      await expect(page).toClick('.normalUntilClick')
+      await expect(page).toMatchElement('.normalUntilClick', { hidden: true })
+    })
   })
 
   describe('ElementHandle', () => {

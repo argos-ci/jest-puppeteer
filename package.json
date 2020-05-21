@@ -42,7 +42,7 @@
     "lerna": "^3.19.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "puppeteer": "^2.0.0",
+    "puppeteer": "^3.1.0",
     "puppeteer-firefox": "^0.5.0"
   },
   "dependencies": {}

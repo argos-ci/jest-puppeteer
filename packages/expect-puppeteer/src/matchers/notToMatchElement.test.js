@@ -36,6 +36,31 @@ describe('not.toMatchElement', () => {
       await expect(main).not.toMatchElement('main')
     })
 
+    it('should not match using xpath selector', async () => {
+      await expect(page).not.toMatchElement({
+        value: '//a[contains(@href,"/page3.html")]',
+        type: 'xpath',
+      })
+    })
+
+    it('should not match hidden', async () => {
+      expect.assertions(4)
+
+      await expect(page).not.toMatchElement('.displayedWithClassname', {
+        visible: true,
+      })
+      try {
+        await expect(page).toMatchElement('.displayedWithClassname', {
+          visible: true,
+        })
+      } catch (error) {
+        expect(error.message).toMatch(
+          'Element .displayedWithClassname not found',
+        )
+        expect(error.message).toMatch('waiting for function failed')
+      }
+    })
+
     it('should match using text', async () => {
       const main = await page.$('main')
       await expect(main).not.toMatchElement('div', { text: 'Nothing here' })

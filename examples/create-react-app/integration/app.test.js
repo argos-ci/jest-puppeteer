@@ -13,6 +13,10 @@ describe('app', () => {
     await expect(page).toMatchElement('.App-button', { text: 'Get Started' })
   })
 
+  it('should match elements with text using custom selector defined in jest.globalSetup', async () => {
+    await expect(page).toMatchElement('hasText/Get Started')
+  })
+
   it('should match a input with a "textInput" name then fill it with text', async () => {
     await expect(page).toFill('input[name="textInput"]', 'James')
   })

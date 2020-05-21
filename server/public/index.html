@@ -6,6 +6,7 @@
   <title>Test App</title>
 </head>
 <style>
+  .hideOnClick,
   .displayedWithClassname {
     display: none;
   }
@@ -34,6 +35,7 @@
     <div style="display: none" class="displayed">displayed element</div>
     <div class="displayedWithClassname">displayed element</div>
     <div class="normal">normal element</div>
+    <div class="normalUntilClick" onclick="event.target.className='hideOnClick'">normalUntilClick element</div>
   </main>
 </body>
 

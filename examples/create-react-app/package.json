@@ -16,8 +16,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "jest-puppeteer": "^4.2.0",
-    "puppeteer": "^2.0.0"
+    "expect-puppeteer": "file:../../packages/expect-puppeteer",
+    "jest-dev-server": "file:../../packages/jest-dev-server",
+    "jest-environment-puppeteer": "file:../../packages/jest-environment-puppeteer",
+    "jest-puppeteer": "file:../../packages/jest-puppeteer",
+    "jest-puppeteer-preset": "file:../../packages/jest-puppeteer-preset",
+    "puppeteer": "^3.0.3"
   },
   "browserslist": {
     "development": [

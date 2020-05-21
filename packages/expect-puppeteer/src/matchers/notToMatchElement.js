@@ -1,32 +1,25 @@
-import { getContext, enhanceError } from '../utils'
+import { enhanceError } from '../utils'
 import { defaultOptions } from '../options'
+import toMatchElement from './toMatchElement'
 
 async function notToMatchElement(
   instance,
   selector,
-  { text, ...options } = {},
+  { text, hidden, visible, ...options } = {},
 ) {
   options = defaultOptions(options)
-
-  const { page, handle } = await getContext(instance, () => document)
+  if (hidden) {
+    options.visible = true
+  } else {
+    options.hidden = true
+  }
 
   try {
-    await page.waitForFunction(
-      (handle, selector, text) => {
-        const elements = handle.querySelectorAll(selector)
-        if (text !== undefined) {
-          return [...elements].every(
-            ({ textContent }) => !textContent.match(text),
-          )
-        }
-
-        return elements.length === 0
-      },
-      options,
-      handle,
-      selector,
+    const element = await toMatchElement(instance, selector, {
+      ...options,
       text,
-    )
+    })
+    return !element
   } catch (error) {
     throw enhanceError(
       error,
