@@ -172,7 +172,7 @@ Expect an element be present in the page or element.
 // Select a row containing a text
 const row = await expect(page).toMatchElement('tr', { text: 'My row' })
 // Click on the third column link
-await expect(row).toClick('td:nth-child(2) a')
+await expect(row).toClick('td:nth-child(3) a')
 ```
 
 ### <a name="toSelect"></a>expect(instance).toSelect(selector, valueOrText)
