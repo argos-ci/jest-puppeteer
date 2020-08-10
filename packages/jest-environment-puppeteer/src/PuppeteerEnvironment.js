@@ -1,7 +1,9 @@
 // eslint-disable-next-line
 import NodeEnvironment from 'jest-environment-node'
 import chalk from 'chalk'
-import { readConfig, getPuppeteer } from './readConfig'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import puppeteer from 'puppeteer'
+import { readConfig } from './readConfig'
 
 const handleError = error => {
   process.emit('uncaughtException', error)
@@ -27,7 +29,6 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
   async setup() {
     const config = await readConfig()
-    const puppeteer = getPuppeteer(config)
     this.global.puppeteerConfig = config
 
     const wsEndpoint = process.env.PUPPETEER_WS_ENDPOINT

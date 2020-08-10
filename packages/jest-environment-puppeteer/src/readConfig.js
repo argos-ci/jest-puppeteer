@@ -8,7 +8,6 @@ const exists = promisify(fs.exists)
 
 const DEFAULT_CONFIG = {
   launch: {},
-  browser: 'chromium',
   browserContext: 'default',
   exitOnPageError: true,
 }
@@ -46,24 +45,12 @@ export async function readConfig() {
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const localConfig = await require(absConfigPath)
-  return merge({}, defaultConfig, localConfig)
-}
 
-export function getPuppeteer(config) {
-  switch (config.browser.toLowerCase()) {
-    /* eslint-disable global-require, import/no-dynamic-require, import/no-extraneous-dependencies, import/no-unresolved */
-    case 'chromium':
-      try {
-        return require('puppeteer')
-      } catch (e) {
-        return require('puppeteer-core')
-      }
-    case 'firefox':
-      return require('puppeteer-firefox')
-    /* eslint-enable */
-    default:
-      throw new Error(
-        `Error: "browser" config option is given an unsupported value: ${browser}`,
-      )
+  // Ensure that launch.product is equal to 'chrome', or 'firefox'
+  const product = localConfig.launch ? localConfig.launch.product : undefined
+  if (product !== undefined && !['chrome', 'firefox'].includes(product)) {
+    throw new Error(`Error: Invalid product value '${product}'`)
   }
+
+  return merge({}, defaultConfig, localConfig)
 }

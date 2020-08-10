@@ -6,7 +6,9 @@ import {
   ERROR_NO_COMMAND,
 } from 'jest-dev-server'
 import chalk from 'chalk'
-import { readConfig, getPuppeteer } from './readConfig'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import puppeteer from 'puppeteer'
+import { readConfig } from './readConfig'
 
 let browser
 
@@ -14,7 +16,6 @@ let didAlreadyRunInWatchMode = false
 
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
-  const puppeteer = getPuppeteer(config)
   if (config.connect) {
     browser = await puppeteer.connect(config.connect)
   } else {
