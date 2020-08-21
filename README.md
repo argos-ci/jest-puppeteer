@@ -22,6 +22,10 @@ npm install --save-dev jest-puppeteer puppeteer jest
 > Requires Jest v22+
 > TypeScript users should additionally install `@types/puppeteer`, `@types/jest-environment-puppeteer` and `@types/expect-puppeteer`
 
+## Sponsor
+
+<a href="https://tracking.gitads.io/?repo=jest-puppeteer"><img src="https://images.gitads.io/jest-puppeteer" alt="GitAds"/></a>
+
 ## Supporting jest-puppeteer
 
 jest-puppeteer is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
