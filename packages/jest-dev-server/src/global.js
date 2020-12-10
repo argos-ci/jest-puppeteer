@@ -183,13 +183,18 @@ async function setupJestServer(providedConfig, index) {
   }
 
   if (config.port) {
-    const { launchTimeout, protocol, host, port, waitOnScheme } = config
+    const { launchTimeout, protocol, host, port, path, waitOnScheme } = config
+
+    let resource = `${host}:${port}`
+    if (path) {
+      resource = `${resource}/${path}`
+    }
 
     let url = ''
     if (protocol === 'tcp' || protocol === 'socket') {
-      url = `${protocol}:${host}:${port}`
+      url = `${protocol}:${resource}`
     } else {
-      url = `${protocol}://${host}:${port}`
+      url = `${protocol}://${resource}`
     }
     const opts = {
       resources: [url],

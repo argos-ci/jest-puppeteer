@@ -141,6 +141,22 @@ module.exports = {
 }
 ```
 
+### `path`
+
+Type: `string`, default to `null`.
+
+Path to resource to wait for activity on before considering the server running.
+Must be used in conjunction with `host` and `port`.
+
+```js
+module.exports = {
+  command: 'npm run start --port 3000',
+  host: 'customhost.com',
+  port: 3000,
+  path: 'thing',
+}
+```
+
 ### `protocol`
 
 Type: `string`, (`https`, `http`, `tcp`, `socket`) default to `tcp`.
