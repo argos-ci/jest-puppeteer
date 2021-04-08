@@ -1,4 +1,4 @@
-export const getPuppeteerType = instance => {
+export const getPuppeteerType = (instance) => {
   if (
     instance &&
     instance.constructor &&
@@ -38,10 +38,10 @@ export const enhanceError = (error, message) => {
   return error
 }
 
-const isRegExp = input =>
+const isRegExp = (input) =>
   Object.prototype.toString.call(input) === '[object RegExp]'
 
-export const expandSearchExpr = expr => {
+export const expandSearchExpr = (expr) => {
   if (isRegExp(expr)) return { text: null, regexp: expr.toString() }
   if (typeof expr === 'string') return { text: expr, regexp: null }
   return { text: null, regexp: null }

@@ -16,15 +16,15 @@
     "child"
   ],
   "scripts": {
-    "prebuild": "rm -rf lib/",
+    "prebuild": "rimraf lib/",
     "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "dev": "yarn build --watch",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "exit": "^0.1.2",
-    "signal-exit": "^3.0.2",
+    "signal-exit": "^3.0.3",
     "tree-kill": "^1.2.2",
-    "wait-port": "^0.2.7"
+    "wait-port": "^0.2.9"
   }
 }
