@@ -88,7 +88,7 @@ Expect an element to be in the page or element, then click on it.
 
 ```js
 await expect(page).toClick('button', { text: 'Home' })
-await expect(page).toClick({type:'xpath', value:'\\a'}, { text: 'Click' })
+await expect(page).toClick({ type: 'xpath', value: '\\a' }, { text: 'Click' })
 ```
 
 ### <a name="toDisplayDialog"></a>expect(page).toDisplayDialog(block)
@@ -203,8 +203,11 @@ await expect(page).toUploadFile(
   path.join(__dirname, 'file.txt'),
 )
 ```
+
 ### <a name="MatchSelector"></a>{type: [string], value: [string]}
+
 An object used as parameter in order to select an element.
+
 - `type` <"xpath"|"css"> The type of the selector
 - `value` <[string]> The value of the selector
 

@@ -5,7 +5,7 @@ describe('toClick', () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe.each(['Page', 'Frame'])('%s', pageType => {
+  describe.each(['Page', 'Frame'])('%s', (pageType) => {
     let page
     setupPage(pageType, ({ currentPage }) => {
       page = currentPage
@@ -20,7 +20,7 @@ describe('toClick', () => {
     it('should click using xpath selector', async () => {
       await expect(page).toClick({
         value: '//a[contains(@href,"/page2.html")]',
-        type: "xpath"
+        type: 'xpath',
       })
       await page.waitForNavigation()
       const pathname = await page.evaluate(() => document.location.pathname)
@@ -30,7 +30,7 @@ describe('toClick', () => {
     it('should click using css selector with object param', async () => {
       await expect(page).toClick({
         value: 'a[href="/page2.html"]',
-        type: "css"
+        type: 'css',
       })
       await page.waitForNavigation()
       const pathname = await page.evaluate(() => document.location.pathname)
@@ -45,20 +45,26 @@ describe('toClick', () => {
     })
 
     it('should click using text with xpath selector', async () => {
-      await expect(page).toClick({
-        value: '//a',
-        type: 'xpath'
-      }, { text: 'Page 2' })
+      await expect(page).toClick(
+        {
+          value: '//a',
+          type: 'xpath',
+        },
+        { text: 'Page 2' },
+      )
       await page.waitForNavigation()
       const pathname = await page.evaluate(() => document.location.pathname)
       expect(pathname).toBe('/page2.html')
     })
 
     it('should click using text with css selector', async () => {
-      await expect(page).toClick({
-        value: 'a',
-        type: 'css'
-      }, { text: 'Page 2' })
+      await expect(page).toClick(
+        {
+          value: 'a',
+          type: 'css',
+        },
+        { text: 'Page 2' },
+      )
       await page.waitForNavigation()
       const pathname = await page.evaluate(() => document.location.pathname)
       expect(pathname).toBe('/page2.html')
@@ -78,7 +84,10 @@ describe('toClick', () => {
       expect.assertions(2)
 
       try {
-        await expect(page).toClick({ value: '//a', type: 'xpath' }, { text: 'Nop' })
+        await expect(page).toClick(
+          { value: '//a', type: 'xpath' },
+          { text: 'Nop' },
+        )
       } catch (error) {
         expect(error.message).toMatch('Element //a (text: "Nop") not found')
       }
@@ -108,7 +117,7 @@ describe('toClick', () => {
       const body = await page.$('body')
       await expect(body).toClick({
         value: './/a[contains(@href,"/page2.html")]',
-        type: 'xpath'
+        type: 'xpath',
       })
       await page.waitForSelector('html')
       const pathname = await page.evaluate(() => document.location.pathname)

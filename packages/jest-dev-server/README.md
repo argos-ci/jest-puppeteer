@@ -63,7 +63,7 @@ module.exports = async function globalSetup() {
     launchTimeout: 50000,
     port: 3000,
   })
-  getServers.then(servers => {
+  getServers.then((servers) => {
     // You can get to the servers and do whatever you want
   })
   // Your global setup

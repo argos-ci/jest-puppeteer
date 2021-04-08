@@ -15,15 +15,15 @@
     "chrome-headless"
   ],
   "scripts": {
-    "prebuild": "rm -rf lib/",
+    "prebuild": "rimraf lib/",
     "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "dev": "yarn build --watch",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^3.0.0",
+    "chalk": "^4.1.0",
     "cwd": "^0.10.0",
     "jest-dev-server": "^4.4.0",
-    "merge-deep": "^3.0.2"
+    "merge-deep": "^3.0.3"
   }
 }

@@ -82,7 +82,7 @@ async function outOfStin(block) {
   const { stdin } = process
   const listeners = stdin.listeners('data')
   const result = await block()
-  listeners.forEach(listener => stdin.on('data', listener))
+  listeners.forEach((listener) => stdin.on('data', listener))
   stdin.setRawMode(true)
   stdin.setEncoding('utf8')
   stdin.resume()
@@ -91,12 +91,14 @@ async function outOfStin(block) {
 
 function getIsPortTaken(config) {
   let server
-  const cleanupAndReturn = result =>
-    new Promise(resolve => server.once('close', () => resolve(result)).close())
+  const cleanupAndReturn = (result) =>
+    new Promise((resolve) =>
+      server.once('close', () => resolve(result)).close(),
+    )
   return new Promise((resolve, reject) => {
     server = net
       .createServer()
-      .once('error', err =>
+      .once('error', (err) =>
         err.code === 'EADDRINUSE' ? resolve(cleanupAndReturn(true)) : reject(),
       )
       .once('listening', () => resolve(cleanupAndReturn(false)))
@@ -159,7 +161,7 @@ async function setupJestServer(providedConfig, index) {
   const usedPortHandler = usedPortHandlers[config.usedPortAction]
   if (!usedPortHandler) {
     const availableActions = Object.keys(usedPortHandlers)
-      .map(action => `\`${action}\``)
+      .map((action) => `\`${action}\``)
       .join(', ')
     throw new JestDevServerError(
       `Invalid \`usedPortAction\`, only ${availableActions} are possible`,
@@ -219,6 +221,6 @@ export function getServers() {
 
 export async function teardown() {
   if (servers.length) {
-    await Promise.all(servers.map(server => server.destroy()))
+    await Promise.all(servers.map((server) => server.destroy()))
   }
 }
