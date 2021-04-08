@@ -5,7 +5,7 @@ describe('toMatch', () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe.each(['Page', 'Frame'])('%s', pageType => {
+  describe.each(['Page', 'Frame'])('%s', (pageType) => {
     let page
     setupPage(pageType, ({ currentPage }) => {
       page = currentPage
