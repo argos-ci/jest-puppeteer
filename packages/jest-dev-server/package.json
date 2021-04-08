@@ -1,7 +1,7 @@
 {
   "name": "jest-dev-server",
   "description": "Starts a server before your Jest tests and tears it down after.",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "main": "index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server",
   "author": "Greg Bergé <berge.greg@gmail.com>",
@@ -12,18 +12,18 @@
     "server"
   ],
   "scripts": {
-    "prebuild": "rm -rf lib/",
+    "prebuild": "rimraf lib/",
     "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "dev": "yarn build --watch",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^4.1.0",
     "cwd": "^0.10.0",
-    "find-process": "^1.4.2",
-    "prompts": "^2.1.0",
-    "spawnd": "^4.0.0",
-    "tree-kill": "^1.2.1",
-    "wait-on": "^3.3.0"
+    "find-process": "^1.4.4",
+    "prompts": "^2.4.1",
+    "spawnd": "^4.4.0",
+    "tree-kill": "^1.2.2",
+    "wait-on": "^5.3.0"
   }
 }

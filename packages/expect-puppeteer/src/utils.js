@@ -1,9 +1,9 @@
-export const getPuppeteerType = instance => {
+export const getPuppeteerType = (instance) => {
   if (
     instance &&
     instance.constructor &&
     instance.constructor.name &&
-    ['Page', 'ElementHandle'].includes(instance.constructor.name) &&
+    ['Page', 'Frame', 'ElementHandle'].includes(instance.constructor.name) &&
     instance.$
   ) {
     return instance.constructor.name
@@ -16,6 +16,7 @@ export const getContext = async (instance, pageFunction) => {
   const type = getPuppeteerType(instance)
   switch (type) {
     case 'Page':
+    case 'Frame':
       return {
         page: instance,
         handle: await instance.evaluateHandle(pageFunction),
@@ -37,10 +38,10 @@ export const enhanceError = (error, message) => {
   return error
 }
 
-const isRegExp = input =>
+const isRegExp = (input) =>
   Object.prototype.toString.call(input) === '[object RegExp]'
 
-export const expandSearchExpr = expr => {
+export const expandSearchExpr = (expr) => {
   if (isRegExp(expr)) return { text: null, regexp: expr.toString() }
   if (typeof expr === 'string') return { text: expr, regexp: null }
   return { text: null, regexp: null }

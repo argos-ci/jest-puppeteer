@@ -61,12 +61,12 @@ function internalExpect(type, matchers) {
     not: {},
   }
 
-  Object.keys(matchers).forEach(key => {
+  Object.keys(matchers).forEach((key) => {
     if (key === 'not') return
     expectation[key] = createMatcher(matchers[key], type)
   })
 
-  Object.keys(matchers.not).forEach(key => {
+  Object.keys(matchers.not).forEach((key) => {
     expectation.not[key] = createMatcher(matchers.not[key], type)
   })
 
@@ -77,6 +77,7 @@ function expectPuppeteer(actual) {
   const type = getPuppeteerType(actual)
   switch (type) {
     case 'Page':
+    case 'Frame':
       return internalExpect(actual, pageMatchers)
     case 'ElementHandle':
       return internalExpect(actual, elementHandleMatchers)
@@ -103,7 +104,7 @@ if (typeof global.expect !== 'undefined') {
     }
     return originalExpect(actual, ...args)
   }
-  Object.keys(originalExpect).forEach(prop => {
+  Object.keys(originalExpect).forEach((prop) => {
     global.expect[prop] = originalExpect[prop]
   })
 }

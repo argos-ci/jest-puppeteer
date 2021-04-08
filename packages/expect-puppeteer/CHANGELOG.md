@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
+
+
+### Bug Fixes
+
+* fix toDisplayDialog ([ce9df04](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/ce9df04642720a6af23e9b25f1b341bc82eca564))
+
+
+### Features
+
+* increase peerDependencies to allow Puppeteer v2 ([#289](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/289)) ([62a9b81](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/62a9b819cebf67d7e7b36453b79fba06390585ca))
+* **expect-puppeteer:** support frames ([#275](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/275)) ([09703ea](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/09703eaeeeab553e13142153b55030db05611f7c))
+
+
+
+
+
 # [4.3.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v4.2.0...v4.3.0) (2019-07-14)
 
 **Note:** Version bump only for package expect-puppeteer

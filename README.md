@@ -7,7 +7,7 @@
 [![Donate](https://opencollective.com/jest-puppeteer/backers/badge.svg)](https://opencollective.com/jest-puppeteer/donate)
 [![npm package](https://img.shields.io/npm/v/jest-puppeteer/latest.svg)](https://www.npmjs.com/package/jest-puppeteer)
 [![npm downloads](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
-[![Build Status](https://img.shields.io/travis/smooth-code/jest-puppeteer.svg)](https://travis-ci.org/smooth-code/jest-puppeteer)
+[![Build Status](https://github.com/smooth-code/jest-puppeteer/workflows/CI/badge.svg)](https://github.com/smooth-code/jest-puppeteer/actions)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
 [![Dependencies](https://img.shields.io/david/smooth-code/jest-puppeteer.svg?path=packages%2Fjest-puppeteer)](https://david-dm.org/smooth-code/jest-puppeteer?path=packages/jest-puppeteer)
 [![DevDependencies](https://img.shields.io/david/dev/smooth-code/jest-puppeteer.svg)](https://david-dm.org/smooth-code/jest-puppeteer?type=dev)
@@ -20,7 +20,11 @@ npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
 > Requires Jest v22+
-> TypeScript users should additionally install `@types/puppeteer`, `@types/jest-environment-puppeteer` and `@types/expect-puppeteer`
+
+```bash
+# TypeScript users should install following type packages
+npm install --save-dev @types/puppeteer @types/jest-environment-puppeteer @types/expect-puppeteer
+```
 
 ## Supporting jest-puppeteer
 
@@ -49,6 +53,8 @@ Update your Jest configuration:
 Use Puppeteer in your tests:
 
 ```js
+import 'expect-puppeteer'
+
 describe('Google', () => {
   beforeAll(async () => {
     await page.goto('https://google.com')
@@ -140,6 +146,8 @@ Other options are documented in [jest-dev-server](https://github.com/smooth-code
 
 Jest Puppeteer automatically detects the best config to start Puppeteer but sometimes you may need to specify custom options. All Puppeteer [launch](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) or [connect](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) options can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all the stuff you need, including environment.
 
+To run Puppeteer on Firefox using [puppeteer-firefox](https://github.com/GoogleChrome/puppeteer/tree/master/experimental/puppeteer-firefox), you can set `browser` to `firefox`. By default, the value is `chromium` which will use Puppeteer on Chrome.
+
 The browser context can be also specified. By default, the browser context is shared. `incognito` is available if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
 
 ```js
@@ -149,6 +157,7 @@ module.exports = {
     dumpio: true,
     headless: process.env.HEADLESS !== 'false',
   },
+  browser: 'chromium',
   browserContext: 'default',
 }
 ```

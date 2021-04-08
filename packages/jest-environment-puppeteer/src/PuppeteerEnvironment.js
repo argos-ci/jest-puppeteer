@@ -3,7 +3,7 @@ import NodeEnvironment from 'jest-environment-node'
 import chalk from 'chalk'
 import { readConfig, getPuppeteer } from './readConfig'
 
-const handleError = error => {
+const handleError = (error) => {
   process.emit('uncaughtException', error)
 }
 
@@ -50,9 +50,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
           chalk.blue('\n\n🕵️‍  Code is paused, press enter to resume'),
         )
         // Run an infinite promise
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const { stdin } = process
-          const onKeyPress = key => {
+          const onKeyPress = (key) => {
             if (
               key === KEYS.CONTROL_C ||
               key === KEYS.CONTROL_D ||
@@ -60,7 +60,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
             ) {
               stdin.removeListener('data', onKeyPress)
               if (!listening) {
-                stdin.setRawMode(false)
+                if (stdin.isTTY) {
+                  stdin.setRawMode(false)
+                }
                 stdin.pause()
               }
               resolve()
@@ -68,7 +70,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
           }
           const listening = stdin.listenerCount('data') > 0
           if (!listening) {
-            stdin.setRawMode(true)
+            if (stdin.isTTY) {
+              stdin.setRawMode(true)
+            }
             stdin.resume()
             stdin.setEncoding('utf8')
           }

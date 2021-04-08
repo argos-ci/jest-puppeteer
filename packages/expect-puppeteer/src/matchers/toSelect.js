@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import toMatchElement from './toMatchElement'
+import { getContext } from '../utils'
 
 function select(page, element, value) {
   return page.evaluate(
@@ -16,8 +17,8 @@ function select(page, element, value) {
       element.dispatchEvent(new Event('input', { bubbles: true }))
       element.dispatchEvent(new Event('change', { bubbles: true }))
       return options
-        .filter(option => option.selected)
-        .map(option => option.value)
+        .filter((option) => option.selected)
+        .map((option) => option.value)
     },
     element,
     value,
@@ -30,7 +31,7 @@ async function toSelect(instance, selector, valueOrText, options) {
   const optionElements = await element.$$('option')
 
   const optionsAttributes = await Promise.all(
-    optionElements.map(async option => {
+    optionElements.map(async (option) => {
       const textContentProperty = await option.getProperty('textContent')
       const valueProperty = await option.getProperty('value')
       return {
@@ -48,7 +49,7 @@ async function toSelect(instance, selector, valueOrText, options) {
   if (!option) {
     throw new Error(`Option not found "${selector}" ("${valueOrText}")`)
   }
-
+  const { page } = await getContext(instance, () => document)
   await select(page, element, option.value)
 
   // await page.select(selector, foundValue)

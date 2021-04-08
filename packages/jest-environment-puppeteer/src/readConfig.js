@@ -52,12 +52,16 @@ export async function readConfig() {
 
 export function getPuppeteer(config) {
   switch (config.browser.toLowerCase()) {
+    /* eslint-disable global-require, import/no-dynamic-require, import/no-extraneous-dependencies, import/no-unresolved */
     case 'chromium':
-      // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-extraneous-dependencies
-      return require('puppeteer')
+      try {
+        return require('puppeteer')
+      } catch (e) {
+        return require('puppeteer-core')
+      }
     case 'firefox':
-      // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-extraneous-dependencies
       return require('puppeteer-firefox')
+    /* eslint-enable */
     default:
       throw new Error(
         `Error: "browser" config option is given an unsupported value: ${browser}`,

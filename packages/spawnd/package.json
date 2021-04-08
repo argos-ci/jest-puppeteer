@@ -1,7 +1,7 @@
 {
   "name": "spawnd",
   "description": "Spawn a dependent child process.",
-  "version": "4.0.0",
+  "version": "4.4.0",
   "main": "lib/index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd",
   "author": "Greg Bergé <berge.greg@gmail.com>",
@@ -16,15 +16,15 @@
     "child"
   ],
   "scripts": {
-    "prebuild": "rm -rf lib/",
+    "prebuild": "rimraf lib/",
     "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "dev": "yarn build --watch",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "exit": "^0.1.2",
-    "signal-exit": "^3.0.2",
-    "tree-kill": "^1.2.1",
-    "wait-port": "^0.2.2"
+    "signal-exit": "^3.0.3",
+    "tree-kill": "^1.2.2",
+    "wait-port": "^0.2.9"
   }
 }
