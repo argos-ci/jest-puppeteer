@@ -1,10 +1,10 @@
 function waitForFrame(page) {
   let fulfill
-  const promise = new Promise(resolve => {
+  const promise = new Promise((resolve) => {
     fulfill = resolve
   })
   function checkFrame() {
-    const frame = page.frames().find(f => f.parentFrame() !== null)
+    const frame = page.frames().find((f) => f.parentFrame() !== null)
     if (frame) fulfill(frame)
     else page.once(`frameattached`, checkFrame)
   }
