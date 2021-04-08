@@ -7,7 +7,7 @@
 [![Donate](https://opencollective.com/jest-puppeteer/backers/badge.svg)](https://opencollective.com/jest-puppeteer/donate)
 [![npm package](https://img.shields.io/npm/v/jest-puppeteer/latest.svg)](https://www.npmjs.com/package/jest-puppeteer)
 [![npm downloads](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
-[![Build Status](https://img.shields.io/travis/smooth-code/jest-puppeteer.svg)](https://travis-ci.org/smooth-code/jest-puppeteer)
+[![Build Status](https://github.com/smooth-code/jest-puppeteer/workflows/CI/badge.svg)](https://github.com/smooth-code/jest-puppeteer/actions)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
 [![Dependencies](https://img.shields.io/david/smooth-code/jest-puppeteer.svg?path=packages%2Fjest-puppeteer)](https://david-dm.org/smooth-code/jest-puppeteer?path=packages/jest-puppeteer)
 [![DevDependencies](https://img.shields.io/david/dev/smooth-code/jest-puppeteer.svg)](https://david-dm.org/smooth-code/jest-puppeteer?type=dev)

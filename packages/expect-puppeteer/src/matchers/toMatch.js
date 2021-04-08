@@ -22,10 +22,7 @@ async function toMatch(instance, matcher, options) {
           )
         }
         if (text !== null) {
-          return handle.textContent
-            .replace(/\s+/g, ' ')
-            .trim()
-            .includes(text)
+          return handle.textContent.replace(/\s+/g, ' ').trim().includes(text)
         }
         return false
       },
