@@ -20,7 +20,7 @@ function spawnd(command, options) {
   proc.on('exit', cleanExit)
   proc.on('error', () => cleanExit(1))
 
-  const removeExitHandler = onExit(code => {
+  const removeExitHandler = onExit((code) => {
     cleanExit(typeof code === 'number' ? code : 1)
   })
 
