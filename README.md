@@ -1,7 +1,3 @@
-# ⚠️ Looking for maintainers
-
-Actually I don't have time to maintain this project. I am heavily looking for maintainers! If you are interested, please email me hey@gregberge.com.
-
 <h1 align="center">
   <img src="https://raw.githubusercontent.com/smooth-code/jest-puppeteer/master/resources/jest-puppeteer-logo.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
 </h1>
