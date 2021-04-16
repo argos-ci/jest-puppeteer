@@ -24,8 +24,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * browser config is deprecated. Use launch.product
 instead.
-
-Co-authored-by: Tony Brix <tony@brix.ninja>
+*  jest-dev-server uses axios instead of request so the `waitOnScheme` options may have changed. see [wait-on v5.0.0 changelog](https://github.com/jeffbski/wait-on/releases/tag/v5.0.0) for more details
 
 
 
