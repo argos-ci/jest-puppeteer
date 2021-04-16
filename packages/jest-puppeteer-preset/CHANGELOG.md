@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/compare/v4.4.0...v5.0.0) (2021-04-16)
+
+
+### Bug Fixes
+
+* Resolve module paths in preset ([#335](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/issues/335)) ([36602a1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/commit/36602a1fccd304a21e333a0860f87e0d49fec38c))
+
+
+
+
+
 # [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset/compare/v4.3.0...v4.4.0) (2019-12-18)
 
 

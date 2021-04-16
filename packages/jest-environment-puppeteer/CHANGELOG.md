@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.4.0...v5.0.0) (2021-04-16)
+
+
+### Bug Fixes
+
+* Leverage Puppeteer's native support for Firefox ([#356](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/356)) ([e54fb7e](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/e54fb7e3e31568f3322c14d9beb8dcd4435c3675))
+* require  to `puppeteer-core` as fallback ([#315](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/315)) ([49d313c](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/49d313c367812541251c4376162d1e222a96fdc0))
+
+
+### BREAKING CHANGES
+
+* browser config is deprecated. Use launch.product
+instead.
+
+Co-authored-by: Tony Brix <tony@brix.ninja>
+
+
+
+
+
 # [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
 
 

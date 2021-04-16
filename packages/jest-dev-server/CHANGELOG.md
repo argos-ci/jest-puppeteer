@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.4.0...v5.0.0) (2021-04-16)
+
+
+### Features
+
+* allow path for wait-on resource ([#382](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/382)) ([f2f5b62](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/f2f5b621bb68bb19edd5c2fd525691968baaed88))
+
+
+
+
+
 # [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.3.0...v4.4.0) (2019-12-18)
 
 **Note:** Version bump only for package jest-dev-server

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v4.4.0...v5.0.0) (2021-04-16)
+
+**Note:** Version bump only for package spawnd
+
+
+
+
+
 # [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v4.3.0...v4.4.0) (2019-12-18)
 
 **Note:** Version bump only for package spawnd

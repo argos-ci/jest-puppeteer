@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v4.4.0...v5.0.0) (2021-04-16)
+
+
+### Bug Fixes
+
+* toFill doesn't empty contents when given an empty string ([#381](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/381)) ([964b9a2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/964b9a276c0e0219e55cfa0db752d65da93d41b3))
+
+
+### Features
+
+* support XPATH selectors ([#321](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/321)) ([949027b](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/949027b1332e270fad78eda10fd1a92c56abe1b5))
+
+
+
+
+
 # [4.4.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
 
 

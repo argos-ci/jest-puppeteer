@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/UziTech/jest-puppeteer/compare/v4.4.0...v5.0.0) (2021-04-16)
+
+
+### Bug Fixes
+
+* Leverage Puppeteer's native support for Firefox ([#356](https://github.com/UziTech/jest-puppeteer/issues/356)) ([e54fb7e](https://github.com/UziTech/jest-puppeteer/commit/e54fb7e3e31568f3322c14d9beb8dcd4435c3675))
+* require  to `puppeteer-core` as fallback ([#315](https://github.com/UziTech/jest-puppeteer/issues/315)) ([49d313c](https://github.com/UziTech/jest-puppeteer/commit/49d313c367812541251c4376162d1e222a96fdc0))
+* Resolve module paths in preset ([#335](https://github.com/UziTech/jest-puppeteer/issues/335)) ([36602a1](https://github.com/UziTech/jest-puppeteer/commit/36602a1fccd304a21e333a0860f87e0d49fec38c))
+* toFill doesn't empty contents when given an empty string ([#381](https://github.com/UziTech/jest-puppeteer/issues/381)) ([964b9a2](https://github.com/UziTech/jest-puppeteer/commit/964b9a276c0e0219e55cfa0db752d65da93d41b3))
+
+
+### Features
+
+* allow path for wait-on resource ([#382](https://github.com/UziTech/jest-puppeteer/issues/382)) ([f2f5b62](https://github.com/UziTech/jest-puppeteer/commit/f2f5b621bb68bb19edd5c2fd525691968baaed88))
+* support XPATH selectors ([#321](https://github.com/UziTech/jest-puppeteer/issues/321)) ([949027b](https://github.com/UziTech/jest-puppeteer/commit/949027b1332e270fad78eda10fd1a92c56abe1b5))
+
+
+### BREAKING CHANGES
+
+* browser config is deprecated. Use launch.product
+instead.
+
+Co-authored-by: Tony Brix <tony@brix.ninja>
+
+
+
+
+
 # [4.4.0](https://github.com/smooth-code/jest-puppeteer/compare/v4.3.0...v4.4.0) (2019-12-18)
 
 
