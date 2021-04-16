@@ -14,7 +14,7 @@ let didAlreadyRunInWatchMode = false
 
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
-  const puppeteer = getPuppeteer(config)
+  const puppeteer = getPuppeteer()
   if (config.connect) {
     browser = await puppeteer.connect(config.connect)
   } else {

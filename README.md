@@ -146,7 +146,7 @@ Other options are documented in [jest-dev-server](https://github.com/smooth-code
 
 Jest Puppeteer automatically detects the best config to start Puppeteer but sometimes you may need to specify custom options. All Puppeteer [launch](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) or [connect](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) options can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all the stuff you need, including environment.
 
-To run Puppeteer on Firefox using [puppeteer-firefox](https://github.com/GoogleChrome/puppeteer/tree/master/experimental/puppeteer-firefox), you can set `browser` to `firefox`. By default, the value is `chromium` which will use Puppeteer on Chrome.
+To run Puppeteer on Firefox, you can set the `launch.product` property to `firefox`. By default, the value is `chrome` which will use Puppeteer on Chromium.
 
 The browser context can be also specified. By default, the browser context is shared. `incognito` is available if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
 
@@ -156,8 +156,8 @@ module.exports = {
   launch: {
     dumpio: true,
     headless: process.env.HEADLESS !== 'false',
+    product: 'chrome',
   },
-  browser: 'chromium',
   browserContext: 'default',
 }
 ```

@@ -8,7 +8,6 @@ const exists = promisify(fs.exists)
 
 const DEFAULT_CONFIG = {
   launch: {},
-  browser: 'chromium',
   browserContext: 'default',
   exitOnPageError: true,
 }
@@ -46,24 +45,38 @@ export async function readConfig() {
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const localConfig = await require(absConfigPath)
+
+  const product = localConfig.launch ? localConfig.launch.product : undefined
+
+  // Move browser config to launch.product
+  if (product === undefined && localConfig.browser) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      '`browser` config has been deprecated and will be removed in future versions. Use `launch.product` config with `chrome` or `firefox` instead.',
+    )
+    let launch = {}
+    if (localConfig.launch) {
+      launch = localConfig.launch
+    }
+    launch.product =
+      localConfig.browser === 'chromium' ? 'chrome' : localConfig.browser
+    localConfig.launch = launch
+  }
+
+  // Ensure that launch.product is equal to 'chrome', or 'firefox'
+  if (product !== undefined && !['chrome', 'firefox'].includes(product)) {
+    throw new Error(`Error: Invalid product value '${product}'`)
+  }
+
   return merge({}, defaultConfig, localConfig)
 }
 
-export function getPuppeteer(config) {
-  switch (config.browser.toLowerCase()) {
-    /* eslint-disable global-require, import/no-dynamic-require, import/no-extraneous-dependencies, import/no-unresolved */
-    case 'chromium':
-      try {
-        return require('puppeteer')
-      } catch (e) {
-        return require('puppeteer-core')
-      }
-    case 'firefox':
-      return require('puppeteer-firefox')
-    /* eslint-enable */
-    default:
-      throw new Error(
-        `Error: "browser" config option is given an unsupported value: ${browser}`,
-      )
+export function getPuppeteer() {
+  /* eslint-disable global-require, import/no-dynamic-require, import/no-extraneous-dependencies, import/no-unresolved */
+  try {
+    return require('puppeteer')
+  } catch (e) {
+    return require('puppeteer-core')
   }
+  /* eslint-enable */
 }
