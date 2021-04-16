@@ -27,7 +27,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
   async setup() {
     const config = await readConfig()
-    const puppeteer = getPuppeteer(config)
+    const puppeteer = getPuppeteer()
     this.global.puppeteerConfig = config
 
     const wsEndpoint = process.env.PUPPETEER_WS_ENDPOINT

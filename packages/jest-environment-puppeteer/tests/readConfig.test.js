@@ -1,33 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import pptrChromium from 'puppeteer'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import pptrFirefox from 'puppeteer-firefox'
-import { readConfig, getPuppeteer } from '../src/readConfig'
+import { readConfig } from '../src/readConfig'
 
 jest.mock('fs')
 
 function mockExists(value) {
   fs.exists.mockImplementation((path, callback) => callback(null, value))
 }
-
-describe('getPuppeteer', () => {
-  it('should return chromium when specified', async () => {
-    expect(
-      getPuppeteer({
-        browser: 'Chromium',
-      }),
-    ).toBe(pptrChromium)
-  })
-  it('should return firefox when specified', async () => {
-    expect(
-      getPuppeteer({
-        browser: 'Firefox',
-      }),
-    ).toBe(pptrFirefox)
-  })
-})
 
 describe('readConfig', () => {
   describe('with custom config path', () => {
@@ -99,6 +78,72 @@ describe('readConfig', () => {
       mockExists(true)
       const config = await readConfig()
       expect(config.server).toBeDefined()
+    })
+  })
+
+  describe('with custom product type', () => {
+    it('should return an error if invalid product', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/invalidProduct.js',
+      )
+      mockExists(true)
+      try {
+        await readConfig()
+      } catch (error) {
+        expect(error.message).toBe("Error: Invalid product value 'foobar'")
+      }
+    })
+  })
+
+  describe('with browser config', () => {
+    beforeEach(() => {
+      jest.spyOn(console, 'warn').mockImplementation(() => {})
+    })
+
+    it('should set launch.product', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/browserConfig.js',
+      )
+      mockExists(true)
+      const config = await readConfig()
+      // eslint-disable-next-line no-console
+      expect(console.warn).toHaveBeenCalledWith(
+        '`browser` config has been deprecated and will be removed in future versions. Use `launch.product` config with `chrome` or `firefox` instead.',
+      )
+      expect(config.launch.product).toBe('firefox')
+    })
+
+    it('should set launch.product to chrome', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/browserConfigChromium.js',
+      )
+      mockExists(true)
+      const config = await readConfig()
+      expect(config.launch.product).toBe('chrome')
+    })
+
+    it('should not overwrite launch', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/browserLaunchConfig.js',
+      )
+      mockExists(true)
+      const config = await readConfig()
+      expect(config.launch.product).toBe('firefox')
+      expect(config.launch.some).toBe('other property')
+    })
+
+    it('should not overwrite launch.product', async () => {
+      process.env.JEST_PUPPETEER_CONFIG = path.resolve(
+        __dirname,
+        '__fixtures__/browserLaunchProductConfig.js',
+      )
+      mockExists(true)
+      const config = await readConfig()
+      expect(config.launch.product).toBe('chrome')
     })
   })
 })
