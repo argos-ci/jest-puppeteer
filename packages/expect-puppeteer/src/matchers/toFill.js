@@ -8,6 +8,7 @@ async function toFill(instance, selector, value, options) {
     toMatchElementOptions,
   )
   await element.click({ clickCount: 3 })
+  await element.press('Backspace')
   await element.type(value, {
     delay,
   })

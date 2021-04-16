@@ -18,6 +18,15 @@ describe('toFill', () => {
       expect(value).toBe('James')
     })
 
+    it('should empty the input given an empty string', async () => {
+      await expect(page).toFill('[name="firstName"]', 'James')
+      await expect(page).toFill('[name="firstName"]', '')
+      const value = await page.evaluate(
+        () => document.querySelector('[name="firstName"]').value,
+      )
+      expect(value).toBe('')
+    })
+
     it('should return an error if text is not in the page', async () => {
       expect.assertions(2)
 
