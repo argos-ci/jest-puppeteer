@@ -9,13 +9,13 @@
     "dev": "lerna run build --parallel -- --watch",
     "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\"",
     "lint": "eslint .",
-    "release": "lerna publish --conventional-commits && conventional-github-releaser --preset angular",
+    "release": "lerna publish --conventional-commits --git-remote upstream && conventional-github-releaser --preset angular",
     "test": "jest --runInBand",
     "test:incognito": "cross-env INCOGNITO=true jest --runInBand",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{js,css,md}": [
+    "**/*.{js,json,css,md}": [
       "npm run format"
     ]
   },
