@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v5.0.0...v5.0.1) (2021-04-19)
+
+
+### Bug Fixes
+
+* add jest-environment-node as a dependency ([#397](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/397)) ([11f2e38](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/11f2e3816b9db3858617b203436192493af75e80))
+
+
+
+
+
 # [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v4.4.0...v5.0.0) (2021-04-16)
 
 
