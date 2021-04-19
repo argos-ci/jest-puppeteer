@@ -24,6 +24,7 @@
     "chalk": "^4.1.0",
     "cwd": "^0.10.0",
     "jest-dev-server": "^5.0.0",
+    "jest-environment-node": "^26.6.2",
     "merge-deep": "^3.0.3"
   }
 }
