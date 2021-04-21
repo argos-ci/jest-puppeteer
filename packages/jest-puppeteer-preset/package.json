@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer-preset",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "main": "lib/index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset",
   "author": "Greg Bergé <berge.greg@gmail.com>",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v5.0.1...v5.0.2) (2021-04-21)
+
+
+### Bug Fixes
+
+* update puppeteer version ([#398](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/issues/398)) ([104faf4](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/commit/104faf4d84c019f8ed2d845e09e2a52423a105de))
+
+
+
+
+
 ## [5.0.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v5.0.0...v5.0.1) (2021-04-19)
 
 **Note:** Version bump only for package jest-puppeteer
