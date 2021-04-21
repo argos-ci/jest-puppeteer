@@ -25,6 +25,31 @@ jobs:
       - name: Run Tests 👩🏽‍💻
         run: yarn ci
 
+  Release:
+    needs: [Test]
+    if: |
+      github.ref == 'refs/heads/master' &&
+      github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Install Node
+        uses: dcodeIO/setup-node-nvm@master
+        with:
+          node-version: 'lts/*'
+      - name: Install Dependencies
+        run: yarn
+      - name: Lerna Release 🎉
+        uses: plutotcool/release@v1
+        with:
+          github_token:  ${{ secrets.GITHUB_TOKEN }}
+          npm_token: ${{ secrets.NPM_TOKEN }}
+      - name: GitHub Release 🎉
+        env:
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx conventional-github-releaser --preset angular
+
   Skip:
     if: contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
