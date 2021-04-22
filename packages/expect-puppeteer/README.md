@@ -52,11 +52,29 @@ This API is designed for integration testing:
 // Does not work if button is not in page
 await page.click('button')
 
-// Will try while 500ms to click on "button"
+// Will try for 500ms to click on "button"
 await page.toClick('button')
 
-// Will match a button with a "My button" text inside
+// Will click the first button with a "My button" text inside
 await page.toClick('button', { text: 'My button' })
+```
+
+The first element to match will be selected
+
+**Example**
+
+```html
+<div class="outer">
+  <div class="inner">some text</div>
+</div>
+```
+
+```js
+// Will match outer div
+await expect(page).toMatch('div', { text: 'some text' })
+
+// Will match inner div
+await expect(page).toMatch('div.inner', { text: 'some text' })
 ```
 
 ## API
