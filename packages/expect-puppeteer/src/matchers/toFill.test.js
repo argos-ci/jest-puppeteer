@@ -27,6 +27,29 @@ describe('toFill', () => {
       expect(value).toBe('')
     })
 
+    fit('should fill textarea', async () => {
+      await expect(page).toFill(
+        '[name="notes"]',
+        'These are \n multiline \n notes',
+      )
+      const value = await page.evaluate(
+        () => document.querySelector('[name="notes"]').value,
+      )
+      expect(value).toBe('These are \n multiline \n notes')
+    })
+
+    fit('should empty the textarea given an empty string', async () => {
+      await expect(page).toFill(
+        '[name="notes"]',
+        'These are \n multiline \n notes',
+      )
+      await expect(page).toFill('[name="notes"]', '')
+      const value = await page.evaluate(
+        () => document.querySelector('[name="notes"]').value,
+      )
+      expect(value).toBe('')
+    })
+
     it('should return an error if text is not in the page', async () => {
       expect.assertions(2)
 
