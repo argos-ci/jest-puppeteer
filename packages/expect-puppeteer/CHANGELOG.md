@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.3](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v5.0.2...v5.0.3) (2021-04-28)
+
+
+### Bug Fixes
+
+* fix toFill on textarea ([#399](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/399)) ([7f40bd7](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/7f40bd7372322dce70a7b09df2d3999525d0ca51))
+* use Delete to clear input instead of Backspace ([#401](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/issues/401)) ([94e9241](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/commit/94e9241fe7d33134c5edf13235be637d63843568))
+
+
+
+
+
 # [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/compare/v4.4.0...v5.0.0) (2021-04-16)
 
 

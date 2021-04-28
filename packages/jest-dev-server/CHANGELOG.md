@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.3](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v5.0.2...v5.0.3) (2021-04-28)
+
+
+### Bug Fixes
+
+* update deps ([#402](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/402)) ([fa91027](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/fa91027d6769a1c1d7f517a02184b994ce0dd05c))
+
+
+
+
+
 # [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v4.4.0...v5.0.0) (2021-04-16)
 
 
