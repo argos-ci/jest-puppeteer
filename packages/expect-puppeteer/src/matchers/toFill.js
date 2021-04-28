@@ -32,7 +32,7 @@ async function toFill(instance, selector, value, options) {
     toMatchElementOptions,
   )
   await selectAll(element)
-  await element.press('Backspace')
+  await element.press('Delete')
   await element.type(value, {
     delay,
   })
