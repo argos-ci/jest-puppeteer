@@ -21,7 +21,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "cwd": "^0.10.0",
     "jest-dev-server": "^5.0.0",
     "jest-environment-node": "^26.6.2",
