@@ -9,6 +9,14 @@
   .displayedWithClassname {
     display: none;
   }
+  #outside {
+    transform: translateX(-100%);
+    transition: .3s;
+  }
+  #outside.move-in {
+    background: red;
+    transform: translateX(0);
+  }
 </style>
 
 <body>
@@ -35,6 +43,10 @@
     <div style="display: none" class="displayed">displayed element</div>
     <div class="displayedWithClassname">displayed element</div>
     <div class="normal">normal element</div>
+    <button class="trigger-button" onclick="document.getElementById('outside').classList.add('move-in')">show outside element</button>
+    <div id="outside">
+      <button>clickable element</button>
+    </div>
   </main>
 </body>
 

@@ -132,6 +132,14 @@ describe('toClick', () => {
       expect(pathname).toBe('/page2.html')
     })
 
+    it('should click an element which has a transition', async () => {
+      const body = await page.$('body')
+
+      await expect(body).toClick('.trigger-button')
+      await page.waitForSelector('#outside button')
+      await expect(body).toClick('#outside button')
+    })
+
     it('should return an error if element is not found', async () => {
       const body = await page.$('body')
       expect.assertions(2)
