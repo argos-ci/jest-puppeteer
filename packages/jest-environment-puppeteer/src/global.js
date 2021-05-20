@@ -15,11 +15,22 @@ let didAlreadyRunInWatchMode = false
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
   const puppeteer = getPuppeteer()
-  if (config.connect) {
-    browser = await puppeteer.connect(config.connect)
-  } else {
-    browser = await puppeteer.launch(config.launch)
+
+  try {
+    if (config.connect) {
+      browser = await puppeteer.connect(config.connect)
+    } else {
+      browser = await puppeteer.launch(config.launch)
+    }
+  } catch (e) {
+    // some puppeteer errors are non-native error objects
+    if (e && e.error) {
+      throw e.error
+    }
+
+    throw e
   }
+
   process.env.PUPPETEER_WS_ENDPOINT = browser.wsEndpoint()
 
   // If we are in watch mode, - only setupServer() once.
