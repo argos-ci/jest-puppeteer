@@ -27,7 +27,7 @@ describe('toFill', () => {
       expect(value).toBe('')
     })
 
-    fit('should fill textarea', async () => {
+    it('should fill textarea', async () => {
       await expect(page).toFill(
         '[name="notes"]',
         'These are \n multiline \n notes',
@@ -38,7 +38,7 @@ describe('toFill', () => {
       expect(value).toBe('These are \n multiline \n notes')
     })
 
-    fit('should empty the textarea given an empty string', async () => {
+    it('should empty the textarea given an empty string', async () => {
       await expect(page).toFill(
         '[name="notes"]',
         'These are \n multiline \n notes',
@@ -46,6 +46,23 @@ describe('toFill', () => {
       await expect(page).toFill('[name="notes"]', '')
       const value = await page.evaluate(
         () => document.querySelector('[name="notes"]').value,
+      )
+      expect(value).toBe('')
+    })
+
+    it('should fill number input', async () => {
+      await expect(page).toFill('[name="age"]', '10')
+      const value = await page.evaluate(
+        () => document.querySelector('[name="age"]').value,
+      )
+      expect(value).toBe('10')
+    })
+
+    it('should empty number input given an empty string', async () => {
+      await expect(page).toFill('[name="age"]', '10')
+      await expect(page).toFill('[name="age"]', '')
+      const value = await page.evaluate(
+        () => document.querySelector('[name="age"]').value,
       )
       expect(value).toBe('')
     })
@@ -70,6 +87,7 @@ describe('toFill', () => {
       )
       expect(value).toBe('James')
     })
+
     it('should fill input with custom delay', async () => {
       const body = await page.$('body')
       await expect(body).toFill('[name="firstName"]', 'James', {

@@ -10,6 +10,7 @@ async function selectAll(element) {
         // setSelectionRange throws an error for inputs: number/date/time/etc
         // we can just focus them and the content will be selected
         elementHandle.focus()
+        elementHandle.select()
       }
     } else if (window.getSelection && document.createRange) {
       const range = document.createRange()

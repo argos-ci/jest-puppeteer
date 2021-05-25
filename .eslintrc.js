@@ -23,5 +23,16 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
     'import/prefer-default-export': 'off',
+    'no-restricted-globals': [
+      'error',
+      {
+        name: 'fit',
+        message: 'Do not commit focused tests.',
+      },
+      {
+        name: 'fdescribe',
+        message: 'Do not commit focused tests.',
+      },
+    ],
   },
 }
