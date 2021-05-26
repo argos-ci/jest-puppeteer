@@ -114,7 +114,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
         if (config.browserContext === 'incognito') {
           // Using this, pages will be created in a pristine context.
-          this.global.context = await this.global.browser.createIncognitoBrowserContext()
+          this.global.context =
+            await this.global.browser.createIncognitoBrowserContext()
         } else if (
           config.browserContext === 'default' ||
           !config.browserContext
