@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.4](https://github.com/UziTech/jest-puppeteer/compare/v5.0.3...v5.0.4) (2021-05-26)
+
+
+### Bug Fixes
+
+* fix toFill on number input ([#412](https://github.com/UziTech/jest-puppeteer/issues/412)) ([21201a4](https://github.com/UziTech/jest-puppeteer/commit/21201a48c586f4c49d560749410c9d45716fdd2f))
+* update deps ([#413](https://github.com/UziTech/jest-puppeteer/issues/413)) ([f83828a](https://github.com/UziTech/jest-puppeteer/commit/f83828abc18f46328c78a5faf40fa16d150db9e5))
+
+
+
+
+
 ## [5.0.3](https://github.com/UziTech/jest-puppeteer/compare/v5.0.2...v5.0.3) (2021-04-28)
 
 
