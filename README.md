@@ -48,8 +48,7 @@ Update your Jest configuration:
 }
 ```
 
-**NOTE**: Be sure to remove any existing `testEnvironment` option from your Jest configuration. The `jest-puppeteer` preset needs to manage that option itself.
-
+**NOTE**: Be sure to remove any existing `testEnvironment` option from your Jest configuration. The `jest-puppeteer` preset needs to manage that option itself. 
 Use Puppeteer in your tests:
 
 ```js
@@ -65,6 +64,21 @@ describe('Google', () => {
   })
 })
 ```
+
+If you are using Typescript, you will need to include the following above imports:
+
+```js
+/**
+ * @jest-environment puppeteer
+ */
+```
+
+or alternatively pass the env via command line:
+
+```js
+  "web:test": "react-app-rewired test --env=puppeteer",
+```
+
 
 ### Running puppeteer in CI environments
 
@@ -201,6 +215,52 @@ module.exports = {
   // or
   setupFilesAfterEnv: ['./setup.js'],
 }
+```
+
+You may want to consider using multiple projects in Jest since setting your own `setupFilesAfterEnv` and `globalSetup` can cause globals to be undefined. 
+
+```js
+module.exports = {
+	projects: [
+		{
+			displayName: 'integration',
+			preset: 'jest-puppeteer',
+			transform: {
+				'\\.tsx?$': 'babel-jest',
+				'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			moduleNameMapper: {
+				'^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			modulePathIgnorePatterns: ['.next'],
+			testMatch: [
+				'<rootDir>/src/**/__integration__/**/*.test.ts',
+				'<rootDir>/src/**/__integration__/**/*.test.tsx'
+			]
+		},
+		{
+			displayName: 'unit',
+			transform: {
+				'\\.tsx?$': 'babel-jest',
+				'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			moduleNameMapper: {
+				'^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			globalSetup: '<rootDir>/setupEnv.ts',
+			setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+			modulePathIgnorePatterns: ['.next'],
+			testMatch: [
+				'<rootDir>/src/**/__tests_/**/*.test.ts',
+				'<rootDir>/src/**/__tests__/**/*.test.tsx'
+			]
+		}
+	]
+};
 ```
 
 ### Extend `PuppeteerEnvironment`
