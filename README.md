@@ -66,6 +66,20 @@ describe('Google', () => {
 })
 ```
 
+If you are using `react-scripts`, you will need to pass the environment via command line:
+
+```js
+  "test": "react-scripts test --env=puppeteer",
+```
+
+or alternatively include the following comment at the top of each test file:
+
+```js
+/**
+ * @jest-environment puppeteer
+ */
+```
+
 ### Running puppeteer in CI environments
 
 Most continuous integration platforms limit the number of threads one can use. If you have more than one test suite running puppeteer chances are that your test will timeout. This is because jest will try to run puppeteer in parallel and the CI platform won't be able to handle all the parallel jobs in time. A fix to this is to run your test serially when in a CI environment. Users have discovered that [running test serially in such environments can render up to 50%](https://jestjs.io/docs/en/troubleshooting#tests-are-extremely-slow-on-docker-and-or-continuous-integration-ci-server) of performance gains.
@@ -201,6 +215,52 @@ module.exports = {
   // or
   setupFilesAfterEnv: ['./setup.js'],
 }
+```
+
+You may want to consider using multiple projects in Jest since setting your own `setupFilesAfterEnv` and `globalSetup` can cause globals to be undefined. 
+
+```js
+module.exports = {
+	projects: [
+		{
+			displayName: 'integration',
+			preset: 'jest-puppeteer',
+			transform: {
+				'\\.tsx?$': 'babel-jest',
+				'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			moduleNameMapper: {
+				'^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			modulePathIgnorePatterns: ['.next'],
+			testMatch: [
+				'<rootDir>/src/**/__integration__/**/*.test.ts',
+				'<rootDir>/src/**/__integration__/**/*.test.tsx'
+			]
+		},
+		{
+			displayName: 'unit',
+			transform: {
+				'\\.tsx?$': 'babel-jest',
+				'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			moduleNameMapper: {
+				'^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+					'jest-transform-stub'
+			},
+			globalSetup: '<rootDir>/setupEnv.ts',
+			setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+			modulePathIgnorePatterns: ['.next'],
+			testMatch: [
+				'<rootDir>/src/**/__tests_/**/*.test.ts',
+				'<rootDir>/src/**/__tests__/**/*.test.tsx'
+			]
+		}
+	]
+};
 ```
 
 ### Extend `PuppeteerEnvironment`
