@@ -66,20 +66,19 @@ describe('Google', () => {
 })
 ```
 
-If you are using `react-scripts`, you will need to include the following above imports:
+If you are using `react-scripts`, you will need to pass the environment via command line:
+
+```js
+  "test": "react-scripts test --env=puppeteer",
+```
+
+or alternatively include the following comment at the top of each test file:
 
 ```js
 /**
  * @jest-environment puppeteer
  */
 ```
-
-or alternatively pass the env via command line:
-
-```js
-  "web:test": "react-app-rewired test --env=puppeteer",
-```
-
 
 ### Running puppeteer in CI environments
 
