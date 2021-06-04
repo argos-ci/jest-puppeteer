@@ -66,7 +66,7 @@ describe('Google', () => {
 })
 ```
 
-If you are using Typescript, you will need to include the following above imports:
+If you are using `react-scripts`, you will need to include the following above imports:
 
 ```js
 /**
