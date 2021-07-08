@@ -12,6 +12,12 @@ const KEYS = {
   CONTROL_D: '\u0004',
   ENTER: '\r',
 }
+const FIRST_JEST_WORKER_ID = 1
+
+const getWorkerIndex = () => process.env.JEST_WORKER_ID - FIRST_JEST_WORKER_ID
+
+const getEndpointIndex = () =>
+  Math.min(+process.env.BROWSERS_COUNT - 1, getWorkerIndex())
 
 class PuppeteerEnvironment extends NodeEnvironment {
   // Jest is not available here, so we have to reverse engineer
@@ -30,7 +36,9 @@ class PuppeteerEnvironment extends NodeEnvironment {
     const puppeteer = getPuppeteer()
     this.global.puppeteerConfig = config
 
-    const wsEndpoint = process.env.PUPPETEER_WS_ENDPOINT
+    const wsEndpoint = JSON.parse(process.env.PUPPETEER_WS_ENDPOINTS)[
+      getEndpointIndex()
+    ]
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
