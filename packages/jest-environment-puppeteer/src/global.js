@@ -27,14 +27,15 @@ export async function setup(jestConfig = {}) {
     config.browserPerWorker && !config.connect ? jestConfig.maxWorkers : 1
   process.env.BROWSERS_COUNT = browsersCount
 
-  const browsers2 = await Promise.all(
-    Array.from({ length: browsersCount }).map(() =>
-      openBrowser(puppeteer, config),
-    ),
+  browsers.push(
+    ...(await Promise.all(
+      Array.from({ length: browsersCount }).map(() =>
+        openBrowser(puppeteer, config),
+      ),
+    )),
   )
 
-  browsers2.forEach((browser) => wsEndpoints.push(browser.wsEndpoint()))
-  browsers.push(...browsers2)
+  browsers.forEach((browser) => wsEndpoints.push(browser.wsEndpoint()))
 
   process.env.PUPPETEER_WS_ENDPOINTS = JSON.stringify(wsEndpoints)
 
