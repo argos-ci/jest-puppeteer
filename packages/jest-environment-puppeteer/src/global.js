@@ -14,9 +14,9 @@ let didAlreadyRunInWatchMode = false
 
 async function openBrowser(puppeteer, config) {
   if (config.connect) {
-    return await puppeteer.connect(config.connect)
+    return puppeteer.connect(config.connect)
   }
-  return await puppeteer.launch(config.launch)
+  return puppeteer.launch(config.launch)
 }
 
 export async function setup(jestConfig = {}) {
@@ -27,11 +27,15 @@ export async function setup(jestConfig = {}) {
     config.browserPerWorker && !config.connect ? jestConfig.maxWorkers : 1
   process.env.BROWSERS_COUNT = browsersCount
 
-  for (let i = 0; i < browsersCount; i++) {
-    const browser = await openBrowser(puppeteer, config)
-    browsers.push(browser)
-    wsEndpoints.push(browser.wsEndpoint())
-  }
+  const browsers2 = await Promise.all(
+    Array.from({ length: browsersCount }).map(() =>
+      openBrowser(puppeteer, config),
+    ),
+  )
+
+  browsers2.forEach((browser) => wsEndpoints.push(browser.wsEndpoint()))
+  browsers.push(...browsers2)
+
   process.env.PUPPETEER_WS_ENDPOINTS = JSON.stringify(wsEndpoints)
 
   // If we are in watch mode, - only setupServer() once.
@@ -71,13 +75,15 @@ export async function setup(jestConfig = {}) {
 
 export async function teardown(jestConfig = {}) {
   const config = await readConfig()
-  for (const browser of browsers) {
-    if (config.connect) {
-      await browser.disconnect()
-    } else {
-      await browser.close()
-    }
-  }
+
+  await Promise.all(
+    browsers.map((browser) => {
+      if (config.connect) {
+        return browser.disconnect()
+      }
+      return browser.close()
+    }),
+  )
 
   if (!jestConfig.watch && !jestConfig.watchAll) {
     await teardownServer()
