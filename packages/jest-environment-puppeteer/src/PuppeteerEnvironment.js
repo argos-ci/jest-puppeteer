@@ -34,10 +34,16 @@ class PuppeteerEnvironment extends NodeEnvironment {
     const config = await readConfig()
     const puppeteer = getPuppeteer()
     this.global.puppeteerConfig = config
-
-    const wsEndpoint = JSON.parse(process.env.PUPPETEER_WS_ENDPOINTS)[
-      getEndpointIndex()
-    ]
+    let wsEndpoint
+    try {
+      wsEndpoint = JSON.parse(process.env.PUPPETEER_WS_ENDPOINTS)[
+        getEndpointIndex()
+      ]
+    } catch (e) {
+      throw new Error(
+        `wsEndpoints parse error: ${e.message} in ${process.env.PUPPETEER_WS_ENDPOINTS}`,
+      )
+    }
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found')
     }
