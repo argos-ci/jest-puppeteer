@@ -12,9 +12,8 @@ const KEYS = {
   CONTROL_D: '\u0004',
   ENTER: '\r',
 }
-const FIRST_JEST_WORKER_ID = 1
-
-const getWorkerIndex = () => process.env.JEST_WORKER_ID - FIRST_JEST_WORKER_ID
+// JEST_WORKER_ID starts at 1
+const getWorkerIndex = () => process.env.JEST_WORKER_ID - 1
 
 const getEndpointIndex = () =>
   Math.min(+process.env.BROWSERS_COUNT - 1, getWorkerIndex())
