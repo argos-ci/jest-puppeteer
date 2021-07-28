@@ -8,7 +8,7 @@ import {
 import chalk from 'chalk'
 import { readConfig, getPuppeteer } from './readConfig'
 
-const browsers = []
+let browsers = []
 
 let didAlreadyRunInWatchMode = false
 
@@ -22,20 +22,17 @@ async function openBrowser(puppeteer, config) {
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
   const puppeteer = getPuppeteer()
-  const wsEndpoints = []
   const browsersCount =
     config.browserPerWorker && !config.connect ? jestConfig.maxWorkers : 1
   process.env.BROWSERS_COUNT = browsersCount
 
-  browsers.push(
-    ...(await Promise.all(
-      Array.from({ length: browsersCount }).map(() =>
-        openBrowser(puppeteer, config),
-      ),
-    )),
+  browsers = await Promise.all(
+    Array.from({ length: browsersCount }).map(() =>
+      openBrowser(puppeteer, config),
+    ),
   )
 
-  browsers.forEach((browser) => wsEndpoints.push(browser.wsEndpoint()))
+  const wsEndpoints = browsers.map((browser) => browser.wsEndpoint())
 
   process.env.PUPPETEER_WS_ENDPOINTS = JSON.stringify(wsEndpoints)
 
