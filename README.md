@@ -417,6 +417,7 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
 - `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
 - `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
+- `browserPerWorker` <[Boolean]> Allows to run tests for each [jest worker](https://jestjs.io/docs/cli#--maxworkersnumstring) in an individual browser.
 
 #### Example 1
 

@@ -8,19 +8,33 @@ import {
 import chalk from 'chalk'
 import { readConfig, getPuppeteer } from './readConfig'
 
-let browser
+let browsers = []
 
 let didAlreadyRunInWatchMode = false
+
+async function openBrowser(puppeteer, config) {
+  if (config.connect) {
+    return puppeteer.connect(config.connect)
+  }
+  return puppeteer.launch(config.launch)
+}
 
 export async function setup(jestConfig = {}) {
   const config = await readConfig()
   const puppeteer = getPuppeteer()
-  if (config.connect) {
-    browser = await puppeteer.connect(config.connect)
-  } else {
-    browser = await puppeteer.launch(config.launch)
-  }
-  process.env.PUPPETEER_WS_ENDPOINT = browser.wsEndpoint()
+  const browsersCount =
+    config.browserPerWorker && !config.connect ? jestConfig.maxWorkers : 1
+  process.env.BROWSERS_COUNT = browsersCount
+
+  browsers = await Promise.all(
+    Array.from({ length: browsersCount }).map(() =>
+      openBrowser(puppeteer, config),
+    ),
+  )
+
+  const wsEndpoints = browsers.map((browser) => browser.wsEndpoint())
+
+  process.env.PUPPETEER_WS_ENDPOINTS = JSON.stringify(wsEndpoints)
 
   // If we are in watch mode, - only setupServer() once.
   if (jestConfig.watch || jestConfig.watchAll) {
@@ -60,11 +74,14 @@ export async function setup(jestConfig = {}) {
 export async function teardown(jestConfig = {}) {
   const config = await readConfig()
 
-  if (config.connect) {
-    await browser.disconnect()
-  } else {
-    await browser.close()
-  }
+  await Promise.all(
+    browsers.map((browser) => {
+      if (config.connect) {
+        return browser.disconnect()
+      }
+      return browser.close()
+    }),
+  )
 
   if (!jestConfig.watch && !jestConfig.watchAll) {
     await teardownServer()
