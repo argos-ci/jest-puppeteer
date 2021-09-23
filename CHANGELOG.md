@@ -3,15 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.0.0](https://github.com/UziTech/jest-puppeteer/compare/v5.0.4...v6.0.0) (2021-09-23)
+# [6.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v5.0.4...v6.0.0) (2021-09-23)
 
 
 ### Bug Fixes
 
-* Add browserPerWorker setting ([#420](https://github.com/UziTech/jest-puppeteer/issues/420)) ([5320871](https://github.com/UziTech/jest-puppeteer/commit/53208719c486f7c7f45982a609002b738e9fcd95))
-* allow puppeteer >= 1.5.0 ([#442](https://github.com/UziTech/jest-puppeteer/issues/442)) ([181ee72](https://github.com/UziTech/jest-puppeteer/commit/181ee7229f5401e723cd630b46e73c045da50dcb))
-* only throw timed out error if timed out ([#435](https://github.com/UziTech/jest-puppeteer/issues/435)) ([f6c20ab](https://github.com/UziTech/jest-puppeteer/commit/f6c20ab4d653e3058e559852bd00eb44a80f8560))
-* remove wait-port dependency ([#434](https://github.com/UziTech/jest-puppeteer/issues/434)) ([3d6cae0](https://github.com/UziTech/jest-puppeteer/commit/3d6cae007a2dbb9e5c67e8f0ed5f8429206436d9))
+* Add browserPerWorker setting ([#420](https://github.com/smooth-code/jest-puppeteer/issues/420)) ([5320871](https://github.com/smooth-code/jest-puppeteer/commit/53208719c486f7c7f45982a609002b738e9fcd95))
+* allow puppeteer >= 1.5.0 ([#442](https://github.com/smooth-code/jest-puppeteer/issues/442)) ([181ee72](https://github.com/smooth-code/jest-puppeteer/commit/181ee7229f5401e723cd630b46e73c045da50dcb))
+* only throw timed out error if timed out ([#435](https://github.com/smooth-code/jest-puppeteer/issues/435)) ([f6c20ab](https://github.com/smooth-code/jest-puppeteer/commit/f6c20ab4d653e3058e559852bd00eb44a80f8560))
+* remove wait-port dependency ([#434](https://github.com/smooth-code/jest-puppeteer/issues/434)) ([3d6cae0](https://github.com/smooth-code/jest-puppeteer/commit/3d6cae007a2dbb9e5c67e8f0ed5f8429206436d9))
 
 
 ### BREAKING CHANGES
@@ -22,48 +22,48 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [5.0.4](https://github.com/UziTech/jest-puppeteer/compare/v5.0.3...v5.0.4) (2021-05-26)
+## [5.0.4](https://github.com/smooth-code/jest-puppeteer/compare/v5.0.3...v5.0.4) (2021-05-26)
 
 
 ### Bug Fixes
 
-* fix toFill on number input ([#412](https://github.com/UziTech/jest-puppeteer/issues/412)) ([21201a4](https://github.com/UziTech/jest-puppeteer/commit/21201a48c586f4c49d560749410c9d45716fdd2f))
-* update deps ([#413](https://github.com/UziTech/jest-puppeteer/issues/413)) ([f83828a](https://github.com/UziTech/jest-puppeteer/commit/f83828abc18f46328c78a5faf40fa16d150db9e5))
+* fix toFill on number input ([#412](https://github.com/smooth-code/jest-puppeteer/issues/412)) ([21201a4](https://github.com/smooth-code/jest-puppeteer/commit/21201a48c586f4c49d560749410c9d45716fdd2f))
+* update deps ([#413](https://github.com/smooth-code/jest-puppeteer/issues/413)) ([f83828a](https://github.com/smooth-code/jest-puppeteer/commit/f83828abc18f46328c78a5faf40fa16d150db9e5))
 
 
 
 
 
-## [5.0.3](https://github.com/UziTech/jest-puppeteer/compare/v5.0.2...v5.0.3) (2021-04-28)
-
-
-### Bug Fixes
-
-* fix toFill on textarea ([#399](https://github.com/UziTech/jest-puppeteer/issues/399)) ([7f40bd7](https://github.com/UziTech/jest-puppeteer/commit/7f40bd7372322dce70a7b09df2d3999525d0ca51))
-* update deps ([#402](https://github.com/UziTech/jest-puppeteer/issues/402)) ([fa91027](https://github.com/UziTech/jest-puppeteer/commit/fa91027d6769a1c1d7f517a02184b994ce0dd05c))
-* use Delete to clear input instead of Backspace ([#401](https://github.com/UziTech/jest-puppeteer/issues/401)) ([94e9241](https://github.com/UziTech/jest-puppeteer/commit/94e9241fe7d33134c5edf13235be637d63843568))
-
-
-
-
-
-## [5.0.2](https://github.com/UziTech/jest-puppeteer/compare/v5.0.1...v5.0.2) (2021-04-21)
+## [5.0.3](https://github.com/smooth-code/jest-puppeteer/compare/v5.0.2...v5.0.3) (2021-04-28)
 
 
 ### Bug Fixes
 
-* update puppeteer version ([#398](https://github.com/UziTech/jest-puppeteer/issues/398)) ([104faf4](https://github.com/UziTech/jest-puppeteer/commit/104faf4d84c019f8ed2d845e09e2a52423a105de))
+* fix toFill on textarea ([#399](https://github.com/smooth-code/jest-puppeteer/issues/399)) ([7f40bd7](https://github.com/smooth-code/jest-puppeteer/commit/7f40bd7372322dce70a7b09df2d3999525d0ca51))
+* update deps ([#402](https://github.com/smooth-code/jest-puppeteer/issues/402)) ([fa91027](https://github.com/smooth-code/jest-puppeteer/commit/fa91027d6769a1c1d7f517a02184b994ce0dd05c))
+* use Delete to clear input instead of Backspace ([#401](https://github.com/smooth-code/jest-puppeteer/issues/401)) ([94e9241](https://github.com/smooth-code/jest-puppeteer/commit/94e9241fe7d33134c5edf13235be637d63843568))
 
 
 
 
 
-## [5.0.1](https://github.com/UziTech/jest-puppeteer/compare/v5.0.0...v5.0.1) (2021-04-19)
+## [5.0.2](https://github.com/smooth-code/jest-puppeteer/compare/v5.0.1...v5.0.2) (2021-04-21)
 
 
 ### Bug Fixes
 
-* add jest-environment-node as a dependency ([#397](https://github.com/UziTech/jest-puppeteer/issues/397)) ([11f2e38](https://github.com/UziTech/jest-puppeteer/commit/11f2e3816b9db3858617b203436192493af75e80))
+* update puppeteer version ([#398](https://github.com/smooth-code/jest-puppeteer/issues/398)) ([104faf4](https://github.com/smooth-code/jest-puppeteer/commit/104faf4d84c019f8ed2d845e09e2a52423a105de))
+
+
+
+
+
+## [5.0.1](https://github.com/smooth-code/jest-puppeteer/compare/v5.0.0...v5.0.1) (2021-04-19)
+
+
+### Bug Fixes
+
+* add jest-environment-node as a dependency ([#397](https://github.com/smooth-code/jest-puppeteer/issues/397)) ([11f2e38](https://github.com/smooth-code/jest-puppeteer/commit/11f2e3816b9db3858617b203436192493af75e80))
 
 
 
