@@ -217,50 +217,50 @@ module.exports = {
 }
 ```
 
-You may want to consider using multiple projects in Jest since setting your own `setupFilesAfterEnv` and `globalSetup` can cause globals to be undefined. 
+You may want to consider using multiple projects in Jest since setting your own `setupFilesAfterEnv` and `globalSetup` can cause globals to be undefined.
 
 ```js
 module.exports = {
-	projects: [
-		{
-			displayName: 'integration',
-			preset: 'jest-puppeteer',
-			transform: {
-				'\\.tsx?$': 'babel-jest',
-				'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-					'jest-transform-stub'
-			},
-			moduleNameMapper: {
-				'^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-					'jest-transform-stub'
-			},
-			modulePathIgnorePatterns: ['.next'],
-			testMatch: [
-				'<rootDir>/src/**/__integration__/**/*.test.ts',
-				'<rootDir>/src/**/__integration__/**/*.test.tsx'
-			]
-		},
-		{
-			displayName: 'unit',
-			transform: {
-				'\\.tsx?$': 'babel-jest',
-				'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-					'jest-transform-stub'
-			},
-			moduleNameMapper: {
-				'^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-					'jest-transform-stub'
-			},
-			globalSetup: '<rootDir>/setupEnv.ts',
-			setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
-			modulePathIgnorePatterns: ['.next'],
-			testMatch: [
-				'<rootDir>/src/**/__tests_/**/*.test.ts',
-				'<rootDir>/src/**/__tests__/**/*.test.tsx'
-			]
-		}
-	]
-};
+  projects: [
+    {
+      displayName: 'integration',
+      preset: 'jest-puppeteer',
+      transform: {
+        '\\.tsx?$': 'babel-jest',
+        '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+          'jest-transform-stub',
+      },
+      moduleNameMapper: {
+        '^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+          'jest-transform-stub',
+      },
+      modulePathIgnorePatterns: ['.next'],
+      testMatch: [
+        '<rootDir>/src/**/__integration__/**/*.test.ts',
+        '<rootDir>/src/**/__integration__/**/*.test.tsx',
+      ],
+    },
+    {
+      displayName: 'unit',
+      transform: {
+        '\\.tsx?$': 'babel-jest',
+        '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+          'jest-transform-stub',
+      },
+      moduleNameMapper: {
+        '^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+          'jest-transform-stub',
+      },
+      globalSetup: '<rootDir>/setupEnv.ts',
+      setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+      modulePathIgnorePatterns: ['.next'],
+      testMatch: [
+        '<rootDir>/src/**/__tests_/**/*.test.ts',
+        '<rootDir>/src/**/__tests__/**/*.test.tsx',
+      ],
+    },
+  ],
+}
 ```
 
 ### Extend `PuppeteerEnvironment`

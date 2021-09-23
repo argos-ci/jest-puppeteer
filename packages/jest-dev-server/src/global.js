@@ -207,14 +207,14 @@ async function setupJestServer(providedConfig, index) {
     try {
       await waitOn(opts)
     } catch (err) {
-      if (err.message.startsWith("Timed out")) {
+      if (err.message.startsWith('Timed out')) {
         throw new JestDevServerError(
           `Server has taken more than ${launchTimeout}ms to start.`,
           ERROR_TIMEOUT,
         )
       }
-      
-      throw err;
+
+      throw err
     }
   }
 }
