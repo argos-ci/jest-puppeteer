@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/UziTech/jest-puppeteer/compare/v5.0.4...v6.0.0) (2021-09-23)
+
+
+### Bug Fixes
+
+* Add browserPerWorker setting ([#420](https://github.com/UziTech/jest-puppeteer/issues/420)) ([5320871](https://github.com/UziTech/jest-puppeteer/commit/53208719c486f7c7f45982a609002b738e9fcd95))
+* allow puppeteer >= 1.5.0 ([#442](https://github.com/UziTech/jest-puppeteer/issues/442)) ([181ee72](https://github.com/UziTech/jest-puppeteer/commit/181ee7229f5401e723cd630b46e73c045da50dcb))
+* only throw timed out error if timed out ([#435](https://github.com/UziTech/jest-puppeteer/issues/435)) ([f6c20ab](https://github.com/UziTech/jest-puppeteer/commit/f6c20ab4d653e3058e559852bd00eb44a80f8560))
+* remove wait-port dependency ([#434](https://github.com/UziTech/jest-puppeteer/issues/434)) ([3d6cae0](https://github.com/UziTech/jest-puppeteer/commit/3d6cae007a2dbb9e5c67e8f0ed5f8429206436d9))
+
+
+### BREAKING CHANGES
+
+* drop support for node v10
+
+
+
+
+
 ## [5.0.4](https://github.com/UziTech/jest-puppeteer/compare/v5.0.3...v5.0.4) (2021-05-26)
 
 

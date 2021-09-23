@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v5.0.4...v6.0.0) (2021-09-23)
+
+
+### Bug Fixes
+
+* allow puppeteer >= 1.5.0 ([#442](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/issues/442)) ([181ee72](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/commit/181ee7229f5401e723cd630b46e73c045da50dcb))
+
+
+### BREAKING CHANGES
+
+* drop support for node v10
+
+
+
+
+
 ## [5.0.4](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer/compare/v5.0.3...v5.0.4) (2021-05-26)
 
 **Note:** Version bump only for package jest-puppeteer

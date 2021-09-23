@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v5.0.4...v6.0.0) (2021-09-23)
+
+
+### Bug Fixes
+
+* Add browserPerWorker setting ([#420](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/420)) ([5320871](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/53208719c486f7c7f45982a609002b738e9fcd95))
+
+
+
+
+
 ## [5.0.4](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v5.0.3...v5.0.4) (2021-05-26)
 
 

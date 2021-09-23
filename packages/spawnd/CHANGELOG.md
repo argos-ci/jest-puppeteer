@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v5.0.4...v6.0.0) (2021-09-23)
+
+
+### Bug Fixes
+
+* remove wait-port dependency ([#434](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/issues/434)) ([3d6cae0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/commit/3d6cae007a2dbb9e5c67e8f0ed5f8429206436d9))
+
+
+
+
+
 # [5.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v4.4.0...v5.0.0) (2021-04-16)
 
 **Note:** Version bump only for package spawnd
