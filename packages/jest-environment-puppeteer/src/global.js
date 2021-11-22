@@ -77,9 +77,13 @@ export async function teardown(jestConfig = {}) {
   await Promise.all(
     browsers.map((browser) => {
       if (config.connect) {
-        return browser.disconnect()
+        return browser.disconnect().catch((e) => {
+          console.error(`global.js teardown: Error disconnecting browser ${e.stack}`)
+        })
       }
-      return browser.close()
+      return browser.close().catch((e) => {
+        console.error(`global.js teardown: Error closing browser ${e.stack}`)
+      })
     }),
   )
 
