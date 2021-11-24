@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v6.0.0...v6.0.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* Catch exceptions on browser close or disconnect during teardown ([#453](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/issues/453)) ([adafcc2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/commit/adafcc2613934b43cf44e0c01fb8faf6f6640adc))
+
+
+
+
+
 # [6.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer/compare/v5.0.4...v6.0.0) (2021-09-23)
 
 
