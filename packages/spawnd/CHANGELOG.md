@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v6.0.1...v6.0.2) (2021-11-25)
+
+
+### Bug Fixes
+
+* update deps ([#457](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/issues/457)) ([bcd0415](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/commit/bcd04155fbbed08c02a7195b05cab6601f834fb9))
+
+
+
+
+
 # [6.0.0](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd/compare/v5.0.4...v6.0.0) (2021-09-23)
 
 
