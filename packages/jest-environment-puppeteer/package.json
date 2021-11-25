@@ -21,10 +21,10 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "cwd": "^0.10.0",
     "jest-dev-server": "^6.0.0",
-    "jest-environment-node": "^27.0.1",
+    "jest-environment-node": "^27.3.1",
     "merge-deep": "^3.0.3"
   }
 }
