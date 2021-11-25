@@ -8,6 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+* Revert catch on disconnect ([#456](https://github.com/smooth-code/jest-puppeteer/issues/456)) ([51b8706](https://github.com/smooth-code/jest-puppeteer/commit/51b8706))
 * update deps ([#457](https://github.com/smooth-code/jest-puppeteer/issues/457)) ([bcd0415](https://github.com/smooth-code/jest-puppeteer/commit/bcd04155fbbed08c02a7195b05cab6601f834fb9))
 
 
