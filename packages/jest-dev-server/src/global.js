@@ -56,7 +56,7 @@ async function killProc(proc) {
   console.log(chalk.green(`Successfully killed process ${proc.name}`))
 }
 
-function runServer(config = {}, index) {
+function runServer(config = {}, index = 0) {
   if (!config.command) {
     throw new JestDevServerError(
       'You must define a `command`',
@@ -89,13 +89,13 @@ async function outOfStin(block) {
   return result
 }
 
-function getIsPortTaken(config) {
+async function getIsPortTaken(config) {
   let server
   const cleanupAndReturn = (result) =>
-    new Promise((resolve) =>
-      server.once('close', () => resolve(result)).close(),
-    )
-  return new Promise((resolve, reject) => {
+    new Promise((resolve) => {
+      server.once('close', () => resolve(result)).close()
+    })
+  const val = await new Promise((resolve, reject) => {
     server = net
       .createServer()
       .once('error', (err) =>
@@ -104,6 +104,7 @@ function getIsPortTaken(config) {
       .once('listening', () => resolve(cleanupAndReturn(false)))
       .listen(config.port, config.host)
   })
+  return val
 }
 
 export async function setup(providedConfigs) {

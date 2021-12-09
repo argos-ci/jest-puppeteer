@@ -10,7 +10,8 @@ import toMatch from './matchers/toMatch'
 import toMatchElement from './matchers/toMatchElement'
 import toSelect from './matchers/toSelect'
 import toUploadFile from './matchers/toUploadFile'
-import { setDefaultOptions, getDefaultOptions } from './options'
+
+export { setDefaultOptions, getDefaultOptions } from './options'
 
 const pageMatchers = {
   toClick,
@@ -109,6 +110,4 @@ if (typeof global.expect !== 'undefined') {
   })
 }
 
-module.exports = expectPuppeteer
-module.exports.setDefaultOptions = setDefaultOptions
-module.exports.getDefaultOptions = getDefaultOptions
+export default expectPuppeteer

@@ -36,4 +36,4 @@ function spawnd(command, options) {
   return proc
 }
 
-module.exports = spawnd
+export default spawnd
