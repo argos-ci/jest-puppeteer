@@ -1,6 +1,7 @@
-import { setup, teardown } from '../src/global'
 import path from 'path'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import puppeteer from 'puppeteer'
+import { setup, teardown } from '../src/global'
 
 describe('setup', () => {
   describe('browserWSEndpoint in config connect' , () => {
