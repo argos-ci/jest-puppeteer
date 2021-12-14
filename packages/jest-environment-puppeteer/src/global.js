@@ -27,7 +27,7 @@ export async function setup(jestConfig = {}) {
   process.env.BROWSERS_COUNT = browsersCount
 
   let wsEndpoints = []
-  if(config.connect && config.connect.browserWSEndpoint) {
+  if (config.connect && config.connect.browserWSEndpoint) {
     wsEndpoints = [config.connect.browserWSEndpoint]
   } else {
     browsers = await Promise.all(
