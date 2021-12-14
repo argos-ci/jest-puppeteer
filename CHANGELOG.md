@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.3](https://github.com/smooth-code/jest-puppeteer/compare/v6.0.2...v6.0.3) (2021-12-14)
+
+
+### Bug Fixes
+
+* avoid running connect in global setup if browserWSEndpoint provided in config ([#458](https://github.com/smooth-code/jest-puppeteer/issues/458)) ([c9fa515](https://github.com/smooth-code/jest-puppeteer/commit/c9fa515e51bdcd77ceb5f3aa7ee429a54647df7b))
+
+
+
+
+
 ## [6.0.2](https://github.com/smooth-code/jest-puppeteer/compare/v6.0.1...v6.0.2) (2021-11-25)
 
 
