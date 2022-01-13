@@ -8,7 +8,6 @@ import toFill from './matchers/toFill'
 import toFillForm from './matchers/toFillForm'
 import toMatch from './matchers/toMatch'
 import toMatchElement from './matchers/toMatchElement'
-import toMatchInShadow from './matchers/toMatchInShadow'
 import toSelect from './matchers/toSelect'
 import toUploadFile from './matchers/toUploadFile'
 
@@ -21,7 +20,6 @@ const pageMatchers = {
   toFillForm,
   toMatch,
   toMatchElement,
-  toMatchInShadow,
   toSelect,
   toUploadFile,
   not: {
@@ -36,7 +34,6 @@ const elementHandleMatchers = {
   toFillForm,
   toMatch,
   toMatchElement,
-  toMatchInShadow,
   toSelect,
   toUploadFile,
   not: {

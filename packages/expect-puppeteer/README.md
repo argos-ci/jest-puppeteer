@@ -164,6 +164,7 @@ Expect a text or a string RegExp to be present in the page or element.
     - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
     - `mutation` - to execute `pageFunction` on every DOM mutation.
   - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultTimeout(timeout)](#pagesetdefaulttimeouttimeout) method.
+  - `traverseShadowRoots`<[boolean]> Whether shadow roots should be traversed to find a match.
 
 ```js
 // Matching using text
