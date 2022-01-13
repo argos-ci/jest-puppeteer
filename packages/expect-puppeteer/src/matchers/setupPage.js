@@ -27,7 +27,7 @@ export const setupPage = (pageType, cb) => {
   beforeEach(async () => {
     if (pageType === `Page`) {
       cb({
-        page,
+        currentPage: page,
       })
     } else if (pageType === 'ShadowPage') {
       await goToPage(page, 'shadow.html', false, cb)
