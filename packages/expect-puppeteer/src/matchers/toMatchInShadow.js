@@ -1,7 +1,7 @@
 import { getContext, enhanceError, expandSearchExpr } from '../utils'
 import { defaultOptions } from '../options'
 
-async function toMatch(instance, matcher, options) {
+async function toMatchInShadow(instance, matcher, options) {
   options = defaultOptions(options)
 
   const { page, handle } = await getContext(instance, () => document.body)
@@ -75,4 +75,4 @@ async function toMatch(instance, matcher, options) {
   }
 }
 
-export default toMatch
+export default toMatchInShadow
