@@ -5,52 +5,60 @@ describe('toMatch', () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
   })
 
-  describe.each(['Page', 'Frame'])('%s', (pageType) => {
-    let page
-    setupPage(pageType, ({ currentPage }) => {
-      page = currentPage
-    })
-    it('should be ok if text is in the page', async () => {
-      await expect(page).toMatch('This is home!')
-    })
+  describe.each(['Page', 'Frame', 'ShadowPage', 'ShadowFrame'])(
+    '%s',
+    (pageType) => {
+      let page
+      setupPage(pageType, ({ currentPage }) => {
+        page = currentPage
+      })
 
-    it('should support RegExp', async () => {
-      await expect(page).toMatch(/THIS.is.home/i)
-    })
+      const options = ['ShadowPage', 'ShadowFrame'].includes(pageType)
+        ? { traverseShadowRoots: true }
+        : {}
 
-    it('should return an error if text is not in the page', async () => {
-      expect.assertions(3)
+      it('should be ok if text is in the page', async () => {
+        await expect(page).toMatch('This is home!', options)
+      })
 
-      try {
-        await expect(page).toMatch('Nop')
-      } catch (error) {
-        expect(error.message).toMatch('Text not found "Nop"')
-        expect(error.message).toMatch('waiting for function failed')
-      }
-    })
-  })
+      it('should support RegExp', async () => {
+        await expect(page).toMatch(/THIS.is.home/i, options)
+      })
 
-  describe('ElementHandle', () => {
-    it('should be ok if text is in the page', async () => {
-      const dialogBtn = await page.$('#dialog-btn')
-      await expect(dialogBtn).toMatch('Open dialog')
-    })
+      it('should return an error if text is not in the page', async () => {
+        expect.assertions(3)
 
-    it('should support RegExp', async () => {
-      const dialogBtn = await page.$('#dialog-btn')
-      await expect(dialogBtn).toMatch(/OPEN/i)
-    })
+        try {
+          await expect(page).toMatch('Nop', options)
+        } catch (error) {
+          expect(error.message).toMatch('Text not found "Nop"')
+          expect(error.message).toMatch('waiting for function failed')
+        }
+      })
 
-    it('should return an error if text is not in the page', async () => {
-      expect.assertions(3)
-      const dialogBtn = await page.$('#dialog-btn')
+      describe('ElementHandle', () => {
+        it('should be ok if text is in the page', async () => {
+          const dialogBtn = await page.$('#dialog-btn')
+          await expect(dialogBtn).toMatch('Open dialog', options)
+        })
 
-      try {
-        await expect(dialogBtn).toMatch('This is home!')
-      } catch (error) {
-        expect(error.message).toMatch('Text not found "This is home!"')
-        expect(error.message).toMatch('waiting for function failed')
-      }
-    })
-  })
+        it('should support RegExp', async () => {
+          const dialogBtn = await page.$('#dialog-btn')
+          await expect(dialogBtn).toMatch(/OPEN/i, options)
+        })
+
+        it('should return an error if text is not in the page', async () => {
+          expect.assertions(3)
+          const dialogBtn = await page.$('#dialog-btn')
+
+          try {
+            await expect(dialogBtn).toMatch('This is home!', options)
+          } catch (error) {
+            expect(error.message).toMatch('Text not found "This is home!"')
+            expect(error.message).toMatch('waiting for function failed')
+          }
+        })
+      })
+    },
+  )
 })

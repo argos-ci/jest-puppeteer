@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test App</title>
+  </head>
+  <body>
+    <host-element>
+      <template shadowroot="open">
+        <header>This is home!</header>
+        <slot></slot>
+      </template>
+      <h2>Light DOM content (slotted)</h2>
+    </host-element>
+    <button id="dialog-btn" onclick="window.confirm('Bouh!')">
+      <host-element-2>
+        <template shadowroot="open">Open dialog</template>
+      </host-element-2>
+    </button>
+  </body>
+</html>

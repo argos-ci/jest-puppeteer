@@ -12,21 +12,29 @@ function waitForFrame(page) {
   return promise
 }
 
-export const setupPage = (pageType, cb) => {
+async function goToPage(page, route, isFrame, cb) {
   let currentPage = page
+  await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}/${route}`)
+  if (isFrame) {
+    currentPage = await waitForFrame(page)
+  }
+  cb({
+    currentPage,
+  })
+}
+
+export const setupPage = (pageType, cb) => {
   beforeEach(async () => {
     if (pageType === `Page`) {
       cb({
-        currentPage,
+        currentPage: page,
       })
-      return
+    } else if (pageType === 'ShadowPage') {
+      await goToPage(page, 'shadow.html', false, cb)
+    } else if (pageType === 'ShadowFrame') {
+      await goToPage(page, 'shadowFrame.html', true, cb)
+    } else {
+      await goToPage(page, 'frame.html', true, cb)
     }
-    await page.goto(
-      `http://localhost:${process.env.TEST_SERVER_PORT}/frame.html`,
-    )
-    currentPage = await waitForFrame(page)
-    cb({
-      currentPage,
-    })
   })
 }
