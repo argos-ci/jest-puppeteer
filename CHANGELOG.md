@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/smooth-code/jest-puppeteer/compare/v6.0.3...v6.1.0) (2022-02-02)
+
+
+### Features
+
+* add traverseShadowRoots option to toMatch ([#463](https://github.com/smooth-code/jest-puppeteer/issues/463)) ([28c5235](https://github.com/smooth-code/jest-puppeteer/commit/28c523563c2943e686bca2b418cba8e0b794059e))
+
+
+
+
+
 ## [6.0.3](https://github.com/smooth-code/jest-puppeteer/compare/v6.0.2...v6.0.3) (2021-12-14)
 
 
