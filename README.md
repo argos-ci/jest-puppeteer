@@ -162,7 +162,9 @@ Jest Puppeteer automatically detects the best config to start Puppeteer but some
 
 To run Puppeteer on Firefox, you can set the `launch.product` property to `firefox`. By default, the value is `chrome` which will use Puppeteer on Chromium.
 
-The browser context can be also specified. By default, the browser context is shared. `incognito` is available if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
+The browser context can be also specified. By default, the browser context is shared (value of `default`). The `incognito` value is also available, in case you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
+
+Default config values:
 
 ```js
 // jest-puppeteer.config.js
