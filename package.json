@@ -4,6 +4,10 @@
     "packages/*"
   ],
   "repository": "https://github.com/smooth-code/jest-puppeteer",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/gregberge"
+  },
   "scripts": {
     "build": "lerna run build",
     "ci": "yarn build && yarn lint && yarn test --ci && yarn test:incognito --ci",
