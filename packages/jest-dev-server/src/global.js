@@ -75,6 +75,8 @@ function runServer(config = {}, index = 0) {
     // eslint-disable-next-line no-console
     console.log(chalk.magentaBright('\nJest dev-server output:'))
     servers[index].stdout.pipe(serverLogPrefixer).pipe(process.stdout)
+  } else {
+    servers[index].stdout.on('data', () => {})
   }
 }
 
