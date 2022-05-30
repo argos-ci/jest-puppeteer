@@ -10,16 +10,18 @@ jobs:
   Test:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
+      fail-fast: false
       matrix:
-        node_version: [12, 14, 'lts/*', 'node']
+        node_version: [14, 16, 'lts/*', 'node']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node
-        uses: dcodeIO/setup-node-nvm@master
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
+          check-latest: true
       - name: Install Dependencies
         run: yarn
       - name: Run Tests 👩🏽‍💻
