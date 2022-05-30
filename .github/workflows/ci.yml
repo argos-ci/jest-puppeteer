@@ -8,7 +8,6 @@ on:
 jobs:
 
   Test:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       fail-fast: false
       matrix:
@@ -26,10 +25,3 @@ jobs:
         run: yarn
       - name: Run Tests 👩🏽‍💻
         run: yarn ci
-
-  Skip:
-    if: contains(github.event.head_commit.message, '[skip ci]')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Skip CI 🚫
-        run: echo skip ci
