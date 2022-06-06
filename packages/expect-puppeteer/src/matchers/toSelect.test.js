@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('toSelect', () => {
@@ -27,7 +28,7 @@ describe('toSelect', () => {
     })
 
     it('should return an error if option is not found', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toSelect('select[name="my-select"]', 'Another world')
@@ -35,6 +36,7 @@ describe('toSelect', () => {
         expect(error.message).toMatch(
           'Option not found "select[name="my-select"]" ("Another world")',
         )
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })
@@ -60,7 +62,7 @@ describe('toSelect', () => {
 
     it('should return an error if option is not found', async () => {
       const body = await page.$('body')
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(body).toSelect('select[name="my-select"]', 'Another world')
@@ -68,6 +70,7 @@ describe('toSelect', () => {
         expect(error.message).toMatch(
           'Option not found "select[name="my-select"]" ("Another world")',
         )
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })

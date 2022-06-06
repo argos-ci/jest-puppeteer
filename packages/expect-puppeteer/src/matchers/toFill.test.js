@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('toFill', () => {
@@ -68,12 +69,13 @@ describe('toFill', () => {
     })
 
     it('should return an error if text is not in the page', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toFill('[name="notFound"]', 'James')
       } catch (error) {
         expect(error.message).toMatch('Element [name="notFound"] not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })
@@ -101,12 +103,13 @@ describe('toFill', () => {
 
     it('should return an error if text is not in the page', async () => {
       const body = await page.$('body')
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(body).toFill('[name="notFound"]', 'James')
       } catch (error) {
         expect(error.message).toMatch('Element [name="notFound"] not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })

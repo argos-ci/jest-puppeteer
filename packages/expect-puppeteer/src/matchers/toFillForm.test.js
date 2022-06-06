@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('toFillForm', () => {
@@ -26,7 +27,7 @@ describe('toFillForm', () => {
     })
 
     it('should return an error if text is not in the page', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toFillForm('form[name="notFound"]', {
@@ -35,6 +36,7 @@ describe('toFillForm', () => {
         })
       } catch (error) {
         expect(error.message).toMatch('Element form[name="notFound"] not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })
@@ -58,7 +60,7 @@ describe('toFillForm', () => {
 
     it('should return an error if text is not in the page', async () => {
       const body = await page.$('body')
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(body).toFillForm('form[name="notFound"]', {
@@ -67,6 +69,7 @@ describe('toFillForm', () => {
         })
       } catch (error) {
         expect(error.message).toMatch('Element form[name="notFound"] not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })

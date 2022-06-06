@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('not.toMatchElement', () => {
@@ -19,13 +20,14 @@ describe('not.toMatchElement', () => {
     })
 
     it('should return an error if element is not found', async () => {
-      expect.assertions(3)
+      expect.assertions(4)
 
       try {
         await expect(page).not.toMatchElement('a', { text: 'Page 2' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Page 2") found')
         expect(error.message).toMatch('waiting for function failed')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })
@@ -43,13 +45,14 @@ describe('not.toMatchElement', () => {
 
     it('should return an error if element is not found', async () => {
       const main = await page.$('main')
-      expect.assertions(3)
+      expect.assertions(4)
 
       try {
         await expect(main).not.toMatchElement('div', { text: 'main' })
       } catch (error) {
         expect(error.message).toMatch('Element div (text: "main") found')
         expect(error.message).toMatch('waiting for function failed')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })

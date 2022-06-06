@@ -51,7 +51,7 @@ function createMatcher(matcher, page) {
     try {
       return await matcher(page, ...args)
     } catch (error) {
-      Error.captureStackTrace(error, createMatcher)
+      Error.captureStackTrace(error, throwingMatcher)
       throw error
     }
   }
