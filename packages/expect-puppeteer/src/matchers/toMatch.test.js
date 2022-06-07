@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('toMatch', () => {
@@ -26,13 +27,14 @@ describe('toMatch', () => {
       })
 
       it('should return an error if text is not in the page', async () => {
-        expect.assertions(3)
+        expect.assertions(4)
 
         try {
           await expect(page).toMatch('Nop', options)
         } catch (error) {
           expect(error.message).toMatch('Text not found "Nop"')
           expect(error.message).toMatch('waiting for function failed')
+          expect(error.stack).toMatch(path.resolve(__filename))
         }
       })
 
@@ -48,7 +50,7 @@ describe('toMatch', () => {
         })
 
         it('should return an error if text is not in the page', async () => {
-          expect.assertions(3)
+          expect.assertions(4)
           const dialogBtn = await page.$('#dialog-btn')
 
           try {
@@ -56,6 +58,7 @@ describe('toMatch', () => {
           } catch (error) {
             expect(error.message).toMatch('Text not found "This is home!"')
             expect(error.message).toMatch('waiting for function failed')
+            expect(error.stack).toMatch(path.resolve(__filename))
           }
         })
       })

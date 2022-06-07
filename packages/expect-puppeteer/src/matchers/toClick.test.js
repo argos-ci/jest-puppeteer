@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('toClick', () => {
@@ -71,17 +72,18 @@ describe('toClick', () => {
     })
 
     it('should return an error if element is not found', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toClick('a', { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
 
     it('should return an error if element is not found with xpath selector', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toClick(
@@ -90,16 +92,18 @@ describe('toClick', () => {
         )
       } catch (error) {
         expect(error.message).toMatch('Element //a (text: "Nop") not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
 
     it('should return an error if element is not found with css selector as object', async () => {
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(page).toClick({ value: 'a', type: 'css' }, { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })
@@ -134,12 +138,13 @@ describe('toClick', () => {
 
     it('should return an error if element is not found', async () => {
       const body = await page.$('body')
-      expect.assertions(2)
+      expect.assertions(3)
 
       try {
         await expect(body).toClick('a', { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
   })

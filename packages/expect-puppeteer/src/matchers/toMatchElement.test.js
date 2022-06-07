@@ -1,3 +1,4 @@
+import path from "path";
 import { setupPage } from './setupPage'
 
 describe('toMatchElement', () => {
@@ -36,13 +37,14 @@ describe('toMatchElement', () => {
     })
 
     it('should return an error if element is not found', async () => {
-      expect.assertions(3)
+      expect.assertions(4)
 
       try {
         await expect(page).toMatchElement('a', { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
         expect(error.message).toMatch('waiting for function failed')
+        expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
 
