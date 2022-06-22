@@ -16,8 +16,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "jest-puppeteer": "^6.0.0",
-    "puppeteer": "^10.4.0"
+    "jest-puppeteer": "^6.1.0",
+    "puppeteer": "^14.1.1"
   },
   "browserslist": {
     "development": [
