@@ -4,6 +4,10 @@
     "packages/*"
   ],
   "repository": "https://github.com/smooth-code/jest-puppeteer",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/jest-puppeteer"
+  },
   "scripts": {
     "build": "lerna run build",
     "ci": "yarn build && yarn lint && yarn test --ci && yarn test:incognito --ci",
