@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v6.1.0...v6.1.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* prevent stdout buffer from filling up ([#482](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/issues/482)) ([6f16345](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/commit/6f16345622c91487b2704bf30350a0e57114c2be))
+
+
+
+
+
 ## [6.0.3](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server/compare/v6.0.2...v6.0.3) (2021-12-14)
 
 **Note:** Version bump only for package jest-dev-server

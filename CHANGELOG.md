@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/smooth-code/jest-puppeteer/compare/v6.1.0...v6.1.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* **expect-puppeteer:** return proper error stack traces from matchers ([#487](https://github.com/smooth-code/jest-puppeteer/issues/487)) ([e9cafb1](https://github.com/smooth-code/jest-puppeteer/commit/e9cafb14b3ea5573ff06a55ba13e0718bb482b03))
+* prevent stdout buffer from filling up ([#482](https://github.com/smooth-code/jest-puppeteer/issues/482)) ([6f16345](https://github.com/smooth-code/jest-puppeteer/commit/6f16345622c91487b2704bf30350a0e57114c2be))
+
+
+
+
+
 # [6.1.0](https://github.com/smooth-code/jest-puppeteer/compare/v6.0.3...v6.1.0) (2022-02-02)
 
 

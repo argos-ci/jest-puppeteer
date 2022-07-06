@@ -1,7 +1,7 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Puppeteer environment for Jest.",
-  "version": "6.0.3",
+  "version": "6.1.1",
   "main": "index.js",
   "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer",
   "author": "Greg Bergé <berge.greg@gmail.com>",
@@ -23,7 +23,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "cwd": "^0.10.0",
-    "jest-dev-server": "^6.0.3",
+    "jest-dev-server": "^6.1.1",
     "jest-environment-node": "^27.4.4",
     "merge-deep": "^3.0.3"
   }
