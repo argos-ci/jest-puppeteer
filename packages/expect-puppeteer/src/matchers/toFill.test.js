@@ -1,4 +1,4 @@
-import path from "path";
+import path from 'path'
 import { setupPage } from './setupPage'
 
 describe('toFill', () => {
