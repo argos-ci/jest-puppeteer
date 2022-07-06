@@ -5,8 +5,8 @@
   ],
   "repository": "https://github.com/smooth-code/jest-puppeteer",
   "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/gregberge"
+    "type": "opencollective",
+    "url": "https://opencollective.com/jest-puppeteer"
   },
   "scripts": {
     "build": "lerna run build",
