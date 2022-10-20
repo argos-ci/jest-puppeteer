@@ -29,7 +29,7 @@ describe('not.toMatch', () => {
           await expect(page).not.toMatch('home', options)
         } catch (error) {
           expect(error.message).toMatch('Text found "home"')
-          expect(error.message).toMatch('waiting for function failed')
+          expect(error.message).toMatch('Waiting failed')
           expect(error.stack).toMatch(path.resolve(__filename))
         }
       })
@@ -48,7 +48,7 @@ describe('not.toMatch', () => {
             await expect(dialogBtn).not.toMatch('Open dialog', options)
           } catch (error) {
             expect(error.message).toMatch('Text found "Open dialog"')
-            expect(error.message).toMatch('waiting for function failed')
+            expect(error.message).toMatch('Waiting failed')
             expect(error.stack).toMatch(path.resolve(__filename))
           }
         })

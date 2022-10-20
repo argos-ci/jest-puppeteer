@@ -42,7 +42,7 @@
     "lerna": "^5.1.6",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "puppeteer": "^15.3.0",
+    "puppeteer": "^19.0.0",
     "rimraf": "^3.0.2"
   }
 }

@@ -43,7 +43,7 @@ describe('toMatchElement', () => {
         await expect(page).toMatchElement('a', { text: 'Nop' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Nop") not found')
-        expect(error.message).toMatch('waiting for function failed')
+        expect(error.message).toMatch('Waiting failed')
         expect(error.stack).toMatch(path.resolve(__filename))
       }
     })
@@ -62,7 +62,7 @@ describe('toMatchElement', () => {
         await expect(page).toMatchElement('.hidden', { visible: true })
       } catch (error) {
         expect(error.message).toMatch('Element .hidden not found')
-        expect(error.message).toMatch('waiting for function failed')
+        expect(error.message).toMatch('Waiting failed')
       }
 
       try {
@@ -71,7 +71,7 @@ describe('toMatchElement', () => {
         })
       } catch (error) {
         expect(error.message).toMatch('Element .displayed not found')
-        expect(error.message).toMatch('waiting for function failed')
+        expect(error.message).toMatch('Waiting failed')
       }
 
       try {
@@ -82,7 +82,7 @@ describe('toMatchElement', () => {
         expect(error.message).toMatch(
           'Element .displayedWithClassname not found',
         )
-        expect(error.message).toMatch('waiting for function failed')
+        expect(error.message).toMatch('Waiting failed')
       }
     })
   })
@@ -124,7 +124,7 @@ describe('toMatchElement', () => {
         await expect(main).toMatchElement('a', { text: 'Page 2' })
       } catch (error) {
         expect(error.message).toMatch('Element a (text: "Page 2") not found')
-        expect(error.message).toMatch('waiting for function failed')
+        expect(error.message).toMatch('Waiting failed')
       }
     })
   })

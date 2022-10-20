@@ -3,10 +3,10 @@ export const getPuppeteerType = (instance) => {
     instance &&
     instance.constructor &&
     instance.constructor.name &&
-    ['Page', 'Frame', 'ElementHandle'].includes(instance.constructor.name) &&
+    ['Page', 'CDPPage', 'Frame', 'ElementHandle'].includes(instance.constructor.name) &&
     instance.$
   ) {
-    return instance.constructor.name
+    return instance.constructor.name === 'CDPPage' ? 'Page' : instance.constructor.name
   }
 
   return null
@@ -22,9 +22,8 @@ export const getContext = async (instance, pageFunction) => {
         handle: await instance.evaluateHandle(pageFunction),
       }
     case 'ElementHandle': {
-      const executionContext = await instance.executionContext()
       return {
-        page: await executionContext.frame(),
+        page: instance.frame,
         handle: instance,
       }
     }
