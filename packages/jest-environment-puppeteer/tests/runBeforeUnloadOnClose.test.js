@@ -1,4 +1,4 @@
-describe('runBeforeUnload', () => {
+describe('runBeforeUnloadOnClose', () => {
   it('shouldn’t call page.close with runBeforeUnload by default', async () => {
     const closeSpy = jest.spyOn(page, 'close')
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`)
