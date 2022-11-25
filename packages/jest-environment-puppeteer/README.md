@@ -107,6 +107,7 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
   - `default` Each test starts a tab, so all tests share the same context.
   - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (_Example: testing multiple users on the same app at once with login, transactions, etc._)
 - `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
+- `runBeforeUnloadOnClose` <[boolean]> Run `page.close()` with `{ runBeforeUnload: true }` when tests finish, see [`page.close`](https://pptr.dev/api/puppeteer.page.close/)
 - `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
 
 #### Example 1
