@@ -95,7 +95,11 @@ class PuppeteerEnvironment extends NodeEnvironment {
       resetPage: async () => {
         if (this.global.page) {
           this.global.page.removeListener('pageerror', handleError)
-          await this.global.page.close()
+          if (this.global.puppeteerConfig.runBeforeUnloadOnClose) {
+            await this.global.page.close({ runBeforeUnload: true })
+          } else {
+            await this.global.page.close()
+          }
         }
 
         this.global.page = await this.global.context.newPage()
@@ -110,7 +114,11 @@ class PuppeteerEnvironment extends NodeEnvironment {
         if (config.browserContext === 'incognito' && this.global.context) {
           await this.global.context.close()
         } else if (this.global.page) {
-          await this.global.page.close()
+          if (this.global.puppeteerConfig.runBeforeUnloadOnClose) {
+            await this.global.page.close({ runBeforeUnload: true })
+          } else {
+            await this.global.page.close()
+          }
         }
         this.global.page = null
 
@@ -162,7 +170,11 @@ class PuppeteerEnvironment extends NodeEnvironment {
         await context.close()
       }
     } else if (page) {
-      await page.close()
+      if (puppeteerConfig.runBeforeUnloadOnClose) {
+        await page.close({ runBeforeUnload: true })
+      } else {
+        await page.close()
+      }
     }
 
     if (browser) {
