@@ -101,8 +101,8 @@ beforeEach(async () => {
 
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable. It should export a config object or a Promise for a config object.
 
-- `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
-- `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
+- `launch` <[object]> [All Puppeteer launch options](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.puppeteernodelaunchoptions.md) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
+- `connect` <[object]> [All Puppeteer connect options](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.connectoptions.md) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
 - `browserContext` <[string]>. By default, the browser context (cookies, localStorage, etc) is shared between all tests. The following options are available for `browserContext`:
   - `default` Each test starts a tab, so all tests share the same context.
   - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (_Example: testing multiple users on the same app at once with login, transactions, etc._)
