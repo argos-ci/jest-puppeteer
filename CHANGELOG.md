@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v6.2.0...v7.0.0) (2023-02-03)
+
+
+### Features
+
+* modernize project ([#514](https://github.com/smooth-code/jest-puppeteer/issues/514)) ([6ca8757](https://github.com/smooth-code/jest-puppeteer/commit/6ca8757452e33d00a1a841d6f18b032411f4bdb6))
+* target puppeteer v19+ ([31f6f1e](https://github.com/smooth-code/jest-puppeteer/commit/31f6f1e5de72edc639db65cd6688eab7c02693ac))
+
+
+### BREAKING CHANGES
+
+* requires puppeteer v19+
+
+
+
+
+
 # [6.2.0](https://github.com/smooth-code/jest-puppeteer/compare/v6.1.1...v6.2.0) (2022-12-11)
 
 ### Bug Fixes

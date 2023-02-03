@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer-preset",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "6.2.0",
+  "version": "7.0.0",
   "type": "commonjs",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "puppeteer": ">=19"
   },
   "dependencies": {
-    "expect-puppeteer": "^6.1.1",
-    "jest-environment-puppeteer": "^6.2.0"
+    "expect-puppeteer": "^7.0.0",
+    "jest-environment-puppeteer": "^7.0.0"
   }
 }
