@@ -1,46 +1,18 @@
-<h1 align="center">
-  <img src="https://raw.githubusercontent.com/smooth-code/jest-puppeteer/master/resources/jest-puppeteer-logo.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
-</h1>
-<p align="center" style="font-size: 1.2rem;">Run your tests using Jest & Puppeteer 🎪✨</p>
+# 🎪 jest-puppeteer
 
-[![License](https://img.shields.io/npm/l/jest-puppeteer.svg)](https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE)
-[![Donate](https://opencollective.com/jest-puppeteer/backers/badge.svg)](https://opencollective.com/jest-puppeteer/donate)
-[![npm package](https://img.shields.io/npm/v/jest-puppeteer/latest.svg)](https://www.npmjs.com/package/jest-puppeteer)
-[![npm downloads](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
-[![Build Status](https://github.com/smooth-code/jest-puppeteer/workflows/CI/badge.svg)](https://github.com/smooth-code/jest-puppeteer/actions)
-![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
-[![Dependencies](https://img.shields.io/david/smooth-code/jest-puppeteer.svg?path=packages%2Fjest-puppeteer)](https://david-dm.org/smooth-code/jest-puppeteer?path=packages/jest-puppeteer)
-[![DevDependencies](https://img.shields.io/david/dev/smooth-code/jest-puppeteer.svg)](https://david-dm.org/smooth-code/jest-puppeteer?type=dev)
+[![npm version](https://img.shields.io/npm/v/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
+[![npm dm](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
+[![npm dt](https://img.shields.io/npm/dt/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
+
+## Installation
+
+### Install packages
 
 ```bash
-# for jest 22~23
-npm install --save-dev jest-puppeteer@3.9.0 puppeteer jest
-# for jest 24+
 npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
-> Requires Jest v22+
-
-```bash
-# TypeScript users should install following type packages
-npm install --save-dev @types/puppeteer @types/jest-environment-puppeteer @types/expect-puppeteer
-```
-
-## Supporting jest-puppeteer
-
-jest-puppeteer is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
-
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/jest-puppeteer).
-
-### Gold Sponsors
-
-Gold Sponsors are those who have pledged \$100/month and more to jest-puppeteer.
-
-[![gold-sponsors](https://opencollective.com/jest-puppeteer/tiers/gold-sponsors.svg?avatarHeight=120&width=600)](https://opencollective.com/jest-puppeteer/order/6045)
-
-## Usage
-
-Update your Jest configuration:
+### Update your Jest configuration
 
 ```json
 {
@@ -48,9 +20,10 @@ Update your Jest configuration:
 }
 ```
 
-**NOTE**: Be sure to remove any existing `testEnvironment` option from your Jest configuration. The `jest-puppeteer` preset needs to manage that option itself.
+> **Note**
+> Be sure to remove any existing `testEnvironment` option from your Jest configuration.
 
-Use Puppeteer in your tests:
+### Write tests
 
 ```js
 import "expect-puppeteer";
@@ -66,21 +39,7 @@ describe("Google", () => {
 });
 ```
 
-If you are using `react-scripts`, you will need to pass the environment via command line:
-
-```js
-  "test": "react-scripts test --env=puppeteer",
-```
-
-or alternatively include the following comment at the top of each test file:
-
-```js
-/**
- * @jest-environment puppeteer
- */
-```
-
-### Running puppeteer in CI environments
+## Running puppeteer in CI environments
 
 Most continuous integration platforms limit the number of threads one can use. If you have more than one test suite running puppeteer chances are that your test will timeout. This is because jest will try to run puppeteer in parallel and the CI platform won't be able to handle all the parallel jobs in time. A fix to this is to run your test serially when in a CI environment. Users have discovered that [running test serially in such environments can render up to 50%](https://jestjs.io/docs/en/troubleshooting#tests-are-extremely-slow-on-docker-and-or-continuous-integration-ci-server) of performance gains.
 
@@ -97,6 +56,14 @@ jest --maxWorkers=2
 ```
 
 ## Recipes
+
+### TypeScript
+
+Install types:
+
+```bash
+npm install --save-dev @types/puppeteer @types/jest-environment-puppeteer @types/expect-puppeteer
+```
 
 ### Writing tests using Puppeteer
 
