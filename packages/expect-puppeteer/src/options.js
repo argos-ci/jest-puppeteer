@@ -1,8 +1,8 @@
-let defaultOptionsValue = { timeout: 500 }
+let defaultOptionsValue = { timeout: 500 };
 
 export const setDefaultOptions = (options) => {
-  defaultOptionsValue = options
-}
+  defaultOptionsValue = options;
+};
 
 export const getDefaultOptions = () => {
   if (
@@ -20,13 +20,13 @@ export const getDefaultOptions = () => {
       // we can't use it as a real value
       timeout:
         defaultOptionsValue.timeout + global.puppeteerConfig.launch.slowMo * 10,
-    }
+    };
   }
 
-  return defaultOptionsValue
-}
+  return defaultOptionsValue;
+};
 
 export const defaultOptions = (options) => ({
   ...getDefaultOptions(),
   ...options,
-})
+});

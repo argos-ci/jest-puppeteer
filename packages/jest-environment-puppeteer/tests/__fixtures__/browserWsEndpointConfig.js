@@ -1,5 +1,5 @@
 module.exports = {
   connect: {
-    browserWSEndpoint: 'wss://end.point',
+    browserWSEndpoint: "wss://end.point",
   },
-}
+};

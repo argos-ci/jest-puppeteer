@@ -2,10 +2,22 @@
   "name": "jest-puppeteer-preset",
   "description": "Run your tests using Jest & Puppeteer.",
   "version": "6.2.0",
-  "main": "lib/index.js",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer-preset",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
-  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/jest-puppeteer-preset"
+  },
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-puppeteer-preset#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "jest",
     "puppeteer",

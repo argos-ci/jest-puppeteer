@@ -15,8 +15,8 @@ npm install jest-puppeteer puppeteer
 ```js
 // jest.config.js
 module.exports = {
-  preset: 'jest-puppeteer',
-}
+  preset: "jest-puppeteer",
+};
 ```
 
 ## License

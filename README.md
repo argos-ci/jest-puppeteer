@@ -53,17 +53,17 @@ Update your Jest configuration:
 Use Puppeteer in your tests:
 
 ```js
-import 'expect-puppeteer'
+import "expect-puppeteer";
 
-describe('Google', () => {
+describe("Google", () => {
   beforeAll(async () => {
-    await page.goto('https://google.com')
-  })
+    await page.goto("https://google.com");
+  });
 
   it('should display "google" text on page', async () => {
-    await expect(page).toMatch('google')
-  })
-})
+    await expect(page).toMatch("google");
+  });
+});
 ```
 
 If you are using `react-scripts`, you will need to pass the environment via command line:
@@ -110,14 +110,14 @@ Some examples:
 
 ```js
 // Assert that current page contains 'Text in the page'
-await expect(page).toMatch('Text in the page')
+await expect(page).toMatch("Text in the page");
 ```
 
 #### Click a button
 
 ```js
 // Assert that a button containing text "Home" will be clicked
-await expect(page).toClick('button', { text: 'Home' })
+await expect(page).toClick("button", { text: "Home" });
 ```
 
 #### Fill a form
@@ -125,9 +125,9 @@ await expect(page).toClick('button', { text: 'Home' })
 ```js
 // Assert that a form will be filled
 await expect(page).toFillForm('form[name="myForm"]', {
-  firstName: 'James',
-  lastName: 'Bond',
-})
+  firstName: "James",
+  lastName: "Bond",
+});
 ```
 
 ### Put in debug mode
@@ -135,7 +135,7 @@ await expect(page).toFillForm('form[name="myForm"]', {
 Debugging tests can be hard sometimes and it is very useful to be able to pause tests in order to inspect the browser. Jest Puppeteer exposes a method `jestPuppeteer.debug()` that suspends test execution and gives you opportunity to see what's going on in the browser.
 
 ```js
-await jestPuppeteer.debug()
+await jestPuppeteer.debug();
 ```
 
 ### Start a server
@@ -148,10 +148,10 @@ To use it, specify a server section in your `jest-puppeteer.config.js`.
 // jest-puppeteer.config.js
 module.exports = {
   server: {
-    command: 'node server.js',
+    command: "node server.js",
     port: 4444,
   },
-}
+};
 ```
 
 Other options are documented in [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server).
@@ -171,11 +171,11 @@ Default config values:
 module.exports = {
   launch: {
     dumpio: true,
-    headless: process.env.HEADLESS !== 'false',
-    product: 'chrome',
+    headless: process.env.HEADLESS !== "false",
+    product: "chrome",
   },
-  browserContext: 'default',
-}
+  browserContext: "default",
+};
 ```
 
 ### Configure ESLint
@@ -194,7 +194,7 @@ module.exports = {
     context: true,
     jestPuppeteer: true,
   },
-}
+};
 ```
 
 ### Custom `setupTestFrameworkScriptFile` or `setupFilesAfterEnv`
@@ -203,7 +203,7 @@ If you use custom setup files, you'll need to include `expect-puppeteer` yoursel
 
 ```js
 // setup.js
-require('expect-puppeteer')
+require("expect-puppeteer");
 
 // Your custom setup
 // ...
@@ -213,10 +213,10 @@ require('expect-puppeteer')
 // jest.config.js
 module.exports = {
   // ...
-  setupTestFrameworkScriptFile: './setup.js',
+  setupTestFrameworkScriptFile: "./setup.js",
   // or
-  setupFilesAfterEnv: ['./setup.js'],
-}
+  setupFilesAfterEnv: ["./setup.js"],
+};
 ```
 
 You may want to consider using multiple projects in Jest since setting your own `setupFilesAfterEnv` and `globalSetup` can cause globals to be undefined.
@@ -225,44 +225,44 @@ You may want to consider using multiple projects in Jest since setting your own 
 module.exports = {
   projects: [
     {
-      displayName: 'integration',
-      preset: 'jest-puppeteer',
+      displayName: "integration",
+      preset: "jest-puppeteer",
       transform: {
-        '\\.tsx?$': 'babel-jest',
-        '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-          'jest-transform-stub',
+        "\\.tsx?$": "babel-jest",
+        ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
+          "jest-transform-stub",
       },
       moduleNameMapper: {
-        '^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-          'jest-transform-stub',
+        "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
+          "jest-transform-stub",
       },
-      modulePathIgnorePatterns: ['.next'],
+      modulePathIgnorePatterns: [".next"],
       testMatch: [
-        '<rootDir>/src/**/__integration__/**/*.test.ts',
-        '<rootDir>/src/**/__integration__/**/*.test.tsx',
+        "<rootDir>/src/**/__integration__/**/*.test.ts",
+        "<rootDir>/src/**/__integration__/**/*.test.tsx",
       ],
     },
     {
-      displayName: 'unit',
+      displayName: "unit",
       transform: {
-        '\\.tsx?$': 'babel-jest',
-        '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-          'jest-transform-stub',
+        "\\.tsx?$": "babel-jest",
+        ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
+          "jest-transform-stub",
       },
       moduleNameMapper: {
-        '^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-          'jest-transform-stub',
+        "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
+          "jest-transform-stub",
       },
-      globalSetup: '<rootDir>/setupEnv.ts',
-      setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
-      modulePathIgnorePatterns: ['.next'],
+      globalSetup: "<rootDir>/setupEnv.ts",
+      setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
+      modulePathIgnorePatterns: [".next"],
       testMatch: [
-        '<rootDir>/src/**/__tests_/**/*.test.ts',
-        '<rootDir>/src/**/__tests__/**/*.test.tsx',
+        "<rootDir>/src/**/__tests_/**/*.test.ts",
+        "<rootDir>/src/**/__tests__/**/*.test.tsx",
       ],
     },
   ],
-}
+};
 ```
 
 ### Extend `PuppeteerEnvironment`
@@ -273,21 +273,21 @@ First, create your own js file for custom environment.
 
 ```js
 // custom-environment.js
-const PuppeteerEnvironment = require('jest-environment-puppeteer')
+const PuppeteerEnvironment = require("jest-environment-puppeteer");
 
 class CustomEnvironment extends PuppeteerEnvironment {
   async setup() {
-    await super.setup()
+    await super.setup();
     // Your setup
   }
 
   async teardown() {
     // Your teardown
-    await super.teardown()
+    await super.teardown();
   }
 }
 
-module.exports = CustomEnvironment
+module.exports = CustomEnvironment;
 ```
 
 Then, assigning your js file path to the [`testEnvironment`](https://facebook.github.io/jest/docs/en/configuration.html#testenvironment-string) property in your Jest configuration.
@@ -309,22 +309,22 @@ For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and
 
 ```js
 // global-setup.js
-const { setup: setupPuppeteer } = require('jest-environment-puppeteer')
+const { setup: setupPuppeteer } = require("jest-environment-puppeteer");
 
 module.exports = async function globalSetup(globalConfig) {
-  await setupPuppeteer(globalConfig)
+  await setupPuppeteer(globalConfig);
   // Your global setup
-}
+};
 ```
 
 ```js
 // global-teardown.js
-const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer')
+const { teardown: teardownPuppeteer } = require("jest-environment-puppeteer");
 
 module.exports = async function globalTeardown(globalConfig) {
   // Your global teardown
-  await teardownPuppeteer(globalConfig)
-}
+  await teardownPuppeteer(globalConfig);
+};
 ```
 
 Then assigning your js file paths to the [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string) property in your Jest configuration.
@@ -350,10 +350,10 @@ You can find an [example of create-react-app setup in this repository](https://g
 Give access to the [Puppeteer Browser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser).
 
 ```js
-it('should open a new page', async () => {
-  const page = await browser.newPage()
-  await page.goto('https://google.com')
-})
+it("should open a new page", async () => {
+  const page = await browser.newPage();
+  await page.goto("https://google.com");
+});
 ```
 
 ### `global.page`
@@ -361,9 +361,9 @@ it('should open a new page', async () => {
 Give access to a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page) opened at start (you will use it most of time).
 
 ```js
-it('should fill an input', async () => {
-  await page.type('#myinput', 'Hello')
-})
+it("should fill an input", async () => {
+  await page.type("#myinput", "Hello");
+});
 ```
 
 ### `global.context`
@@ -375,7 +375,7 @@ Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blo
 Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api).
 
 ```js
-await expect(page).toMatch('A text in the page')
+await expect(page).toMatch("A text in the page");
 // ...
 ```
 
@@ -387,9 +387,9 @@ Put test in debug mode.
 - A `debugger` instruction to Chromium, if Puppeteer has been launched with `{ devtools: true }` it will stop
 
 ```js
-it('should put test in debug mode', async () => {
-  await jestPuppeteer.debug()
-})
+it("should put test in debug mode", async () => {
+  await jestPuppeteer.debug();
+});
 ```
 
 ### `global.jestPuppeteer.resetPage()`
@@ -398,8 +398,8 @@ Reset global.page
 
 ```js
 beforeEach(async () => {
-  await jestPuppeteer.resetPage()
-})
+  await jestPuppeteer.resetPage();
+});
 ```
 
 ### `global.jestPuppeteer.resetBrowser()`
@@ -408,8 +408,8 @@ Reset global.browser, global.context, and global.page
 
 ```js
 beforeEach(async () => {
-  await jestPuppeteer.resetBrowser()
-})
+  await jestPuppeteer.resetBrowser();
+});
 ```
 
 ### `jest-puppeteer.config.js`
@@ -429,13 +429,13 @@ You can specify a `jest-puppeteer.config.js` at the root of the project or defin
 module.exports = {
   launch: {
     dumpio: true,
-    headless: process.env.HEADLESS !== 'false',
+    headless: process.env.HEADLESS !== "false",
   },
   server: {
-    command: 'node server.js',
+    command: "node server.js",
     port: 4444,
   },
-}
+};
 ```
 
 #### Example 2
@@ -444,17 +444,17 @@ This example uses an already running instance of Chrome by passing the active we
 
 ```js
 // jest-puppeteer.config.js
-const wsEndpoint = fs.readFileSync(endpointPath, 'utf8')
+const wsEndpoint = fs.readFileSync(endpointPath, "utf8");
 
 module.exports = {
   connect: {
     browserWSEndpoint: wsEndpoint,
   },
   server: {
-    command: 'node server.js',
+    command: "node server.js",
     port: 4444,
   },
-}
+};
 ```
 
 ## Inspiration

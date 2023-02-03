@@ -15,14 +15,14 @@ npm install expect-puppeteer
 Without Jest:
 
 ```js
-import expect from 'expect-puppeteer'
-;(async () => {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
-  await page.goto('https://google.com')
-  await expect(page).toMatch('google')
-  await browser.close()
-})()
+import expect from "expect-puppeteer";
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto("https://google.com");
+  await expect(page).toMatch("google");
+  await browser.close();
+})();
 ```
 
 ## Use with Jest
@@ -50,13 +50,13 @@ This API is designed for integration testing:
 
 ```js
 // Does not work if button is not in page
-await page.click('button')
+await page.click("button");
 
 // Will try for 500ms to click on "button"
-await page.toClick('button')
+await page.toClick("button");
 
 // Will click the first button with a "My button" text inside
-await page.toClick('button', { text: 'My button' })
+await page.toClick("button", { text: "My button" });
 ```
 
 The first element to match will be selected
@@ -71,10 +71,10 @@ The first element to match will be selected
 
 ```js
 // Will match outer div
-await expect(page).toMatch('div', { text: 'some text' })
+await expect(page).toMatch("div", { text: "some text" });
 
 // Will match inner div
-await expect(page).toMatch('div.inner', { text: 'some text' })
+await expect(page).toMatch("div.inner", { text: "some text" });
 ```
 
 ## API
@@ -105,8 +105,8 @@ Expect an element to be in the page or element, then click on it.
   - `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
 
 ```js
-await expect(page).toClick('button', { text: 'Home' })
-await expect(page).toClick({ type: 'xpath', value: '\\a' }, { text: 'Click' })
+await expect(page).toClick("button", { text: "Home" });
+await expect(page).toClick({ type: "xpath", value: "\\a" }, { text: "Click" });
 ```
 
 ### <a name="toDisplayDialog"></a>expect(page).toDisplayDialog(block)
@@ -118,8 +118,8 @@ Expect block function to trigger a dialog and returns it.
 
 ```js
 const dialog = await expect(page).toDisplayDialog(async () => {
-  await expect(page).toClick('button', { text: 'Show dialog' })
-})
+  await expect(page).toClick("button", { text: "Show dialog" });
+});
 ```
 
 ### <a name="toFill"></a>expect(instance).toFill(selector, value[, options])
@@ -133,7 +133,7 @@ Expect a control to be in the page or element, then fill it with text.
   - `delay` <[number]> delay to pass to [the puppeteer `element.type` API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#elementhandletypetext-options)
 
 ```js
-await expect(page).toFill('input[name="firstName"]', 'James')
+await expect(page).toFill('input[name="firstName"]', "James");
 ```
 
 ### <a name="toFillForm"></a>expect(instance).toFillForm(selector, values[, options])
@@ -148,9 +148,9 @@ Expect a form to be in the page or element, then fill its controls.
 
 ```js
 await expect(page).toFillForm('form[name="myForm"]', {
-  firstName: 'James',
-  lastName: 'Bond',
-})
+  firstName: "James",
+  lastName: "Bond",
+});
 ```
 
 ### <a name="toMatch"></a>expect(instance).toMatch(matcher[, options])
@@ -168,9 +168,9 @@ Expect a text or a string RegExp to be present in the page or element.
 
 ```js
 // Matching using text
-await expect(page).toMatch('Lorem ipsum')
+await expect(page).toMatch("Lorem ipsum");
 // Matching using RegExp
-await expect(page).toMatch(/lo.*/)
+await expect(page).toMatch(/lo.*/);
 ```
 
 ### <a name="toMatchElement"></a>expect(instance).toMatchElement(selector[, options])
@@ -189,9 +189,9 @@ Expect an element be present in the page or element.
 
 ```js
 // Select a row containing a text
-const row = await expect(page).toMatchElement('tr', { text: 'My row' })
+const row = await expect(page).toMatchElement("tr", { text: "My row" });
 // Click on the third column link
-await expect(row).toClick('td:nth-child(3) a')
+await expect(row).toClick("td:nth-child(3) a");
 ```
 
 ### <a name="toSelect"></a>expect(instance).toSelect(selector, valueOrText)
@@ -203,7 +203,7 @@ Expect a select control to be present in the page or element, then select the sp
 - `valueOrText` <[string]> Value or text matching option
 
 ```js
-await expect(page).toSelect('select[name="choices"]', 'Choice 1')
+await expect(page).toSelect('select[name="choices"]', "Choice 1");
 ```
 
 ### <a name="toUploadFile"></a>expect(instance).toUploadFile(selector, filePath)
@@ -215,12 +215,12 @@ Expect a input file control to be present in the page or element, then fill it w
 - `filePath` <[string]> A file path
 
 ```js
-import path from 'path'
+import path from "path";
 
 await expect(page).toUploadFile(
   'input[type="file"]',
-  path.join(__dirname, 'file.txt'),
-)
+  path.join(__dirname, "file.txt")
+);
 ```
 
 ### <a name="MatchSelector"></a>{type: [string], value: [string]}
@@ -240,9 +240,9 @@ An object used as parameter in order to select an element.
 To configure default options like `timeout`, `expect-puppeteer` exposes two methods: `getDefaultOptions` and `setDefaultOptions`. You can find available options in [Puppeteer `page.waitForFunction` documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagewaitforfunctionpagefunction-options-args). Default options are set to: `{ timeout: 500 }`.
 
 ```js
-import { setDefaultOptions } from 'expect-puppeteer'
+import { setDefaultOptions } from "expect-puppeteer";
 
-setDefaultOptions({ timeout: 1000 })
+setDefaultOptions({ timeout: 1000 });
 ```
 
 ## License
@@ -255,18 +255,18 @@ MIT
 [package]: https://www.npmjs.com/package/expect-puppeteer
 [license-badge]: https://img.shields.io/npm/l/expect-puppeteer.svg?style=flat-square
 [license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
-[array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 'Array'
-[boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type 'Boolean'
-[function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function 'Function'
-[number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type 'Number'
-[object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 'Object'
-[promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise 'Promise'
-[regexp]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp 'RegExp'
-[string]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type 'String'
-[error]: https://nodejs.org/api/errors.html#errors_class_error 'Error'
-[element]: https://developer.mozilla.org/en-US/docs/Web/API/element 'Element'
-[map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map 'Map'
-[selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors 'selector'
-[page]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page 'Page'
-[elementhandle]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle 'ElementHandle'
+[array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array "Array"
+[boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type "Boolean"
+[function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function "Function"
+[number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type "Number"
+[object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object "Object"
+[promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise "Promise"
+[regexp]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp "RegExp"
+[string]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type "String"
+[error]: https://nodejs.org/api/errors.html#errors_class_error "Error"
+[element]: https://developer.mozilla.org/en-US/docs/Web/API/element "Element"
+[map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map "Map"
+[selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors "selector"
+[page]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page "Page"
+[elementhandle]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle "ElementHandle"
 [uievent.detail]: https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail

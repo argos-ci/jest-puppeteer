@@ -1,6 +1,6 @@
 module.exports = {
-  browser: 'firefox',
+  browser: "firefox",
   launch: {
-    product: 'chrome',
+    product: "chrome",
   },
-}
+};

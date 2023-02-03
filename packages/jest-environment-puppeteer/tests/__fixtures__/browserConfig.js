@@ -1,3 +1,3 @@
 module.exports = {
-  browser: 'firefox',
-}
+  browser: "firefox",
+};

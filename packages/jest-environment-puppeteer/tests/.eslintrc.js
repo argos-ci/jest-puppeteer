@@ -8,4 +8,4 @@ module.exports = {
     browser: true,
     context: true,
   },
-}
+};

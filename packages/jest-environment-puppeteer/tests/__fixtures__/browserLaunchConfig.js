@@ -1,6 +1,6 @@
 module.exports = {
-  browser: 'firefox',
+  browser: "firefox",
   launch: {
-    some: 'other property',
+    some: "other property",
   },
-}
+};

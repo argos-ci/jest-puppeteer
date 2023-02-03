@@ -1,5 +1,5 @@
 module.exports = {
   launch: {
-    product: 'chrome',
+    product: "chrome",
   },
-}
+};
