@@ -1,3 +1,3 @@
 module.exports = {
-  browser: 'chromium',
-}
+  browser: "chromium",
+};

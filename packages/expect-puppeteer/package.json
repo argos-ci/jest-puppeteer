@@ -2,10 +2,24 @@
   "name": "expect-puppeteer",
   "description": "Assertion toolkit for Puppeteer.",
   "version": "6.1.1",
-  "main": "lib/index.js",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
-  "license": "MIT",
+  "type": "commonjs",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/expect-puppeteer"
+  },
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/expect-puppeteer#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "keywords": [
     "jest",
     "puppeteer",
@@ -17,10 +31,15 @@
     "should",
     "assertion"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "prebuild": "rimraf lib/",
-    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
-    "dev": "yarn build --watch",
-    "prepublishOnly": "yarn build"
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^2.79.1",
+    "rollup-plugin-swc3": "^0.6.0"
   }
 }

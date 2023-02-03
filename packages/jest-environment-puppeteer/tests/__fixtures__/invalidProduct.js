@@ -1,5 +1,5 @@
 module.exports = {
   launch: {
-    product: 'foobar',
+    product: "foobar",
   },
-}
+};

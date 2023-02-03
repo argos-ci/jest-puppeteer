@@ -13,13 +13,13 @@ npm install spawnd
 ## Usage
 
 ```js
-import spawnd from 'spawnd'
+import spawnd from "spawnd";
 
-const proc = spawnd('node server.js', { shell: true })
+const proc = spawnd("node server.js", { shell: true });
 
 proc.destroy().then(() => {
-  console.log('Destroyed!')
-})
+  console.log("Destroyed!");
+});
 ```
 
 ## API

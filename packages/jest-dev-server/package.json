@@ -2,20 +2,39 @@
   "name": "jest-dev-server",
   "description": "Starts a server before your Jest tests and tears it down after.",
   "version": "6.2.0",
-  "main": "index.js",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
-  "license": "MIT",
+  "type": "commonjs",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/jest-dev-server"
+  },
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-dev-server#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "keywords": [
     "jest",
     "jest-environment",
     "server"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "prebuild": "rimraf lib/",
-    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
-    "dev": "yarn build --watch",
-    "prepublishOnly": "yarn build"
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^2.79.1",
+    "rollup-plugin-swc3": "^0.6.0"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -24,6 +43,6 @@
     "prompts": "^2.4.2",
     "spawnd": "^6.2.0",
     "tree-kill": "^1.2.2",
-    "wait-on": "^6.0.1"
+    "wait-on": "^7.0.1"
   }
 }

@@ -1,1 +1,1 @@
-module.exports = require('./lib/global').setup
+module.exports = require("./lib/global").setup;
