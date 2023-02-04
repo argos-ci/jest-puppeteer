@@ -19,6 +19,7 @@ export default [
     output: {
       file: "lib/global.js",
       format: "cjs",
+      interop: "compat",
     },
     plugins: [swcPlugin],
   }),
@@ -27,6 +28,7 @@ export default [
     output: {
       file: "lib/env.js",
       format: "cjs",
+      interop: "compat",
     },
     plugins: [swcPlugin],
   }),
