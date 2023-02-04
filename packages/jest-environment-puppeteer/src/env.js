@@ -1,9 +1,10 @@
 // eslint-disable-next-line
-import { join } from "node:path";
+import { join, basename } from "node:path";
 import NodeEnvironment from "jest-environment-node";
 import chalk from "chalk";
 import { mkdir } from "node:fs/promises";
 import { readConfig, getPuppeteer } from "./readConfig";
+import filenamify from "filenamify";
 
 const handleError = (error) => {
   process.emit("uncaughtException", error);
@@ -20,9 +21,38 @@ const getWorkerIndex = () => process.env.JEST_WORKER_ID - 1;
 const getEndpointIndex = () =>
   Math.min(+process.env.BROWSERS_COUNT - 1, getWorkerIndex());
 
-// const screenshotsDirectory = join(process.cwd(), "screenshots");
+const screenshotsDirectory = join(process.cwd(), "screenshots");
+
+const screenshot = async (page, name) => {
+  await mkdir(screenshotsDirectory, { recursive: true });
+  const filename = filenamify(`${name} (failed).jpg`);
+  await page.screenshot({
+    path: join(screenshotsDirectory, filename),
+  });
+};
+
+const getFullTestName = (test) => {
+  const names = [];
+  let current = test;
+  while (current) {
+    if (current.name === "ROOT_DESCRIBE_BLOCK") break;
+    names.unshift(current.name);
+    current = current.parent;
+  }
+  return names.join(" ");
+};
+
+const getErrorScreenshotName = (test, filename) => {
+  const fullName = getFullTestName(test);
+  if (!filename) return fullName;
+  return `${basename(filename)} - ${fullName}`;
+};
 
 class PuppeteerEnvironment extends NodeEnvironment {
+  constructor(config, context) {
+    super(config, context);
+    this.testPath = context.testPath;
+  }
   // Jest is not available here, so we have to reverse engineer
   // the setTimeout function, see https://github.com/facebook/jest/blob/v23.1.0/packages/jest-runtime/src/index.js#L823
   setTimeout(timeout) {
@@ -34,14 +64,14 @@ class PuppeteerEnvironment extends NodeEnvironment {
     }
   }
 
-  // async handleTestEvent(event, state) {
-  //   if (event.name === "test_fn_failure") {
-  //     const testName = state.currentlyRunningTest.name;
-  //     await this.global.page.screenshot({
-  //       path: join(screenshotsDirectory, `${testName}.jpg`),
-  //     });
-  //   }
-  // }
+  async handleTestEvent(event, state) {
+    if (event.name === "test_fn_failure") {
+      await screenshot(
+        this.global.page,
+        getErrorScreenshotName(state.currentlyRunningTest, this.testPath)
+      );
+    }
+  }
 
   async setup() {
     const config = await readConfig();
@@ -169,7 +199,6 @@ class PuppeteerEnvironment extends NodeEnvironment {
     };
 
     await this.global.jestPuppeteer.resetBrowser();
-    await mkdir(join(process.cwd(), "screenshots"), { recursive: true });
   }
 
   async teardown() {
