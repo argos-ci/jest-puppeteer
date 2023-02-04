@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-import stream from "stream";
-import net from "net";
+import { Transform } from "node:stream";
+import { createServer } from "node:http";
+import { promisify } from "node:util";
 import chalk from "chalk";
 import spawnd from "spawnd";
 import cwd from "cwd";
 import waitOn from "wait-on";
 import findProcess from "find-process";
-import { promisify } from "util";
 import treeKill from "tree-kill";
 import prompts from "prompts";
 
@@ -23,7 +23,7 @@ const DEFAULT_CONFIG = {
 
 const pTreeKill = promisify(treeKill);
 
-const serverLogPrefixer = new stream.Transform({
+const serverLogPrefixer = new Transform({
   transform(chunk, encoding, callback) {
     this.push(chalk.magentaBright(`[Jest Dev server] ${chunk.toString()}`));
     callback();
@@ -91,22 +91,27 @@ async function outOfStin(block) {
   return result;
 }
 
-async function getIsPortTaken(config) {
-  let server;
-  const cleanupAndReturn = (result) =>
-    new Promise((resolve) => {
-      server.once("close", () => resolve(result)).close();
-    });
-  const val = await new Promise((resolve, reject) => {
-    server = net
-      .createServer()
-      .once("error", (err) =>
-        err.code === "EADDRINUSE" ? resolve(cleanupAndReturn(true)) : reject()
-      )
-      .once("listening", () => resolve(cleanupAndReturn(false)))
-      .listen(config.port, config.host);
+/**
+ * Check if a port is busy.
+ * @param {*} config
+ */
+async function checkIsPortBusy(config) {
+  return new Promise((resolve) => {
+    const server = createServer()
+      .once("error", (err) => {
+        console.log("error");
+        if (err.code === "EADDRINUSE") {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      })
+      .once("listening", () => {
+        console.log("listening");
+        server.once("close", () => resolve(false)).close();
+      })
+      .listen(config.port);
   });
-  return val;
 }
 
 export async function setup(providedConfigs) {
@@ -172,12 +177,12 @@ async function setupJestServer(providedConfig, index) {
   }
 
   if (config.port) {
-    const isPortTaken = await getIsPortTaken(config);
-    if (isPortTaken) {
+    const isPortBusy = await checkIsPortBusy(config);
+    if (isPortBusy) {
       await usedPortHandler();
     }
 
-    if (config.usedPortAction === "ignore" && isPortTaken) {
+    if (config.usedPortAction === "ignore" && isPortBusy) {
       console.log("");
       console.log("Port is already taken. Assuming server is already running.");
     } else {
