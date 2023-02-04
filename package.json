@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "build": "cross-env NODE_ENV=production lerna run build",
-    "dev": "lerna run dev --parallel",
+    "dev": "lerna watch -- lerna run build --scope=\\$LERNA_PACKAGE_NAME",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
     "test": "jest --runInBand",
