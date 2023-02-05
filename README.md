@@ -427,7 +427,3 @@ module.exports = {
 ## Inspiration
 
 Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro/jest-puppeteer-example).
-
-## License
-
-MIT

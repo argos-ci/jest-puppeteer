@@ -3,9 +3,13 @@
   "description": "Spawn a dependent child process.",
   "version": "7.0.0",
   "type": "commonjs",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json"
   },
   "repository": {
@@ -25,7 +29,7 @@
     "exec",
     "process",
     "child_process",
-    "depe,dent",
+    "dependent",
     "exit",
     "child"
   ],
@@ -36,8 +40,15 @@
     "prebuild": "rm -rf dist",
     "build": "rollup -c"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@types/exit": "^0.1.31",
+    "@types/signal-exit": "^3.0.1",
     "exit": "^0.1.2",
+    "rollup": "^3.15.0",
+    "rollup-plugin-dts": "^5.2.0",
+    "rollup-plugin-swc3": "^0.8.0"
+  },
+  "dependencies": {
     "signal-exit": "^3.0.7",
     "tree-kill": "^1.2.2"
   }

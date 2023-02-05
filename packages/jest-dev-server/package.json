@@ -3,9 +3,13 @@
   "description": "Starts a server before your Jest tests and tears it down after.",
   "version": "7.0.1",
   "type": "commonjs",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json"
   },
   "repository": {
@@ -33,7 +37,11 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "rollup": "^3.13.0",
+    "@types/cwd": "^0.10.0",
+    "@types/prompts": "^2.4.2",
+    "@types/wait-on": "^5.3.1",
+    "rollup": "^3.15.0",
+    "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-swc3": "^0.8.0"
   },
   "dependencies": {

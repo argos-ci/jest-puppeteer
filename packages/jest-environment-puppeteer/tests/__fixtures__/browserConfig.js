@@ -1,3 +1,5 @@
 module.exports = {
-  browser: "firefox",
+  launch: {
+    product: "firefox",
+  },
 };

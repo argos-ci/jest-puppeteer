@@ -1,0 +1,19 @@
+{
+  "exclude": ["node_modules/**"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "target": "ES2021",
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true
+  }
+}

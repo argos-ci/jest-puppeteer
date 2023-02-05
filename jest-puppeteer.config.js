@@ -4,7 +4,10 @@ const port = process.env.TEST_SERVER_PORT
 
 process.env.TEST_SERVER_PORT = port;
 
-module.exports = {
+/**
+ * @type {import('jest-environment-puppeteer').JestPuppeteerConfig}
+ */
+const jestPuppeteerConfig = {
   launch: {
     headless: true,
   },
@@ -16,3 +19,5 @@ module.exports = {
     usedPortAction: "kill",
   },
 };
+
+module.exports = jestPuppeteerConfig;

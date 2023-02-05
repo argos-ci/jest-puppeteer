@@ -1,8 +1,8 @@
 # jest-puppeteer
 
-[![Build Status][build-badge]][build]
-[![version][version-badge]][package]
-[![MIT License][license-badge]][license]
+[![npm version](https://img.shields.io/npm/v/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
+[![npm dm](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
+[![npm dt](https://img.shields.io/npm/dt/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
 
 Jest preset containing all required configuration for writing integration tests using Puppeteer.
 
@@ -18,14 +18,3 @@ module.exports = {
   preset: "jest-puppeteer",
 };
 ```
-
-## License
-
-MIT
-
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/jest-puppeteer-preset.svg?style=flat-square
-[package]: https://www.npmjs.com/package/jest-puppeteer-preset
-[license-badge]: https://img.shields.io/npm/l/jest-puppeteer-preset.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
