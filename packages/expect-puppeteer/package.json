@@ -3,9 +3,14 @@
   "description": "Assertion toolkit for Puppeteer.",
   "version": "7.0.1",
   "type": "commonjs",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./setup": "./dist/setup.js",
     "./package.json": "./package.json"
   },
   "repository": {
@@ -38,8 +43,14 @@
     "prebuild": "rm -rf dist",
     "build": "rollup -c"
   },
+  "dependencies": {
+    "jest-environment-puppeteer": "^7.0.1"
+  },
   "devDependencies": {
-    "rollup": "^3.13.0",
+    "jest-puppeteer": "^7.0.1",
+    "puppeteer": "^19.7.2",
+    "rollup": "^3.15.0",
+    "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-swc3": "^0.8.0"
   }
 }

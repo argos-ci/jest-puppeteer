@@ -1,8 +1,8 @@
 # expect-puppeteer
 
-[![Build Status][build-badge]][build]
-[![version][version-badge]][package]
-[![MIT License][license-badge]][license]
+[![npm version](https://img.shields.io/npm/v/expect-puppeteer.svg)](https://www.npmjs.com/package/expect-puppeteer)
+[![npm dm](https://img.shields.io/npm/dm/expect-puppeteer.svg)](https://www.npmjs.com/package/expect-puppeteer)
+[![npm dt](https://img.shields.io/npm/dt/expect-puppeteer.svg)](https://www.npmjs.com/package/expect-puppeteer)
 
 Assertion library for Puppeteer.
 
@@ -71,10 +71,10 @@ The first element to match will be selected
 
 ```js
 // Will match outer div
-await expect(page).toMatch("div", { text: "some text" });
+await expect(page).toMatchElement("div", { text: "some text" });
 
 // Will match inner div
-await expect(page).toMatch("div.inner", { text: "some text" });
+await expect(page).toMatchElement("div.inner", { text: "some text" });
 ```
 
 ## API
@@ -87,7 +87,7 @@ await expect(page).toMatch("div.inner", { text: "some text" });
 - [toDisplayDialog](#toDisplayDialog)
 - [toFill](#toFill)
 - [toFillForm](#toFillForm)
-- [toMatch](#toMatch)
+- [toMatchTextContent](#toMatchTextContent)
 - [toMatchElement](#toMatchElement)
 - [toSelect](#toSelect)
 - [toUploadFile](#toUploadFile)
@@ -153,7 +153,7 @@ await expect(page).toFillForm('form[name="myForm"]', {
 });
 ```
 
-### <a name="toMatch"></a>expect(instance).toMatch(matcher[, options])
+### <a name="toMatchTextContent"></a>expect(instance).toMatchTextContent(matcher[, options])
 
 Expect a text or a string RegExp to be present in the page or element.
 
@@ -168,9 +168,9 @@ Expect a text or a string RegExp to be present in the page or element.
 
 ```js
 // Matching using text
-await expect(page).toMatch("Lorem ipsum");
+await expect(page).toMatchTextContent("Lorem ipsum");
 // Matching using RegExp
-await expect(page).toMatch(/lo.*/);
+await expect(page).toMatchTextContent(/lo.*/);
 ```
 
 ### <a name="toMatchElement"></a>expect(instance).toMatchElement(selector[, options])
@@ -215,11 +215,11 @@ Expect a input file control to be present in the page or element, then fill it w
 - `filePath` <[string]> A file path
 
 ```js
-import path from "path";
+import { join } from "node:path";
 
 await expect(page).toUploadFile(
   'input[type="file"]',
-  path.join(__dirname, "file.txt")
+  join(__dirname, "file.txt")
 );
 ```
 
@@ -245,16 +245,6 @@ import { setDefaultOptions } from "expect-puppeteer";
 setDefaultOptions({ timeout: 1000 });
 ```
 
-## License
-
-MIT
-
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/expect-puppeteer.svg?style=flat-square
-[package]: https://www.npmjs.com/package/expect-puppeteer
-[license-badge]: https://img.shields.io/npm/l/expect-puppeteer.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
 [array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array "Array"
 [boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type "Boolean"
 [function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function "Function"

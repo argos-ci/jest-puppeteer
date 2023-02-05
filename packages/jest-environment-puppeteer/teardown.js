@@ -1,1 +1,1 @@
-module.exports = require("./lib/global").teardown;
+module.exports = require("./dist/global-init").teardown;

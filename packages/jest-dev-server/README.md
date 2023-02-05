@@ -1,5 +1,9 @@
 # jest-dev-server
 
+[![npm version](https://img.shields.io/npm/v/jest-dev-server.svg)](https://www.npmjs.com/package/jest-dev-server)
+[![npm dm](https://img.shields.io/npm/dm/jest-dev-server.svg)](https://www.npmjs.com/package/jest-dev-server)
+[![npm dt](https://img.shields.io/npm/dt/jest-dev-server.svg)](https://www.npmjs.com/package/jest-dev-server)
+
 Starts a server before your Jest tests and tears it down after.
 
 ## Why
@@ -236,14 +240,3 @@ module.exports = {
 ## Troubleshooting
 
 - If using `port` makes the terminal to ask for root password although the port is valid and accessible then use `usePortAction: 'ignore'`.
-
-## License
-
-MIT
-
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/jest-dev-server.svg?style=flat-square
-[package]: https://www.npmjs.com/package/jest-dev-server
-[license-badge]: https://img.shields.io/npm/l/jest-dev-server.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE

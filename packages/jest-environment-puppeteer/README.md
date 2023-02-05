@@ -1,8 +1,8 @@
 # jest-environment-puppeteer
 
-[![Build Status][build-badge]][build]
-[![version][version-badge]][package]
-[![MIT License][license-badge]][license]
+[![npm version](https://img.shields.io/npm/v/jest-environment-puppeteer.svg)](https://www.npmjs.com/package/jest-environment-puppeteer)
+[![npm dm](https://img.shields.io/npm/dm/jest-environment-puppeteer.svg)](https://www.npmjs.com/package/jest-environment-puppeteer)
+[![npm dt](https://img.shields.io/npm/dt/jest-environment-puppeteer.svg)](https://www.npmjs.com/package/jest-environment-puppeteer)
 
 Run your tests using Jest & Puppeteer 🎪✨
 
@@ -101,19 +101,53 @@ beforeEach(async () => {
 
 You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable. It should export a config object or a Promise for a config object.
 
-- `launch` <[object]> [All Puppeteer launch options](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.puppeteernodelaunchoptions.md) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
-- `connect` <[object]> [All Puppeteer connect options](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.connectoptions.md) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
-- `browserContext` <[string]>. By default, the browser context (cookies, localStorage, etc) is shared between all tests. The following options are available for `browserContext`:
-  - `default` Each test starts a tab, so all tests share the same context.
-  - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (_Example: testing multiple users on the same app at once with login, transactions, etc._)
-- `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
-- `runBeforeUnloadOnClose` <[boolean]> Run `page.close()` with `{ runBeforeUnload: true }` when tests finish, see [`page.close`](https://pptr.dev/api/puppeteer.page.close/)
-- `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
+```ts
+interface JestPuppeteerConfig {
+  /**
+   * Puppeteer connect options.
+   * @see https://pptr.dev/api/puppeteer.connectoptions
+   */
+  connect?: ConnectOptions;
+  /**
+   * Puppeteer launch options.
+   * @see https://pptr.dev/api/puppeteer.launchoptions
+   */
+  launch?: PuppeteerLaunchOptions;
+  /**
+   * Server config for `jest-dev-server`.
+   * @see https://www.npmjs.com/package/jest-dev-server
+   */
+  server?: JestDevServerConfig | JestDevServerConfig[];
+  /**
+   * Allow to run one browser per worker.
+   * @default false
+   */
+  browserPerWorker?: boolean;
+  /**
+   * Browser context to use.
+   * @default "default"
+   */
+  browserContext?: "default" | "incognito";
+  /**
+   * Exit on page error.
+   * @default true
+   */
+  exitOnPageError?: boolean;
+  /**
+   * Use `runBeforeUnload` in `page.close`.
+   * @see https://pptr.dev/api/puppeteer.page.close
+   * @default false
+   */
+  runBeforeUnloadOnClose?: boolean;
+}
+```
 
 #### Example 1
 
 ```js
 // jest-puppeteer.config.js
+
+/** @type {import('jest-environment-puppeteer').JestPuppeteerConfig} */
 module.exports = {
   launch: {
     dumpio: true,
@@ -134,12 +168,12 @@ This example uses an already running instance of Chrome by passing the active we
 
 ```js
 // jest-puppeteer.config.js
-const fetch = require("node-fetch");
 const dockerHost = "http://localhost:9222";
 
 async function getConfig() {
-  const response = await fetch(`${dockerHost}/json/version`);
-  const browserWSEndpoint = (await response.json()).webSocketDebuggerUrl;
+  const data = await fetch(`${dockerHost}/json/version`).json();
+  const browserWSEndpoint = data.webSocketDebuggerUrl;
+  /** @type {import('jest-environment-puppeteer').JestPuppeteerConfig} */
   return {
     connect: {
       browserWSEndpoint,
@@ -159,14 +193,3 @@ module.exports = getConfig();
 ## Inspiration
 
 Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro/jest-puppeteer-example).
-
-## License
-
-MIT
-
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/jest-environment-puppeteer.svg?style=flat-square
-[package]: https://www.npmjs.com/package/jest-environment-puppeteer
-[license-badge]: https://img.shields.io/npm/l/jest-environment-puppeteer.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE
