@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.1](https://github.com/argos-ci/jest-puppeteer/compare/v7.0.0...v7.0.1) (2023-02-15)
+
+
+### Bug Fixes
+
+* **jest-dev-server:** fix port detection ([#518](https://github.com/argos-ci/jest-puppeteer/issues/518)) ([805819d](https://github.com/argos-ci/jest-puppeteer/commit/805819d27e6dc5e086c7d29fa3f623b99fc65ecd)), closes [#460](https://github.com/argos-ci/jest-puppeteer/issues/460) [#281](https://github.com/argos-ci/jest-puppeteer/issues/281) [#233](https://github.com/argos-ci/jest-puppeteer/issues/233)
+
+
+
+
+
 # [7.0.0](https://github.com/smooth-code/jest-puppeteer/compare/v6.2.0...v7.0.0) (2023-02-03)
 
 

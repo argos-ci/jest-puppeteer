@@ -1,7 +1,7 @@
 {
   "name": "jest-dev-server",
   "description": "Starts a server before your Jest tests and tears it down after.",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "type": "commonjs",
   "main": "./lib/index.js",
   "exports": {
