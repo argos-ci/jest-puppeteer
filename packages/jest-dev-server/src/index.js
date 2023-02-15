@@ -99,7 +99,6 @@ async function checkIsPortBusy(config) {
   return new Promise((resolve) => {
     const server = createServer()
       .once("error", (err) => {
-        console.log("error");
         if (err.code === "EADDRINUSE") {
           resolve(true);
         } else {
@@ -107,7 +106,6 @@ async function checkIsPortBusy(config) {
         }
       })
       .once("listening", () => {
-        console.log("listening");
         server.once("close", () => resolve(false)).close();
       })
       .listen(config.port);
