@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v7.0.1...v8.0.0) (2023-03-06)
+
+
+### Features
+
+* native typings ([32acec7](https://github.com/argos-ci/jest-puppeteer/commit/32acec706e01a36c8ffa9dc9ce409bd29fe17dd0))
+
+
+### BREAKING CHANGES
+
+* - `spawnd` now exports `{ spawd }` instead of default to ensure
+  compatibilty with ESM
+- `toMatch` has been renamed `toMatchTextContent` to avoid collision
+  with existing Jest matcher
+
+
+
+
+
 ## [7.0.1](https://github.com/argos-ci/jest-puppeteer/compare/v7.0.0...v7.0.1) (2023-02-15)
 
 **Note:** Version bump only for package expect-puppeteer

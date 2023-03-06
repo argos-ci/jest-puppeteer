@@ -1,7 +1,7 @@
 {
   "name": "expect-puppeteer",
   "description": "Assertion toolkit for Puppeteer.",
-  "version": "7.0.1",
+  "version": "8.0.0",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -44,10 +44,10 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "jest-environment-puppeteer": "^7.0.1"
+    "jest-environment-puppeteer": "^8.0.0"
   },
   "devDependencies": {
-    "jest-puppeteer": "^7.0.1",
+    "jest-puppeteer": "^8.0.0",
     "puppeteer": "^19.7.2",
     "rollup": "^3.15.0",
     "rollup-plugin-dts": "^5.2.0",
