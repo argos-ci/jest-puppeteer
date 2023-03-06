@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.1](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.0...v8.0.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* remove cycle dependency ([ed5c9eb](https://github.com/argos-ci/jest-puppeteer/commit/ed5c9eb9aa59809f37a8cc3ce7ff60139691d170))
+
+
+
+
+
 # [8.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v7.0.1...v8.0.0) (2023-03-06)
 
 

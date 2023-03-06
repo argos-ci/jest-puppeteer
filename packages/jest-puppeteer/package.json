@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "type": "commonjs",
   "exports": {
     ".": {
@@ -43,7 +43,7 @@
     "puppeteer": ">=19"
   },
   "dependencies": {
-    "expect-puppeteer": "^8.0.0",
+    "expect-puppeteer": "^8.0.1",
     "jest-environment-puppeteer": "^8.0.0"
   },
   "devDependencies": {
