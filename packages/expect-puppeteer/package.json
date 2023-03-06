@@ -43,11 +43,7 @@
     "prebuild": "rm -rf dist",
     "build": "rollup -c"
   },
-  "dependencies": {
-    "jest-environment-puppeteer": "^8.0.0"
-  },
   "devDependencies": {
-    "jest-puppeteer": "^8.0.0",
     "puppeteer": "^19.7.2",
     "rollup": "^3.15.0",
     "rollup-plugin-dts": "^5.2.0",

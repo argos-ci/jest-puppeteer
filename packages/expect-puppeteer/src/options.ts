@@ -1,5 +1,4 @@
 import type { FrameWaitForFunctionOptions } from "puppeteer";
-import { puppeteerConfig } from "jest-environment-puppeteer/globals";
 
 export type Options = FrameWaitForFunctionOptions;
 
@@ -9,9 +8,22 @@ export const setDefaultOptions = (options: Options) => {
   defaultOptionsValue = options;
 };
 
+const globalWithPuppeteerConfig = global as {
+  puppeteerConfig?: {
+    launch?: {
+      slowMo?: number;
+    };
+    connect?: {
+      slowMo?: number;
+    };
+  };
+};
+
 export const getDefaultOptions = (): Options => {
   const slowMo =
-    puppeteerConfig?.launch?.slowMo || puppeteerConfig?.connect?.slowMo || 0;
+    globalWithPuppeteerConfig.puppeteerConfig?.launch?.slowMo ||
+    globalWithPuppeteerConfig.puppeteerConfig?.connect?.slowMo ||
+    0;
   const defaultTimeout = defaultOptionsValue.timeout || 0;
 
   if (slowMo || defaultOptionsValue.timeout) {
