@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.2](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.1...v8.0.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* **npm:** fix package on npm ([ee12bb8](https://github.com/argos-ci/jest-puppeteer/commit/ee12bb8142706118da72eaf9f19439a30993afc7)), closes [#527](https://github.com/argos-ci/jest-puppeteer/issues/527)
+
+
+
+
+
 # [8.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v7.0.1...v8.0.0) (2023-03-06)
 
 
