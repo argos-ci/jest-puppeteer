@@ -1,5 +1,4 @@
 /*
-!/lib/**/*.js
-!index.js
+!/dist
 !setup.js
 !teardown.js
