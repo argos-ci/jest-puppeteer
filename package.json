@@ -10,7 +10,7 @@
     "lint": "prettier --check . && eslint .",
     "test": "jest --runInBand",
     "test:incognito": "cross-env INCOGNITO=true jest --runInBand",
-    "release": "npm run build && lerna publish --conventional-commits",
+    "release": "npm run build && lerna publish --conventional-commits && npx conventional-github-releaser -p angular",
     "release-canary": "npm run build && lerna publish --canary --dist-tag canary"
   },
   "devDependencies": {
