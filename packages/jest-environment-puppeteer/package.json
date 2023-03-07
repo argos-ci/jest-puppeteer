@@ -1,7 +1,7 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Puppeteer environment for Jest.",
-  "version": "8.0.2",
+  "version": "8.0.3",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -52,7 +52,7 @@
     "chalk": "^4.1.2",
     "cosmiconfig": "^8.0.0",
     "deepmerge": "^4.3.0",
-    "jest-dev-server": "^8.0.2",
+    "jest-dev-server": "^8.0.3",
     "jest-environment-node": "^29.4.3"
   }
 }
