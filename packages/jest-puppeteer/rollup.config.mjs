@@ -21,18 +21,18 @@ const swcPlugin = swc(
 
 export default [
   bundle({
-    input: "src/globals.ts",
+    input: "src/index.ts",
     output: {
-      file: "dist/globals.js",
+      file: "dist/index.js",
       format: "cjs",
     },
     plugins: [swcPlugin],
   }),
   bundle({
-    input: "src/globals.ts",
+    input: "src/index.ts",
     plugins: [dts()],
     output: {
-      file: "dist/globals.d.ts",
+      file: "dist/index.d.ts",
       format: "es",
     },
   }),

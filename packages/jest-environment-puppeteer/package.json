@@ -10,10 +10,6 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./globals": {
-      "types": "./dist/globals.d.ts",
-      "default": "./dist/globals.js"
-    },
     "./setup": "./setup.js",
     "./teardown": "./teardown.js",
     "./package.json": "./package.json"

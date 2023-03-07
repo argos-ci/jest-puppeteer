@@ -3,13 +3,12 @@
   "description": "Run your tests using Jest & Puppeteer.",
   "version": "8.0.2",
   "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/globals.d.ts"
-    },
-    "./globals": {
-      "default": "./dist/globals.js",
-      "types": "./dist/globals.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },

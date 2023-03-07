@@ -31,24 +31,6 @@ export default [
     plugins: [swcPlugin],
   }),
   bundle({
-    input: "src/globals.ts",
-    output: {
-      file: "dist/globals.js",
-      format: "cjs",
-      interop: "compat",
-    },
-    plugins: [swcPlugin],
-  }),
-  bundle({
-    input: "src/globals.ts",
-    plugins: [dts()],
-    output: {
-      file: "dist/globals.d.ts",
-      format: "es",
-      exports: "default",
-    },
-  }),
-  bundle({
     output: {
       file: "dist/index.js",
       format: "cjs",
