@@ -7,5 +7,7 @@ module.exports = {
     page: true,
     browser: true,
     context: true,
+    puppeteerConfig: true,
+    jestPuppeteer: true,
   },
 };

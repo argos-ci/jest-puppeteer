@@ -1,5 +1,3 @@
-import { describe, beforeAll, it, expect } from "@jest/globals";
-
 describe("Basic", () => {
   beforeAll(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`);
