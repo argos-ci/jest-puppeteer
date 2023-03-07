@@ -1,6 +1,4 @@
-import { join } from "node:path";
 import NodeEnvironment from "jest-environment-node";
-import { mkdir } from "node:fs/promises";
 import { readConfig } from "./config";
 import { blockStdin } from "./stdin";
 import { connectBrowserFromWorker } from "./browsers";
@@ -171,10 +169,7 @@ export class PuppeteerEnvironment extends NodeEnvironment {
       },
     };
 
-    await Promise.all([
-      initAll(global),
-      mkdir(join(process.cwd(), "screenshots"), { recursive: true }),
-    ]);
+    await initAll(global);
   }
 
   async teardown() {
