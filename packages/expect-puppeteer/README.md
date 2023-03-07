@@ -12,22 +12,7 @@ npm install expect-puppeteer
 
 ## Usage
 
-Without Jest:
-
-```js
-import expect from "expect-puppeteer";
-(async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto("https://google.com");
-  await expect(page).toMatch("google");
-  await browser.close();
-})();
-```
-
-## Use with Jest
-
-To use with Jest, just modify your configuration:
+Modify your Jest configuration:
 
 ```json
 {
