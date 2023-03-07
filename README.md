@@ -59,11 +59,7 @@ jest --maxWorkers=2
 
 ### TypeScript
 
-Install types:
-
-```bash
-npm install --save-dev @types/puppeteer @types/jest-environment-puppeteer @types/expect-puppeteer
-```
+TypeScript is natively supported from v8.0.0, for previous versions, you have to use [types provided by the community](https://github.com/DefinitelyTyped/DefinitelyTyped).
 
 ### Writing tests using Puppeteer
 
