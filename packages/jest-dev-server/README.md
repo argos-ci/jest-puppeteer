@@ -26,7 +26,7 @@ npm install --save-dev jest-dev-server
 // global-setup.js
 const { setup: setupDevServer } = require("jest-dev-server");
 
-const options = async function globalSetup() {
+module.exports = async function globalSetup() {
   globalThis.servers = await setupDevServer({
     command: `node config/start.js --port=3000`,
     launchTimeout: 50000,
@@ -40,7 +40,7 @@ const options = async function globalSetup() {
 // global-teardown.js
 const { teardown: teardownDevServer } = require("jest-dev-server");
 
-const options = async function globalTeardown() {
+module.exports = async function globalTeardown() {
   await teardownDevServer(globalThis.servers);
   // Your global teardown
 };
@@ -54,7 +54,7 @@ You can specify several servers using an array of configs:
 // global-setup.js
 const { setup: setupDevServer } = require("jest-dev-server");
 
-const options = async function globalSetup() {
+module.exports = async function globalSetup() {
   globalThis.servers = await setupDevServer([
     {
       command: "node server.js",
