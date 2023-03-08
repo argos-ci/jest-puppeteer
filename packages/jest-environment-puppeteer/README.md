@@ -62,7 +62,7 @@ it("should fill an input", async () => {
 
 ### `global.context`
 
-Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in your `jest-puppeteer.config.js`.
+Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in config.
 
 ### `global.jestPuppeteer.debug()`
 
@@ -97,9 +97,19 @@ beforeEach(async () => {
 });
 ```
 
-### `jest-puppeteer.config.js`
+### Config
 
-You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable. It should export a config object or a Promise for a config object.
+Jest Puppeteer uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) for configuration file support. This means you can configure Jest Puppeteer via (in order of precedence):
+
+- A `"jest-puppeteer"` key in your `package.json` file.
+- A `.jest-puppeteerrc` file written in JSON or YAML.
+- A `.jest-puppeteerrc.json`, `.jest-puppeteerrc.yml`, `.jest-puppeteerrc.yaml`, or `.jest-puppeteerrc.json5` file.
+- A `.jest-puppeteerrc.js`, `.jest-puppeteerrc.cjs`, `jest-puppeteer.config.js`, or `jest-puppeteer.config.cjs` file that exports an object using `module.exports`.
+- A `.jest-puppeteerrc.toml` file.
+
+By default it looks for config at the root of the project. You can define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
+
+It should export a config object or a Promise that returns a config object.
 
 ```ts
 interface JestPuppeteerConfig {
@@ -142,10 +152,10 @@ interface JestPuppeteerConfig {
 }
 ```
 
-#### Example 1
+#### Sync config
 
 ```js
-// jest-puppeteer.config.js
+// jest-puppeteer.config.cjs
 
 /** @type {import('jest-environment-puppeteer').JestPuppeteerConfig} */
 module.exports = {
@@ -162,12 +172,12 @@ module.exports = {
 };
 ```
 
-#### Example 2
+#### Async config
 
 This example uses an already running instance of Chrome by passing the active web socket endpoint to `connect`. This is useful, for example, when you want to connect to Chrome running in the cloud.
 
 ```js
-// jest-puppeteer.config.js
+// jest-puppeteer.config.cjs
 const dockerHost = "http://localhost:9222";
 
 async function getConfig() {
