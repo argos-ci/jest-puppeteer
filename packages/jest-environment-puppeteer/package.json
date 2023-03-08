@@ -42,17 +42,17 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "@jest/globals": "29.4.3",
+    "@jest/globals": "29.5.0",
     "@types/jest": "^29.4.0",
-    "rollup": "^3.15.0",
+    "rollup": "^3.18.0",
     "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-swc3": "^0.8.0"
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "cosmiconfig": "^8.0.0",
+    "cosmiconfig": "^8.1.0",
     "deepmerge": "^4.3.0",
     "jest-dev-server": "^8.0.3",
-    "jest-environment-node": "^29.4.3"
+    "jest-environment-node": "^29.5.0"
   }
 }
