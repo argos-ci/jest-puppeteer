@@ -68,14 +68,14 @@ await expect(page).toMatchElement("div.inner", { text: "some text" });
 
 <!-- toc -->
 
-- [toClick](#toClick)
-- [toDisplayDialog](#toDisplayDialog)
-- [toFill](#toFill)
-- [toFillForm](#toFillForm)
-- [toMatchTextContent](#toMatchTextContent)
-- [toMatchElement](#toMatchElement)
-- [toSelect](#toSelect)
-- [toUploadFile](#toUploadFile)
+- [toClick](#user-content-toClick)
+- [toDisplayDialog](#user-content-toDisplayDialog)
+- [toFill](#user-content-toFill)
+- [toFillForm](#user-content-toFillForm)
+- [toMatchTextContent](#user-content-toMatchTextContent)
+- [toMatchElement](#user-content-toMatchElement)
+- [toSelect](#user-content-toSelect)
+- [toUploadFile](#user-content-toUploadFile)
 
 ### <a name="toClick"></a>expect(instance).toClick(selector[, options])
 
