@@ -34,7 +34,7 @@ describe("Google", () => {
   });
 
   it('should display "google" text on page', async () => {
-    await expect(page).toMatch("google");
+    await expect(page).toMatchTextContent("google");
   });
 });
 ```
@@ -73,7 +73,7 @@ Some examples:
 
 ```js
 // Assert that current page contains 'Text in the page'
-await expect(page).toMatch("Text in the page");
+await expect(page).toMatchTextContent("Text in the page");
 ```
 
 #### Click a button
@@ -339,7 +339,7 @@ Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blo
 Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api).
 
 ```js
-await expect(page).toMatch("A text in the page");
+await expect(page).toMatchTextContent("A text in the page");
 // ...
 ```
 
