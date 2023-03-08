@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

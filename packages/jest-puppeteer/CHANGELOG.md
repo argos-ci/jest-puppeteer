@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.4](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.3...v8.0.4) (2023-03-08)
+
+
+### Bug Fixes
+
+* fix preset export ([7d8d10c](https://github.com/argos-ci/jest-puppeteer/commit/7d8d10c4cbaeb5e2c6ac7eeceb2a0b73f78b453d)), closes [#532](https://github.com/argos-ci/jest-puppeteer/issues/532)
+
+
+
+
+
 ## [8.0.3](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.2...v8.0.3) (2023-03-07)
 
 
