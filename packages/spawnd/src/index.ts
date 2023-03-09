@@ -5,7 +5,6 @@ import {
 } from "node:child_process";
 import { promisify } from "node:util";
 import treeKill from "tree-kill";
-import exit from "exit";
 import onExit from "signal-exit";
 
 const pTreeKill = promisify(treeKill);
@@ -21,9 +20,9 @@ export const spawnd = (command: string, options?: SpawndOptions) => {
 
   const cleanExit = (code = 1) => {
     if (proc && proc.pid) {
-      treeKill(proc.pid, () => exit(code));
+      treeKill(proc.pid, () => process.exit(code));
     } else {
-      exit(code);
+      process.exit(code);
     }
   };
 

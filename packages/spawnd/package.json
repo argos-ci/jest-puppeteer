@@ -43,7 +43,6 @@
   "devDependencies": {
     "@types/exit": "^0.1.31",
     "@types/signal-exit": "^3.0.1",
-    "exit": "^0.1.2",
     "rollup": "^3.18.0",
     "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-swc3": "^0.8.0"
