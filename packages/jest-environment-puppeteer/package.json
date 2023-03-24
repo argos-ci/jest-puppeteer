@@ -1,7 +1,7 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Puppeteer environment for Jest.",
-  "version": "8.0.5",
+  "version": "8.0.6",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
