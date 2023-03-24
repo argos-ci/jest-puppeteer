@@ -200,6 +200,20 @@ async function getConfig() {
 module.exports = getConfig();
 ```
 
+## Create custom environment
+
+It is possible to create a custom environment from the Jest Puppeteer's one. It is not different from creating a custom environment from "jest-environment-node". See [Jest `testEnvironment` documentation](https://jestjs.io/docs/configuration#testenvironment-string) to learn more about it.
+
+```js
+// my-custom-environment
+const JestPuppeteerEnvironment =
+  require("jest-environment-puppeteer").TestEnvironment;
+
+class CustomEnvironment extends JestPuppeteerEnvironment {
+  // Implement your own environment
+}
+```
+
 ## Inspiration
 
 Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro/jest-puppeteer-example).

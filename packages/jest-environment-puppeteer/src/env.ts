@@ -21,19 +21,6 @@ type StrictGlobal = {
 
 export type JestPuppeteerGlobal = Required<StrictGlobal>;
 
-declare global {
-  // @ts-ignore
-  var browser: Global["browser"];
-  // @ts-ignore
-  var page: Global["page"];
-  // @ts-ignore
-  var context: Global["context"];
-  // @ts-ignore
-  var puppeteerConfig: Global["puppeteerConfig"];
-  // @ts-ignore
-  var jestPuppeteer: Global["jestPuppeteer"];
-}
-
 const testTimeoutSymbol = Symbol.for("TEST_TIMEOUT_SYMBOL");
 
 const handlePageError = (error: Error) => {
