@@ -35,7 +35,6 @@ export default [
       file: "dist/index.js",
       format: "cjs",
       interop: "compat",
-      exports: "default",
     },
     plugins: [swcPlugin],
   }),
@@ -44,7 +43,7 @@ export default [
     output: {
       file: "dist/index.d.ts",
       format: "es",
-      exports: "default",
+      interop: "compat",
     },
   }),
 ];
