@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import NodeEnvironment from "jest-environment-node";
 import { readConfig } from "./config";
 import { blockStdin } from "./stdin";

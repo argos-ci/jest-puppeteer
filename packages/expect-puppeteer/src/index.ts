@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-restricted-syntax, no-await-in-loop */
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-namespace, no-use-before-define, no-restricted-syntax, no-await-in-loop */
 import {
   checkIsPuppeteerInstance,
   checkIsElementHandle,

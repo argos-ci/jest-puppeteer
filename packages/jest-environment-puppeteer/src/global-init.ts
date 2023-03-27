@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-var */
 import {
   setup as setupServer,
   teardown as teardownServer,
@@ -44,7 +44,8 @@ export const setup = async (jestConfig: JestConfig) => {
     try {
       const servers = await setupServer(config.server);
       ctx.servers = servers;
-    } catch (error: any) {
+    } catch (error) {
+      /* eslint-disable no-fallthrough */
       switch (error.code) {
         case ERROR_TIMEOUT: {
           console.log("");
@@ -70,6 +71,7 @@ export const setup = async (jestConfig: JestConfig) => {
           throw error;
         }
       }
+      /* eslint-enable no-fallthrough */
     }
   }
 };
