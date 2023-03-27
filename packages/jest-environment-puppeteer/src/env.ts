@@ -136,7 +136,25 @@ export class PuppeteerEnvironment extends NodeEnvironment {
     super(config, _context);
 
     this.global.puppeteerConfig = {};
-    this.global.jestPuppeteer = {};
+    this.global.jestPuppeteer = {
+      debug: async () => {
+        // Set timeout to 4 days
+        this.setTimeout(345600000);
+        // Run a debugger (in case Puppeteer has been launched with `{ devtools: true }`)
+        await getPage(this.global).evaluate(() => {
+          debugger;
+        });
+        return blockStdin();
+      },
+      resetPage: async () => {
+        await closePage(this.global);
+        await openPage(this.global);
+      },
+      resetBrowser: async () => {
+        await closeAll(this.global);
+        await initAll(this.global);
+      },
+    };
   }
 
   // Jest is not available here, so we have to reverse engineer
@@ -146,31 +164,8 @@ export class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async setup(): Promise<void> {
-    const config = await readConfig();
-    const global = this.global;
-    global.puppeteerConfig = config;
-
-    global.jestPuppeteer = {
-      debug: async () => {
-        // Set timeout to 4 days
-        this.setTimeout(345600000);
-        // Run a debugger (in case Puppeteer has been launched with `{ devtools: true }`)
-        await getPage(global).evaluate(() => {
-          debugger;
-        });
-        return blockStdin();
-      },
-      resetPage: async () => {
-        await closePage(global);
-        await openPage(global);
-      },
-      resetBrowser: async () => {
-        await closeAll(global);
-        await initAll(global);
-      },
-    };
-
-    await initAll(global);
+    this.global.puppeteerConfig = await readConfig();
+    await initAll(this.global);
   }
 
   async teardown() {
