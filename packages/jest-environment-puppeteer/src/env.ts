@@ -1,4 +1,8 @@
 /* eslint-disable no-debugger */
+import type {
+  EnvironmentContext,
+  JestEnvironmentConfig,
+} from "@jest/environment";
 import NodeEnvironment from "jest-environment-node";
 import { readConfig } from "./config";
 import { blockStdin } from "./stdin";
@@ -126,6 +130,15 @@ const closeAll = async (global: StrictGlobal) => {
 };
 
 export class PuppeteerEnvironment extends NodeEnvironment {
+  declare global: StrictGlobal & NodeEnvironment["global"];
+
+  constructor(config: JestEnvironmentConfig, _context: EnvironmentContext) {
+    super(config, _context);
+
+    this.global.puppeteerConfig = {};
+    this.global.jestPuppeteer = {};
+  }
+
   // Jest is not available here, so we have to reverse engineer
   // the setTimeout function, see https://github.com/facebook/jest/blob/ffe2352c781703b427fab10777043fb76d0d4267/packages/jest-runtime/src/index.ts#L2331
   setTimeout(timeout: number) {
@@ -134,7 +147,7 @@ export class PuppeteerEnvironment extends NodeEnvironment {
 
   async setup(): Promise<void> {
     const config = await readConfig();
-    const global = this.global as unknown as StrictGlobal;
+    const global = this.global;
     global.puppeteerConfig = config;
 
     global.jestPuppeteer = {
@@ -161,7 +174,6 @@ export class PuppeteerEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    const global = this.global as unknown as StrictGlobal;
-    await closeAll(global);
+    await closeAll(this.global);
   }
 }
