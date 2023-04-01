@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import type { JestPuppeteerGlobal } from "jest-environment-puppeteer";
 
 declare global {

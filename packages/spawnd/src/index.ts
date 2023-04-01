@@ -16,7 +16,7 @@ export interface SpawndChildProcess extends ChildProcessWithoutNullStreams {
 export type SpawndOptions = SpawnOptionsWithoutStdio;
 
 export const spawnd = (command: string, options?: SpawndOptions) => {
-  let proc: SpawndChildProcess;
+  const proc = spawn(command, options) as SpawndChildProcess;
 
   const cleanExit = (code = 1) => {
     if (proc && proc.pid) {
@@ -27,8 +27,6 @@ export const spawnd = (command: string, options?: SpawndOptions) => {
   };
 
   const cleanExit1 = () => cleanExit(1);
-
-  proc = spawn(command, options) as SpawndChildProcess;
 
   proc.stderr.pipe(process.stderr);
   proc.on("exit", cleanExit);

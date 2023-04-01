@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/ban-ts-comment, no-console */
 import { Transform } from "node:stream";
 import { createServer } from "node:net";
 import { promisify } from "node:util";
@@ -133,6 +133,7 @@ const spawnServer = (config: Config) => {
     console.log(chalk.magentaBright("\nJest dev-server output:"));
     proc.stdout.pipe(serverLogPrefixer).pipe(process.stdout);
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     proc.stdout.on("data", () => {});
   }
 
@@ -154,7 +155,7 @@ const outOfStin = async <T>(run: () => Promise<T>): Promise<T> => {
 const checkIsPortBusy = async (config: Config): Promise<boolean> => {
   return new Promise<boolean>((resolve) => {
     const server = createServer()
-      .once("error", (err: any) => {
+      .once("error", (err: NodeJS.ErrnoException) => {
         if (err.code === "EADDRINUSE") {
           resolve(true);
         } else {
