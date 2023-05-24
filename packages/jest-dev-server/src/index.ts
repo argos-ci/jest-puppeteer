@@ -165,7 +165,7 @@ const checkIsPortBusy = async (config: Config): Promise<boolean> => {
       .once("listening", () => {
         server.once("close", () => resolve(false)).close();
       })
-      .listen(config.port);
+      .listen(config.port, config.host);
   });
 };
 
