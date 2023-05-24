@@ -117,7 +117,7 @@ Following options are linked to [`spawnd`](https://www.npmjs.com/package/spawnd)
 
 ### `host`
 
-Type: `string`, default to `localhost`.
+Type: `string`, if not specified it will used Node.js default port.
 
 Host to wait for activity on before considering the server running.
 Must be used in conjunction with `port`.
