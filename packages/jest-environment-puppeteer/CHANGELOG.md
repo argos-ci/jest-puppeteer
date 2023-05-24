@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.6...v9.0.0) (2023-05-24)
+
+
+### Bug Fixes
+
+* **types:** fix environment global types ([fb691f7](https://github.com/argos-ci/jest-puppeteer/commit/fb691f7213ca148f35f7062ab47465ab3ffc2d5e))
+* **types:** fix missing `jestPuppeteer` global before setup ([37e2294](https://github.com/argos-ci/jest-puppeteer/commit/37e2294a626255a701dc3adad004c610cc2c4c04))
+
+
+### Features
+
+* drop Node.js v14 support ([d7d9833](https://github.com/argos-ci/jest-puppeteer/commit/d7d9833accf7ddb87c6782a50ae2b8e50dd01c78))
+
+
+### BREAKING CHANGES
+
+* drop Node.js v14 support
+
+
+
+
+
 ## [8.0.6](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.5...v8.0.6) (2023-03-24)
 
 

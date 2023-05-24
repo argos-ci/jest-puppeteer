@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.6...v9.0.0) (2023-05-24)
+
+
+### Bug Fixes
+
+* **jest-dev-server:** no default host ([c35e403](https://github.com/argos-ci/jest-puppeteer/commit/c35e40362293a23caa50bcddb589ff8f63e16b8e))
+* **jest-dev-server:** properly detect if port is used, using both config.port and config.host options. ([351720a](https://github.com/argos-ci/jest-puppeteer/commit/351720a68e02026b25a98ece525003be9f4938dc)), closes [#555](https://github.com/argos-ci/jest-puppeteer/issues/555)
+
+
+### Features
+
+* drop Node.js v14 support ([d7d9833](https://github.com/argos-ci/jest-puppeteer/commit/d7d9833accf7ddb87c6782a50ae2b8e50dd01c78))
+
+
+### BREAKING CHANGES
+
+* drop Node.js v14 support
+* **jest-dev-server:** default host is now `undefined` instead of "localhost"
+
+
+
+
+
 ## [8.0.5](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.4...v8.0.5) (2023-03-09)
 
 **Note:** Version bump only for package jest-dev-server

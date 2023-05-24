@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.6...v9.0.0) (2023-05-24)
+
+
+### Features
+
+* drop Node.js v14 support ([d7d9833](https://github.com/argos-ci/jest-puppeteer/commit/d7d9833accf7ddb87c6782a50ae2b8e50dd01c78))
+
+
+### BREAKING CHANGES
+
+* drop Node.js v14 support
+
+
+
+
+
 ## [8.0.6](https://github.com/argos-ci/jest-puppeteer/compare/v8.0.5...v8.0.6) (2023-03-24)
 
 
