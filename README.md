@@ -92,7 +92,7 @@ After installing Argos, learn how to [review visual changes](https://argos-ci.co
 module.exports = {
   launch: {
     dumpio: true,
-    headless: process.env.HEADLESS !== "false",
+    headless: process.env.HEADLESS !== "false" ? "new" : false,
   },
   server: {
     command: "node server.js",
@@ -213,7 +213,7 @@ Default config values:
 module.exports = {
   launch: {
     dumpio: true,
-    headless: process.env.HEADLESS !== "false",
+    headless: process.env.HEADLESS !== "false" ? "new" : false,
     product: "chrome",
   },
   browserContext: "default",

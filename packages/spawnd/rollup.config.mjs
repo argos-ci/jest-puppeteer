@@ -12,10 +12,12 @@ const bundle = (config) => ({
 const swcPlugin = swc(
   defineRollupSwcOption({
     jsc: {
-      target: "es2021",
       parser: {
         syntax: "typescript",
       },
+    },
+    env: {
+      targets: "node 16",
     },
   })
 );
