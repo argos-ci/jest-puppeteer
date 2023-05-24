@@ -5,7 +5,7 @@ import {
 } from "node:child_process";
 import { promisify } from "node:util";
 import treeKill from "tree-kill";
-import onExit from "signal-exit";
+import { onExit } from "signal-exit";
 
 const pTreeKill = promisify(treeKill);
 
