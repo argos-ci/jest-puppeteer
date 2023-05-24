@@ -1,5 +1,11 @@
 import { getDefaultOptions, setDefaultOptions } from ".";
 
+expect.addSnapshotSerializer({
+  print: () => "hello",
+  test: () => true,
+  serialize: () => "hello",
+});
+
 describe("expect-puppeteer", () => {
   beforeEach(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`);
@@ -14,6 +20,10 @@ describe("expect-puppeteer", () => {
     expect(main).not.toBe(null);
 
     expect(200).toBe(200);
+  });
+
+  it("should works with `addSnapshotSerializer`", () => {
+    expect({ hello: "world" }).toMatchSnapshot();
   });
 
   it("should get and set default options", () => {
