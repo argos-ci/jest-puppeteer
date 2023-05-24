@@ -6,7 +6,7 @@ import {
   checkIsPage,
   PuppeteerInstance,
 } from "./utils";
-import { jestExpect, JestExpect } from "@jest/expect";
+import type { JestExpect } from "@jest/expect";
 import { notToMatchTextContent } from "./matchers/notToMatchTextContent";
 import { notToMatchElement } from "./matchers/notToMatchElement";
 import { toClick } from "./matchers/toClick";
@@ -94,6 +94,9 @@ export type PuppeteerMatchers =
   | MatchersFromSet<FrameMatchers>
   | MatchersFromSet<PageMatchers>
   | MatchersFromSet<ElementHandleMatchers>;
+
+// @ts-ignore
+const jestExpect = global.expect as JestExpect;
 
 const wrapMatcher = <TPage extends PuppeteerInstance>(
   matcher: Matcher<TPage>,
