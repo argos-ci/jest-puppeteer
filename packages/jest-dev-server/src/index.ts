@@ -37,7 +37,6 @@ export type Config = {
   launchTimeout?: number;
   /**
    * Host to use to check if the port is used.
-   * @default "localhost"
    */
   host?: string;
   /**
@@ -69,7 +68,7 @@ const DEFAULT_CONFIG: Partial<Config> = {
   debug: false,
   options: {},
   launchTimeout: 5000,
-  host: "localhost",
+  host: undefined,
   port: undefined,
   protocol: "tcp",
   usedPortAction: "ask",
@@ -238,7 +237,7 @@ const waitForServerToBeReady = async (config: Config) => {
   if (config.port === undefined) return;
   const { launchTimeout, protocol, host, port, path, waitOnScheme } = config;
 
-  let resource = `${host}:${port}`;
+  let resource = `${host ?? "0.0.0.0"}:${port}`;
   if (path) {
     resource = `${resource}/${path}`;
   }
