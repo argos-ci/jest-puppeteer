@@ -27,7 +27,7 @@ export const checkIsPage = (instance: unknown): instance is Page => {
 export const checkIsFrame = (instance: unknown): instance is Frame => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    instance?.constructor?.name === "Frame"
+    (instance?.constructor?.name === "CDPFrame" || instance?.constructor?.name === "CdpFrame")
   );
 };
 
