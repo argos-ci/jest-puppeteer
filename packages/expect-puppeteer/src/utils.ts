@@ -20,7 +20,7 @@ export const checkIsPuppeteerInstance = (
 export const checkIsPage = (instance: unknown): instance is Page => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    instance?.constructor?.name === "CDPPage"
+    (instance?.constructor?.name === "CDPPage" || instance?.constructor?.name === "CdpPage")
   );
 };
 
@@ -36,7 +36,7 @@ export const checkIsElementHandle = (
 ): instance is ElementHandle => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    instance?.constructor?.name === "CDPElementHandle"
+    (instance?.constructor?.name === "CDPElementHandle" || instance?.constructor?.name === "CdpElementHandle")
   );
 };
 
