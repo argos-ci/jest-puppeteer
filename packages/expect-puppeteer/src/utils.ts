@@ -20,14 +20,16 @@ export const checkIsPuppeteerInstance = (
 export const checkIsPage = (instance: unknown): instance is Page => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    (instance?.constructor?.name === "CDPPage" || instance?.constructor?.name === "CdpPage")
+    (instance?.constructor?.name === "CDPPage" ||
+      instance?.constructor?.name === "CdpPage")
   );
 };
 
 export const checkIsFrame = (instance: unknown): instance is Frame => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    (instance?.constructor?.name === "CDPFrame" || instance?.constructor?.name === "CdpFrame")
+    (instance?.constructor?.name === "CDPFrame" ||
+      instance?.constructor?.name === "CdpFrame")
   );
 };
 
@@ -36,7 +38,8 @@ export const checkIsElementHandle = (
 ): instance is ElementHandle => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    (instance?.constructor?.name === "CDPElementHandle" || instance?.constructor?.name === "CdpElementHandle")
+    (instance?.constructor?.name === "CDPElementHandle" ||
+      instance?.constructor?.name === "CdpElementHandle")
   );
 };
 
