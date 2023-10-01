@@ -100,7 +100,7 @@ const jestExpect = global.expect as JestExpect;
 
 const wrapMatcher = <TPage extends PuppeteerInstance>(
   matcher: Matcher<TPage>,
-  instance: PuppeteerInstance
+  instance: PuppeteerInstance,
 ) => {
   return async function throwingMatcher(...args: any[]) {
     jestExpect.getState().assertionCalls += 1;
@@ -116,7 +116,7 @@ const wrapMatcher = <TPage extends PuppeteerInstance>(
 
 const createExpect = <T extends PuppeteerInstance>(
   instance: T,
-  matchers: MatcherSet<T>
+  matchers: MatcherSet<T>,
 ) => {
   const expectation = {
     not: {} as Record<string, any>,
@@ -134,7 +134,7 @@ const createExpect = <T extends PuppeteerInstance>(
 };
 
 const expectPuppeteerInstance = <TInstance extends PuppeteerInstance>(
-  actual: TInstance
+  actual: TInstance,
 ): PuppeteerMatchers => {
   if (checkIsPage(actual)) {
     return createExpect(actual, pageMatchers) as PuppeteerMatchers;
