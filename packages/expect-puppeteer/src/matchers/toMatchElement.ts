@@ -14,7 +14,7 @@ export type ToMatchElementOptions = GetElementOptions & Options;
 export async function toMatchElement(
   instance: PuppeteerInstance,
   selector: Selector | string,
-  options: ToMatchElementOptions = {}
+  options: ToMatchElementOptions = {},
 ) {
   const { text, visible, ...otherOptions } = options;
   const frameOptions = defaultOptions(otherOptions);
@@ -23,7 +23,7 @@ export async function toMatchElement(
   const [getElement, getElementArgs, ctx] = await getElementFactory(
     instance,
     rSelector,
-    { text, visible }
+    { text, visible },
   );
 
   try {
@@ -31,19 +31,19 @@ export async function toMatchElement(
       getElement,
       frameOptions,
       ...getElementArgs,
-      "positive" as const
+      "positive" as const,
     );
   } catch (error: any) {
     throw enhanceError(
       error,
-      `${getSelectorMessage(rSelector, text)} not found`
+      `${getSelectorMessage(rSelector, text)} not found`,
     );
   }
 
   const jsHandle = await ctx.page.evaluateHandle(
     getElement,
     ...getElementArgs,
-    "element" as const
+    "element" as const,
   );
   return jsHandle.asElement() as ElementHandle<Element>;
 }

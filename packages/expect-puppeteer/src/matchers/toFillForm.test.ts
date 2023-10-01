@@ -39,7 +39,7 @@ describe("toFillForm", () => {
         });
       } catch (error: any) {
         expect(error.message).toMatch(
-          'Element form[name="notFound"] not found'
+          'Element form[name="notFound"] not found',
         );
         expect(error.stack).toMatch(resolve(__filename));
       }
@@ -76,7 +76,7 @@ describe("toFillForm", () => {
         });
       } catch (error: any) {
         expect(error.message).toMatch(
-          'Element form[name="notFound"] not found'
+          'Element form[name="notFound"] not found',
         );
         expect(error.stack).toMatch(resolve(__filename));
       }

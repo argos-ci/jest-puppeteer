@@ -15,7 +15,7 @@ export async function matchTextContent(
   instance: PuppeteerInstance,
   matcher: SearchExpression,
   options: MatchTextContentOptions,
-  type: "positive" | "negative"
+  type: "positive" | "negative",
 ) {
   const { traverseShadowRoots = false, ...otherOptions } = options;
   const frameOptions = defaultOptions(otherOptions);
@@ -25,7 +25,7 @@ export async function matchTextContent(
   const { text, regexp } = serializeSearchExpression(matcher);
 
   const parseSearchExpressionHandle = await evaluateParseSearchExpression(
-    ctx.page
+    ctx.page,
   );
 
   await ctx.page.waitForFunction(
@@ -35,7 +35,7 @@ export async function matchTextContent(
       regexp,
       traverseShadowRoots,
       parseSearchExpression,
-      type
+      type,
     ) => {
       const checkNodeIsElement = (node: Node): node is Element => {
         return node.nodeType === Node.ELEMENT_NODE;
@@ -52,7 +52,7 @@ export async function matchTextContent(
       function getShadowTextContent(node: Node) {
         const walker = document.createTreeWalker(
           node,
-          NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT
+          NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
         );
         let result = "";
         let currentNode = walker.nextNode();
@@ -110,6 +110,6 @@ export async function matchTextContent(
     regexp,
     traverseShadowRoots,
     parseSearchExpressionHandle,
-    type
+    type,
   );
 }

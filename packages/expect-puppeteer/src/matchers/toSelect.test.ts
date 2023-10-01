@@ -17,7 +17,7 @@ describe("toSelect", () => {
       const currentValue = await instance.evaluate(
         () =>
           document.querySelector<HTMLSelectElement>('select[name="my-select"]')!
-            .value
+            .value,
       );
       expect(currentValue).toBe("opt1");
     });
@@ -27,7 +27,7 @@ describe("toSelect", () => {
       const currentValue = await instance.evaluate(
         () =>
           document.querySelector<HTMLSelectElement>('select[name="my-select"]')!
-            .value
+            .value,
       );
       expect(currentValue).toBe("opt2");
     });
@@ -38,11 +38,11 @@ describe("toSelect", () => {
       try {
         await expect(instance).toSelect(
           'select[name="my-select"]',
-          "Another world"
+          "Another world",
         );
       } catch (error: any) {
         expect(error.message).toMatch(
-          'Option not found "select[name="my-select"]" ("Another world")'
+          'Option not found "select[name="my-select"]" ("Another world")',
         );
         expect(error.stack).toMatch(resolve(__filename));
       }
@@ -56,7 +56,7 @@ describe("toSelect", () => {
       const currentValue = await page.evaluate(
         () =>
           document.querySelector<HTMLSelectElement>('select[name="my-select"]')!
-            .value
+            .value,
       );
       expect(currentValue).toBe("opt1");
     });
@@ -67,7 +67,7 @@ describe("toSelect", () => {
       const currentValue = await page.evaluate(
         () =>
           document.querySelector<HTMLSelectElement>('select[name="my-select"]')!
-            .value
+            .value,
       );
       expect(currentValue).toBe("opt2");
     });
@@ -79,11 +79,11 @@ describe("toSelect", () => {
       try {
         await expect(body).toSelect(
           'select[name="my-select"]',
-          "Another world"
+          "Another world",
         );
       } catch (error: any) {
         expect(error.message).toMatch(
-          'Option not found "select[name="my-select"]" ("Another world")'
+          'Option not found "select[name="my-select"]" ("Another world")',
         );
         expect(error.stack).toMatch(resolve(__filename));
       }

@@ -17,7 +17,7 @@ describe("toUploadFile", () => {
     it("should upload a select file", async () => {
       await expect(instance).toUploadFile(
         'input[type="file"]',
-        resolve(__dirname, "../../__fixtures__/file.txt")
+        resolve(__dirname, "../../__fixtures__/file.txt"),
       );
     });
 
@@ -27,7 +27,7 @@ describe("toUploadFile", () => {
       try {
         await expect(instance).toUploadFile(
           'input[name="foo"]',
-          resolve(__dirname, "../../__fixtures__/file.txt")
+          resolve(__dirname, "../../__fixtures__/file.txt"),
         );
       } catch (error: any) {
         expect(error.message).toMatch('Element input[name="foo"] not found');
@@ -40,7 +40,7 @@ describe("toUploadFile", () => {
       const body = await page.$("body");
       await expect(body).toUploadFile(
         'input[type="file"]',
-        resolve(__dirname, "../../__fixtures__/file.txt")
+        resolve(__dirname, "../../__fixtures__/file.txt"),
       );
     });
 
@@ -51,7 +51,7 @@ describe("toUploadFile", () => {
       try {
         await expect(body).toUploadFile(
           'input[name="foo"]',
-          resolve(__dirname, "../../__fixtures__/file.txt")
+          resolve(__dirname, "../../__fixtures__/file.txt"),
         );
       } catch (error: any) {
         expect(error.message).toMatch('Element input[name="foo"] not found');

@@ -2,8 +2,8 @@
   "exclude": ["node_modules/**"],
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "target": "ES2021",
     "importHelpers": true,
     "declaration": true,

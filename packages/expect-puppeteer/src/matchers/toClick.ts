@@ -7,7 +7,7 @@ export type ToClickOptions = ToMatchElementOptions & ClickOptions;
 export async function toClick(
   instance: PuppeteerInstance,
   selector: Selector | string,
-  options: ToClickOptions = {}
+  options: ToClickOptions = {},
 ) {
   const { delay, button, clickCount, offset, ...otherOptions } = options;
   const element = await toMatchElement(instance, selector, otherOptions);

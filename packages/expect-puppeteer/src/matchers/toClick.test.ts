@@ -16,7 +16,7 @@ describe("toClick", () => {
       await expect(instance).toClick('a[href="/page2.html"]');
       await instance.waitForNavigation();
       const pathname = await instance.evaluate(
-        () => document.location.pathname
+        () => document.location.pathname,
       );
       expect(pathname).toBe("/page2.html");
     });
@@ -28,7 +28,7 @@ describe("toClick", () => {
       });
       await instance.waitForNavigation();
       const pathname = await instance.evaluate(
-        () => document.location.pathname
+        () => document.location.pathname,
       );
       expect(pathname).toBe("/page2.html");
     });
@@ -40,7 +40,7 @@ describe("toClick", () => {
       });
       await instance.waitForNavigation();
       const pathname = await instance.evaluate(
-        () => document.location.pathname
+        () => document.location.pathname,
       );
       expect(pathname).toBe("/page2.html");
     });
@@ -49,7 +49,7 @@ describe("toClick", () => {
       await expect(instance).toClick("a", { text: "Page 2" });
       await instance.waitForNavigation();
       const pathname = await instance.evaluate(
-        () => document.location.pathname
+        () => document.location.pathname,
       );
       expect(pathname).toBe("/page2.html");
     });
@@ -60,11 +60,11 @@ describe("toClick", () => {
           value: "//a",
           type: "xpath",
         },
-        { text: "Page 2" }
+        { text: "Page 2" },
       );
       await instance.waitForNavigation();
       const pathname = await instance.evaluate(
-        () => document.location.pathname
+        () => document.location.pathname,
       );
       expect(pathname).toBe("/page2.html");
     });
@@ -75,11 +75,11 @@ describe("toClick", () => {
           value: "a",
           type: "css",
         },
-        { text: "Page 2" }
+        { text: "Page 2" },
       );
       await instance.waitForNavigation();
       const pathname = await instance.evaluate(
-        () => document.location.pathname
+        () => document.location.pathname,
       );
       expect(pathname).toBe("/page2.html");
     });
@@ -101,7 +101,7 @@ describe("toClick", () => {
       try {
         await expect(instance).toClick(
           { value: "//a", type: "xpath" },
-          { text: "Nop" }
+          { text: "Nop" },
         );
       } catch (error: any) {
         expect(error.message).toMatch('Element //a (text: "Nop") not found');
@@ -115,7 +115,7 @@ describe("toClick", () => {
       try {
         await expect(instance).toClick(
           { value: "a", type: "css" },
-          { text: "Nop" }
+          { text: "Nop" },
         );
       } catch (error: any) {
         expect(error.message).toMatch('Element a (text: "Nop") not found');

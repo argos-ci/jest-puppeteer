@@ -104,7 +104,7 @@ export class JestDevServerError extends Error {
 
 const logProcDetection = (name: string, port: number) => {
   console.log(
-    chalk.blue(`🕵️  Detecting a process "${name}" running on port "${port}"`)
+    chalk.blue(`🕵️  Detecting a process "${name}" running on port "${port}"`),
   );
 };
 
@@ -179,7 +179,7 @@ const usedPortHandlers: Record<string, UsedPortHandler> = {
   kill: async (port) => {
     console.log("");
     console.log(
-      `Killing process listening to ${port}. On linux, this may require you to enter your password.`
+      `Killing process listening to ${port}. On linux, this may require you to enter your password.`,
     );
     const [portProcess] = await findProcess("port", port!);
     logProcDetection(portProcess.name, port);
@@ -194,7 +194,7 @@ const usedPortHandlers: Record<string, UsedPortHandler> = {
         name: "kill",
         message: `Another process is listening on ${port}. Should I kill it for you? On linux, this may require you to enter your password.`,
         initial: true,
-      })
+      }),
     );
     if (answers.kill) {
       const [portProcess] = await findProcess("port", port!);
@@ -207,7 +207,7 @@ const usedPortHandlers: Record<string, UsedPortHandler> = {
   ignore: (port) => {
     console.log("");
     console.log(
-      `Port ${port} is already used. Assuming server is already running.`
+      `Port ${port} is already used. Assuming server is already running.`,
     );
     return false;
   },
@@ -217,7 +217,7 @@ const handleUsedPort = async (config: Config) => {
   if (config.port === undefined) return true;
   if (!config.usedPortAction) {
     throw new JestDevServerError(
-      `Port ${config.port} is in use, but no action was provided to handle it. Please provide a "usedPortAction" in your config.`
+      `Port ${config.port} is in use, but no action was provided to handle it. Please provide a "usedPortAction" in your config.`,
     );
   }
 
@@ -261,7 +261,7 @@ const waitForServerToBeReady = async (config: Config) => {
     if (checkIsTimeoutError(err)) {
       throw new JestDevServerError(
         `Server has taken more than ${launchTimeout}ms to start.`,
-        { code: ERROR_TIMEOUT }
+        { code: ERROR_TIMEOUT },
       );
     }
     throw err;
@@ -284,7 +284,7 @@ export async function setup(providedConfigs: Config | Config[]) {
     ? providedConfigs
     : [providedConfigs];
   const procs = await Promise.all(
-    configs.map((config) => setupJestServer(config))
+    configs.map((config) => setupJestServer(config)),
   );
   return procs.filter(Boolean) as SpawndChildProcess[];
 }

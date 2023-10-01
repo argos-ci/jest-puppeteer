@@ -21,7 +21,7 @@ export type NotToMatchElementOptions = GetElementOptions & Options;
 export async function notToMatchElement(
   instance: PuppeteerInstance,
   selector: Selector | string,
-  options: NotToMatchElementOptions = {}
+  options: NotToMatchElementOptions = {},
 ) {
   const { text, visible, ...otherOptions } = options;
   const frameOptions = defaultOptions(otherOptions);
@@ -29,7 +29,7 @@ export async function notToMatchElement(
   const [getElement, getElementArgs, ctx] = await getElementFactory(
     instance,
     rSelector,
-    { text, visible }
+    { text, visible },
   );
 
   try {
@@ -37,7 +37,7 @@ export async function notToMatchElement(
       getElement,
       frameOptions,
       ...getElementArgs,
-      "negative" as const
+      "negative" as const,
     );
   } catch (error: any) {
     throw enhanceError(error, `${getSelectorMessage(rSelector, text)} found`);

@@ -44,13 +44,13 @@ export async function toFill(
   instance: PuppeteerInstance,
   selector: Selector | string,
   value: string,
-  options: ToFillOptions = {}
+  options: ToFillOptions = {},
 ) {
   const { delay, ...toMatchElementOptions } = options;
   const element = await toMatchElement(
     instance,
     selector,
-    toMatchElementOptions
+    toMatchElementOptions,
   );
   await selectAll(element);
   await element.press("Delete");

@@ -39,8 +39,8 @@
     "jest-environment-puppeteer": "^9.0.0"
   },
   "devDependencies": {
-    "rollup": "^3.23.0",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-swc3": "^0.8.1"
+    "rollup": "^3.29.4",
+    "rollup-plugin-dts": "^6.0.2",
+    "rollup-plugin-swc3": "^0.10.1"
   }
 }

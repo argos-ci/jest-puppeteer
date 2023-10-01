@@ -204,7 +204,7 @@ import { join } from "node:path";
 
 await expect(page).toUploadFile(
   'input[type="file"]',
-  join(__dirname, "file.txt")
+  join(__dirname, "file.txt"),
 );
 ```
 

@@ -34,7 +34,7 @@ describe("not.toMatchTextContent", () => {
           expect(error.stack).toMatch(resolve(__filename));
         }
       });
-    }
+    },
   );
 
   describe("ElementHandle", () => {

@@ -20,7 +20,7 @@ describe("readConfig", () => {
     it("should return custom config", async () => {
       process.env.JEST_PUPPETEER_CONFIG = path.resolve(
         __dirname,
-        "__fixtures__/customConfig.js"
+        "__fixtures__/customConfig.js",
       );
       const config = await readConfig();
       expect(config.server).toBeDefined();
@@ -59,7 +59,7 @@ describe("readConfig", () => {
     it("should return async config", async () => {
       process.env.JEST_PUPPETEER_CONFIG = path.resolve(
         __dirname,
-        "__fixtures__/promiseConfig.js"
+        "__fixtures__/promiseConfig.js",
       );
       const config = await readConfig();
       expect(config.server).toBeDefined();
@@ -70,7 +70,7 @@ describe("readConfig", () => {
     it("should return an error if invalid product", async () => {
       process.env.JEST_PUPPETEER_CONFIG = path.resolve(
         __dirname,
-        "__fixtures__/invalidProduct.js"
+        "__fixtures__/invalidProduct.js",
       );
       try {
         await readConfig();
@@ -84,7 +84,7 @@ describe("readConfig", () => {
     it("should set launch.product", async () => {
       process.env.JEST_PUPPETEER_CONFIG = path.resolve(
         __dirname,
-        "__fixtures__/browserConfig.js"
+        "__fixtures__/browserConfig.js",
       );
       const config = await readConfig();
       expect(config?.launch?.product).toBe("firefox");

@@ -27,7 +27,7 @@ const openBrowser = async (config: JestPuppeteerConfig): Promise<Browser> => {
 
 const closeBrowser = async (
   config: JestPuppeteerConfig,
-  browser: Browser
+  browser: Browser,
 ): Promise<void> => {
   if (config.connect) {
     return browser.disconnect();
@@ -89,7 +89,7 @@ export const startBrowsers = async ({
   saveWorkersCount(workersCount);
 
   const browsers = await Promise.all(
-    Array.from({ length: workersCount }).map(() => openBrowser(config))
+    Array.from({ length: workersCount }).map(() => openBrowser(config)),
   );
   const wsEndpoints = browsers.map((browser) => browser.wsEndpoint());
   saveWsEndpoints(wsEndpoints);
@@ -98,10 +98,10 @@ export const startBrowsers = async ({
 
 export const closeBrowsers = async (
   config: JestPuppeteerConfig,
-  browsers: Browser[]
+  browsers: Browser[],
 ) => {
   await Promise.all(
-    browsers.map(async (browser) => closeBrowser(config, browser))
+    browsers.map(async (browser) => closeBrowser(config, browser)),
   );
 };
 
@@ -116,7 +116,7 @@ const getWorkerWsEndpoint = (): string => {
 };
 
 export const connectBrowserFromWorker = async (
-  config: JestPuppeteerConfig
+  config: JestPuppeteerConfig,
 ): Promise<Browser> => {
   const wsEndpoint = getWorkerWsEndpoint();
   const puppeteer = getPuppeteer();
