@@ -14,7 +14,7 @@ describe("toMatchElement", () => {
     });
     it("should match using selector", async () => {
       const element = await expect(instance).toMatchElement(
-        'a[href="/page2.html"]'
+        'a[href="/page2.html"]',
       );
       const textContentProperty = await element.getProperty("textContent");
       const textContent = await textContentProperty.jsonValue();
@@ -57,9 +57,8 @@ describe("toMatchElement", () => {
       const normalElement = await expect(instance).toMatchElement(".normal", {
         visible: true,
       });
-      const textContentProperty = await normalElement.getProperty(
-        "textContent"
-      );
+      const textContentProperty =
+        await normalElement.getProperty("textContent");
       const textContent = await textContentProperty.jsonValue();
       expect(textContent).toBe("normal element");
 
@@ -85,7 +84,7 @@ describe("toMatchElement", () => {
         });
       } catch (error: any) {
         expect(error.message).toMatch(
-          "Element .displayedWithClassname not found"
+          "Element .displayedWithClassname not found",
         );
         expect(error.message).toMatch("Waiting failed: 500ms exceeded");
       }

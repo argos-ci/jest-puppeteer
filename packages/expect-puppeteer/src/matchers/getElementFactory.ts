@@ -15,7 +15,7 @@ export type GetElementOptions = {
 export async function getElementFactory(
   instance: PuppeteerInstance,
   selector: Selector,
-  options: GetElementOptions
+  options: GetElementOptions,
 ) {
   const { text: searchExpr, visible = false } = options;
 
@@ -24,7 +24,7 @@ export async function getElementFactory(
   const { text, regexp } = serializeSearchExpression(searchExpr);
 
   const parseSearchExpressionHandle = await evaluateParseSearchExpression(
-    ctx.page
+    ctx.page,
   );
 
   const getElementArgs = [
@@ -43,9 +43,9 @@ export async function getElementFactory(
     regexp: string | null,
     visible: boolean,
     parseSearchExpression: (
-      expr: SerializedSearchExpression
+      expr: SerializedSearchExpression,
     ) => ((value: string) => boolean) | null,
-    type: "element" | "positive" | "negative"
+    type: "element" | "positive" | "negative",
   ) => {
     const hasVisibleBoundingBox = (element: Element): boolean => {
       const rect = element.getBoundingClientRect();

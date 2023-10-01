@@ -16,7 +16,7 @@ describe("toFill", () => {
       await expect(instance).toFill('[name="firstName"]', "James");
       const value = await instance.evaluate(
         () =>
-          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value
+          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value,
       );
       expect(value).toBe("James");
     });
@@ -26,7 +26,7 @@ describe("toFill", () => {
       await expect(instance).toFill('[name="firstName"]', "");
       const value = await instance.evaluate(
         () =>
-          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value
+          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value,
       );
       expect(value).toBe("");
     });
@@ -34,10 +34,10 @@ describe("toFill", () => {
     it("should fill textarea", async () => {
       await expect(instance).toFill(
         '[name="notes"]',
-        "These are \n multiline \n notes"
+        "These are \n multiline \n notes",
       );
       const value = await instance.evaluate(
-        () => document.querySelector<HTMLInputElement>('[name="notes"]')!.value
+        () => document.querySelector<HTMLInputElement>('[name="notes"]')!.value,
       );
       expect(value).toBe("These are \n multiline \n notes");
     });
@@ -45,11 +45,11 @@ describe("toFill", () => {
     it("should empty the textarea given an empty string", async () => {
       await expect(instance).toFill(
         '[name="notes"]',
-        "These are \n multiline \n notes"
+        "These are \n multiline \n notes",
       );
       await expect(instance).toFill('[name="notes"]', "");
       const value = await instance.evaluate(
-        () => document.querySelector<HTMLInputElement>('[name="notes"]')!.value
+        () => document.querySelector<HTMLInputElement>('[name="notes"]')!.value,
       );
       expect(value).toBe("");
     });
@@ -57,7 +57,7 @@ describe("toFill", () => {
     it("should fill number input", async () => {
       await expect(instance).toFill('[name="age"]', "10");
       const value = await instance.evaluate(
-        () => document.querySelector<HTMLInputElement>('[name="age"]')!.value
+        () => document.querySelector<HTMLInputElement>('[name="age"]')!.value,
       );
       expect(value).toBe("10");
     });
@@ -66,7 +66,7 @@ describe("toFill", () => {
       await expect(instance).toFill('[name="age"]', "10");
       await expect(instance).toFill('[name="age"]', "");
       const value = await instance.evaluate(
-        () => document.querySelector<HTMLInputElement>('[name="age"]')!.value
+        () => document.querySelector<HTMLInputElement>('[name="age"]')!.value,
       );
       expect(value).toBe("");
     });
@@ -89,7 +89,7 @@ describe("toFill", () => {
       await expect(body).toFill('[name="firstName"]', "James");
       const value = await page.evaluate(
         () =>
-          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value
+          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value,
       );
       expect(value).toBe("James");
     });
@@ -101,7 +101,7 @@ describe("toFill", () => {
       });
       const value = await page.evaluate(
         () =>
-          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value
+          document.querySelector<HTMLInputElement>('[name="firstName"]')!.value,
       );
       expect(value).toBe("James");
     });

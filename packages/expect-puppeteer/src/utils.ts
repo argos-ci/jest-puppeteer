@@ -8,41 +8,45 @@ export type Selector = {
 };
 
 export const checkIsPuppeteerInstance = (
-  instance: unknown
+  instance: unknown,
 ): instance is PuppeteerInstance => {
   return Boolean(
     instance?.constructor?.name &&
       typeof instance === "object" &&
-      "$" in instance
+      "$" in instance,
   );
 };
 
 export const checkIsPage = (instance: unknown): instance is Page => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    instance?.constructor?.name === "CDPPage"
+    (instance?.constructor?.name === "CDPPage" ||
+      instance?.constructor?.name === "CdpPage")
   );
 };
 
 export const checkIsFrame = (instance: unknown): instance is Frame => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    instance?.constructor?.name === "Frame"
+    (instance?.constructor?.name === "CDPFrame" ||
+      instance?.constructor?.name === "CdpFrame" ||
+      instance?.constructor?.name === "Frame")
   );
 };
 
 export const checkIsElementHandle = (
-  instance: unknown
+  instance: unknown,
 ): instance is ElementHandle => {
   return (
     checkIsPuppeteerInstance(instance) &&
-    instance?.constructor?.name === "CDPElementHandle"
+    (instance?.constructor?.name === "CDPElementHandle" ||
+      instance?.constructor?.name === "CdpElementHandle")
   );
 };
 
 export const getContext = async (
   instance: PuppeteerInstance,
-  pageFunction: () => Document | Element
+  pageFunction: () => Document | Element,
 ) => {
   if (checkIsFrame(instance) || checkIsPage(instance)) {
     return {
@@ -79,7 +83,7 @@ export type SerializedSearchExpression = {
 };
 
 export const serializeSearchExpression = (
-  expr: SearchExpression
+  expr: SearchExpression,
 ): SerializedSearchExpression => {
   if (checkIsRegexp(expr)) {
     return { text: null, regexp: serializeRegexp(expr) };
@@ -98,7 +102,7 @@ export const resolveSelector = (selector: string | Selector): Selector => {
 
 export const getSelectorMessage = (
   selector: Selector,
-  text?: string | RegExp | undefined
+  text?: string | RegExp | undefined,
 ): string => {
   return `Element ${selector.value}${text ? ` (text: "${text}")` : ""}`;
 };

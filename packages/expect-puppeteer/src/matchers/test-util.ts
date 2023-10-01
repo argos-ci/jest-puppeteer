@@ -19,7 +19,7 @@ async function goToPage(
   page: Page,
   route: string,
   isFrame: boolean,
-  cb: (arg0: { currentPage: Page | Frame }) => void
+  cb: (arg0: { currentPage: Page | Frame }) => void,
 ) {
   let currentPage: Page | Frame = page;
   await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}/${route}`);
@@ -31,7 +31,7 @@ async function goToPage(
 
 export const setupPage = (
   instanceType: string,
-  cb: (arg0: { currentPage: Page | Frame }) => void
+  cb: (arg0: { currentPage: Page | Frame }) => void,
 ) => {
   beforeEach(async () => {
     if (instanceType === "Page") {

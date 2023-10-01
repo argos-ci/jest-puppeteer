@@ -68,7 +68,7 @@ const getDefaultConfig = () => {
 
 const readConfigFile = async (
   configFile?: string,
-  searchFrom?: string
+  searchFrom?: string,
 ): Promise<JestPuppeteerConfig | null> => {
   if (!configFile) {
     const result = await explorer.search(searchFrom);
@@ -82,7 +82,7 @@ export const readConfig = async (searchFrom?: string) => {
   const defaultConfig = getDefaultConfig();
   const config = await readConfigFile(
     process.env.JEST_PUPPETEER_CONFIG,
-    searchFrom
+    searchFrom,
   );
   if (!config) return defaultConfig;
   return { ...defaultConfig, ...config };

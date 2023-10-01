@@ -14,6 +14,7 @@ module.exports = {
     jestPuppeteer: "readonly",
     page: "readonly",
   },
+
   overrides: [
     {
       files: ["*.test.?(m|t)js"],
@@ -37,6 +38,9 @@ module.exports = {
         tsconfigRootDir: __dirname,
       },
       plugins: ["@typescript-eslint"],
+      rules: {
+        "@typescript-eslint/no-explicit-any": "warn",
+      },
     },
   ],
 };

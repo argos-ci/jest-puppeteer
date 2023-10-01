@@ -6,7 +6,7 @@ export type NotToMatchOptions = MatchTextContentOptions;
 export async function notToMatchTextContent(
   instance: PuppeteerInstance,
   matcher: SearchExpression,
-  options: NotToMatchOptions = {}
+  options: NotToMatchOptions = {},
 ) {
   try {
     await matchTextContent(instance, matcher, options, "negative");

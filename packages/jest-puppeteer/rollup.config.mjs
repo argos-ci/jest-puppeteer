@@ -1,5 +1,6 @@
 import { swc, defineRollupSwcOption } from "rollup-plugin-swc3";
 import dts from "rollup-plugin-dts";
+import * as url from "node:url";
 
 const bundle = (config) => ({
   external: (id) => {
@@ -11,14 +12,14 @@ const bundle = (config) => ({
 const swcPlugin = swc(
   defineRollupSwcOption({
     jsc: {
+      baseUrl: url.fileURLToPath(new URL(".", import.meta.url)),
       parser: {
         syntax: "typescript",
       },
+      target: "es2022",
+      externalHelpers: false,
     },
-    env: {
-      targets: "node 16",
-    },
-  })
+  }),
 );
 
 export default [

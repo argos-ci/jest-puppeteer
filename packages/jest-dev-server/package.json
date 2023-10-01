@@ -38,11 +38,11 @@
   },
   "devDependencies": {
     "@types/cwd": "^0.10.0",
-    "@types/prompts": "^2.4.4",
-    "@types/wait-on": "^5.3.1",
-    "rollup": "^3.23.0",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-swc3": "^0.8.1"
+    "@types/prompts": "^2.4.5",
+    "@types/wait-on": "^5.3.2",
+    "rollup": "^3.29.4",
+    "rollup-plugin-dts": "^6.0.2",
+    "rollup-plugin-swc3": "^0.10.1"
   },
   "dependencies": {
     "chalk": "^4.1.2",

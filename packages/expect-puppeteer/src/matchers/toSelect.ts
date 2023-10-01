@@ -4,7 +4,7 @@ import { PuppeteerInstance, resolveSelector, Selector } from "../utils";
 import type { ElementHandle } from "puppeteer";
 
 const checkIsSelectElement = (
-  element: ElementHandle<Element>
+  element: ElementHandle<Element>,
 ): element is ElementHandle<HTMLSelectElement> => {
   return typeof element.select === "function";
 };
@@ -13,7 +13,7 @@ export async function toSelect(
   instance: PuppeteerInstance,
   selector: Selector | string,
   valueOrText: string,
-  options: ToMatchElementOptions = {}
+  options: ToMatchElementOptions = {},
 ) {
   const element = await toMatchElement(instance, selector, options);
 
@@ -31,17 +31,19 @@ export async function toSelect(
         value: await valueProperty.jsonValue(),
         textContent: await textContentProperty.jsonValue(),
       };
-    })
+    }),
   );
 
   const option = optionsAttributes.find(
     ({ value, textContent }) =>
-      value === valueOrText || textContent === valueOrText
+      value === valueOrText || textContent === valueOrText,
   );
 
   if (!option) {
     throw new Error(
-      `Option not found "${resolveSelector(selector).value}" ("${valueOrText}")`
+      `Option not found "${
+        resolveSelector(selector).value
+      }" ("${valueOrText}")`,
     );
   }
   await element.select(option.value);

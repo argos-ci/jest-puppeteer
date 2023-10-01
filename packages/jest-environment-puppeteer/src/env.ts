@@ -104,7 +104,7 @@ const createContext = async (global: StrictGlobal) => {
       break;
     default:
       throw new Error(
-        `browserContext should be either 'incognito' or 'default'. Received '${configBrowserContext}'`
+        `browserContext should be either 'incognito' or 'default'. Received '${configBrowserContext}'`,
       );
   }
 };

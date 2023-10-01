@@ -8,8 +8,9 @@ export async function toFillForm(
   instance: PuppeteerInstance,
   selector: Selector | string,
   values: Record<string, string>,
-  options: ToFillFormOptions = {}
+  options: ToFillFormOptions = {},
 ) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { delay, ...otherOptions } = options;
   const form = await toMatchElement(instance, selector, otherOptions);
 

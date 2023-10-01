@@ -52,8 +52,8 @@ export const setup = async (jestConfig: JestConfig) => {
           console.error(chalk.red(error.message));
           console.error(
             chalk.blue(
-              `\n☝️ You can set "server.launchTimeout" in jest-puppeteer.config.js`
-            )
+              `\n☝️ You can set "server.launchTimeout" in jest-puppeteer.config.js`,
+            ),
           );
           process.exit(1);
         }
@@ -62,8 +62,8 @@ export const setup = async (jestConfig: JestConfig) => {
           console.error(chalk.red(error.message));
           console.error(
             chalk.blue(
-              `\n☝️ You must set "server.command" in jest-puppeteer.config.js`
-            )
+              `\n☝️ You must set "server.command" in jest-puppeteer.config.js`,
+            ),
           );
           process.exit(1);
         }
