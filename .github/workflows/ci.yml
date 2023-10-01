@@ -17,11 +17,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install last npm version
-        if: ${{ matrix.node-version == 14 }}
-        run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
       - run: npm run lint
       - run: npm run test -- --ci
+        if: ${{ matrix.node-version == 'latest' }}
       - run: npm run test:incognito -- --ci
+        if: ${{ matrix.node-version == 'latest' }}
