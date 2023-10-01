@@ -17,7 +17,7 @@ const swcPlugin = swc(
       parser: {
         syntax: "typescript",
       },
-      target: "es2021",
+      target: "es2022",
       externalHelpers: false,
     },
   }),

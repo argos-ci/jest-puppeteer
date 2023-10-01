@@ -21,6 +21,4 @@ jobs:
       - run: npm run build
       - run: npm run lint
       - run: npm run test -- --ci
-        if: ${{ matrix.node-version == 'latest' }}
       - run: npm run test:incognito -- --ci
-        if: ${{ matrix.node-version == 'latest' }}
