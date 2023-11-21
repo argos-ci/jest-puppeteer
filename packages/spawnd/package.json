@@ -41,11 +41,11 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "@types/exit": "^0.1.31",
-    "@types/signal-exit": "^3.0.2",
-    "rollup": "^3.29.4",
-    "rollup-plugin-dts": "^6.0.2",
-    "rollup-plugin-swc3": "^0.10.1"
+    "@types/exit": "^0.1.33",
+    "@types/signal-exit": "^3.0.4",
+    "rollup": "^4.5.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-swc3": "^0.10.4"
   },
   "dependencies": {
     "signal-exit": "^4.1.0",
