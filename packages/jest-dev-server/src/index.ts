@@ -56,7 +56,7 @@ export type Config = {
    * Action to take if the port is already used.
    * @default "ask"
    */
-  usedPortAction?: "ask" | "error" | "ignore";
+  usedPortAction?: "ask" | "error" | "ignore" | "kill";
   /**
    * Options to pass to [`wait-on`](https://www.npmjs.com/package/wait-on).
    * @see https://www.npmjs.com/package/wait-on#options
@@ -170,7 +170,10 @@ const checkIsPortBusy = async (config: Config): Promise<boolean> => {
 
 type UsedPortHandler = (port: number) => boolean | Promise<boolean>;
 
-const usedPortHandlers: Record<string, UsedPortHandler> = {
+const usedPortHandlers: Record<
+  NonNullable<Config["usedPortAction"]>,
+  UsedPortHandler
+> = {
   error: (port) => {
     throw new JestDevServerError(`Port ${port} is in use`, {
       code: ERROR_PORT_USED,
