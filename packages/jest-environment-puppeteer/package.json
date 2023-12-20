@@ -19,7 +19,7 @@
     "url": "https://github.com/argos-ci/jest-puppeteer.git",
     "directory": "packages/jest-environment-puppeteer"
   },
-  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-environme#readme",
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-environment-puppeteer#readme",
   "bugs": {
     "url": "https://github.com/argos-ci/jest-puppeteer/issues"
   },
