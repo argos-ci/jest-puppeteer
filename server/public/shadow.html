@@ -6,7 +6,7 @@
   </head>
   <body>
     <host-element>
-      <template shadowroot="open">
+      <template shadowrootmode="open">
         <header>This is home!</header>
         <slot></slot>
       </template>
@@ -14,7 +14,7 @@
     </host-element>
     <button id="dialog-btn" onclick="window.confirm('Bouh!')">
       <host-element-2>
-        <template shadowroot="open">Open dialog</template>
+        <template shadowrootmode="open">Open dialog</template>
       </host-element-2>
     </button>
   </body>

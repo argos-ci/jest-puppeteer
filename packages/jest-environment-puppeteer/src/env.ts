@@ -100,7 +100,12 @@ const createContext = async (global: StrictGlobal) => {
       global.context = browser.defaultBrowserContext();
       break;
     case "incognito":
-      global.context = await browser.createIncognitoBrowserContext();
+      global.context =
+        "createBrowserContext" in browser
+          ? // API for Puppeteer v22+
+            await browser.createBrowserContext()
+          : // @ts-expect-error // API for Puppeteer <= v21
+            await browser.createIncognitoBrowserContext();
       break;
     default:
       throw new Error(
