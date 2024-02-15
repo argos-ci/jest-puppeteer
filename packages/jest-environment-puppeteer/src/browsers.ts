@@ -80,13 +80,18 @@ export const startBrowsers = async ({
   config: JestPuppeteerConfig;
   jestConfig: JestConfig;
 }): Promise<Browser[]> => {
+  const workersCount = getWorkersCount(jestConfig);
+  saveWorkersCount(workersCount);
+
   if (config.connect?.browserWSEndpoint) {
+    if (workersCount > 1) {
+      throw new Error(
+        "Cannot use `connect.browserWSEndpoint` with multiple workers. Set Jest `maxWorkers` to 1.",
+      );
+    }
     saveWsEndpoints([config.connect.browserWSEndpoint]);
     return [];
   }
-
-  const workersCount = getWorkersCount(jestConfig);
-  saveWorkersCount(workersCount);
 
   const browsers = await Promise.all(
     Array.from({ length: workersCount }).map(() => openBrowser(config)),
