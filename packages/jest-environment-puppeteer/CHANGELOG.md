@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1](https://github.com/argos-ci/jest-puppeteer/compare/v10.0.0...v10.0.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* fix `WORKERS_COUNT` not found ([#578](https://github.com/argos-ci/jest-puppeteer/issues/578)) ([6897b22](https://github.com/argos-ci/jest-puppeteer/commit/6897b2225ad3567c322913864ae97267beae4922))
+
+
+
+
+
 # [10.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v9.0.2...v10.0.0) (2024-02-10)
 
 
