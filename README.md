@@ -66,7 +66,7 @@ describe("Google", () => {
 
 ### Visual testing with Argos
 
-[Argos](https://argos-ci.com/docs) is a powerful visual testing tool that allows to review visual changes introduced by each pull request.
+[Argos](https://argos-ci.com) is a powerful visual testing tool that allows to review visual changes introduced by each pull request.
 By integrating Argos with jest-puppeteer, you can easily capture and compare screenshots to ensure the visual consistency of your application.
 
 To get started with Argos, follow these steps:
