@@ -116,7 +116,7 @@ const createContext = async (global: StrictGlobal) => {
 
 const closeContext = async (global: StrictGlobal) => {
   if (!global.context) return;
-  if (global.context.isIncognito()) {
+  if (global.context.isIncognito?.()) {
     await global.context.close();
   }
   global.context = undefined;
