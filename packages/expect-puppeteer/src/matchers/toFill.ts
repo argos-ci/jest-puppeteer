@@ -17,7 +17,7 @@ async function selectAll(element: ElementHandle<Element>) {
     if (element.setSelectionRange) {
       try {
         element.setSelectionRange(0, element.value.length);
-      } catch (e) {
+      } catch {
         // setSelectionRange throws an error for inputs: number/date/time/etc
         // we can just focus them and the content will be selected
         element.focus();
