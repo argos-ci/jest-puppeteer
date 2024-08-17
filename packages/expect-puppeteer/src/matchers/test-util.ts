@@ -2,17 +2,14 @@
 import type { Page, Frame } from "puppeteer";
 
 function waitForFrame(page: Page) {
-  let fulfill: (value: Page | Frame) => void;
-  const promise = new Promise<Page | Frame>((resolve) => {
-    fulfill = resolve;
+  return new Promise<Frame>((resolve) => {
+    function checkFrame() {
+      const frame = page.frames().find((f) => f.parentFrame() !== null);
+      if (frame) resolve(frame);
+      else page.once(`frameattached`, checkFrame);
+    }
+    checkFrame();
   });
-  function checkFrame() {
-    const frame = page.frames().find((f) => f.parentFrame() !== null);
-    if (frame) fulfill(frame);
-    else page.once(`frameattached`, checkFrame);
-  }
-  checkFrame();
-  return promise;
 }
 
 async function goToPage(
