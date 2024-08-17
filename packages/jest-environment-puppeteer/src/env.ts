@@ -116,7 +116,9 @@ const createContext = async (global: StrictGlobal) => {
 
 const closeContext = async (global: StrictGlobal) => {
   if (!global.context) return;
-  if (global.context.isIncognito()) {
+  const browser = getBrowser(global);
+  // If a custom context was created, close it
+  if (global.context !== browser.defaultBrowserContext()) {
     await global.context.close();
   }
   global.context = undefined;
