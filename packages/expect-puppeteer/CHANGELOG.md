@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/argos-ci/jest-puppeteer/compare/v10.0.1...v10.1.0) (2024-08-17)
+
+
+### Features
+
+* support puppeteer v23 ([b5e774d](https://github.com/argos-ci/jest-puppeteer/commit/b5e774d95f585f34d8f1ce1a043777163b5cb673)), closes [#586](https://github.com/argos-ci/jest-puppeteer/issues/586)
+
+
+
+
+
 # [10.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v9.0.2...v10.0.0) (2024-02-10)
 
 

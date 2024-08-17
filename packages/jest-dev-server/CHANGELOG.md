@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/argos-ci/jest-puppeteer/compare/v10.0.1...v10.1.0) (2024-08-17)
+
+**Note:** Version bump only for package jest-dev-server
+
+
+
+
+
 # [10.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v9.0.2...v10.0.0) (2024-02-10)
 
 **Note:** Version bump only for package jest-dev-server
