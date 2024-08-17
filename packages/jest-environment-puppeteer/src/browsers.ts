@@ -5,8 +5,10 @@ import type { PuppeteerNode, Browser } from "puppeteer";
 
 const getPuppeteer = (): PuppeteerNode => {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require("puppeteer");
-  } catch (e) {
+  } catch {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require("puppeteer-core");
   }
 };
