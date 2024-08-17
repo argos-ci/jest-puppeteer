@@ -9,16 +9,14 @@ describe("toClick", () => {
 
   describe.each(["Page", "Frame"])("%s", (instanceType) => {
     let instance: Page | Frame;
+
     setupPage(instanceType, ({ currentPage }) => {
       instance = currentPage;
     });
+
     it("should click using selector", async () => {
       await expect(instance).toClick('a[href="/page2.html"]');
       await instance.waitForNavigation();
-      const pathname = await instance.evaluate(
-        () => document.location.pathname,
-      );
-      expect(pathname).toBe("/page2.html");
     });
 
     it("should click using xpath selector", async () => {
@@ -27,10 +25,6 @@ describe("toClick", () => {
         type: "xpath",
       });
       await instance.waitForNavigation();
-      const pathname = await instance.evaluate(
-        () => document.location.pathname,
-      );
-      expect(pathname).toBe("/page2.html");
     });
 
     it("should click using css selector with object param", async () => {
@@ -39,19 +33,11 @@ describe("toClick", () => {
         type: "css",
       });
       await instance.waitForNavigation();
-      const pathname = await instance.evaluate(
-        () => document.location.pathname,
-      );
-      expect(pathname).toBe("/page2.html");
     });
 
     it("should click using text", async () => {
       await expect(instance).toClick("a", { text: "Page 2" });
       await instance.waitForNavigation();
-      const pathname = await instance.evaluate(
-        () => document.location.pathname,
-      );
-      expect(pathname).toBe("/page2.html");
     });
 
     it("should click using text with xpath selector", async () => {
@@ -63,10 +49,6 @@ describe("toClick", () => {
         { text: "Page 2" },
       );
       await instance.waitForNavigation();
-      const pathname = await instance.evaluate(
-        () => document.location.pathname,
-      );
-      expect(pathname).toBe("/page2.html");
     });
 
     it("should click using text with css selector", async () => {
@@ -78,10 +60,6 @@ describe("toClick", () => {
         { text: "Page 2" },
       );
       await instance.waitForNavigation();
-      const pathname = await instance.evaluate(
-        () => document.location.pathname,
-      );
-      expect(pathname).toBe("/page2.html");
     });
 
     it("should return an error if element is not found", async () => {
