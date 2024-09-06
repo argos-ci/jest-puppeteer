@@ -17,6 +17,7 @@
     "url": "https://github.com/argos-ci/jest-puppeteer.git",
     "directory": "packages/jest-dev-server"
   },
+  "license": "MIT",
   "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-dev-server#readme",
   "bugs": {
     "url": "https://github.com/argos-ci/jest-puppeteer/issues"
