@@ -1,7 +1,7 @@
 {
   "name": "jest-dev-server",
   "description": "Starts a server before your Jest tests and tears it down after.",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -50,7 +50,7 @@
     "cwd": "^0.10.0",
     "find-process": "^1.4.7",
     "prompts": "^2.4.2",
-    "spawnd": "^10.1.0",
+    "spawnd": "^10.1.1",
     "tree-kill": "^1.2.2",
     "wait-on": "^7.2.0"
   }
