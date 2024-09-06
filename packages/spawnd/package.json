@@ -17,6 +17,7 @@
     "url": "https://github.com/argos-ci/jest-puppeteer.git",
     "directory": "packages/spawnd"
   },
+  "license": "MIT",
   "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/spawnd#readme",
   "bugs": {
     "url": "https://github.com/argos-ci/jest-puppeteer/issues"
