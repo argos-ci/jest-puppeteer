@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
-import { Frame, Page } from "puppeteer";
+import { Frame, Page, TimeoutError } from "puppeteer";
 import { setupPage } from "./test-util";
+
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("toSelect", () => {
   beforeEach(async () => {
@@ -40,11 +44,12 @@ describe("toSelect", () => {
           'select[name="my-select"]',
           "Another world",
         );
-      } catch (error: any) {
-        expect(error.message).toMatch(
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch(
           'Option not found "select[name="my-select"]" ("Another world")',
         );
-        expect(error.stack).toMatch(resolve(__filename));
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });
@@ -81,11 +86,12 @@ describe("toSelect", () => {
           'select[name="my-select"]',
           "Another world",
         );
-      } catch (error: any) {
-        expect(error.message).toMatch(
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch(
           'Option not found "select[name="my-select"]" ("Another world")',
         );
-        expect(error.stack).toMatch(resolve(__filename));
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });

@@ -4,6 +4,7 @@
     "packages/*"
   ],
   "scripts": {
+    "typecheck": "npx tsc && echo 'type checking was successful'",
     "build": "cross-env NODE_ENV=production lerna run build",
     "dev": "lerna watch -- lerna run build --scope=\\$LERNA_PACKAGE_NAME",
     "format": "prettier --write .",

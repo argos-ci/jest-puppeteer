@@ -1,3 +1,7 @@
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
+
 describe("Basic", () => {
   beforeAll(async () => {
     await page.goto(`http://localhost:${process.env.TEST_SERVER_PORT}`);

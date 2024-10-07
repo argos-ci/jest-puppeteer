@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
 import { setupPage } from "./test-util";
-import { Frame, Page } from "puppeteer";
+import { Frame, Page, TimeoutError } from "puppeteer";
+
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("toMatchElement", () => {
   beforeEach(async () => {
@@ -44,10 +48,11 @@ describe("toMatchElement", () => {
 
       try {
         await expect(instance).toMatchElement("a", { text: "Nop" });
-      } catch (error: any) {
-        expect(error.message).toMatch('Element a (text: "Nop") not found');
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element a (text: "Nop") not found');
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
 
@@ -64,29 +69,30 @@ describe("toMatchElement", () => {
 
       try {
         await expect(instance).toMatchElement(".hidden", { visible: true });
-      } catch (error: any) {
-        expect(error.message).toMatch("Element .hidden not found");
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch("Element .hidden not found");
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
       }
 
       try {
         await expect(instance).toMatchElement(".displayed", {
           visible: true,
         });
-      } catch (error: any) {
-        expect(error.message).toMatch("Element .displayed not found");
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch("Element .displayed not found");
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
       }
 
       try {
         await expect(instance).toMatchElement(".displayedWithClassname", {
           visible: true,
         });
-      } catch (error: any) {
-        expect(error.message).toMatch(
-          "Element .displayedWithClassname not found",
-        );
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch("Element .displayedWithClassname not found");
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
       }
     });
   });
@@ -126,9 +132,10 @@ describe("toMatchElement", () => {
 
       try {
         await expect(main).toMatchElement("a", { text: "Page 2" });
-      } catch (error: any) {
-        expect(error.message).toMatch('Element a (text: "Page 2") not found');
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element a (text: "Page 2") not found');
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
       }
     });
   });

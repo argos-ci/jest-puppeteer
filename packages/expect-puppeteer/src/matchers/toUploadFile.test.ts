@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
 import { setupPage } from "./test-util";
-import { Frame, Page } from "puppeteer";
+import { Frame, Page, TimeoutError } from "puppeteer";
+
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("toUploadFile", () => {
   beforeEach(async () => {
@@ -29,8 +33,9 @@ describe("toUploadFile", () => {
           'input[name="foo"]',
           resolve(__dirname, "../../__fixtures__/file.txt"),
         );
-      } catch (error: any) {
-        expect(error.message).toMatch('Element input[name="foo"] not found');
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element input[name="foo"] not found');
       }
     });
   });
@@ -53,8 +58,9 @@ describe("toUploadFile", () => {
           'input[name="foo"]',
           resolve(__dirname, "../../__fixtures__/file.txt"),
         );
-      } catch (error: any) {
-        expect(error.message).toMatch('Element input[name="foo"] not found');
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element input[name="foo"] not found');
       }
     });
   });

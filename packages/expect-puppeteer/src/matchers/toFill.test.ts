@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
-import { Frame, Page } from "puppeteer";
+import { Frame, Page, TimeoutError } from "puppeteer";
 import { setupPage } from "./test-util";
+
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("toFill", () => {
   beforeEach(async () => {
@@ -76,9 +80,10 @@ describe("toFill", () => {
 
       try {
         await expect(instance).toFill('[name="notFound"]', "James");
-      } catch (error: any) {
-        expect(error.message).toMatch('Element [name="notFound"] not found');
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element [name="notFound"] not found');
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });
@@ -112,9 +117,10 @@ describe("toFill", () => {
 
       try {
         await expect(body).toFill('[name="notFound"]', "James");
-      } catch (error: any) {
-        expect(error.message).toMatch('Element [name="notFound"] not found');
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element [name="notFound"] not found');
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });

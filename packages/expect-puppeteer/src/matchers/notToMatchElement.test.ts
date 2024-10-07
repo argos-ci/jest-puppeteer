@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
-import { Frame, Page } from "puppeteer";
+import { Frame, Page, TimeoutError } from "puppeteer";
 import { setupPage } from "./test-util";
+
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("not.toMatchElement", () => {
   beforeEach(async () => {
@@ -25,10 +29,11 @@ describe("not.toMatchElement", () => {
 
       try {
         await expect(instance).not.toMatchElement("a", { text: "Page 2" });
-      } catch (error: any) {
-        expect(error.message).toMatch('Element a (text: "Page 2") found');
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element a (text: "Page 2") found');
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });
@@ -50,10 +55,11 @@ describe("not.toMatchElement", () => {
 
       try {
         await expect(main).not.toMatchElement("div", { text: "main" });
-      } catch (error: any) {
-        expect(error.message).toMatch('Element div (text: "main") found');
-        expect(error.message).toMatch("Waiting failed: 500ms exceeded");
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element div (text: "main") found');
+        expect(e.message).toMatch("Waiting failed: 500ms exceeded");
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });

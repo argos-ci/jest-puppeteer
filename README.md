@@ -131,7 +131,7 @@ async function getConfig() {
 module.exports = getConfig();
 ```
 
-## Recipes
+## <a name="recipes"></a>Recipes
 
 ### Enhance testing with `expect-puppeteer` lib
 
@@ -489,6 +489,30 @@ beforeEach(async () => {
 ### TypeScript
 
 TypeScript is natively supported from v8.0.0, for previous versions, you have to use [community-provided types](https://github.com/DefinitelyTyped/DefinitelyTyped).
+
+Note though that it still requires installation of the [type definitions for jest](https://www.npmjs.com/package/@types/jest) :
+
+```bash
+npm install --save-dev @types/jest
+```
+
+Once setup, import the modules to enable types resolution for the exposed globals, then write your test logic [the same way you would in Javascript](#recipes).
+
+```ts
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
+
+describe("Google", (): void => {
+  beforeAll(async (): Promise<void> => {
+    await page.goto("https://google.com");
+  });
+
+  it('should display "google" text on page', async (): Promise<void> => {
+    await expect(page).toMatchTextContent("google");
+  });
+});
+```
 
 ### CI Timeout
 
