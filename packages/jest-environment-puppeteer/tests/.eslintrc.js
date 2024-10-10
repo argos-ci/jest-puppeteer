@@ -3,11 +3,4 @@ module.exports = {
     jest: true,
     browser: true,
   },
-  globals: {
-    page: true,
-    browser: true,
-    context: true,
-    puppeteerConfig: true,
-    jestPuppeteer: true,
-  },
 };

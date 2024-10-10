@@ -1,3 +1,7 @@
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
+
 describe("browserContext", () => {
   const test = process.env.INCOGNITO ? it : it.skip;
   test("incognito should isolate cookies (part 2)", async () => {

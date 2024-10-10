@@ -1,6 +1,10 @@
 import * as path from "node:path";
 import { readConfig } from "../src/config";
 
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
+
 // This test does not run on Node.js < v20 (segfault)
 xdescribe("readConfig", () => {
   describe("with custom config path", () => {
@@ -13,8 +17,9 @@ xdescribe("readConfig", () => {
       expect.assertions(1);
       try {
         await readConfig();
-      } catch (error: any) {
-        expect(error.message).toMatch("ENOENT");
+      } catch (error: unknown) {
+        const e = error as Error;
+        expect(e.message).toMatch("ENOENT");
       }
     });
 
@@ -75,8 +80,9 @@ xdescribe("readConfig", () => {
       );
       try {
         await readConfig();
-      } catch (error: any) {
-        expect(error.message).toBe("Error: Invalid product value 'foobar'");
+      } catch (error: unknown) {
+        const e = error as Error;
+        expect(e.message).toBe("Error: Invalid product value 'foobar'");
       }
     });
   });

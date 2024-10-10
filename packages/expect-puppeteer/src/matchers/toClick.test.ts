@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
 import { setupPage } from "./test-util";
-import { Frame, Page } from "puppeteer";
+import { Frame, Page, TimeoutError } from "puppeteer";
+
+// import globals
+import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("toClick", () => {
   beforeEach(async () => {
@@ -67,9 +71,10 @@ describe("toClick", () => {
 
       try {
         await expect(instance).toClick("a", { text: "Nop" });
-      } catch (error: any) {
-        expect(error.message).toMatch('Element a (text: "Nop") not found');
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element a (text: "Nop") not found');
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
 
@@ -81,9 +86,10 @@ describe("toClick", () => {
           { value: "//a", type: "xpath" },
           { text: "Nop" },
         );
-      } catch (error: any) {
-        expect(error.message).toMatch('Element //a (text: "Nop") not found');
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element //a (text: "Nop") not found');
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
 
@@ -95,9 +101,10 @@ describe("toClick", () => {
           { value: "a", type: "css" },
           { text: "Nop" },
         );
-      } catch (error: any) {
-        expect(error.message).toMatch('Element a (text: "Nop") not found');
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element a (text: "Nop") not found');
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });
@@ -136,9 +143,10 @@ describe("toClick", () => {
 
       try {
         await expect(body).toClick("a", { text: "Nop" });
-      } catch (error: any) {
-        expect(error.message).toMatch('Element a (text: "Nop") not found');
-        expect(error.stack).toMatch(resolve(__filename));
+      } catch (error: unknown) {
+        const e = error as TimeoutError;
+        expect(e.message).toMatch('Element a (text: "Nop") not found');
+        expect(e.stack).toMatch(resolve(__filename));
       }
     });
   });
