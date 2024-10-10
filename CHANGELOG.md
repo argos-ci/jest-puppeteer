@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.2](https://github.com/argos-ci/jest-puppeteer/compare/v10.1.1...v10.1.2) (2024-10-10)
+
+
+### Bug Fixes
+
+* fix types resolution for expect-puppeteer ([#599](https://github.com/argos-ci/jest-puppeteer/issues/599)) ([37e3271](https://github.com/argos-ci/jest-puppeteer/commit/37e3271c64a59e8314b4f96078516b2515c84493))
+
+
+
+
+
 ## [10.1.1](https://github.com/argos-ci/jest-puppeteer/compare/v10.1.0...v10.1.1) (2024-09-06)
 
 **Note:** Version bump only for package jest-puppeteer
