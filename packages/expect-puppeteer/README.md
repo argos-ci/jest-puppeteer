@@ -24,7 +24,7 @@ Modify your Jest configuration:
 
 Writing integration test is very hard, especially when you are testing a Single Page Applications. Data are loaded asynchronously and it is difficult to know exactly when an element will be displayed in the page.
 
-[Puppeteer API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md) is great, but it is low level and not designed for integration testing.
+[Puppeteer API](https://pptr.dev/api) is great, but it is low level and not designed for integration testing.
 
 This API is designed for integration testing:
 
