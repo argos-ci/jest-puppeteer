@@ -50,17 +50,6 @@ If using TypeScript, jest-puppeteer has to be explicitly imported in order to ex
 ```ts
 // import jest-puppeteer globals
 import "jest-puppeteer";
-
-describe("Google", (): void => {
-  beforeAll(async (): Promise<void> => {
-    await page.goto("https://google.com");
-  });
-
-  it('should display "google" text on page', async (): Promise<void> => {
-    const text = await page.evaluate(() => document.body.textContent);
-    expect(text).toContain("google");
-  });
-});
 ```
 
 ## API
