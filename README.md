@@ -11,6 +11,7 @@
 1. [Getting Started](#getting-started)
    - [Install the packages](#install-the-packages)
    - [Write a test](#write-a-test)
+   - [Use with Typescript](#use-with-typescript)
    - [Visual testing with Argos](#visual-testing-with-argos)
 2. [Recipes](#recipes)
    - [Enhance testing with `expect-puppeteer` lib](#enhance-testing-with-expect-puppeteer-lib)
@@ -59,6 +60,59 @@ describe("Google", () => {
   });
 
   it('should display "google" text on page', async () => {
+    await expect(page).toMatchTextContent("google");
+  });
+});
+```
+
+### Use with TypeScript
+
+TypeScript is natively supported from v8.0.0, for previous versions, you have to use [community-provided types](https://github.com/DefinitelyTyped/DefinitelyTyped).
+
+_Note : If you have upgraded to version v10.1.2 or above, we strongly recommend that you uninstall them :_
+
+```bash
+npm uninstall --save-dev @types/jest-environment-puppeteer @types/expect-puppeteer
+```
+
+Native types definitions are available whether you use `@types/jest` or `@jest/globals` for [jest types](https://jestjs.io/docs/getting-started#type-definitions).
+
+Once setup, import the jest-puppeteer modules in your test file, then write your test logic the same way you would in Javascript.
+
+- If using `@types/jest` :
+
+```ts
+// import jest-puppeteer globals
+import "jest-puppeteer";
+import "expect-puppeteer";
+
+describe("Google", (): void => {
+  beforeAll(async (): Promise<void> => {
+    await page.goto("https://google.com");
+  });
+
+  it('should display "google" text on page', async (): Promise<void> => {
+    await expect(page).toMatchTextContent("google");
+  });
+});
+```
+
+- If using `@jest/globals` :
+
+```ts
+// import jest types
+import { expect, describe, beforeAll, it } from "@jest/globals";
+
+// import jest-puppeteer globals
+import "jest-puppeteer";
+import "expect-puppeteer";
+
+describe("Google", (): void => {
+  beforeAll(async (): Promise<void> => {
+    await page.goto("https://google.com");
+  });
+
+  it('should display "google" text on page', async (): Promise<void> => {
     await expect(page).toMatchTextContent("google");
   });
 });
@@ -485,34 +539,6 @@ beforeEach(async () => {
 ```
 
 ## Troubleshooting
-
-### TypeScript
-
-TypeScript is natively supported from v8.0.0, for previous versions, you have to use [community-provided types](https://github.com/DefinitelyTyped/DefinitelyTyped).
-
-Note though that it still requires installation of the [type definitions for jest](https://www.npmjs.com/package/@types/jest) :
-
-```bash
-npm install --save-dev @types/jest
-```
-
-Once setup, import the modules to enable types resolution for the exposed globals, then write your test logic [the same way you would in Javascript](#recipes).
-
-```ts
-// import globals
-import "jest-puppeteer";
-import "expect-puppeteer";
-
-describe("Google", (): void => {
-  beforeAll(async (): Promise<void> => {
-    await page.goto("https://google.com");
-  });
-
-  it('should display "google" text on page', async (): Promise<void> => {
-    await expect(page).toMatchTextContent("google");
-  });
-});
-```
 
 ### CI Timeout
 
