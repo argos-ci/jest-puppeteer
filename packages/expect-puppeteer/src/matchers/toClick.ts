@@ -9,7 +9,7 @@ export async function toClick(
   selector: Selector | string,
   options: ToClickOptions = {},
 ) {
-  const { delay, button, clickCount, offset, ...otherOptions } = options;
+  const { delay, button, count, offset, ...otherOptions } = options;
   const element = await toMatchElement(instance, selector, otherOptions);
-  await element.click({ delay, button, clickCount, offset });
+  await element.click({ delay, button, count, offset });
 }

@@ -3,7 +3,6 @@ import { readConfig } from "../src/config";
 
 // import globals
 import "jest-puppeteer";
-import "expect-puppeteer";
 
 // This test does not run on Node.js < v20 (segfault)
 xdescribe("readConfig", () => {
