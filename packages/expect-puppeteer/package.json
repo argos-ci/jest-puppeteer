@@ -45,9 +45,9 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "puppeteer": "^23.1.0",
-    "rollup": "^4.20.0",
+    "puppeteer": "^23.6.0",
+    "rollup": "^4.24.0",
     "rollup-plugin-dts": "^6.1.1",
-    "rollup-plugin-swc3": "^0.11.2"
+    "rollup-plugin-swc3": "^0.12.1"
   }
 }
