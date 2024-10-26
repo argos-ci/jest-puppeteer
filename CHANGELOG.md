@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.4](https://github.com/argos-ci/jest-puppeteer/compare/v10.1.3...v10.1.4) (2024-10-26)
+
+
+### Bug Fixes
+
+* revert types resolution from `@jest/globals` ([#604](https://github.com/argos-ci/jest-puppeteer/issues/604)) ([4bc420b](https://github.com/argos-ci/jest-puppeteer/commit/4bc420b3568140d893e5b98c383111cbb3028720))
+
+
+
+
+
 ## [10.1.3](https://github.com/argos-ci/jest-puppeteer/compare/v10.1.2...v10.1.3) (2024-10-22)
 
 

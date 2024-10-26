@@ -1,7 +1,7 @@
 {
   "name": "jest-puppeteer",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "10.1.3",
+  "version": "10.1.4",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -36,8 +36,8 @@
     "puppeteer": ">=19"
   },
   "dependencies": {
-    "expect-puppeteer": "^10.1.3",
-    "jest-environment-puppeteer": "^10.1.3"
+    "expect-puppeteer": "^10.1.4",
+    "jest-environment-puppeteer": "^10.1.4"
   },
   "devDependencies": {
     "rollup": "^4.24.0",
