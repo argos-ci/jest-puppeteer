@@ -1,5 +1,6 @@
 // import globals
 import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("Basic", () => {
   beforeAll(async () => {

@@ -37,21 +37,6 @@ describe("Google", () => {
 });
 ```
 
-## Use with TypeScript
-
-_Note : If you have upgraded to version v10.1.2 or above, we strongly recommend that you uninstall the community provided types :_
-
-```bash
-npm uninstall --save-dev @types/jest-environment-puppeteer @types/expect-puppeteer
-```
-
-If using TypeScript, jest-puppeteer has to be explicitly imported in order to expose the global API :
-
-```ts
-// import jest-puppeteer globals
-import "jest-puppeteer";
-```
-
 ## API
 
 ### `global.browser`

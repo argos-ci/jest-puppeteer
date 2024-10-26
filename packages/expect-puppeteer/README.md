@@ -24,7 +24,7 @@ Modify your Jest configuration:
 
 Writing integration test is very hard, especially when you are testing a Single Page Applications. Data are loaded asynchronously and it is difficult to know exactly when an element will be displayed in the page.
 
-[Puppeteer API](https://pptr.dev/api) is great, but it is low level and not designed for integration testing.
+[Puppeteer API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md) is great, but it is low level and not designed for integration testing.
 
 This API is designed for integration testing:
 
@@ -81,11 +81,11 @@ await expect(page).toMatchElement("div.inner", { text: "some text" });
 
 Expect an element to be in the page or element, then click on it.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
+- `instance` <[Page]|[ElementHandle]> Context
 - `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to click on.
 - `options` <[Object]> Optional parameters
   - `button` <"left"|"right"|"middle"> Defaults to `left`.
-  - `count` <[number]> defaults to 1. See [UIEvent.detail].
+  - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
   - `delay` <[number]> Time to wait between `mousedown` and `mouseup` in milliseconds. Defaults to 0.
   - `text` <[string]|[RegExp]> A text or a RegExp to match in element `textContent`.
 
@@ -111,8 +111,8 @@ const dialog = await expect(page).toDisplayDialog(async () => {
 
 Expect a control to be in the page or element, then fill it with text.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
-- `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to match field
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match field
 - `value` <[string]> Value to fill
 - `options` <[Object]> Optional parameters
   - `delay` <[number]> delay to pass to [the puppeteer `element.type` API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#elementhandletypetext-options)
@@ -125,8 +125,8 @@ await expect(page).toFill('input[name="firstName"]', "James");
 
 Expect a form to be in the page or element, then fill its controls.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
-- `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to match form
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match form
 - `values` <[Object]> Values to fill
 - `options` <[Object]> Optional parameters
   - `delay` <[number]> delay to pass to [the puppeteer `element.type` API](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#elementhandletypetext-options)
@@ -142,7 +142,7 @@ await expect(page).toFillForm('form[name="myForm"]', {
 
 Expect a text or a string RegExp to be present in the page or element.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
+- `instance` <[Page]|[ElementHandle]> Context
 - `matcher` <[string]|[RegExp]> A text or a RegExp to match in page
 - `options` <[Object]> Optional parameters
   - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
@@ -162,8 +162,8 @@ await expect(page).toMatchTextContent(/lo.*/);
 
 Expect an element be present in the page or element.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
-- `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to match element
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match element
 - `options` <[Object]> Optional parameters
   - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
     - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
@@ -183,8 +183,8 @@ await expect(row).toClick("td:nth-child(3) a");
 
 Expect a select control to be present in the page or element, then select the specified option.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
-- `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to match select [element]
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match select [element]
 - `valueOrText` <[string]> Value or text matching option
 
 ```js
@@ -195,9 +195,9 @@ await expect(page).toSelect('select[name="choices"]', "Choice 1");
 
 Expect a input file control to be present in the page or element, then fill it with a local file.
 
-- `instance` <[Page]|[Frame]|[ElementHandle]> Context
-- `selector` <[string]|[MatchSelector](#MatchSelector)> A [selector] or a [MatchSelector](#MatchSelector) to match input [element]
-- `filePath` <[string]|[Array]<[string]>> A file path or array of file paths
+- `instance` <[Page]|[ElementHandle]> Context
+- `selector` <[string]> A [selector] to match input [element]
+- `filePath` <[string]> A file path
 
 ```js
 import { join } from "node:path";
@@ -208,7 +208,7 @@ await expect(page).toUploadFile(
 );
 ```
 
-### <a name="MatchSelector"></a>Match Selector
+### <a name="MatchSelector"></a>{type: [string], value: [string]}
 
 An object used as parameter in order to select an element.
 
@@ -242,7 +242,6 @@ setDefaultOptions({ timeout: 1000 });
 [element]: https://developer.mozilla.org/en-US/docs/Web/API/element "Element"
 [map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map "Map"
 [selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors "selector"
-[page]: https://pptr.dev/api/puppeteer.page "Page"
-[frame]: https://pptr.dev/api/puppeteer.frame "Frame"
-[elementhandle]: https://pptr.dev/api/puppeteer.elementhandle/ "ElementHandle"
+[page]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page "Page"
+[elementhandle]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle "ElementHandle"
 [uievent.detail]: https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail

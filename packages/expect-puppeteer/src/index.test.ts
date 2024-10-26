@@ -2,6 +2,7 @@ import { getDefaultOptions, setDefaultOptions } from "expect-puppeteer";
 
 // import globals
 import "jest-puppeteer";
+import "expect-puppeteer";
 
 expect.addSnapshotSerializer({
   print: () => "hello",
