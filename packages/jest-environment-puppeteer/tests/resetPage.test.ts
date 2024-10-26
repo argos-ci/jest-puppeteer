@@ -1,6 +1,5 @@
 // import globals
 import "jest-puppeteer";
-import "expect-puppeteer";
 
 describe("resetPage", () => {
   test("should reset page", async () => {
