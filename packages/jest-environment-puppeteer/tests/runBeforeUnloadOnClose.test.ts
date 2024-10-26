@@ -1,5 +1,6 @@
 // import globals
 import "jest-puppeteer";
+import "expect-puppeteer";
 
 describe("runBeforeUnloadOnClose", () => {
   it("shouldn’t call page.close with runBeforeUnload by default", async () => {
