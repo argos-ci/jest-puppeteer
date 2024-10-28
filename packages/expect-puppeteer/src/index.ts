@@ -44,8 +44,8 @@ type Wrapper<T> = T extends (
   ? (...args: A) => R
   : never;
 
-// declare matchers list
-type PuppeteerMatchers<T> = T extends PuppeteerInstance
+// declare common matchers list
+type InstanceMatchers<T> = T extends PuppeteerInstance
   ? {
       // common
       toClick: Wrapper<typeof toClick>;
@@ -64,24 +64,24 @@ type PuppeteerMatchers<T> = T extends PuppeteerInstance
   : never;
 
 // declare page matchers list
-interface PageMatchers extends PuppeteerMatchers<Page> {
+interface PageMatchers extends InstanceMatchers<Page> {
   // instance specific
   toDisplayDialog: Wrapper<typeof toDisplayDialog>;
   // inverse matchers
-  not: PuppeteerMatchers<Page>[`not`] & {};
+  not: InstanceMatchers<Page>[`not`] & {};
 }
 
 // declare frame matchers list
-interface FrameMatchers extends PuppeteerMatchers<Frame> {
+interface FrameMatchers extends InstanceMatchers<Frame> {
   // inverse matchers
-  not: PuppeteerMatchers<Frame>[`not`] & {};
+  not: InstanceMatchers<Frame>[`not`] & {};
 }
 
 // declare element matchers list
 interface ElementHandleMatchers
-  extends PuppeteerMatchers<ElementHandle<Element>> {
+  extends InstanceMatchers<ElementHandle<Element>> {
   // inverse matchers
-  not: PuppeteerMatchers<ElementHandle<Element>>[`not`] & {};
+  not: InstanceMatchers<ElementHandle<Element>>[`not`] & {};
 }
 
 // declare matchers per instance type
@@ -103,40 +103,41 @@ type GlobalWithExpect = typeof globalThis & { expect: PuppeteerExpect };
 
 // ---------------------------
 
-// extend global jest object
+// not possible to use PMatchersPerType directly ...
+interface PuppeteerMatchers<T> {
+  // common
+  toClick: T extends PuppeteerInstance ? Wrapper<typeof toClick> : never;
+  toFill: T extends PuppeteerInstance ? Wrapper<typeof toFill> : never;
+  toFillForm: T extends PuppeteerInstance ? Wrapper<typeof toFillForm> : never;
+  toMatchTextContent: T extends PuppeteerInstance
+    ? Wrapper<typeof toMatchTextContent>
+    : never;
+  toMatchElement: T extends PuppeteerInstance
+    ? Wrapper<typeof toMatchElement>
+    : never;
+  toSelect: T extends PuppeteerInstance ? Wrapper<typeof toSelect> : never;
+  toUploadFile: T extends PuppeteerInstance
+    ? Wrapper<typeof toUploadFile>
+    : never;
+  // page
+  toDisplayDialog: T extends Page ? Wrapper<typeof toDisplayDialog> : never;
+  // inverse matchers
+  not: {
+    toMatchTextContent: T extends PuppeteerInstance
+      ? Wrapper<typeof notToMatchTextContent>
+      : never;
+    toMatchElement: T extends PuppeteerInstance
+      ? Wrapper<typeof notToMatchElement>
+      : never;
+  };
+}
+
+// support for @types/jest
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    interface Matchers<R, T> {
-      // common
-      toClick: T extends PuppeteerInstance ? Wrapper<typeof toClick> : never;
-      toFill: T extends PuppeteerInstance ? Wrapper<typeof toFill> : never;
-      toFillForm: T extends PuppeteerInstance
-        ? Wrapper<typeof toFillForm>
-        : never;
-      toMatchTextContent: T extends PuppeteerInstance
-        ? Wrapper<typeof toMatchTextContent>
-        : never;
-      toMatchElement: T extends PuppeteerInstance
-        ? Wrapper<typeof toMatchElement>
-        : never;
-      toSelect: T extends PuppeteerInstance ? Wrapper<typeof toSelect> : never;
-      toUploadFile: T extends PuppeteerInstance
-        ? Wrapper<typeof toUploadFile>
-        : never;
-      // page
-      toDisplayDialog: T extends Page ? Wrapper<typeof toDisplayDialog> : never;
-      // inverse matchers
-      not: {
-        toMatchTextContent: T extends PuppeteerInstance
-          ? Wrapper<typeof notToMatchTextContent>
-          : never;
-        toMatchElement: T extends PuppeteerInstance
-          ? Wrapper<typeof notToMatchElement>
-          : never;
-      };
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-unused-vars
+    interface Matchers<R, T> extends PuppeteerMatchers<T> {}
   }
 }
 
@@ -151,7 +152,7 @@ const wrapMatcher = <T extends PuppeteerInstance>(
   instance: T,
 ) =>
   async function throwingMatcher(...args: unknown[]): Promise<unknown> {
-    // ???
+    // update the assertions counter
     jestExpect.getState().assertionCalls += 1;
     try {
       // run async matcher
@@ -176,7 +177,7 @@ const puppeteerExpect = <T extends PuppeteerInstance>(instance: T) => {
   ];
 
   if (!isPage && !isFrame && !isHandle)
-    throw new Error(`${instance} is not supported`);
+    throw new Error(`${instance.constructor.name} is not supported`);
 
   // retrieve matchers
   const expectation = {
@@ -237,7 +238,7 @@ const expectPuppeteer = (<T>(actual: T) => {
 
 Object.keys(jestExpect).forEach((prop) => {
   // @ts-expect-error add jest expect properties to expect-puppeteer implementation
-  expectPuppeteer[prop] = jestExpect[prop];
+  expectPuppeteer[prop] = jestExpect[prop] as unknown;
 });
 
 export { expectPuppeteer as expect };

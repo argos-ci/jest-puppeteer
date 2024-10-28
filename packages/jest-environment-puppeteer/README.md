@@ -37,11 +37,33 @@ describe("Google", () => {
 });
 ```
 
+## TypeScript Setup
+
+If you’re using TypeScript, `jest-puppeteer` natively supports it from version `8.0.0`. To get started with TypeScript, follow these steps:
+
+1. Make sure your project is using the correct type definitions. If you’ve upgraded to version `10.1.2` or above, uninstall old types:
+
+```bash
+npm uninstall --save-dev @types/jest-environment-puppeteer @types/expect-puppeteer
+```
+
+2. Install `@types/jest` (`jest-puppeteer` does not support `@jest/globals`) :
+
+```bash
+npm install --save-dev @types/jest
+```
+
+3. Import the `jest-puppeteer` module to expose the global API :
+
+```ts
+import "jest-puppeteer";
+```
+
 ## API
 
 ### `global.browser`
 
-Give access to the [Puppeteer Browser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser).
+Give access to the [Puppeteer Browser](https://pptr.dev/api/puppeteer.browser).
 
 ```js
 it("should open a new page", async () => {
@@ -52,7 +74,7 @@ it("should open a new page", async () => {
 
 ### `global.page`
 
-Give access to a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page) opened at start (you will use it most of time).
+Give access to a [Puppeteer Page](https://pptr.dev/api/puppeteer.page) opened at start (you will use it most of time).
 
 ```js
 it("should fill an input", async () => {
@@ -62,7 +84,7 @@ it("should fill an input", async () => {
 
 ### `global.context`
 
-Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in config.
+Give access to a [browser context](https://pptr.dev/api/puppeteer.browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in config.
 
 ### `global.jestPuppeteer.debug()`
 
