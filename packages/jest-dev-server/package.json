@@ -23,7 +23,7 @@
     "url": "https://github.com/argos-ci/jest-puppeteer/issues"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "keywords": [
     "jest",
@@ -41,7 +41,7 @@
     "@types/cwd": "^0.10.2",
     "@types/prompts": "^2.4.9",
     "@types/wait-on": "^5.3.4",
-    "rollup": "^4.24.0",
+    "rollup": "^4.29.1",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-swc3": "^0.12.1"
   },
