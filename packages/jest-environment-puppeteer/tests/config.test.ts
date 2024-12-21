@@ -5,7 +5,7 @@ import { readConfig } from "../src/config";
 import "jest-puppeteer";
 
 // This test does not run on Node.js < v20 (segfault)
-xdescribe("readConfig", () => {
+describe("readConfig", () => {
   describe("with custom config path", () => {
     beforeEach(() => {
       process.env.JEST_PUPPETEER_CONFIG = "nop.js";
@@ -71,8 +71,8 @@ xdescribe("readConfig", () => {
     });
   });
 
-  describe("with custom product type", () => {
-    it("should return an error if invalid product", async () => {
+  describe("with custom browser type", () => {
+    it("should return an error if invalid browser", async () => {
       process.env.JEST_PUPPETEER_CONFIG = path.resolve(
         __dirname,
         "__fixtures__/invalidProduct.js",
@@ -81,19 +81,19 @@ xdescribe("readConfig", () => {
         await readConfig();
       } catch (error: unknown) {
         const e = error as Error;
-        expect(e.message).toBe("Error: Invalid product value 'foobar'");
+        expect(e.message).toBe("Error: Invalid browser value 'foobar'");
       }
     });
   });
 
   describe("with browser config", () => {
-    it("should set launch.product", async () => {
+    it("should set launch.browser", async () => {
       process.env.JEST_PUPPETEER_CONFIG = path.resolve(
         __dirname,
         "__fixtures__/browserConfig.js",
       );
       const config = await readConfig();
-      expect(config?.launch?.product).toBe("firefox");
+      expect(config?.launch?.browser).toBe("firefox");
     });
   });
 });

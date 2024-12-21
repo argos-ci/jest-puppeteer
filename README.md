@@ -180,7 +180,7 @@ You can easily customize the Puppeteer instance used in your tests by modifying 
 ```js
 module.exports = {
   launch: {
-    product: "firefox",
+    browser: "firefox",
     headless: process.env.HEADLESS !== "false",
   },
 };
@@ -284,7 +284,7 @@ You can further extend this configuration to connect to a remote instance of Chr
 
 Jest-Puppeteer exposes several global objects and methods to facilitate test writing:
 
-- **`global.browser`**: Provides access to the Puppeteer [Browser](https://pptr.dev/#?product=Puppeteer&version=v13.0.0&show=api-class-browser) instance.
+- **`global.browser`**: Provides access to the Puppeteer [Browser](https://pptr.dev/api/puppeteer.browser/) instance.
 
   Example:
 
@@ -293,7 +293,7 @@ Jest-Puppeteer exposes several global objects and methods to facilitate test wri
   await page.goto("https://example.com");
   ```
 
-- **`global.page`**: The default Puppeteer [Page](https://pptr.dev/#?product=Puppeteer&version=v13.0.0&show=api-class-page) object, automatically created and available in tests.
+- **`global.page`**: The default Puppeteer [Page](https://pptr.dev/api/puppeteer.page/) object, automatically created and available in tests.
 
   Example:
 
@@ -301,7 +301,7 @@ Jest-Puppeteer exposes several global objects and methods to facilitate test wri
   await page.type("#input", "Hello World");
   ```
 
-- **`global.context`**: Gives access to the [browser context](https://pptr.dev/#?product=Puppeteer&version=v13.0.0&show=api-class-browsercontext), useful for isolating tests in separate contexts.
+- **`global.context`**: Gives access to the [browser context](https://pptr.dev/api/puppeteer.browsercontext/), useful for isolating tests in separate contexts.
 
 - **`global.expect(page)`**: The enhanced `expect` API provided by `expect-puppeteer`. You can use this to make assertions on the Puppeteer `page`.
 

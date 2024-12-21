@@ -1,5 +1,5 @@
 module.exports = {
   launch: {
-    product: "firefox",
+    browser: "firefox",
   },
 };
