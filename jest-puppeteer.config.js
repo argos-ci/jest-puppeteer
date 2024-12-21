@@ -10,6 +10,7 @@ process.env.TEST_SERVER_PORT = port;
 const jestPuppeteerConfig = {
   launch: {
     headless: "new",
+    args: ["--no-sandbox"],
   },
   browserContext: process.env.INCOGNITO ? "incognito" : "default",
   server: {
