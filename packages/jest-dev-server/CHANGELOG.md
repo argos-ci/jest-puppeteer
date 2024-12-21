@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0](https://github.com/argos-ci/jest-puppeteer/compare/v10.1.4...v11.0.0) (2024-12-21)
+
+
+### Features
+
+* add support for Node.js v22-23 ([d67228e](https://github.com/argos-ci/jest-puppeteer/commit/d67228e9d4a4da3a7127121ed87cab2584fb25a0))
+
+
+### BREAKING CHANGES
+
+* Node.js v16 is not supported
+
+
+
+
+
 ## [10.1.4](https://github.com/argos-ci/jest-puppeteer/compare/v10.1.3...v10.1.4) (2024-10-26)
 
 **Note:** Version bump only for package jest-dev-server
