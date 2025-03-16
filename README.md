@@ -1,39 +1,50 @@
-<h1 align="center">
-  <img src="https://raw.githubusercontent.com/smooth-code/jest-puppeteer/master/resources/jest-puppeteer-logo.png" alt="jest-puppeteer" title="jest-puppeteer" width="300">
-</h1>
-<p align="center" style="font-size: 1.2rem;">Run your tests using Jest & Puppeteer 🎪✨</p>
+Let's find a balance between detailed explanations and clarity. Here’s a more comprehensive version that retains structure but elaborates more where needed:
 
-[![License](https://img.shields.io/npm/l/jest-puppeteer.svg)](https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE)
-[![Donate](https://opencollective.com/jest-puppeteer/backers/badge.svg)](https://opencollective.com/jest-puppeteer/donate)
-[![npm package](https://img.shields.io/npm/v/jest-puppeteer/latest.svg)](https://www.npmjs.com/package/jest-puppeteer)
+---
+
+# 🎪 jest-puppeteer
+
+[![npm version](https://img.shields.io/npm/v/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
 [![npm downloads](https://img.shields.io/npm/dm/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
-[![Build Status](https://img.shields.io/travis/smooth-code/jest-puppeteer.svg)](https://travis-ci.org/smooth-code/jest-puppeteer)
-![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
-[![Dependencies](https://img.shields.io/david/smooth-code/jest-puppeteer.svg?path=packages%2Fjest-puppeteer)](https://david-dm.org/smooth-code/jest-puppeteer?path=packages/jest-puppeteer)
-[![DevDependencies](https://img.shields.io/david/dev/smooth-code/jest-puppeteer.svg)](https://david-dm.org/smooth-code/jest-puppeteer?type=dev)
 
-```
+`jest-puppeteer` is a Jest preset designed for seamless integration with Puppeteer, enabling end-to-end testing in a browser environment. With a simple API, it allows you to launch browsers and interact with web pages, making it perfect for testing UI interactions in web applications.
+
+## Table of Contents
+
+1. [Getting Started](#getting-started)
+   - [Installation](#installation)
+   - [Basic Setup](#basic-setup)
+   - [Writing Your First Test](#writing-your-first-test)
+   - [TypeScript Setup](#typescript-setup)
+   - [Visual Testing with Argos](#visual-testing-with-argos)
+2. [Recipes](#recipes)
+   - [Using `expect-puppeteer`](#using-expect-puppeteer)
+   - [Debugging Tests](#debugging-tests)
+   - [Automatic Server Management](#automatic-server-management)
+   - [Customizing the Puppeteer Instance](#customizing-the-puppeteer-instance)
+   - [Custom Test Setup](#custom-test-setup)
+   - [Extending `PuppeteerEnvironment`](#extending-puppeteerenvironment)
+   - [Global Setup and Teardown](#global-setup-and-teardown)
+3. [Jest-Puppeteer Configuration](#jest-puppeteer-configuration)
+4. [API Reference](#api-reference)
+5. [Troubleshooting](#troubleshooting)
+6. [Acknowledgements](#acknowledgements)
+
+## Getting Started
+
+### Installation
+
+To start using `jest-puppeteer`, you’ll need to install the following packages:
+
+```bash
 npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
-> Requires Jest v22+
-> TypeScript users should additionally install `@types/puppeteer`, `@types/jest-environment-puppeteer` and `@types/expect-puppeteer`
+This will install Jest (the testing framework), Puppeteer (the headless browser tool), and `jest-puppeteer` (the integration between the two).
 
-## Supporting jest-puppeteer
+### Basic Setup
 
-jest-puppeteer is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
-
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/jest-puppeteer).
-
-### Gold Sponsors
-
-Gold Sponsors are those who have pledged \$100/month and more to jest-puppeteer.
-
-[![gold-sponsors](https://opencollective.com/jest-puppeteer/tiers/gold-sponsors.svg?avatarHeight=120&width=600)](https://opencollective.com/jest-puppeteer/order/6045)
-
-## Usage
-
-Update your Jest configuration:
+In your Jest configuration file (`jest.config.js`), add `jest-puppeteer` as the preset:
 
 ```json
 {
@@ -41,116 +52,332 @@ Update your Jest configuration:
 }
 ```
 
-Use Puppeteer in your tests:
+This will configure Jest to use Puppeteer for running your tests. Make sure to remove any conflicting `testEnvironment` settings that might be present in your existing Jest configuration, as `jest-puppeteer` manages the environment for you.
+
+### Writing Your First Test
+
+Once you’ve configured Jest, you can start writing tests using Puppeteer’s `page` object, which is automatically provided by `jest-puppeteer`.
+
+Create a test file (e.g., `google.test.js`):
 
 ```js
-describe('Google', () => {
+import "expect-puppeteer";
+
+describe("Google Homepage", () => {
   beforeAll(async () => {
-    await page.goto('https://google.com')
-  })
+    await page.goto("https://google.com");
+  });
 
   it('should display "google" text on page', async () => {
-    await expect(page).toMatch('google')
-  })
-})
+    await expect(page).toMatchTextContent(/Google/);
+  });
+});
 ```
 
-### Running puppeteer in CI environments
+This example test navigates to Google’s homepage and checks if the page contains the word "Google". `jest-puppeteer` simplifies working with Puppeteer by exposing the `page` object, allowing you to write tests using a familiar syntax.
 
-Most continuous integration platforms limit the number of threads one can use. If you have more than one test suite running puppeteer chances are that your test will timeout. This is because jest will try to run puppeteer in parallel and the CI platform won't be able to handle all the parallel jobs in time. A fix to this is to run your test serially when in a CI environment. Users have discovered that [running test serially in such environments can render up to 50%](https://jestjs.io/docs/en/troubleshooting#tests-are-extremely-slow-on-docker-and-or-continuous-integration-ci-server) of performance gains.
+### TypeScript Setup
 
-This can be achieved through the CLI by running:
+If you’re using TypeScript, `jest-puppeteer` natively supports it from version `8.0.0`. To get started with TypeScript, follow these steps:
 
-```sh
-jest --runInBand
+1. Make sure your project is using the correct type definitions. If you’ve upgraded to version `10.1.2` or above, uninstall old types:
+
+```bash
+npm uninstall --save-dev @types/jest-environment-puppeteer @types/expect-puppeteer
 ```
 
-Alternatively, you can set jest to use as a max number of workers the amount that your CI environment supports:
+2. Install `@types/jest` (`jest-puppeteer` does not support `@jest/globals`) :
 
+```bash
+npm install --save-dev @types/jest
 ```
-jest --maxWorkers=2
+
+3. Jest will automatically pick up type definitions from `@types/jest`. Once you’ve set up the environment, you can start writing tests in TypeScript just like in JavaScript:
+
+```ts
+import "jest-puppeteer";
+import "expect-puppeteer";
+
+describe("Google Homepage", (): void => {
+  beforeAll(async (): Promise<void> => {
+    await page.goto("https://google.com");
+  });
+
+  it('should display "google" text on page', async (): Promise<void> => {
+    await expect(page).toMatchTextContent(/Google/);
+  });
+});
 ```
+
+### Visual Testing with Argos
+
+[Argos](https://argos-ci.com) is a powerful tool for visual testing, allowing you to track visual changes introduced by each pull request. By integrating Argos with `jest-puppeteer`, you can easily capture and compare screenshots to maintain the visual consistency of your application.
+
+To get started, check out the [Puppeteer Quickstart Guide](https://argos-ci.com/docs/quickstart/puppeteer).
 
 ## Recipes
 
-### Writing tests using Puppeteer
+### Using `expect-puppeteer`
 
-Writing integration test can be done using [Puppeteer API](<(https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)>) but it can be complicated and hard because API is not designed for testing.
+Writing tests with Puppeteer’s core API can be verbose. The `expect-puppeteer` library simplifies this by adding custom matchers, such as checking for text content or interacting with elements. Some examples:
 
-To make it simpler, [expect-puppeteer API](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api) add some specific matchers if you make expectation on a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
-
-Some examples:
-
-#### Find a text in the page
+- Assert that a page contains certain text:
 
 ```js
-// Assert that current page contains 'Text in the page'
-await expect(page).toMatch('Text in the page')
+await expect(page).toMatchTextContent("Expected text");
 ```
 
-#### Click a button
+- Simulate a button click:
 
 ```js
-// Assert that a button containing text "Home" will be clicked
-await expect(page).toClick('button', { text: 'Home' })
+await expect(page).toClick("button", { text: "Submit" });
 ```
 
-#### Fill a form
+- Fill out a form:
 
 ```js
-// Assert that a form will be filled
-await expect(page).toFillForm('form[name="myForm"]', {
-  firstName: 'James',
-  lastName: 'Bond',
-})
+await expect(page).toFillForm('form[name="login"]', {
+  username: "testuser",
+  password: "password",
+});
 ```
 
-### Put in debug mode
+### Debugging Tests
 
-Debugging tests can be hard sometimes and it is very useful to be able to pause tests in order to inspect the browser. Jest Puppeteer exposes a method `jestPuppeteer.debug()` that suspends test execution and gives you opportunity to see what's going on in the browser.
+Debugging can sometimes be tricky in headless browser environments. `jest-puppeteer` provides a helpful `debug()` function, which pauses test execution and opens the browser for manual inspection:
 
 ```js
-await jestPuppeteer.debug()
+await jestPuppeteer.debug();
 ```
 
-### Start a server
-
-Jest Puppeteer integrates a functionality to start a server when running your test suite. It automatically closes the server when tests are done.
-
-To use it, specify a server section in your `jest-puppeteer.config.js`.
+To prevent the test from timing out, increase Jest’s timeout:
 
 ```js
-// jest-puppeteer.config.js
+jest.setTimeout(300000); // 5 minutes
+```
+
+This can be particularly useful when you need to step through interactions or inspect the state of the page during test execution.
+
+### Automatic Server Management
+
+If your tests depend on a running server (e.g., an Express app), you can configure `jest-puppeteer` to automatically start and stop the server before and after tests:
+
+```js
 module.exports = {
   server: {
-    command: 'node server.js',
+    command: "node server.js",
     port: 4444,
   },
-}
+};
 ```
 
-Other options are documented in [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server).
+This eliminates the need to manually manage your server during testing.
 
-### Configure Puppeteer
+### Customizing the Puppeteer Instance
 
-Jest Puppeteer automatically detects the best config to start Puppeteer but sometimes you may need to specify custom options. All Puppeteer [launch](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) or [connect](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) options can be specified in `jest-puppeteer.config.js` at the root of the project. Since it is JavaScript, you can use all the stuff you need, including environment.
-
-The browser context can be also specified. By default, the browser context is shared. `incognito` is available if you want more isolation between running instances. More information available in [jest-puppeteer-environment readme](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/jest-environment-puppeteer/README.md)
+You can easily customize the Puppeteer instance used in your tests by modifying the `jest-puppeteer.config.js` file. For example, if you want to launch Firefox instead of Chrome:
 
 ```js
-// jest-puppeteer.config.js
 module.exports = {
   launch: {
-    dumpio: true,
-    headless: process.env.HEADLESS !== 'false',
+    browser: "firefox",
+    headless: process.env.HEADLESS !== "false",
   },
-  browserContext: 'default',
+};
+```
+
+This file allows you to configure browser options, set up browser contexts, and more.
+
+### Custom Test Setup
+
+If you have custom setup requirements, you can define setup files to initialize your environment before each test. For instance, you may want to import `expect-puppeteer` globally:
+
+```js
+// setup.js
+require("expect-puppeteer");
+```
+
+Then, in your Jest config:
+
+```js
+module.exports = {
+  setupFilesAfterEnv: ["./setup.js"],
+};
+```
+
+### Extending `PuppeteerEnvironment`
+
+For advanced use cases, you can extend the default `PuppeteerEnvironment` class to add custom functionality:
+
+```js
+const PuppeteerEnvironment = require("jest-environment-puppeteer");
+
+class CustomEnvironment extends PuppeteerEnvironment {
+  async setup() {
+    await super.setup();
+    // Custom setup logic
+  }
+
+  async teardown() {
+    // Custom teardown logic
+    await super.teardown();
+  }
+}
+
+module.exports = CustomEnvironment;
+```
+
+### Global Setup and Teardown
+
+Sometimes, tests may require a global setup or teardown step that only runs once per test suite. You can define custom `globalSetup` and `globalTeardown` scripts:
+
+```js
+// global-setup.js
+const setupPuppeteer = require("jest-environment-puppeteer/setup");
+
+module.exports = async function globalSetup(globalConfig) {
+  await setupPuppeteer(globalConfig);
+  // Additional setup logic
+};
+```
+
+In your Jest configuration, reference these files:
+
+```json
+{
+  "globalSetup": "./global-setup.js",
+  "globalTeardown": "./global-teardown.js"
 }
 ```
 
-### Configure ESLint
+### Jest-Puppeteer Configuration
 
-Jest Puppeteer exposes three new globals: `browser`, `page`, `context`. If you want to avoid errors, you can add them to your `.eslintrc.js`:
+Jest-Puppeteer supports various configuration formats through [cosmiconfig](https://github.com/davidtheclark/cosmiconfig), allowing flexible ways to define your setup. By default, the configuration is looked for at the root of your project, but you can also define a custom path using the `JEST_PUPPETEER_CONFIG` environment variable.
+
+Possible configuration formats:
+
+- A `"jest-puppeteer"` key in your `package.json`.
+- A `.jest-puppeteerrc` file (JSON, YAML, or JavaScript).
+- A `.jest-puppeteer.config.js` or `.jest-puppeteer.config.cjs` file that exports a configuration object.
+
+Example of a basic configuration file (`jest-puppeteer.config.js`):
+
+```js
+module.exports = {
+  launch: {
+    headless: process.env.HEADLESS !== "false",
+    dumpio: true, // Show browser console logs
+  },
+  browserContext: "default", // Use "incognito" if you want isolated sessions per test
+  server: {
+    command: "node server.js",
+    port: 4444,
+    launchTimeout: 10000,
+    debug: true,
+  },
+};
+```
+
+You can further extend this configuration to connect to a remote instance of Chrome or customize the environment for your test runs.
+
+## API Reference
+
+Jest-Puppeteer exposes several global objects and methods to facilitate test writing:
+
+- **`global.browser`**: Provides access to the Puppeteer [Browser](https://pptr.dev/api/puppeteer.browser/) instance.
+
+  Example:
+
+  ```js
+  const page = await browser.newPage();
+  await page.goto("https://example.com");
+  ```
+
+- **`global.page`**: The default Puppeteer [Page](https://pptr.dev/api/puppeteer.page/) object, automatically created and available in tests.
+
+  Example:
+
+  ```js
+  await page.type("#input", "Hello World");
+  ```
+
+- **`global.context`**: Gives access to the [browser context](https://pptr.dev/api/puppeteer.browsercontext/), useful for isolating tests in separate contexts.
+
+- **`global.expect(page)`**: The enhanced `expect` API provided by `expect-puppeteer`. You can use this to make assertions on the Puppeteer `page`.
+
+  Example:
+
+  ```js
+  await expect(page).toMatchTextContent("Expected text on page");
+  ```
+
+- **`global.jestPuppeteer.debug()`**: Suspends test execution, allowing you to inspect the browser and debug.
+
+  Example:
+
+  ```js
+  await jestPuppeteer.debug();
+  ```
+
+- **`global.jestPuppeteer.resetPage()`**: Resets the `page` object before each test.
+
+  Example:
+
+  ```js
+  beforeEach(async () => {
+    await jestPuppeteer.resetPage();
+  });
+  ```
+
+- **`global.jestPuppeteer.resetBrowser()`**: Resets the `browser`, `context`, and `page` objects, ensuring a clean slate for each test.
+
+  Example:
+
+  ```js
+  beforeEach(async () => {
+    await jestPuppeteer.resetBrowser();
+  });
+  ```
+
+These methods simplify the setup and teardown process for tests, making it easier to work with Puppeteer in a Jest environment.
+
+## Troubleshooting
+
+### CI Timeout Issues
+
+In CI environments, tests may occasionally time out due to limited resources. Jest-Puppeteer allows you to control the number of workers used to run tests. Running tests serially can help avoid these timeouts:
+
+Run tests in a single process:
+
+```bash
+jest --runInBand
+```
+
+Alternatively, you can limit the number of parallel workers:
+
+```bash
+jest --maxWorkers=2
+```
+
+This ensures that your CI environment doesn’t get overloaded by too many concurrent processes, which can improve the reliability of your tests.
+
+### Debugging CI Failures
+
+Sometimes, failures happen only in CI environments and not locally. In such cases, use the `debug()` method to open a browser during CI runs and inspect the page manually:
+
+```js
+await jestPuppeteer.debug();
+```
+
+To avoid test timeouts in CI, set a larger timeout during the debugging process:
+
+```js
+jest.setTimeout(600000); // 10 minutes
+```
+
+### Preventing ESLint Errors with Global Variables
+
+Jest-Puppeteer introduces global variables like `page`, `browser`, `context`, etc., which ESLint may flag as undefined. You can prevent this by adding these globals to your ESLint configuration:
 
 ```js
 // .eslintrc.js
@@ -162,204 +389,14 @@ module.exports = {
     page: true,
     browser: true,
     context: true,
+    puppeteerConfig: true,
     jestPuppeteer: true,
   },
-}
+};
 ```
 
-### Specify a `setupTestFrameworkScriptFile`
+This configuration will prevent ESLint from throwing errors about undefined globals.
 
-Jest Puppeteer use `expect-puppeteer` as `setupTestFrameworkScriptFile`. If you want to use `expect-puppeteer` don't forget to add it in your custom `setupTestFrameworkScriptFile`:
+## Acknowledgements
 
-```js
-// setupTestFrameworkScriptFile.js
-require('expect-puppeteer')
-
-// Your custom setup
-```
-
-```js
-// jest.config.js
-module.exports = {
-  // ...
-  setupTestFrameworkScriptFile: './setupTestFrameworkScriptFile.js',
-}
-```
-
-### Extend `PuppeteerEnvironment`
-
-Sometimes you want to use your own environment, to do that you can extend `PuppeteerEnvironment`.
-
-First, create your own js file for custom environment.
-
-```js
-// custom-environment.js
-const PuppeteerEnvironment = require('jest-environment-puppeteer')
-
-class CustomEnvironment extends PuppeteerEnvironment {
-  async setup() {
-    await super.setup()
-    // Your setup
-  }
-
-  async teardown() {
-    // Your teardown
-    await super.teardown()
-  }
-}
-
-module.exports = CustomEnvironment
-```
-
-Then, assigning your js file path to the [`testEnvironment`](https://facebook.github.io/jest/docs/en/configuration.html#testenvironment-string) property in your Jest configuration.
-
-```js
-{
-  // ...
-  "testEnvironment": "./custom-environment.js"
-}
-```
-
-Now your custom `setup` and `teardown` will be triggered before and after each test suites.
-
-### Create your own `globalSetup` and `globalTeardown`
-
-It is possible to create your own [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string).
-
-For this use case, `jest-environment-puppeteer` exposes two methods: `setup` and `teardown`, so that you can wrap them with your own global setup and global teardown methods as the following example:
-
-```js
-// global-setup.js
-const { setup: setupPuppeteer } = require('jest-environment-puppeteer')
-
-module.exports = async function globalSetup() {
-  await setupPuppeteer()
-  // Your global setup
-}
-```
-
-```js
-// global-teardown.js
-const { teardown: teardownPuppeteer } = require('jest-environment-puppeteer')
-
-module.exports = async function globalTeardown() {
-  // Your global teardown
-  await teardownPuppeteer()
-}
-```
-
-Then assigning your js file paths to the [`globalSetup`](https://facebook.github.io/jest/docs/en/configuration.html#globalsetup-string) and [`globalTeardown`](https://facebook.github.io/jest/docs/en/configuration.html#globalteardown-string) property in your Jest configuration.
-
-```js
-{
-  // ...
-  "globalSetup": "./global-setup.js",
-  "globalTeardown": "./global-teardown.js"
-}
-```
-
-Now your custom `globalSetup` and `globalTeardown` will be triggered once before and after all test suites.
-
-### Create React App
-
-You can find an [example of create-react-app setup in this repository](https://github.com/smooth-code/jest-puppeteer/tree/master/examples/create-react-app).
-
-## API
-
-### `global.browser`
-
-Give access to the [Puppeteer Browser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser).
-
-```js
-it('should open a new page', async () => {
-  const page = await browser.newPage()
-  await page.goto('https://google.com')
-})
-```
-
-### `global.page`
-
-Give access to a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page) opened at start (you will use it most of time).
-
-```js
-it('should fill an input', async () => {
-  await page.type('#myinput', 'Hello')
-})
-```
-
-### `global.context`
-
-Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in your `jest-puppeteer.config.js`.
-
-### `global.expect(page)`
-
-Helper to make Puppeteer assertions, [see documentation](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/expect-puppeteer/README.md#api).
-
-```js
-await expect(page).toMatch('A text in the page')
-// ...
-```
-
-### `global.jestPuppeteer.debug()`
-
-Put test in debug mode.
-
-- Jest is suspended (no timeout)
-- A `debugger` instruction to Chromium, if Puppeteer has been launched with `{ devtools: true }` it will stop
-
-```js
-it('should put test in debug mode', async () => {
-  await jestPuppeteer.debug()
-})
-```
-
-### `jest-puppeteer.config.js`
-
-You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
-
-- `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
-- `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
-- `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
-
-#### Example 1
-
-```js
-// jest-puppeteer.config.js
-module.exports = {
-  launch: {
-    dumpio: true,
-    headless: process.env.HEADLESS !== 'false',
-  },
-  server: {
-    command: 'node server.js',
-    port: 4444,
-  },
-}
-```
-
-#### Example 2
-
-This example uses an already running instance of Chrome by passing the active web socket endpoint to `connect`. This is useful, for example, when you want to connect to Chrome running in the cloud.
-
-```js
-// jest-puppeteer.config.js
-const wsEndpoint = fs.readFileSync(endpointPath, 'utf8')
-
-module.exports = {
-  connect: {
-    browserWSEndpoint: wsEndpoint,
-  },
-  server: {
-    command: 'node server.js',
-    port: 4444,
-  },
-}
-```
-
-## Inspiration
-
-Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro/jest-puppeteer-example).
-
-## License
-
-MIT
+Special thanks to [Fumihiro Xue](https://github.com/xfumihiro) for providing an excellent [Jest Puppeteer example](https://github.com/xfumihiro/jest-puppeteer-example), which served as an inspiration for this package.

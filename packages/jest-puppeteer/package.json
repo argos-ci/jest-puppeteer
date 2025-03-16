@@ -1,10 +1,30 @@
 {
   "name": "jest-puppeteer",
   "description": "Run your tests using Jest & Puppeteer.",
-  "version": "3.5.2",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-puppeteer",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "version": "11.0.0",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/jest-puppeteer"
+  },
   "license": "MIT",
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-puppeteer#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "jest",
     "puppeteer",
@@ -13,10 +33,15 @@
     "chrome-headless"
   ],
   "peerDependencies": {
-    "puppeteer": "^1.5.0"
+    "puppeteer": ">=19"
   },
   "dependencies": {
-    "expect-puppeteer": "^3.5.1",
-    "jest-environment-puppeteer": "^3.5.2"
+    "expect-puppeteer": "^11.0.0",
+    "jest-environment-puppeteer": "^11.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^4.29.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-swc3": "^0.12.1"
   }
 }

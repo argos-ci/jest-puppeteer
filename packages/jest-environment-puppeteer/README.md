@@ -1,8 +1,8 @@
 # jest-environment-puppeteer
 
-[![Build Status][build-badge]][build]
-[![version][version-badge]][package]
-[![MIT License][license-badge]][license]
+[![npm version](https://img.shields.io/npm/v/jest-environment-puppeteer.svg)](https://www.npmjs.com/package/jest-environment-puppeteer)
+[![npm dm](https://img.shields.io/npm/dm/jest-environment-puppeteer.svg)](https://www.npmjs.com/package/jest-environment-puppeteer)
+[![npm dt](https://img.shields.io/npm/dt/jest-environment-puppeteer.svg)](https://www.npmjs.com/package/jest-environment-puppeteer)
 
 Run your tests using Jest & Puppeteer 🎪✨
 
@@ -25,44 +25,66 @@ Update your Jest configuration:
 Use Puppeteer in your tests:
 
 ```js
-describe('Google', () => {
+describe("Google", () => {
   beforeAll(async () => {
-    await page.goto('https://google.com')
-  })
+    await page.goto("https://google.com");
+  });
 
   it('should display "google" text on page', async () => {
-    const text = await page.evaluate(() => document.body.textContent)
-    expect(text).toContain('google')
-  })
-})
+    const text = await page.evaluate(() => document.body.textContent);
+    expect(text).toContain("google");
+  });
+});
+```
+
+## TypeScript Setup
+
+If you’re using TypeScript, `jest-puppeteer` natively supports it from version `8.0.0`. To get started with TypeScript, follow these steps:
+
+1. Make sure your project is using the correct type definitions. If you’ve upgraded to version `10.1.2` or above, uninstall old types:
+
+```bash
+npm uninstall --save-dev @types/jest-environment-puppeteer @types/expect-puppeteer
+```
+
+2. Install `@types/jest` (`jest-puppeteer` does not support `@jest/globals`) :
+
+```bash
+npm install --save-dev @types/jest
+```
+
+3. Import the `jest-puppeteer` module to expose the global API :
+
+```ts
+import "jest-puppeteer";
 ```
 
 ## API
 
 ### `global.browser`
 
-Give access to the [Puppeteer Browser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser).
+Give access to the [Puppeteer Browser](https://pptr.dev/api/puppeteer.browser).
 
 ```js
-it('should open a new page', async () => {
-  const page = await browser.newPage()
-  await page.goto('https://google.com')
-})
+it("should open a new page", async () => {
+  const page = await browser.newPage();
+  await page.goto("https://google.com");
+});
 ```
 
 ### `global.page`
 
-Give access to a [Puppeteer Page](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page) opened at start (you will use it most of time).
+Give access to a [Puppeteer Page](https://pptr.dev/api/puppeteer.page) opened at start (you will use it most of time).
 
 ```js
-it('should fill an input', async () => {
-  await page.type('#myinput', 'Hello')
-})
+it("should fill an input", async () => {
+  await page.type("#myinput", "Hello");
+});
 ```
 
 ### `global.context`
 
-Give access to a [browser context](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in your `jest-puppeteer.config.js`.
+Give access to a [browser context](https://pptr.dev/api/puppeteer.browsercontext) that is instantiated when the browser is launched. You can control whether each test has its own isolated browser context using the `browserContext` option in config.
 
 ### `global.jestPuppeteer.debug()`
 
@@ -72,73 +94,148 @@ Put test in debug mode.
 - A `debugger` instruction to Chromium, if Puppeteer has been launched with `{ devtools: true }` it will stop
 
 ```js
-it('should put test in debug mode', async () => {
-  await jestPuppeteer.debug()
-})
+it("should put test in debug mode", async () => {
+  await jestPuppeteer.debug();
+});
 ```
 
-### `jest-puppeteer.config.js`
+### `global.jestPuppeteer.resetPage()`
 
-You can specify a `jest-puppeteer.config.js` at the root of the project or define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
-
-- `launch` <[object]> [All Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions) can be specified in config. Since it is JavaScript, you can use all stuff you need, including environment.
-- `connect` <[object]> [All Puppeteer connect options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerconnectoptions) can be specified in config. This is an alternative to `launch` config, allowing you to connect to an already running instance of Chrome.
-- `browserContext` <[string]>. By default, the browser context (cookies, localStorage, etc) is shared between all tests. The following options are available for `browserContext`:
-  - `default` Each test starts a tab, so all tests share the same context.
-  - `incognito` Each tests starts an incognito window, so all tests have a separate, isolated context. Useful when running tests that could interfere with one another. (_Example: testing multiple users on the same app at once with login, transactions, etc._)
-- `exitOnPageError` <[boolean]> Exits page on any global error message thrown. Defaults to `true`.
-- `server` <[Object]> Server options allowed by [jest-dev-server](https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server)
-
-#### Example 1
+Reset global.page
 
 ```js
-// jest-puppeteer.config.js
+beforeEach(async () => {
+  await jestPuppeteer.resetPage();
+});
+```
+
+### `global.jestPuppeteer.resetBrowser()`
+
+Reset global.browser, global.context, and global.page
+
+```js
+beforeEach(async () => {
+  await jestPuppeteer.resetBrowser();
+});
+```
+
+### Config
+
+Jest Puppeteer uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) for configuration file support. This means you can configure Jest Puppeteer via (in order of precedence):
+
+- A `"jest-puppeteer"` key in your `package.json` file.
+- A `.jest-puppeteerrc` file written in JSON or YAML.
+- A `.jest-puppeteerrc.json`, `.jest-puppeteerrc.yml`, `.jest-puppeteerrc.yaml`, or `.jest-puppeteerrc.json5` file.
+- A `.jest-puppeteerrc.js`, `.jest-puppeteerrc.cjs`, `jest-puppeteer.config.js`, or `jest-puppeteer.config.cjs` file that exports an object using `module.exports`.
+- A `.jest-puppeteerrc.toml` file.
+
+By default it looks for config at the root of the project. You can define a custom path using `JEST_PUPPETEER_CONFIG` environment variable.
+
+It should export a config object or a Promise that returns a config object.
+
+```ts
+interface JestPuppeteerConfig {
+  /**
+   * Puppeteer connect options.
+   * @see https://pptr.dev/api/puppeteer.connectoptions
+   */
+  connect?: ConnectOptions;
+  /**
+   * Puppeteer launch options.
+   * @see https://pptr.dev/api/puppeteer.launchoptions
+   */
+  launch?: PuppeteerLaunchOptions;
+  /**
+   * Server config for `jest-dev-server`.
+   * @see https://www.npmjs.com/package/jest-dev-server
+   */
+  server?: JestDevServerConfig | JestDevServerConfig[];
+  /**
+   * Allow to run one browser per worker.
+   * @default false
+   */
+  browserPerWorker?: boolean;
+  /**
+   * Browser context to use.
+   * @default "default"
+   */
+  browserContext?: "default" | "incognito";
+  /**
+   * Exit on page error.
+   * @default true
+   */
+  exitOnPageError?: boolean;
+  /**
+   * Use `runBeforeUnload` in `page.close`.
+   * @see https://pptr.dev/api/puppeteer.page.close
+   * @default false
+   */
+  runBeforeUnloadOnClose?: boolean;
+}
+```
+
+#### Sync config
+
+```js
+// jest-puppeteer.config.cjs
+
+/** @type {import('jest-environment-puppeteer').JestPuppeteerConfig} */
 module.exports = {
   launch: {
     dumpio: true,
-    headless: process.env.HEADLESS !== 'false',
+    headless: process.env.HEADLESS !== "false",
   },
   server: {
-    command: 'node server.js',
+    command: "node server.js",
     port: 4444,
     launchTimeout: 10000,
     debug: true,
   },
-}
+};
 ```
 
-#### Example 2
+#### Async config
 
 This example uses an already running instance of Chrome by passing the active web socket endpoint to `connect`. This is useful, for example, when you want to connect to Chrome running in the cloud.
 
 ```js
-// jest-puppeteer.config.js
-const wsEndpoint = fs.readFileSync(endpointPath, 'utf8')
+// jest-puppeteer.config.cjs
+const dockerHost = "http://localhost:9222";
 
-module.exports = {
-  connect: {
-    browserWSEndpoint: wsEndpoint,
-  },
-  server: {
-    command: 'node server.js',
-    port: 4444,
-    launchTimeout: 10000,
-    debug: true,
-  },
+async function getConfig() {
+  const data = await fetch(`${dockerHost}/json/version`).json();
+  const browserWSEndpoint = data.webSocketDebuggerUrl;
+  /** @type {import('jest-environment-puppeteer').JestPuppeteerConfig} */
+  return {
+    connect: {
+      browserWSEndpoint,
+    },
+    server: {
+      command: "node server.js",
+      port: 3000,
+      launchTimeout: 10000,
+      debug: true,
+    },
+  };
+}
+
+module.exports = getConfig();
+```
+
+## Create custom environment
+
+It is possible to create a custom environment from the Jest Puppeteer's one. It is not different from creating a custom environment from "jest-environment-node". See [Jest `testEnvironment` documentation](https://jestjs.io/docs/configuration#testenvironment-string) to learn more about it.
+
+```js
+// my-custom-environment
+const JestPuppeteerEnvironment =
+  require("jest-environment-puppeteer").TestEnvironment;
+
+class CustomEnvironment extends JestPuppeteerEnvironment {
+  // Implement your own environment
 }
 ```
 
 ## Inspiration
 
 Thanks to Fumihiro Xue for his great [Jest example](https://github.com/xfumihiro/jest-puppeteer-example).
-
-## License
-
-MIT
-
-[build-badge]: https://img.shields.io/travis/smooth-code/jest-puppeteer.svg?style=flat-square
-[build]: https://travis-ci.org/smooth-code/jest-puppeteer
-[version-badge]: https://img.shields.io/npm/v/jest-environment-puppeteer.svg?style=flat-square
-[package]: https://www.npmjs.com/package/jest-environment-puppeteer
-[license-badge]: https://img.shields.io/npm/l/jest-environment-puppeteer.svg?style=flat-square
-[license]: https://github.com/smooth-code/jest-puppeteer/blob/master/LICENSE

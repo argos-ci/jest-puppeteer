@@ -1,11 +1,32 @@
 {
   "name": "jest-environment-puppeteer",
   "description": "Puppeteer environment for Jest.",
-  "version": "3.5.2",
-  "main": "index.js",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-environment-puppeteer",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "version": "11.0.0",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./setup": "./setup.js",
+    "./teardown": "./teardown.js",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/jest-environment-puppeteer"
+  },
   "license": "MIT",
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-environment-puppeteer#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "jest",
     "jest-environment",
@@ -14,19 +35,25 @@
     "chromeless",
     "chrome-headless"
   ],
-  "scripts": {
-    "prebuild": "rm -rf lib/",
-    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
-    "dev": "yarn build --watch",
-    "prepublishOnly": "yarn build"
+  "publishConfig": {
+    "access": "public"
   },
-  "peerDependencies": {
-    "puppeteer": "^1.5.0"
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@jest/globals": "29.7.0",
+    "@types/jest": "^29.5.14",
+    "rollup": "^4.29.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-swc3": "^0.12.1"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
-    "cwd": "^0.10.0",
-    "jest-dev-server": "^3.5.2",
-    "merge-deep": "^3.0.2"
+    "chalk": "^4.1.2",
+    "cosmiconfig": "^8.3.6",
+    "deepmerge": "^4.3.1",
+    "jest-dev-server": "^11.0.0",
+    "jest-environment-node": "^29.7.0"
   }
 }

@@ -1,30 +1,55 @@
 {
   "name": "spawnd",
   "description": "Spawn a dependent child process.",
-  "version": "3.5.2",
-  "main": "lib/index.js",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/spawnd",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "version": "11.0.0",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/spawnd"
+  },
   "license": "MIT",
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/spawnd#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "spawn",
     "exec",
     "process",
     "child_process",
-    "depe,dent",
+    "dependent",
     "exit",
     "child"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "prebuild": "rm -rf lib/",
-    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
-    "dev": "yarn build --watch",
-    "prepublishOnly": "yarn build"
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@types/exit": "^0.1.33",
+    "@types/signal-exit": "^3.0.4",
+    "rollup": "^4.29.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-swc3": "^0.12.1"
   },
   "dependencies": {
-    "exit": "^0.1.2",
-    "signal-exit": "^3.0.2",
-    "terminate": "^2.1.2",
-    "wait-port": "^0.2.2"
+    "signal-exit": "^4.1.0",
+    "tree-kill": "^1.2.2"
   }
 }

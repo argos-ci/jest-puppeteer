@@ -26,40 +26,13 @@ _Before_ submitting a pull request, please make sure the following is done…
 
     Note: Replace `<your_username>` with your GitHub username
 
-2.  jest-puppeteer uses [Yarn](https://code.fb.com/web/yarn-a-new-package-manager-for-javascript/) for running development scripts. If you haven't already done so, please [install yarn](https://yarnpkg.com/en/docs/install).
+2.  Run `npm install`.
 
-3.  Run `yarn install`. On Windows: To install [Yarn](https://yarnpkg.com/en/docs/install#windows-tab) on Windows you may need to download either node.js or Chocolatey<br />
+3.  If you've changed APIs, update the documentation.
 
-    ```sh
-    yarn install
-    ```
+4.  Ensure the linting is good via `npm run lint`.
 
-    To check your version of Yarn and ensure it's installed you can type:
-
-    ```sh
-    yarn --version
-    ```
-
-4.  If you've added code that should be tested, add tests. You can use watch mode that continuously transforms changed files to make your life easier.
-
-    ```sh
-    # in the background
-    yarn run dev
-    ```
-
-5.  If you've changed APIs, update the documentation.
-
-6.  Ensure the linting is good via `yarn lint`.
-
-    ```sh-session
-    $ yarn lint
-    ```
-
-7.  Ensure the test suite passes via `yarn test`.
-
-    ```sh-session
-    $ yarn test
-    ```
+5.  Ensure the test suite passes via `npm run test`.
 
 ## Bugs
 
@@ -74,20 +47,6 @@ The best way to get your bug fixed is to provide a reduced test case. Please pro
 ## Code Conventions
 
 Please follow the `.prettierrc` in the project.
-
-## Credits
-
-This project exists thanks to all the people who [contribute](CONTRIBUTING.md). <a href="graphs/contributors"><img src="https://opencollective.com/jest-puppeteer/contributors.svg?width=890&button=false" /></a>
-
-### [Backers](https://opencollective.com/jest-puppeteer#backer)
-
-Thank you to all our backers! 🙏
-
-<a href="https://opencollective.com/jest-puppeteer#backers" target="_blank"><img src="https://opencollective.com/jest-puppeteer/backers.svg?width=890"></a>
-
-### [Sponsors](https://opencollective.com/jest-puppeteer#sponsor)
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
 
 ## License
 

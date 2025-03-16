@@ -1,29 +1,57 @@
 {
   "name": "jest-dev-server",
   "description": "Starts a server before your Jest tests and tears it down after.",
-  "version": "3.5.2",
-  "main": "index.js",
-  "repository": "https://github.com/smooth-code/jest-puppeteer/tree/master/packages/jest-dev-server",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "version": "11.0.0",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argos-ci/jest-puppeteer.git",
+    "directory": "packages/jest-dev-server"
+  },
   "license": "MIT",
+  "homepage": "https://github.com/argos-ci/jest-puppeteer/tree/main/packages/jest-dev-server#readme",
+  "bugs": {
+    "url": "https://github.com/argos-ci/jest-puppeteer/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "jest",
     "jest-environment",
     "server"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "prebuild": "rm -rf lib/",
-    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
-    "dev": "yarn build --watch",
-    "prepublishOnly": "yarn build"
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@types/cwd": "^0.10.2",
+    "@types/prompts": "^2.4.9",
+    "@types/wait-on": "^5.3.4",
+    "rollup": "^4.29.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-swc3": "^0.12.1"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
+    "chalk": "^4.1.2",
     "cwd": "^0.10.0",
-    "find-process": "^1.2.1",
-    "inquirer": "^6.2.0",
-    "spawnd": "^3.5.2",
-    "terminate": "^2.1.2",
-    "wait-port": "^0.2.2"
+    "find-process": "^1.4.7",
+    "prompts": "^2.4.2",
+    "spawnd": "^11.0.0",
+    "tree-kill": "^1.2.2",
+    "wait-on": "^8.0.1"
   }
 }
