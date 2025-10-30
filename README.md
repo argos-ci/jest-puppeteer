@@ -1,7 +1,3 @@
-Let's find a balance between detailed explanations and clarity. Here’s a more comprehensive version that retains structure but elaborates more where needed:
-
----
-
 # 🎪 jest-puppeteer
 
 [![npm version](https://img.shields.io/npm/v/jest-puppeteer.svg)](https://www.npmjs.com/package/jest-puppeteer)
